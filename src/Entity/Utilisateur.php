@@ -7,9 +7,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
+
+/**
+ * @method string getUserIdentifier()
+ */
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
-class Utilisateur
+class Utilisateur implements UserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -185,10 +190,12 @@ class Utilisateur
 
     public function setRole(?string $role): self
     {
-        $this->role = $role;
+        $this->role = $role ?? '';
 
         return $this;
     }
+
+
 
     public function isArchived(): ?bool
     {
@@ -383,4 +390,42 @@ class Utilisateur
     }
 
 
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+    public function isTrader()
+    {
+        return strpos($this->role, 'trader') !== false;
+    }
+
+    public function isLivreur()
+    {
+        return strpos($this->role, 'livreur') !== false;
+    }
+
+    public function isAdmin()
+    {
+        return strpos($this->role, 'admin') !== false;
+    }
+
+    public function getRoles()
+    {
+
+    }
+
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    public function __call(string $name, array $arguments)
+    {
+        // TODO: Implement @method string getUserIdentifier()
+    }
 }
