@@ -35,7 +35,7 @@ class Article
     private ?Utilisateur $id_user = null;
 
     #[ORM\Column(nullable: true)]
-    private ?bool $archived = null;
+    private bool $archived = false;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $auteur = null;

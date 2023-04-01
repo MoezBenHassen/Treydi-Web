@@ -2,8 +2,44 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <title>{% block title %}Treydi | {% endblock %}</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Treydi</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <meta name="generator" content="Geany 1.37.1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <link href="style.css" rel="stylesheet">
+        <!-- The following libraries and polyfills are recommended to maximize browser support -->
+        <!-- NOTE: you must adjust the paths as appropriate for your project -->
+
+        <!--  REQUIRED: Web Components polyfill to support Edge and Firefox < 63 -->
+        <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.1.3/webcomponents-loader.js"></script>
+
+        <!--  OPTIONAL: Intersection Observer polyfill for better performance in Safari and IE11 -->
+        <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+
+        <!--  OPTIONAL: Resize Observer polyfill improves resize behavior in non-Chrome browsers -->
+        <script src="https://unpkg.com/resize-observer-polyfill@1.5.0/dist/ResizeObserver.js"></script>
+
+        <!--  OPTIONAL: The :focus-visible polyfill removes the focus ring for some input types -->
+
+        <script src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
+
+        <meta name="description" content="eSports and Gaming NFT Template">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Place favicon.ico in the root directory -->
+
+
+        <!-- CSS here -->
+        <link rel="stylesheet" href="assets/css/plugins.css">
+        <link rel="stylesheet" href="assets/css/main.css">
+
+        <!-- Page-Revealer -->
+        <script src="assets/js/tg-page-head.js"></script>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -14,6 +50,9 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+
+        <h1>hello world</h1>
+        {% endblock %}
     </body>
 </html>
