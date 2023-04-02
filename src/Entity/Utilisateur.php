@@ -81,6 +81,9 @@ class Utilisateur
     {
         return $this->id;
     }
+    public function __toString() {
+        return $this->prenom . ' ' . $this->nom;
+    }
 
     public function getPassword(): ?string
     {

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Create a new Reclamation</h1>
+    {{ form_start(formA) }}
+    {{ form_row(formA.titre_reclamation) }}
+    {{ form_row(formA.description_reclamation) }}
+    {{ form_row(formA.ajouter) }}
+    {{ form_end(formA) }}
+{% endblock %}

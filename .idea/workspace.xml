@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/reclamation/add.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reclamation/show.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reclamation/update.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reponse/add_reponse.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reponse/showReponse.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reponse/updateReponse.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Coupon.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Coupon.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Reponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reponse.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Utilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Utilisateur.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,7 +23,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable path="composer" />
+    </execution>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -160,7 +170,7 @@
     </include_path>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2NVpqu7FwsWpgM2CUhhUPv5VKa3" />
   <component name="ProjectViewState">
@@ -172,11 +182,13 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/MSI/esprit&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Symfony2.SettingsForm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -198,6 +210,15 @@
       <workItem from="1679791605502" duration="593000" />
       <workItem from="1679937050801" duration="97000" />
       <workItem from="1679939701521" duration="12542000" />
+      <workItem from="1680044176900" duration="8136000" />
+      <workItem from="1680054688281" duration="21000" />
+      <workItem from="1680120335625" duration="7340000" />
+      <workItem from="1680128021370" duration="1298000" />
+      <workItem from="1680209382674" duration="6000" />
+      <workItem from="1680218406508" duration="6117000" />
+      <workItem from="1680224635871" duration="1756000" />
+      <workItem from="1680274693503" duration="5539000" />
+      <workItem from="1680392177457" duration="2261000" />
     </task>
     <servers />
   </component>
@@ -214,5 +235,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

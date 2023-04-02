@@ -14,7 +14,7 @@ class Reponse
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true,)]
     private ?string $titre_reponse = null;
 
     #[ORM\Column(length: 255, nullable: true)]

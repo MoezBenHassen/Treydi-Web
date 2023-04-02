@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>update a new Reponse</h1>
+    {{ form_start(formUr) }}
+    {{ form_row(formUr.titre_reponse) }}
+    {{ form_row(formUr.description_reponse) }}
+    {{ form_row(formUr.modifier) }}
+    {{ form_end(formUr) }}
+{% endblock %}

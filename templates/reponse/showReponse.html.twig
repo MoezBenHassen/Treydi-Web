@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>List des Reponses</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reponse in listr %}
+            <tr>
+                <td>{{ reponse.id }}</td>
+                <td>{{ reponse.titreReponse }}</td>
+                <td>{{ reponse.descriptionReponse }}</td>
+                <td>{{ reponse.dateReponse|date('Y-m-d') }}</td>
+                <td>
+                    <form action="{{ path('app_reponseUpdate', {'id': reponse.id}) }}" method="POST">
+                        <input type="hidden" name="_method" value="GET">
+                        <input type="submit" value="Update">
+                    </form>
+                    <form action="{{ path('app_reponseDelete', {'id': reponse.id}) }}" method="POST" id="delete-form-{{ reponse.id }}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reponse.id) }}">
+                        <input type="submit" value="Delete" onclick="return confirmDelete({{ reponse.id }})">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function confirmDelete(id) {
+            if (confirm("Are you sure you want to delete this reponse?")) {
+                // Submit the form
+                document.getElementById('delete-form-' + id).submit();
+            } else {
+                // Cancel the submission
+                return false;
+            }
+        }
+    </script>
+{% endblock %}
