@@ -38,7 +38,16 @@ class ArticleRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    //removeA function that updated the archived field to treu
+    public function removeA(Article $entity, bool $flush = false): void
+    {
+        $entity->setArchived(true);
+        $this->getEntityManager()->persist($entity);
 
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */
