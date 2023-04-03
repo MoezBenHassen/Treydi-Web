@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CategorieArticle{% endblock %}
+{% block stylesheets %}
+    <style>
+        body {
+            background-color: white;
+        }
+        h1{
+            color: #5e9ca0;
+            text-align: center;
+        }
+        p{
+            color: black;
+        }
+        a{
+            color: #2e6c80;
+        }
+        label{
+            color: black;
+        }
+    </style>
+{% endblock %}
+
+{% block javascriptsl %}{% endblock %}
+{% block body %}
+    <h1>Create new CategorieArticle</h1>
+
+    {{ include('categorie_article/_form.html.twig') }}
+
+    <a href="{{ path('app_categorie_article_index') }}">back to list</a>
+{% endblock %}

@@ -78,7 +78,7 @@
            <td>{{ article.auteur }}</td>
            <td>{{ article.avgRating }}</td>
            <td>
-               <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
+               <a href="{{ path('app_article_show', {'id': article.id}) }}">details</a>
                <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
                {{ include('article/_delete_form.html.twig') }}
            </td>
