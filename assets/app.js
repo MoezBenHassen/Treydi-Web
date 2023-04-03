@@ -20,6 +20,6 @@ import './js/plugins.js';
 import './js/ajax-form.js';
 import './js/tg-page-head.js';
 
-import './favicon.png';
+
 // start the Stimulus application
 import './bootstrap';
