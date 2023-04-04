@@ -25,6 +25,10 @@ class Utilisateur
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $prenom = null;
 
+    public function __toString(): string
+    { return $this->prenom;
+    }
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $email = null;
 

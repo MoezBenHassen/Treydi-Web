@@ -1,0 +1,36 @@
+
+<h1>Coupons</h1>
+<table class="table table-striped" border="1">
+   <thead class="thead-dark">
+       <tr>
+           <th>Id</th>
+           <th>Titre</th>
+           <th>Description</th>
+           <th>Etat</th>
+           <th>Date_Expiration</th>
+           <th>Archived</th>
+           <th>Code</th>
+       </tr>
+   </thead>
+   <tbody>
+   {% for coupon in coupons %}
+       <tr>
+           <td>{{ coupon.id }}</td>
+           <td>{{ coupon.titreCoupon }}</td>
+           <td>{{ coupon.descriptionCoupon }}</td>
+           <td>{{ coupon.etatCoupon }}</td>
+           <td>{{ coupon.dateExpiration ? coupon.dateExpiration|date('Y-m-d') : '' }}</td>
+           <td>{{ coupon.archived ? 'Yes' : 'No' }}</td>
+           <td>{{ coupon.code }}</td>
+           <td>
+               <a href="{{ path('app_coupon_delete', {'id': coupon.id}) }}">delete</a>
+               <a href="{{ path('app_coupon_edit', {'id': coupon.id}) }}">edit</a>
+           </td>
+       </tr>
+   {% else %}
+       <tr>
+           <td colspan="9">no records found</td>
+       </tr>
+   {% endfor %}
+   </tbody>
+</table>

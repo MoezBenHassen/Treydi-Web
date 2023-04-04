@@ -19,6 +19,9 @@ class CategorieCoupon
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nom_categorie = null;
 
+    public function __toString(): string
+    { return $this->description_categorie;
+    }
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description_categorie = null;
 

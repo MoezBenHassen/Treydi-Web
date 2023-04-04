@@ -30,7 +30,7 @@ class Coupon
     private ?Utilisateur $id_user = null;
 
     #[ORM\ManyToOne(inversedBy: 'coupons')]
-    private ?categorieCoupon $id_categorie = null;
+    private ?CategorieCoupon $id_categorie = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $code = null;
@@ -103,12 +103,12 @@ class Coupon
         return $this;
     }
 
-    public function getIdCategorie(): ?categorieCoupon
+    public function getIdCategorie(): ?CategorieCoupon
     {
         return $this->id_categorie;
     }
 
-    public function setIdCategorie(?categorieCoupon $id_categorie): self
+    public function setIdCategorie(?CategorieCoupon $id_categorie): self
     {
         $this->id_categorie = $id_categorie;
 
