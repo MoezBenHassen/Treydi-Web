@@ -5,6 +5,7 @@
     <div class="app-brand demo ">
         <a href="index-2.html" class="app-brand-link">
       <span class="app-brand-logo demo">
+{#
 
 <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
@@ -38,13 +39,21 @@
     </g>
   </g>
 </svg>
+#}
+
+          <img id="chose" src="{{ asset('assets/img/logo/log-04.png') }}" alt="">
 
 </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+            {# first letter uppercase #}
+
+            <span class="app-brand-text demo menu-text fw-bolder ms-2" style="text-transform: capitalize; font-family: 'United Kingdom'">
+                {#<img src="{{ asset('assets/img/logo/treydiAdmin-05.png') }}" width="100%" height="40" alt="Treydi">#}
+                Treydi
+            </span>
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
-            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            <i class="bx bx-chevron-left bx-sm align-middle" ></i>
         </a>
     </div>
 
