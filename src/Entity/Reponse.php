@@ -15,9 +15,13 @@ class Reponse
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true,)]
+    #[Assert\NotBlank(message:"titre reclamation required!")]
+    #[Assert\Length(min: 2,max: 15)]
     private ?string $titre_reponse = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:"titre reclamation required!")]
+    #[Assert\Length(min: 2,max: 15)]
     private ?string $description_reponse = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]

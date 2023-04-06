@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ReclamationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: ReclamationRepository::class)]
 class Reclamation
@@ -14,10 +16,15 @@ class Reclamation
     #[ORM\Column]
     private ?int $id = null;
 
+
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:"titre reclamation required!")]
+    #[Assert\Length(min: 2,max: 15)]
     private ?string $titre_reclamation = null;
 
     #[ORM\Column(length: 500, nullable: true)]
+    #[Assert\NotBlank(message:"description reclamation required!")]
+    #[Assert\Length(min: 2,max: 250)]
     private ?string $description_reclamation = null;
 
     #[ORM\Column(length: 10, nullable: true)]

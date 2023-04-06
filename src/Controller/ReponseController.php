@@ -35,7 +35,7 @@ class ReponseController extends AbstractController
         $form->add('ajouter', SubmitType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($req);
             $em->flush();
             return $this->redirectToRoute('app_reponseAdd', ['id' => $reclamation->getId()]);

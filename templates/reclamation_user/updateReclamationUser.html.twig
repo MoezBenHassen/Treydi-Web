@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Edit Reclamation</h1>
+    {{ form_start(formU) }}
+    {{ form_row(formU.titre_reclamation) }}
+    {{ form_row(formU.description_reclamation) }}
+    {{ form_row(formU.modifier) }}
+    {{ form_end(formU) }}
+{% endblock %}

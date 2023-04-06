@@ -2,9 +2,11 @@
 
 {% block body %}
     <h1>Create a new Reponse</h1>
-    {{ form_start(formR) }}
+    {{ form_start(formR,{'attr': {'novalidate': 'novalidate'}} ) }}
     {{ form_row(formR.titre_reponse) }}
+    {{ form_errors(formR.titre_reponse)}}
     {{ form_row(formR.description_reponse) }}
+    {{ form_errors(formR.description_reponse)}}
     {{ form_row(formR.ajouter) }}
     {{ form_end(formR) }}
 {% endblock %}
