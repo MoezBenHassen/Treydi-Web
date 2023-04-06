@@ -7,14 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
-
-/**
- * @method string getUserIdentifier()
- */
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
-class Utilisateur implements UserInterface
+class Utilisateur
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -45,8 +40,9 @@ class Utilisateur implements UserInterface
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date_naissance = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $role = null;
+
+    #[ORM\Column]
+    private array $roles = [];
 
     #[ORM\Column(nullable: true)]
     private ?bool $archived = null;
@@ -183,19 +179,24 @@ class Utilisateur implements UserInterface
         return $this;
     }
 
-    public function getRole(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        return $this->role;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
-    public function setRole(?string $role): self
+    public function setRoles(array $roles): self
     {
-        $this->role = $role ?? '';
+        $this->roles = $roles;
 
         return $this;
     }
-
-
 
     public function isArchived(): ?bool
     {
@@ -390,42 +391,4 @@ class Utilisateur implements UserInterface
     }
 
 
-    public function getSalt()
-    {
-        // TODO: Implement getSalt() method.
-    }
-
-    public function eraseCredentials()
-    {
-        // TODO: Implement eraseCredentials() method.
-    }
-    public function isTrader()
-    {
-        return strpos($this->role, 'trader') !== false;
-    }
-
-    public function isLivreur()
-    {
-        return strpos($this->role, 'livreur') !== false;
-    }
-
-    public function isAdmin()
-    {
-        return strpos($this->role, 'admin') !== false;
-    }
-
-    public function getRoles()
-    {
-
-    }
-
-    public function getUsername()
-    {
-        // TODO: Implement getUsername() method.
-    }
-
-    public function __call(string $name, array $arguments)
-    {
-        // TODO: Implement @method string getUserIdentifier()
-    }
 }
