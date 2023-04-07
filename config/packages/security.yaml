@@ -8,6 +8,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
+
                 class: App\Entity\Utilisateur
                 property: email
     firewalls:
@@ -17,6 +18,7 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+
             custom_authenticator: App\Security\LoginFormAuthenticator
             logout:
                 path: app_logout

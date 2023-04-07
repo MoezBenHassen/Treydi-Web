@@ -21,6 +21,7 @@
       <change afterPath="$PROJECT_DIR$/templates/user/new.html.twig" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/templates/user/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/migrations/Version20230327190208.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20230407220616.php" afterDir="false" />
@@ -42,6 +43,7 @@
       <change beforePath="$PROJECT_DIR$/templates/echange/creer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/creer.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/echange/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/list.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/echange/proposer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/proposer.html.twig" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,6 +196,8 @@
       <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/ux-turbo" />
+      <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -201,12 +205,15 @@
   </component>
   <component name="ProjectId" id="2NVpqu7FwsWpgM2CUhhUPv5VKa3" />
   <component name="ProjectLevelVcsManager">
+
     <ConfirmationsSetting value="2" id="Add" />
+
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
@@ -231,6 +238,7 @@
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\templates" />
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Form" />
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Controller" />
+
     </key>
   </component>
   <component name="RunManager">
@@ -250,6 +258,7 @@
       <workItem from="1679759302073" duration="4788000" />
       <workItem from="1679791605502" duration="593000" />
       <workItem from="1679937050801" duration="97000" />
+
       <workItem from="1679939701521" duration="12542000" />
       <workItem from="1680124892359" duration="900000" />
       <workItem from="1680125824135" duration="10800000" />
@@ -279,6 +288,7 @@
       <workItem from="1680903756310" duration="50000" />
       <workItem from="1680903866658" duration="156000" />
       <workItem from="1680904476148" duration="2082000" />
+
     </task>
     <servers />
   </component>
