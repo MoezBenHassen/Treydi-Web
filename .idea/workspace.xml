@@ -5,43 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/LoginFormAuthenticator.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Security/LoginFormAuthenticator.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/_delete_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/new.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/show.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/EchangeProposerController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/echange_proposer/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230327190208.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20230407220616.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230327190335.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230327200713.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230327210240.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230331011457.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/EchangeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EchangeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Echange.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Echange.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/EchangeProposer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/EchangeProposer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Item.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Item.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Utilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Utilisateur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/EchangeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/EchangeType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ITEM2Repository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ItemRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ItemRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ItemsRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UtilisateurRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UtilisateurRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/afficher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/afficher.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/creer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/creer.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/list.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/proposer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/proposer.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/LoginFormAuthenticator.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/proposer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange_proposer/proposer.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,6 +203,10 @@
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Form" />
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Controller" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Security" />
+      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\templates\echange_proposer" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -278,7 +253,7 @@
       <workItem from="1680903401085" duration="32000" />
       <workItem from="1680903756310" duration="50000" />
       <workItem from="1680903866658" duration="156000" />
-      <workItem from="1680904476148" duration="2082000" />
+      <workItem from="1680904476148" duration="6520000" />
     </task>
     <servers />
   </component>
