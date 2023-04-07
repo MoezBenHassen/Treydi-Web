@@ -5,8 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/LoginFormAuthenticator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Security/LoginFormAuthenticator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/_delete_form.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/_form.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/new.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/index.html.twig" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20230327190208.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20230407220616.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20230327190335.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20230327200713.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20230327210240.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20230331011457.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/EchangeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EchangeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Echange.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Echange.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/EchangeProposer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/EchangeProposer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Item.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Item.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Utilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Utilisateur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/EchangeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/EchangeType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ITEM2Repository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ItemRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ItemRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ItemsRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UtilisateurRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UtilisateurRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/afficher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/afficher.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/creer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/creer.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/list.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/proposer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/proposer.html.twig" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +52,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable path="composer" />
+    </execution>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -166,41 +205,40 @@
   </component>
   <component name="ProjectId" id="2NVpqu7FwsWpgM2CUhhUPv5VKa3" />
   <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
+
+    <ConfirmationsSetting value="2" id="Add" />
+
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/EXPERIMENTAL Treydi-Web/public/assets/dashboard&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Symfony2.SettingsForm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Marayed/Desktop/PiWeb/Treydi-Web/src",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\EXPERIMENTAL Treydi-Web\public\assets\dashboard" />
-      <recent name="E:\EXPERIMENTAL Treydi-Web\public\assets\css\dashboard" />
-      <recent name="E:\EXPERIMENTAL Treydi-Web\assets" />
-      <recent name="E:\EXPERIMENTAL Treydi-Web\public" />
-      <recent name="E:\EXPERIMENTAL Treydi-Web\public\assets" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\EXPERIMENTAL Treydi-Web\templates\Dashboard_components" />
-      <recent name="E:\EXPERIMENTAL Treydi-Web\templates\dashboard_home" />
-      <recent name="E:\EXPERIMENTAL Treydi-Web\public\assets" />
-      <recent name="E:\EXPERIMENTAL Treydi-Web\assets\styles" />
+      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src" />
+      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\templates" />
+      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Form" />
+      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Controller" />
+
     </key>
   </component>
   <component name="RunManager">
@@ -220,20 +258,37 @@
       <workItem from="1679759302073" duration="4788000" />
       <workItem from="1679791605502" duration="593000" />
       <workItem from="1679937050801" duration="97000" />
-      <workItem from="1679939701521" duration="13137000" />
-      <workItem from="1680016020877" duration="146000" />
-      <workItem from="1680370974744" duration="111000" />
-      <workItem from="1680371097936" duration="1175000" />
-      <workItem from="1680375614454" duration="15219000" />
-      <workItem from="1680406009190" duration="3996000" />
-      <workItem from="1680454442031" duration="5147000" />
-      <workItem from="1680475641948" duration="23000" />
-      <workItem from="1680476456814" duration="11468000" />
-      <workItem from="1680779601849" duration="3188000" />
-      <workItem from="1680898402074" duration="4169000" />
-      <workItem from="1680903773069" duration="1449000" />
-      <workItem from="1680906305074" duration="874000" />
-      <workItem from="1680907400381" duration="230000" />
+
+      <workItem from="1679939701521" duration="12542000" />
+      <workItem from="1680124892359" duration="900000" />
+      <workItem from="1680125824135" duration="10800000" />
+      <workItem from="1680219412928" duration="1292000" />
+      <workItem from="1680220733852" duration="46000" />
+      <workItem from="1680220856207" duration="5582000" />
+      <workItem from="1680226962776" duration="1038000" />
+      <workItem from="1680373151033" duration="15000" />
+      <workItem from="1680395178388" duration="1260000" />
+      <workItem from="1680396463023" duration="4679000" />
+      <workItem from="1680512874322" duration="3070000" />
+      <workItem from="1680644370831" duration="3000" />
+      <workItem from="1680644884786" duration="2144000" />
+      <workItem from="1680650450717" duration="242000" />
+      <workItem from="1680650709468" duration="480000" />
+      <workItem from="1680651208544" duration="85000" />
+      <workItem from="1680651305918" duration="1435000" />
+      <workItem from="1680661270118" duration="30000" />
+      <workItem from="1680661314991" duration="225000" />
+      <workItem from="1680661816772" duration="941000" />
+      <workItem from="1680692109177" duration="708000" />
+      <workItem from="1680693054577" duration="43000" />
+      <workItem from="1680693919681" duration="2834000" />
+      <workItem from="1680901323622" duration="1468000" />
+      <workItem from="1680903248124" duration="94000" />
+      <workItem from="1680903401085" duration="32000" />
+      <workItem from="1680903756310" duration="50000" />
+      <workItem from="1680903866658" duration="156000" />
+      <workItem from="1680904476148" duration="2082000" />
+
     </task>
     <servers />
   </component>
@@ -250,5 +305,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

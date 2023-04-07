@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/EXPERIMENTAL Treydi-Web.iml" filepath="$PROJECT_DIR$/.idea/EXPERIMENTAL Treydi-Web.iml" />
+
+      <module fileurl="file://$PROJECT_DIR$/.idea/Treydi-Web.iml" filepath="$PROJECT_DIR$/.idea/Treydi-Web.iml" />
+
     </modules>
   </component>
 </project>

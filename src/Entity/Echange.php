@@ -7,10 +7,23 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EchangeRepository::class)]
 class Echange
 {
+
+    #[ORM\OneToMany(mappedBy: "id_echange", targetEntity: Item::class)]
+    private $items;
+
+    /**
+     * @[return Collection|Item[]]
+     */
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -29,6 +42,8 @@ class Echange
     private ?string $liv_etat = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:"Ce champs ne doit pas être vide")]
+    #[Assert\Length(min:3, max:20)]
     private ?string $titre_echange = null;
 
     #[ORM\Column(nullable: true)]
@@ -37,9 +52,14 @@ class Echange
     #[ORM\OneToMany(mappedBy: 'id_echange', targetEntity: Livraison::class)]
     private Collection $livraisons;
 
+    #[ORM\OneToMany(mappedBy: 'id_echange', targetEntity: EchangeProposer::class)]
+    private Collection $echanges_proposer;
+
     public function __construct()
     {
         $this->livraisons = new ArrayCollection();
+        $this->items = new ArrayCollection();
+        $this->echanges_proposer = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -143,6 +163,48 @@ class Echange
             // set the owning side to null (unless already changed)
             if ($livraison->getIdEchange() === $this) {
                 $livraison->setIdEchange(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getIdProp(): ?EchangeProposer
+    {
+        return $this->id_prop;
+    }
+
+    public function setIdProp(?EchangeProposer $id_prop): self
+    {
+        $this->id_prop = $id_prop;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EchangeProposer>
+     */
+    public function getEchangesProposer(): Collection
+    {
+        return $this->echanges_proposer;
+    }
+
+    public function addEchangesProposer(EchangeProposer $echangesProposer): self
+    {
+        if (!$this->echanges_proposer->contains($echangesProposer)) {
+            $this->echanges_proposer->add($echangesProposer);
+            $echangesProposer->setIdEchange($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEchangesProposer(EchangeProposer $echangesProposer): self
+    {
+        if ($this->echanges_proposer->removeElement($echangesProposer)) {
+            // set the owning side to null (unless already changed)
+            if ($echangesProposer->getIdEchange() === $this) {
+                $echangesProposer->setIdEchange(null);
             }
         }
 
