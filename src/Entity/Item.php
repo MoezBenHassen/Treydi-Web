@@ -43,7 +43,7 @@ class Item
     #[ORM\ManyToOne(inversedBy: 'items')]
     private ?CategorieItems $id_categorie = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: Echange::class, inversedBy: 'echange')]
     private ?Echange $id_echange = null;
 
 

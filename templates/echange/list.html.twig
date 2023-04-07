@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClassroomListController!
+{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px / 1.5 sans-serif;
+        }
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Hello
+            {{ controller_name }}! ✅</h1>
+
+        <h2>
+            List des echanges
+        </h2>
+
+        <table border="2">
+
+            <tr>
+                <td>
+                    id
+                </td>
+                <td>
+                    name
+                </td>
+                <td>
+                    supprimer
+                </td>
+                <td>
+                    modifier
+                </td>
+                <td>
+                    afficher
+                </td>
+                <td>
+                    proposer
+                </td>
+
+            </tr>
+
+            {% for i in list %}
+            <tr>
+                <td>
+                    {{ i.id }}
+                </td>
+                <td>
+                    {{ i.titreEchange }}
+                </td>
+                <td>
+                    <form action={{ url('app_echangeDelete',{'id':i.getId()} ) }}>
+                        <input type="submit" value="Supprimer"/>
+                    </form>
+                </td>
+                <td></td>
+
+                <td>
+                    <form action={{ url('app_echange_afficher',{'id':i.getId()} ) }}>
+                        <input type="submit" value="Afficher"/>
+                    </form>
+                </td>
+
+                <td>
+                    <form action={{ url('app_echange_proposer',{'id':i.getId()} ) }}>
+                        <input type="submit" value="Proposer"/>
+                    </form>
+                </td>
+
+
+                {% endfor %}
+            </tr>
+        </table>
+
+
+
+    </div>
+{% endblock %}

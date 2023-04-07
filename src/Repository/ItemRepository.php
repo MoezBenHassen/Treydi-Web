@@ -39,14 +39,6 @@ class ItemRepository extends ServiceEntityRepository
         }
     }
 
-    //MAROUAN
-    public function findAllItemsForEchange() {
-        $em = $this->getEntityManager();
-        $query = $em
-                    ->createQuery('SELECT i FROM App\Entity\Item i WHERE i.id_echange is NULL');
-        return $query->getResult();
-    }
-
 //    /**
 //     * @return Item[] Returns an array of Item objects
 //     */
