@@ -30,7 +30,7 @@ class Coupon
     private ?Utilisateur $id_user = null;
 
     #[ORM\ManyToOne(inversedBy: 'coupons')]
-    private ?categorieCoupon $id_categorie = null;
+    private ?CategorieCoupon $id_categorie = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $code = null;
