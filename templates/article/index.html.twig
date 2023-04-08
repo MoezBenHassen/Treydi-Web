@@ -3,7 +3,6 @@
 {% block title %}{{ parent() }}Article index{% endblock %}
 
 {% block stylesheets %}
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com/">
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -13,15 +12,12 @@
   <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}" />
-
   <!-- Core CSS -->
-
   <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core-dark.css') }}" class="template-customizer-core-css" />
   <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default-dark.css') }}" class="template-customizer-theme-css" />
   <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 
   <!-- Vendors CSS -->
-
   <style>
     .table-responsive {
       overflow-x: auto;
@@ -75,18 +71,27 @@
 <div class="layout-wrapper layout-content-navbar  ">
   <div class="layout-container">
     <!-- Menu -->
-      {{ include('Dashboard_components/_menuDashboard.html.twig') }}
+      <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          {{ include('Dashboard_components/_menuDashboard.html.twig') }}
+      </aside>
+
     <!-- / Menu -->
     <!-- Layout container -->
     <div class="layout-page">
+
       <!-- Navbar -->
         {{ include('Dashboard_components/_navbarDashboard.html.twig') }}
       <!-- / Navbar -->
 
       <!-- Content wrapper -->
       <div class="content-wrapper">
-        <!-- Content -->
+          <!-- Content -->
           <hr class="my-5">
+            <h1>ECHANGE</h1>
+      </div>
+    </div>
+  </div>
+</div>
           <!-- Core JS -->
           <!-- build:js assets/vendor/js/core.js -->
           <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
