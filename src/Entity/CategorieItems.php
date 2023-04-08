@@ -6,6 +6,8 @@ use App\Repository\CategorieItemsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use PHPUnit\Util\Exception;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategorieItemsRepository::class)]
 #[ORM\Table(name: 'categorie_items')]
@@ -16,7 +18,9 @@ class CategorieItems
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 30, nullable: true)]
+    #[Assert\NotBlank(message: 'nom categorie obligatoire! (entre 3 et 30)')]
+    #[Assert\Length(min:3,max: 30)]
     private ?string $nom_categorie = null;
 
     #[ORM\Column(nullable: true)]

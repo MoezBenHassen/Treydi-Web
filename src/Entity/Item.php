@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ItemRepository;
 use Doctrine\ORM\Mapping as ORM;
+use PHPUnit\Util\Exception;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
 class Item
@@ -13,10 +15,15 @@ class Item
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+
+    #[ORM\Column(length: 30, nullable: true)]
+    #[Assert\NotBlank(message: 'libelle obligatoire! (entre 3 et 30)')]
+    #[Assert\Length(min:3,max: 30)]
     private ?string $libelle = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 300, nullable: true)]
+    #[Assert\NotBlank(message: 'description obligatoire! (entre 3 et 300)')]
+    #[Assert\Length(min:3,max: 300)]
     private ?string $description = null;
 
     #[ORM\Column(length: 10, nullable: true)]
@@ -26,24 +33,26 @@ class Item
     private ?string $type = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'image url obligatoire!')]
+    #[Assert\Length(min:2,max: 300)]
     private ?string $imageurl = null;
 
     #[ORM\ManyToOne(inversedBy: 'items')]
     private ?Utilisateur $id_user = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $likes = null;
+    private ?int $likes = 0;
 
     #[ORM\Column(nullable: true)]
-    private ?int $dislikes = null;
+    private ?int $dislikes = 0;
 
     #[ORM\Column(nullable: true)]
-    private ?bool $archived = null;
+    private ?bool $archived = false;
 
     #[ORM\ManyToOne(inversedBy: 'items')]
     private ?CategorieItems $id_categorie = null;
 
-    #[ORM\ManyToOne(targetEntity: Echange::class, inversedBy: 'echange')]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Echange $id_echange = null;
 
 

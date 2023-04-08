@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block body %}
+    <h1> details Article</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ article.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ article.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ article.description }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ article.contenu }}</td>
+            </tr>
+            <tr>
+                <th>Date_publication</th>
+                <td>{{ article.datePublication ? article.datePublication|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Archived</th>
+                <td>{{ article.archived ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ article.auteur }}</td>
+            </tr>
+            <tr>
+                <th>Avg_rating</th>
+                <td>{{ article.avgRating }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_article_index') }}">back to list</a>
+
+    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+
+
+{% endblock %}
