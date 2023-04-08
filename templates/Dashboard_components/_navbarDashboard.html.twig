@@ -1,0 +1,62 @@
+
+
+
+<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+
+    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
+        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+            <i class="bx bx-menu bx-sm"></i>
+        </a>
+    </div>
+
+
+    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+
+        <!-- Search -->
+        {{ include('Dashboard_components/_searchAdminTop.html.twig') }}
+        <!-- /Search -->
+
+
+
+
+
+        <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+            <!-- Language -->
+            {{ include('Dashboard_components/_languageAdminTop.html.twig') }}
+            <!--/ Language -->
+
+
+
+
+            <!-- Style Switcher -->
+            {{ include('Dashboard_components/_styleSwticherAdminTop.html.twig') }}
+            <!--/ Style Switcher -->
+
+            <!-- Shortcuts  -->
+            {{ include('Dashboard_components/_shortcutsAdminTop.html.twig') }}
+
+            <!-- Shortcuts-->
+
+            <!-- Notification -->
+            {{ include('Dashboard_components/_notificationAdminTop.html.twig') }}
+            <!--/ Notification -->
+            <!-- User -->
+            {{ include('Dashboard_components/_userAdminTop.html.twig') }}
+            <!--/ User -->
+
+
+        </ul>
+    </div>
+
+
+    <!-- Search Small Screens -->
+    <div class="navbar-search-wrapper search-input-wrapper  d-none">
+        <input type="text" class="form-control search-input container-xxl border-0" placeholder="Search..." aria-label="Search...">
+        <i class="bx bx-x bx-sm search-toggler cursor-pointer"></i>
+    </div>
+
+
+</nav>
+
