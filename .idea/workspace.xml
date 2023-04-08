@@ -5,13 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Controller/EchangeProposerController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/echange_proposer/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/vendor/js/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/vendor/js/menu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/LoginFormAuthenticator.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Dashboard_components/_menuDashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Dashboard_components/_menuDashboard.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/index.html.twig" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,6 +183,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
@@ -197,6 +202,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src" />
@@ -204,6 +210,8 @@
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Form" />
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Controller" />
     </key>
+
+
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -250,8 +258,10 @@
       <workItem from="1680903401085" duration="32000" />
       <workItem from="1680903756310" duration="50000" />
       <workItem from="1680903866658" duration="156000" />
+
       <workItem from="1680904476148" duration="2082000" />
       <workItem from="1680909528586" duration="4282000" />
+
     </task>
     <servers />
   </component>

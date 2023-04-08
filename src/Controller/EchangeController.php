@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Echange;
-use App\Entity\EchangeProposer;
+
 use App\Entity\Item;
-use App\Entity\Utilisateur;
+
 use App\Form\EchangeType;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
@@ -27,7 +26,6 @@ class EchangeController extends AbstractController
             'controller_name' => 'EchangeController',
         ]);
     }
-
 
 
     //ECHANGE
@@ -134,66 +132,6 @@ class EchangeController extends AbstractController
         return $this->render('echange/afficher.html.twig', [
             'user1_items' => $user1_items,
             'user2_items' => $user2_items,
-        ]);
-    }
-
-
-    //ECHANGE PROPOSER
-    #[Route('/echange/proposer/{id}', name: 'app_echange_proposer')]
-    public function proposer(Request $request,ManagerRegistry $doctrine, $id): Response
-    {
-        $current_date = date('Y-m-d');
-        $date = new DateTime($current_date);
-
-        $em = $doctrine->getManager();
-        $test_user2 = $em->getRepository(Utilisateur::class)->find(2);
-
-        $echange = $em->getRepository(Echange::class)
-            ->find($id);
-        //change to echangeproposertype (propably make a new controller)
-        $form = $this->createForm(Echange::class, $echange);
-        $form->handleRequest($request);
-
-        $user1_items = $doctrine
-            ->getRepository(Item::class)
-            ->findBy(['id_echange' => $echange->getId(), 'id_user' => $echange->getIdUser1()]);
-
-        $user2_items = $doctrine
-            ->getRepository(Item::class)
-            ->findBy(['id_echange' => NULL,'id_user' => $test_user2->getId()]);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $echange_proposer = new EchangeProposer();
-            $echange_proposer->setIdEchange($echange);
-            $echange_proposer->setArchived(0);
-            $echange_proposer->setIdUser($test_user2);
-            $echange_proposer->setDateProposer($date);
-            $em->persist($echange_proposer);
-
-            $em->flush();
-
-            $items = json_decode(json_encode($request->request->get('items')), true);
-
-            foreach ($items as $id) {
-                $idArray = json_decode($id, true);
-                foreach ($idArray as $itemId) {
-                    $item = $doctrine->getRepository(Item::class)->find($itemId);
-                    if ($item) {
-                        $item->setIdEchange($echange);
-                        $em->persist($item);
-                        echo "Item ID: $itemId\n";
-                    }
-                }
-            }
-            $em->flush();
-
-            return $this->redirectToRoute('app_echangeList');
-        }
-
-        return $this->render('echange/proposer.html.twig', [
-            'user1_items' => $user1_items,
-            'user2_items' => $user2_items,
-            'formA' => $form->createView(),
         ]);
     }
 }

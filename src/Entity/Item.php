@@ -46,9 +46,6 @@ class Item
     #[ORM\ManyToOne(targetEntity: Echange::class, inversedBy: 'echange')]
     private ?Echange $id_echange = null;
 
-
-
-
     public function getId(): ?int
     {
         return $this->id;
