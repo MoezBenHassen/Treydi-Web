@@ -36,13 +36,13 @@ class ItemController extends AbstractController
         ]);
     }
 
-    #[Route('/back/item/list', name: 'app_itemList_b')]
+    #[Route('/item/back/list', name: 'app_itemList_b')]
     public function listB(ItemRepository $repository): Response
     {
     
         $list = $repository->findUnarchived();
 
-        return $this->render('back/item/list.html.twig', [
+        return $this->render('item/back/index.html.twig', [
             'controller_name' => 'List des Items',
             'list' => $list
         ]);
@@ -96,14 +96,13 @@ class ItemController extends AbstractController
         return $this->renderForm('front/item/add.html.twig', array('formA' => $form));
     }
 
-    #[Route('back/item/add', name: 'app_itemAdd_b')]
+    #[Route('/item/back/add', name: 'app_itemAdd_b')]
     public function addB(Request $request, ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Utilisateur::class);
         $em = $doctrine->getManager();
         $item = new item();
         $form = $this->createForm(ItemType::class, $item);
-        $form->add('Ajouter', SubmitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid() ) {
@@ -114,7 +113,7 @@ class ItemController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('app_itemList_b');
         }
-        return $this->renderForm('back/item/add.html.twig', array('formA' => $form));
+        return $this->renderForm('item/back/add.html.twig', array('formA' => $form));
     }
 
     #[Route('/front/item/modify/{id}', name: 'app_itemModify_f')]
