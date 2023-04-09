@@ -33,6 +33,9 @@ class CategorieCoupon
         $this->coupons = new ArrayCollection();
     }
 
+    public function __toString(): string
+    { return $this->description_categorie;
+    }
     public function getId(): ?int
     {
         return $this->id;
