@@ -16,8 +16,10 @@ class UserController extends AbstractController
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
     public function index(UtilisateurRepository $userRepository): Response
     {
+        $users = $userRepository->findBy(['archived' => 0]);
+
         return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $users,
         ]);
     }
 
@@ -70,7 +72,8 @@ class UserController extends AbstractController
     public function delete(Request $request, Utilisateur $user, UtilisateurRepository $userRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $userRepository->remove($user, true);
+            $user->setArchived(true);
+            $userRepository->save($user, true);
         }
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
