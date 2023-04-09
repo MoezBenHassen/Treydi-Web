@@ -5,13 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/migrations/Version20230408131214.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/ReclamationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/ReclamationUserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/ReponseController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/ReponseUserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/ReclamationType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/ReponseAddType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/UpdateReponseType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/UpdateformType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reclamation/add.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reclamation/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reclamation/show.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reclamation/update.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reclamation_user/addReclamationUser.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reclamation_user/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reclamation_user/showReclamationUser.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reclamation_user/updateReclamationUser.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reponse/add_reponse.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reponse/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reponse/showReponse.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reponse/updateReponse.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reponse_user/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reponse_user/showReponseUser.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/vendor/js/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/vendor/js/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/LoginFormAuthenticator.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/controllers.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/controllers/hello_controller.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/app.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/webpack_encore.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Dashboard_components/_menuDashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Dashboard_components/_menuDashboard.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,8 +196,6 @@
       <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
-      <path value="$PROJECT_DIR$/vendor/symfony/ux-turbo" />
-      <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -187,7 +217,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Marayed/Desktop/PiWeb/Treydi-Web/src&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/MSI/Desktop/Treydi/WEB2/Treydi-Web&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -252,6 +282,9 @@
       <workItem from="1680903866658" duration="156000" />
       <workItem from="1680904476148" duration="2082000" />
       <workItem from="1680909528586" duration="4282000" />
+      <workItem from="1680958740285" duration="2776000" />
+      <workItem from="1680966879329" duration="3032000" />
+      <workItem from="1680989288305" duration="15292000" />
     </task>
     <servers />
   </component>
