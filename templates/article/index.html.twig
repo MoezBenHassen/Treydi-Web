@@ -102,14 +102,22 @@
 
 
           <h4 class="fw-bold py-3 mb-4">
-            <span class="text-muted fw-light">Admin /</span> Blog Articles
+            <span class="text-muted fw-light">Admin /</span>  Articles
           </h4>
-          <a href="{{ path('app_article_new') }}">Create new</a>
+          <a href="{{ path('app_article_new') }}">
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary">
+                Ajouter un article
+              </button>
+            </div>
+          </a>
           {#delay showing toast after page loading#}
 
 
-          {% for message in app.flashes('success') %}
-  {#          <div class="alert alert-success alert-dismissible" role="alert">
+          {% for message in app.flashes('delete_success') %}
+            {% for deleteID in app.flashes('delete_id') %}
+
+            {#          <div class="alert alert-success alert-dismissible" role="alert">
               {{ message  }}
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
               </button>
@@ -118,9 +126,9 @@
 
             <div class="bs-toast toast toast-ex animate__animated my-2 fade animate__fadeIn bg-success opacity-75" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
               <div class="toast-header">
-                <i class='bx bx-bell me-2'></i>
-                <div class="me-auto fw-semibold">Bootstrap</div>
-                <small>11 mins ago</small>
+                <i class='bx bxs-trash me-2'></i>
+                <div class="me-auto fw-semibold">Supression de l'article {{ deleteID }}</div>
+                <small>Now</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
               </div>
               <div class="toast-body">
@@ -128,9 +136,10 @@
               </div>
             </div>
 
-
+            {% endfor %}
           {% endfor %}
-          <hr class="my-5">
+          {#<hr class="my-5">#}
+          <br>
           <div class="card">
             <!-- Hoverable Table rows -->
             {#         <div class="card">

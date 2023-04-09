@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 
     <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
+
     <style>
         .table-responsive {
             overflow-x: auto;
@@ -87,7 +89,7 @@
 
                     <a href="{{ path('app_article_index') }}">back to list</a>#}
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Vertical Layouts</h4>
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin / Articles / </span>Ajouter un Article</h4>
                         {{ include('article/_form.html.twig') }}
                         {#<div class="row">
                         <div class="col-xl">
@@ -152,14 +154,14 @@
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-
+    <script src="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
     <!-- Vendors JS -->
 
     <!-- Main JS -->
     <script src="{{asset('/assets/js/maindash.js') }}"></script>
 
     <!-- Page JS -->
-
+    <script src="{{ asset('assets/js/forms-pickers.js') }}"></script>
     <script>
     </script>
     </body>

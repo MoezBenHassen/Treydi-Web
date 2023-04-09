@@ -24,30 +24,33 @@ class ArticleType extends AbstractType
             //titre with label
             ->add('titre',TextType::class, [
                 'label' => 'Titre',
-                'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],
-                'attr' => ['class' => 'form-control', 'id' => 'basic-default-fullname',
+                'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-titre'],
+                'attr' => ['class' => 'form-control', 'id' => 'basic-default-titre',
                     'placeholder' => 'Titre de l\'article']
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
-                'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],
-                'attr' => ['class' => 'form-control', 'id' => 'basic-default-fullname',
+                'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-decription'],
+                'attr' => ['class' => 'form-control', 'id' => 'basic-default-description',
                     'placeholder' => 'Titre de l\'article'],
             ])
             ->add('contenu',TextareaType::class, [
                 'label' => 'Contenu',
-                'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],
-                'attr' => ['class' => 'form-control', 'id' => 'basic-default-fullname',
+                'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-contenu'],
+                'attr' => ['class' => 'form-control', 'id' => 'basic-default-contenu',
                     'placeholder' => 'Titre de l\'article'],
             ])
             ->add('date_publication', DateType::class, [
                 'label' => 'Date de publication',
-                'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],
+                'label_attr' => ['class' => 'form-label ', 'for' => 'bs-datepicker-basic'],
+                'attr' => ['class' => 'form-control',
+                    'id' => 'bs-datepicker-basic',
+                    'placeholder' => 'YYYY-MM-DD'],
             ])
             ->add('auteur', TextType::class,[
                 'label' => 'Auteur',
-                'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],
-                'attr' => ['class' => 'form-control', 'id' => 'basic-default-fullname',
+                'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-auteur'],
+                'attr' => ['class' => 'form-control', 'id' => 'basic-default-auteur',
                     'placeholder' => 'Titre de l\'article'],
             ])
             //choice type for categories with label automattically loaded from database
