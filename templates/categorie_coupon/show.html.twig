@@ -1,4 +1,6 @@
-{% block title %}Hello!{% endblock %}
+{%extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}Coupon index{% endblock %}
 
 {% block stylesheets %}
     <!-- Fonts -->
@@ -80,80 +82,65 @@
                 <!-- Navbar -->
                 {{ include('Dashboard_components/_navbarDashboard.html.twig') }}
                 <!-- / Navbar -->
-                <div class="container-xxl flex-grow-1 container-p-y">
 
+                <!-- Content wrapper -->
+                <div class="container-xxl flex-grow-1 container-p-y">
                     <div class="content-wrapper">
                         <!-- Content -->
                         <hr class="my-5">
 
-                        <div class="row">
-                            <div class="col-xl">
-                                <div class="card mb-4">
-                                    <div class="card-header d-flex justify-content-between align-items-center">
-                                        <h5 class="mb-0">Modifier  Coupon</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+                        <div class="card">
+                            <h5 class="card-header">Liste des catégories coupons</h5>
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>ID Catégorie</th>
+                                        <th>Nom</th>
+                                        <th>Description</th>
+                                        <th>Archivé</th>
 
+                                    </tr>
+                                    </thead>
+                                    {% for categoriecoupon in categorie_coupons %}
+                                        <tbody class="table-border-bottom-0">
+                                        <tr>
+                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong> {{ categoriecoupon.id }}</strong></td>
+                                            <td>{{ categoriecoupon.nom_categorie }}</td>
+                                            <td><span>{{ categoriecoupon.description_categorie }}</span></td>
+                                            <td><span class="badge bg-label-info me-1">{{ categoriecoupon.archived ? 'Oui' : 'Non' }}</span></td>
 
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-fullname">Nom du Coupon</label>
-
-                                            {{ form_widget(form.titre_coupon, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'Titre Coupon'}}) }}
-
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-message">Description</label>
-
-                                            {{ form_widget(form.description_coupon, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Description Coupon'}}) }}
-
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-message">Etat</label>
-
-                                            {{ form_widget(form.etat_coupon, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Etat Coupon'}}) }}
-                                            {{ form_errors(form.etat_coupon)}}
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-message">Date d'expiration</label>
-                                           {# <input type="date" class="form-control" placeholder="YYYY-MM-DD" id="flatpickr-date" /> #}
-                                            {{ form_widget(form.date_expiration, {'attr': {'class': 'form-control','id':'flatpickr-date', 'placeholder': 'Date Expiration'}}) }}
-                                            {{ form_errors(form.date_expiration)}}
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-message">Code</label>
-
-                                            {{ form_widget(form.code, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Description Coupon'}}) }}
-
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-message">Affecter un Utilisateur</label>
-
-                                            {{ form_widget(form.id_user, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Utilisateur à affecter'}}) }}
-                                            {{ form_errors(form.id_user)}}
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-message">Ajouter à une Categorie</label>
-
-                                            {{ form_widget(form.id_categorie, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Catégorie à ajouter'}}) }}
-                                            {{ form_errors(form.id_categorie)}}
-                                        </div>
-                                        {{ form_widget(form.add , {'attr': {'class': 'btn btn-primary', 'onclick': 'return confirm("Are you sure you want to update this coupon?");'}})}}
-                                        {{ form_end(form) }}
-                                    </div>
-                                </div>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete('{{ path('app_categoriecoupon_delete', {'id': categoriecoupon.id}) }}')"><i class="bx bx-trash me-1"></i> Supprimer</a>
+                                                        <a class="dropdown-item" href="{{ path('app_categoriecoupon_edit', {'id': categoriecoupon.id}) }}"> ><i class="bx bx-edit-alt me-1"></i> Modifier</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    {% endfor %}
+                                </table>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-    </div>
-    </div>
+
+    <script>
+        function confirmDelete(url) {
+            // Add an alert before deleting
+            var alertMessage = "Êtes-vous sûr de vouloir supprimer ce coupon ?";
+            if (confirm(alertMessage)) {
+                window.location.href = url;
+            }
+        }
+    </script>
+
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
@@ -183,10 +170,7 @@
 
     <!-- Page JS -->
 
-
     <script>
     </script>
     </body>
 {% endblock %}
-
-

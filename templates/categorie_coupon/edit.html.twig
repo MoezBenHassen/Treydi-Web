@@ -90,56 +90,27 @@
                             <div class="col-xl">
                                 <div class="card mb-4">
                                     <div class="card-header d-flex justify-content-between align-items-center">
-                                        <h5 class="mb-0">Modifier  Coupon</h5>
+                                        <h5 class="mb-0">Modifier Catégorie Coupon</h5>
                                     </div>
                                     <div class="card-body">
                                         {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
 
 
                                         <div class="mb-3">
-                                            <label class="form-label" for="basic-default-fullname">Nom du Coupon</label>
+                                            <label class="form-label" for="basic-default-fullname">Nom de la catégorie</label>
 
-                                            {{ form_widget(form.titre_coupon, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'Titre Coupon'}}) }}
-
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-message">Description</label>
-
-                                            {{ form_widget(form.description_coupon, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Description Coupon'}}) }}
+                                            {{ form_widget(form.nom_categorie, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'Titre Catégorie'}}) }}
 
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="basic-default-message">Etat</label>
+                                            <label class="form-label" for="basic-default-message">Description de la catégorie</label>
 
-                                            {{ form_widget(form.etat_coupon, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Etat Coupon'}}) }}
-                                            {{ form_errors(form.etat_coupon)}}
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-message">Date d'expiration</label>
-                                           {# <input type="date" class="form-control" placeholder="YYYY-MM-DD" id="flatpickr-date" /> #}
-                                            {{ form_widget(form.date_expiration, {'attr': {'class': 'form-control','id':'flatpickr-date', 'placeholder': 'Date Expiration'}}) }}
-                                            {{ form_errors(form.date_expiration)}}
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-message">Code</label>
-
-                                            {{ form_widget(form.code, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Description Coupon'}}) }}
+                                            {{ form_widget(form.description_categorie, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Description Catégorie'}}) }}
 
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-message">Affecter un Utilisateur</label>
 
-                                            {{ form_widget(form.id_user, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Utilisateur à affecter'}}) }}
-                                            {{ form_errors(form.id_user)}}
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basic-default-message">Ajouter à une Categorie</label>
 
-                                            {{ form_widget(form.id_categorie, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Catégorie à ajouter'}}) }}
-                                            {{ form_errors(form.id_categorie)}}
-                                        </div>
-                                        {{ form_widget(form.add , {'attr': {'class': 'btn btn-primary', 'onclick': 'return confirm("Are you sure you want to update this coupon?");'}})}}
+                                        {{ form_widget(form.add , {'attr': {'class': 'btn btn-primary', 'onclick': 'return confirm("Are you sure you want to update this category?");'}})}}
                                         {{ form_end(form) }}
                                     </div>
                                 </div>
@@ -188,5 +159,4 @@
     </script>
     </body>
 {% endblock %}
-
 

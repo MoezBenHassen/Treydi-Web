@@ -21,6 +21,7 @@ class CategorieCouponRepository extends ServiceEntityRepository
         parent::__construct($registry, CategorieCoupon::class);
     }
 
+
     public function save(CategorieCoupon $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

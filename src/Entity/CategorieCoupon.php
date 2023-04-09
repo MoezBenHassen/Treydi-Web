@@ -41,24 +41,24 @@ class CategorieCoupon
         return $this->id;
     }
 
-    public function getNomCategorie(): ?string
+    public function getNom_Categorie(): ?string
     {
         return $this->nom_categorie;
     }
 
-    public function setNomCategorie(?string $nom_categorie): self
+    public function setNom_Categorie(?string $nom_categorie): self
     {
         $this->nom_categorie = $nom_categorie;
 
         return $this;
     }
 
-    public function getDescriptionCategorie(): ?string
+    public function getDescription_Categorie(): ?string
     {
         return $this->description_categorie;
     }
 
-    public function setDescriptionCategorie(?string $description_categorie): self
+    public function setDescription_Categorie(?string $description_categorie): self
     {
         $this->description_categorie = $description_categorie;
 
