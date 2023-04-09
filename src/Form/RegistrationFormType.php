@@ -36,19 +36,26 @@ class RegistrationFormType extends AbstractType
             ->add('date_naissance', BirthdayType::class, [
                 'label' => 'Date de naissance',
                 'required' => true,
-                'placeholder' => [
-                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => [
+                    'class' => 'form-control dob-picker',
+                    'id' => 'multicol-country',
+                    'data-allow-clear' => 'true'
                 ],
+                'format' => 'yyyy-MM-dd',
+                'placeholder' => [
+                    'day' => 'Jour', 'month' => 'Mois', 'year' => 'Année',
+                ]
             ])
+
             ->add('roles', ChoiceType::class, [
+                'multiple' => true,
                 'choices' => [
                     'Trader' => 'ROLE_TRADER',
                     'Livreur' => 'ROLE_LIVREUR',
                     'Admin' => 'ROLE_ADMIN' ,
                 ],
-                'expanded' => true,
-                'multiple' => true,
-                'label' => 'Choose your role',
             ])
         ;
     }
