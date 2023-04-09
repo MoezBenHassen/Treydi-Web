@@ -73,7 +73,8 @@
     left: 1.4375rem;
     width: .375rem;
     height: .375rem;
-    border-radius: 50%
+    border-radius: 50%;
+    background-color: transparent !important;
 }
 
 [dir=rtl] .bg-menu-theme .menu-sub>.menu-item>.menu-link:before {
@@ -1769,11 +1770,11 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-lin
 }
 
 .bg-menu-theme .menu-inner>.menu-item.active:before {
-    background: #696cff
+    background: transparent !important;
 }
 
 .bg-menu-theme .menu-sub>.menu-item>.menu-link:before {
-    background-color: #a3a4cc !important
+    background-color: transparent !important;
 }
 
 .bg-menu-theme .menu-sub>.menu-item.active>.menu-link:not(.menu-toggle):before {

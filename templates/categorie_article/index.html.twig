@@ -1,3 +1,4 @@
+{#
 {% extends 'base.html.twig' %}
 
 {% block title %}Categorie Article{% endblock %}
@@ -57,4 +58,213 @@
     </table>
 
     <a href="{{ path('app_categorie_article_new') }}">Create new</a>
+{% endblock %}
+#}
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}Article index{% endblock %}
+
+{% block stylesheets %}
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}" />
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core-dark.css') }}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default-dark.css') }}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+
+    <!-- Vendors CSS -->
+    <style>
+        .table-responsive {
+            overflow-x: auto;
+        }
+        /* custom css that makes the table cell wrap if the text exceeds the cell length*/
+        .table-responsive td {
+            white-space: normal;
+            text-align: justify;
+        }
+        ::-moz-selection { /* Code for Firefox */
+            background: yellow;
+        }
+        ::selection {
+            background: yellow;
+        }
+        #chose{
+            width:25px;
+        }
+        /*make the card the width of the screen available*/
+    </style>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="{{ asset('public/assets/vendor/js/template-customizer.js') }}"></script>
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{{ asset('assets/js/config.js') }}"></script>
+    <script>
+    </script>
+{% endblock %}
+{% block body %}
+
+    <!-- Google Tag Manager (noscript) (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar  ">
+        <div class="layout-container">
+            <!-- Menu -->
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                {{ include('Dashboard_components/_menuDashboard.html.twig') }}
+            </aside>
+
+            <!-- / Menu -->
+            <!-- Layout container -->
+            <div class="layout-page">
+
+                <!-- Navbar -->
+                {{ include('Dashboard_components/_navbarDashboard.html.twig') }}
+                <!-- / Navbar -->
+
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <h4 class="fw-bold py-3 mb-4">
+                            <span class="text-muted fw-light">Admin /</span>  Categories Articles
+                        </h4>
+                        <a href="{{ path('app_categorie_article_new') }}">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary">
+                                    Ajouter une categorie
+                                </button>
+                            </div>
+                        </a>
+{#
+                    {% for message in app.flashes('delete_success') %}
+                        {% for deleteID in app.flashes('delete_id') %}
+                            <div class="bs-toast toast toast-ex animate__animated my-2 fade animate__fadeIn bg-success opacity-75" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+                                <div class="toast-header">
+                                    <i class='bx bxs-trash me-2'></i>
+                                    <div class="me-auto fw-semibold">Supression de l'article {{ deleteID }}</div>
+                                    <small>Now</small>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                                <div class="toast-body">
+                                    {{ message  }}
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                    {% endfor %}#}
+                    {#<hr class="my-5">#}
+                        <br>
+                        <div class="card">
+                            <div class="container-xxl flex-grow-1 container-p-y">
+
+                                <h5 class="card-header">Liste des articles</h5>
+                                <div class="table-responsive text-nowrap">
+                                    <!-- Hoverable Table rows -->
+                                    <table class="table table-hover table-responsive">
+                                        <thead>
+                                        <tr>
+                                            <th> <i class="fas fa-key"></i>Id</th>
+                                            <th>Libelle</th>
+                                            <th style=" text-align: center">Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="table-border-bottom-0">
+                                        <tr>
+                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
+                                        </tr>
+                                        {% for categorie in categorie_articles %}
+
+                                            <tr class=" card-action card-expand">
+                                                <td><strong>{{ categorie.id }}</strong></td>
+                                                <td>{{ categorie.libelleCat}}</td>
+                                                <style>
+                                                    .crud-icons-layout{
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        justify-content: center;
+                                                        align-items: center;
+                                                    }
+                                                    .crud-icons-layout a{
+                                                        margin: 10px;
+                                                        padding: 0;
+                                                        width: fit-content;
+                                                        /*border: solid red 2px;*/
+                                                    }
+                                                    .crud-icons-layout a i{
+                                                        /*border: solid blue 1px;*/
+                                                    }
+                                                </style>
+                                                <td>
+                                                    <div class="crud-icons-layout">
+                                                        <a class="dropdown-item" href="javascript:void(0);" ><i class="bx bxs-edit me-1"></i> </a>
+                                                        <a class="dropdown-item" href="javascript:void(0);" >
+                                                            {{ include('categorie_article/_delete_form.html.twig') }}
+                                                        </a>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <!--/ Hoverable Table rows -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/popper/popper.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/js/bootstrap.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/hammer/hammer.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/i18n/i18n.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/js/menu.js') }}"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="{{asset('/assets/js/maindash.js') }}"></script>
+
+    <!-- Page JS -->
+
+    <script>
+    </script>
+    </body>
 {% endblock %}

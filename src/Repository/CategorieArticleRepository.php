@@ -39,6 +39,17 @@ class CategorieArticleRepository extends ServiceEntityRepository
         }
     }
 
+    //removeCat function that updated the archived field to true
+    public function removeCat(CategorieArticle $entity, bool $flush = false): void
+    {
+        $entity->setArchived(true);
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
 //    /**
 //     * @return CategorieArticle[] Returns an array of CategorieArticle objects
 //     */

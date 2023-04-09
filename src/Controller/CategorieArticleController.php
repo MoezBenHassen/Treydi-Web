@@ -10,14 +10,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/categorie/article')]
+#[Route('/admin/categorie/article')]
 class CategorieArticleController extends AbstractController
 {
     #[Route('/', name: 'app_categorie_article_index', methods: ['GET'])]
     public function index(CategorieArticleRepository $categorieArticleRepository): Response
     {
         return $this->render('categorie_article/index.html.twig', [
-            'categorie_articles' => $categorieArticleRepository->findAll(),
+            // find categories that are not archived
+            'categorie_articles' => $categorieArticleRepository->findBy(['archived' => false]),
         ]);
     }
 
@@ -69,9 +70,8 @@ class CategorieArticleController extends AbstractController
     #[Route('/{id}', name: 'app_categorie_article_delete', methods: ['POST'])]
     public function delete(Request $request, CategorieArticle $categorieArticle, CategorieArticleRepository $categorieArticleRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$categorieArticle->getId(), $request->request->get('_token'))) {
-            $categorieArticleRepository->remove($categorieArticle, true);
-        }
+
+        $categorieArticleRepository->removeCat($categorieArticle, true);
 
         return $this->redirectToRoute('app_categorie_article_index', [], Response::HTTP_SEE_OTHER);
     }
