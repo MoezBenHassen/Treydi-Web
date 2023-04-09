@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Article;
+use App\Entity\Utilisateur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -23,6 +24,19 @@ class ArticleRepository extends ServiceEntityRepository
 
     public function save(Article $entity, bool $flush = false): void
     {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function saveA(Article $entity, Utilisateur $user , bool $flush = false): void
+    {
+        $entity->setArchived(false);
+        //set the idUser to the current user
+        /*$entity->setIdUser($this->getEntityManager()->getRepository(Utilisateur::class)->findOneBy(['id' => $this->getUser()->getId()]));*/
+        $entity->setIdUser($this->getEntityManager()->getRepository(Utilisateur::class)->findOneBy(['id' => $user->getId()]));
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {

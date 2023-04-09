@@ -32,7 +32,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $articleRepository->save($article, true);
+            $articleRepository->saveA($article,$this->getUser(),  true);
 
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,7 +58,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $articleRepository->save($article, true);
+            $articleRepository->save($article,true);
 
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -73,6 +73,8 @@ class ArticleController extends AbstractController
     public function delete(Request $request, Article $article, ArticleRepository $articleRepository): Response
     {
             $articleRepository->removeA($article, true);
+            /* redirect to route 'app_article_index', [], Response::HTTP_SEE_OTHER and popup alert on page load */
+            $this->addFlash('success', 'Article supprimé avec succès !');
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
     }
 }

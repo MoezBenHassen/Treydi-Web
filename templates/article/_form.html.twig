@@ -1,4 +1,66 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+
+    {#{{ form_widget(form) }}#}
+
+
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Basic Layout</h5> <small class="text-muted float-end">Default label</small>
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+
+                <div class="mb-3">
+                    {{ form_label(form.titre) }}
+                    {{ form_widget(form.titre) }}
+                    {{ form_errors(form.titre) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description) }}
+                    {{ form_errors(form.description) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.contenu) }}
+                    {{ form_widget(form.contenu) }}
+                    {{ form_errors(form.contenu) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.date_publication) }}
+                    {{ form_widget(form.date_publication) }}
+                    {{ form_errors(form.date_publication) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.auteur) }}
+                    {{ form_widget(form.auteur) }}
+                    {{ form_errors(form.auteur) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.id_categorie) }}
+                    {{ form_widget(form.id_categorie) }}
+                    {{ form_errors(form.id_categorie) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.id_user) }}
+                    {{ form_widget(form.id_user) }}
+                    {{ form_errors(form.id_user) }}
+                </div>
+                <div class="d-grid gap-2">
+                    {{ form_widget(form.submit) }}
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    {#<button class="btn btn-primary">{{ button_label|default('Save') }}</button>#}
+
