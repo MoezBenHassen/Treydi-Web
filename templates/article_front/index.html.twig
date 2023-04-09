@@ -33,9 +33,6 @@
 <!-- header-area -->
     {{ include('front_components/_header-menu-front.html.twig') }}
 <!-- header-area-end -->
-
-
-
 <!-- main-area -->
 <main class="main--area">
 
@@ -173,7 +170,7 @@
                         <div class="blog-widget">
                             <div class="sidebar__author">
                                 <div class="sidebar__author-thumb">
-                                    <img src="assets/img/blog/avatar.jpg" alt="img">
+                                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt="img">
                                 </div>
                                 <div class="sidebar__author-content">
                                     <h4 class="name">Kaceytron G.</h4>
@@ -208,17 +205,16 @@
                             <div class="rc__post-wrapper">
                                 <div class="rc__post-item">
                                     <div class="rc__post-thumb">
-                                        <a href="blog-details.html"><img src="assets/img/blog/rc_post01.jpg" alt="img"></a>
+                                        <a href="blog-details.html"><img src="{{ asset('assets/img/blog/rc_post01.jpg') }}" alt="img"></a>
                                     </div>
                                     <div class="rc__post-content">
-                                        <h6 class="title"><a href="blog-details.html">zombie TOURNAMENT
-                                                land max</a></h6>
+                                        <h6 class="title"><a href="blog-details.html">zombie TOURNAMENT land max</a></h6>
                                         <span class="date">aug 19, 2023</span>
                                     </div>
                                 </div>
                                 <div class="rc__post-item">
                                     <div class="rc__post-thumb">
-                                        <a href="blog-details.html"><img src="assets/img/blog/rc_post02.jpg" alt="img"></a>
+                                        <a href="blog-details.html"><img src="{{ asset('assets/img/blog/rc_post02.jpg') }}" alt="img"></a>
                                     </div>
                                     <div class="rc__post-content">
                                         <h6 class="title"><a href="blog-details.html">play to earn crypto games</a></h6>
@@ -227,16 +223,16 @@
                                 </div>
                                 <div class="rc__post-item">
                                     <div class="rc__post-thumb">
-                                        <a href="blog-details.html"><img src="assets/img/blog/rc_post03.jpg" alt="img"></a>
+                                        <a href="blog-details.html"><img src="{{ asset('assets/img/blog/rc_post03.jpg') }}" alt="img"></a>
                                     </div>
                                     <div class="rc__post-content">
-                                        <h6 class="title"><a href="blog-details.html">nft games android
-                                                land max</a></h6>
+                                        <h6 class="title"><a href="blog-details.html">nft games android land max</a></h6>
                                         <span class="date">aug 19, 2023</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="blog-widget">
                             <h4 class="fw-title">Newsletter</h4>
                             <div class="sidebar__newsletter">
@@ -251,25 +247,26 @@
                             <h4 class="fw-title">INSTAGRAM</h4>
                             <div class="sidebar__insta">
                                 <div class="sidebar__insta-item">
-                                    <a href="https://www.instagram.com/" target="_blank"><img src="assets/img/instagram/insta01.jpg" alt="img"></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta01.jpg') }}" alt="img"></a>
                                 </div>
                                 <div class="sidebar__insta-item">
-                                    <a href="https://www.instagram.com/" target="_blank"><img src="assets/img/instagram/insta02.jpg" alt="img"></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta02.jpg') }}" alt="img"></a>
                                 </div>
                                 <div class="sidebar__insta-item">
-                                    <a href="https://www.instagram.com/" target="_blank"><img src="assets/img/instagram/insta03.jpg" alt="img"></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta03.jpg') }}" alt="img"></a>
                                 </div>
                                 <div class="sidebar__insta-item">
-                                    <a href="https://www.instagram.com/" target="_blank"><img src="assets/img/instagram/insta04.jpg" alt="img"></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta04.jpg') }}" alt="img"></a>
                                 </div>
                                 <div class="sidebar__insta-item">
-                                    <a href="https://www.instagram.com/" target="_blank"><img src="assets/img/instagram/insta05.jpg" alt="img"></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta05.jpg') }}" alt="img"></a>
                                 </div>
                                 <div class="sidebar__insta-item">
-                                    <a href="https://www.instagram.com/" target="_blank"><img src="assets/img/instagram/insta06.jpg" alt="img"></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta06.jpg') }}" alt="img"></a>
                                 </div>
                             </div>
                         </div>
+
                         <div class="blog-widget">
                             <h4 class="fw-title">Tag Cloud</h4>
                             <div class="tagcloud">
@@ -293,85 +290,7 @@
 
 
 <!-- footer-start -->
-<footer class="footer-style-one">
-    <div class="footer__top-wrap">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-4 col-lg-5 col-md-7">
-                    <div class="footer-widget">
-                        <div class="footer-logo logo">
-                            <a href="index.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
-                        </div>
-                        <div class="footer-text">
-                            <p class="desc">Lorem ipsum dolor sitamet consectur adipiscing Duis esollici tudin augue euismod. Nulla ullam dolor sitamet consectetur</p>
-                            <p class="social-title">Active <span>With Us <i class="fas fa-angle-double-right"></i></span></p>
-                            <div class="footer-social">
-                                <a href="#"><img src="assets/img/icons/social_icon01.png" alt="iocn"></a>
-                                <a href="#"><img src="assets/img/icons/social_icon02.png" alt="iocn"></a>
-                                <a href="#"><img src="assets/img/icons/social_icon03.png" alt="iocn"></a>
-                                <a href="#"><img src="assets/img/icons/social_icon04.png" alt="iocn"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-3 col-md-5 col-sm-6">
-                    <div class="footer-widget widget_nav_menu">
-                        <h4 class="fw-title">quick link</h4>
-                        <ul class="list-wrap menu">
-                            <li><a href="#">Gaming</a></li>
-                            <li><a href="#">Product</a></li>
-                            <li><a href="#">All NFTs</a></li>
-                            <li><a href="#">Social Network</a></li>
-                            <li><a href="#">Domain Names</a></li>
-                            <li><a href="#">Collectibles</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-3 col-md-5 col-sm-6">
-                    <div class="footer-widget widget_nav_menu">
-                        <h4 class="fw-title">Supports</h4>
-                        <ul class="list-wrap menu">
-                            <li><a href="#">Setting & Privacy</a></li>
-                            <li><a href="#">Help & Support</a></li>
-                            <li><a href="#">Live Auctions</a></li>
-                            <li><a href="#">Item Details</a></li>
-                            <li><a href="#">24/7 Supports</a></li>
-                            <li><a href="#">Our News</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-5 col-md-7">
-                    <div class="footer-widget">
-                        <h4 class="fw-title">Newsletter</h4>
-                        <div class="footer-newsletter">
-                            <p>Subscribe our newsletter to get our latest update & newsconsectetur</p>
-                            <form action="#" class="footer-newsletter-form">
-                                <input type="email" placeholder="Your email address">
-                                <button type="submit"><i class="flaticon-paper-plane"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="copyright__wrap">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-7">
-                    <div class="copyright__text">
-                        <p>Copyright © 2023 - All Rights Reserved By <span>Mykd</span></p>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="copyright__card text-center text-md-end">
-                        <img src="assets/img/others/payment_card.png" alt="img">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+    {{ include('front_components/_footer-front.html.twig') }}
 <!-- footer-start-end -->
 
 
