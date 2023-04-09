@@ -91,7 +91,7 @@
 					class="content-wrapper"> <!-- Content -->
 
 					<div
-						class="">
+						class="container">
 						<!-- Content -->
 
 						<div class="card">
@@ -101,85 +101,74 @@
 
 									<thead>
 										<tr>
-											<th>Img</th>
-											<th>Libelle</th>
-											<th>Categorie</th>
-											<th>Type</th>
-											<th>Etat</th>
-											<th>Likes</th>
-											<th>Dislikes</th>
-											<th>User</th>
-											<th>Echange</th>
+								
+											<th>Nom</th>
 											<th>Actions</th>
+												<th></th>
+													<th></th>
 										</tr>
 									</thead>
 
+									<tbody class="table-border-bottom-0">
 
-									{% for i in list %}
+										{% for i in list %}
 
-
-										<tbody class="table-border-bottom-0">
 
 											<tr>
-												<td>
-												<a href="{{ i.getImageurl() }}">
-													<img src="{{ i.getImageurl() }}" alt="" width="100">
-													</a>
-												</td>
+
+												<td>{{ i.getNomCategorie() }}</td>
 
 												<td>
+													<form action={{ url('app_categorieItemsRemove_b',{'id':i.getId()} ) }}>
+														<input class="btn btn-dark" type="submit" value="Supprimer"/>
+													</form>
 
-													<strong>{{ i.getLibelle() }}</strong>
+													<form action={{ url('app_categorieItemsModify_b',{'id':i.getId()} ) }}>
+													<td>
+														<input class="form-control" type="text" name='x' value="Insérer nom"/>
+														</td>
+														<td>
+														<input class="btn btn-dark" type="submit" value="Modifier"/>
+														</td>
+													</form>
 												</td>
-												<td>{{ i.getIdCategorie().getNomCategorie() }}</td>
-
-												<td>
-													<span class="badge bg-label-primary me-1">{{ i.getType() }}</span>
-												</td>
-												<td>
-													<span class="badge bg-label-warning me-1">{{ i.getEtat() }}</span>
-												</td>
-												<td>{{ i.getLikes() }}</td>
-												<td>{{ i.getDislikes() }}</td>
-												<td>{{ i.getIdUser().getNom() }}</td>
-												<td>{{ i.getIdEchange() }}</td>
-												<td>
-														<div class="dropdown">
-														<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-														<i class='bx bx-text'></i> 
-														</button>
-														<div class="dropdown-menu">
-														<div class="container">
-												{{ i.getDescription() }}
-												</div>
-														</div>
-													</div>
-													<div class="dropdown">
-														<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-															<i class="bx bx-dots-vertical-rounded"></i>
-														</button>
-														<div class="dropdown-menu">
-															<a class="dropdown-item" href={{ url('app_itemModify_b',{'id':i.getId()} ) }}>
-																<i class="bx bx-edit-alt me-1"></i>
-																Modifier</a>
-															<a class="dropdown-item" href={{ url('app_itemRemove_b',{'id':i.getId()} ) }}>
-																<i class="bx bx-trash me-1"></i>
-																Supprimer</a>
-														</div>
-													</div>
-												</td>
-
 
 											</tr>
+										{% endfor %}
 
-
-										</tbody>
-
-									{% endfor %}
+									</tbody>
 								</table>
 
 
-		
+
+
+{{ form_start(formA, {'attr': {'novalidate': 'novalidate'}}) }}
+
+							<div class="card-body">
+							
+									<div class="row mb-3">
+										<label class="col-sm-2 col-form-label" for="basic-default-name">Libelle</label>
+										<div class="col-sm-10">
+
+											{{ form_widget(formA.nom_categorie,{'attr':{'class':'form-control', 'placeholder': 'Insérer le nom de la categorie. (Max 30c)'}})}}
+											{{ form_errors(formA.nom_categorie)}}
+                                            
+										</div>
+									</div>
+									<div class="row justify-content-end">
+										<div class="col-sm-10">
+																		{{ form_widget(formA.submit,{'attr':{'class':'btn btn-dark'}})}}
+							
+										</div>
+									</div>
+						
+							</div>
+							
+	
+
+							{{ form_end(formA) }}
+
+
 
 
 							</div>

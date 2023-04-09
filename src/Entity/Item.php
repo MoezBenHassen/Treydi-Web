@@ -17,13 +17,13 @@ class Item
 
 
     #[ORM\Column(length: 30, nullable: true)]
-    #[Assert\NotBlank(message: 'libelle obligatoire! (entre 3 et 30)')]
+    #[Assert\NotBlank(message: 'Libelle est obligatoire! (entre 3 et 30)')]
     #[Assert\Length(min:3,max: 30)]
     private ?string $libelle = null;
 
-    #[ORM\Column(length: 300, nullable: true)]
-    #[Assert\NotBlank(message: 'description obligatoire! (entre 3 et 300)')]
-    #[Assert\Length(min:3,max: 300)]
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Description est obligatoire! (entre 3 et 255)')]
+    #[Assert\Length(min:3,max: 255)]
     private ?string $description = null;
 
     #[ORM\Column(length: 10, nullable: true)]

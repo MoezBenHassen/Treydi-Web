@@ -21,7 +21,7 @@ class CategorieItemsController extends AbstractController
         ]);
     }
 
-    #[Route('/back/categorieitems/list', name: 'app_categorieItemsList_b')]
+    #[Route('/categorieitems/back/list', name: 'app_categorieItemsList_b')]
     public function listB(Request $request, CategorieItemsRepository $repository, ManagerRegistry $doctrine): Response
     {
     
@@ -29,7 +29,7 @@ class CategorieItemsController extends AbstractController
         $em = $doctrine->getManager();
         $categorieitems = new categorieitems();
         $form = $this->createForm(CategorieItemsType::class, $categorieitems);
-        $form->add('Ajouter', SubmitType::class);
+        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -39,7 +39,7 @@ class CategorieItemsController extends AbstractController
             return $this->redirectToRoute('app_categorieItemsList_b');
         }
 
-        return $this->renderForm('back/item/categorieitems.html.twig', [
+        return $this->renderForm('item/back/categorieitems.html.twig', [
             'controller_name' => 'List des Categoires Items',
             'list' => $list,
             'formA' => $form

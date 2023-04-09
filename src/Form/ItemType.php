@@ -48,9 +48,14 @@ class ItemType extends AbstractType
                     'expanded' => false,
                 ]
             )
-            ->add('submit', SubmitType::class, [
+            ->add('add', SubmitType::class, [
                 'label' => 'Ajouter Item',
-            ]);;
+            ])
+            
+            ->add('modify', SubmitType::class, [
+                'label' => 'Modifier Item',
+            ])
+            ;;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

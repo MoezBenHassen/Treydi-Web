@@ -107,6 +107,9 @@ class ItemController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid() ) {
             $user = $repository->find(1);
+            if ($item->getType() == "Virtuelle" || $item->getType() == "Service" ) {
+                $item->setEtat("Nul"); 
+            }
             $item->setIdUser($user);
             $item->setArchived(0);
             $em->persist($item);
@@ -135,14 +138,13 @@ class ItemController extends AbstractController
     }
 
     
-    #[Route('/back/item/modify/{id}', name: 'app_itemModify_b')]
+    #[Route('/item/back/modify/{id}', name: 'app_itemModify_b')]
     public function modifyB(Request $request, ManagerRegistry $doctrine, $id): Response
     {
         $repository = $doctrine->getRepository(item::class);
         $em = $doctrine->getManager();
         $item = $repository->find($id);
         $form = $this->createForm(ItemType::class, $item);
-        $form->add('Modifier', SubmitType::class);
 
         $form->handleRequest($request);
 
@@ -150,7 +152,7 @@ class ItemController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('app_itemList_b');
         }
-        return $this->renderForm('back/item/modify.html.twig', array('formA' => $form));
+        return $this->renderForm('item/back/modify.html.twig', array('formA' => $form));
     }
 
 
