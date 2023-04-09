@@ -68,8 +68,9 @@ class ArticleType extends AbstractType
             ])
             //add submit button
             ->add('submit', SubmitType::class, [
-                'label' => 'Ajouter',
-                'attr' => ['class' => 'btn btn-primary mt-3']
+                'label' => '<i class="fa-solid fa-cloud-arrow-up"></i>',
+                'label_html' => true,
+                'attr' => ['class' => 'btn btn-label-primary mt-3', 'style' => 'font-size: 30px;']
             ])
         ;
     }

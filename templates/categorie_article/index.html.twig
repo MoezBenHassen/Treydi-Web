@@ -1,4 +1,5 @@
 {#
+{#
 {% extends 'base.html.twig' %}
 
 {% block title %}Categorie Article{% endblock %}
@@ -64,7 +65,7 @@
 
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }}Article index{% endblock %}
+{% block title %}{{ parent() }}Categories Article{% endblock %}
 
 {% block stylesheets %}
     <!-- Fonts -->
@@ -149,18 +150,16 @@
                         </h4>
                         <a href="{{ path('app_categorie_article_new') }}">
                             <div class="d-grid gap-2">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-outline-primary">
                                     Ajouter une categorie
                                 </button>
                             </div>
                         </a>
-{#
-                    {% for message in app.flashes('delete_success') %}
-                        {% for deleteID in app.flashes('delete_id') %}
+                    {% for message in app.flashes('delete_message') %}
                             <div class="bs-toast toast toast-ex animate__animated my-2 fade animate__fadeIn bg-success opacity-75" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
                                 <div class="toast-header">
                                     <i class='bx bxs-trash me-2'></i>
-                                    <div class="me-auto fw-semibold">Supression de l'article {{ deleteID }}</div>
+                                    <div class="me-auto fw-semibold">Succées</div>
                                     <small>Now</small>
                                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                                 </div>
@@ -168,9 +167,7 @@
                                     {{ message  }}
                                 </div>
                             </div>
-
-                        {% endfor %}
-                    {% endfor %}#}
+                    {% endfor %}
                     {#<hr class="my-5">#}
                         <br>
                         <div class="card">
@@ -188,15 +185,15 @@
                                         </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
-                                        </tr>
                                         {% for categorie in categorie_articles %}
 
-                                            <tr class=" card-action card-expand">
-                                                <td><strong>{{ categorie.id }}</strong></td>
-                                                <td>{{ categorie.libelleCat}}</td>
-                                                <style>
+                                            <tr class=" card-action card-expand chose" >
+                                                <td class="categorieId"><strong>{{ categorie.id }}</strong></td>
+
+                                                <td class="categoryCat">
+                                                    {{ categorie.libelleCat}}
+                                                </td>
+                                               {# <style>
                                                     .crud-icons-layout{
                                                         display: flex;
                                                         flex-direction: row;
@@ -212,10 +209,10 @@
                                                     .crud-icons-layout a i{
                                                         /*border: solid blue 1px;*/
                                                     }
-                                                </style>
+                                                </style>#}
                                                 <td>
                                                     <div class="crud-icons-layout">
-                                                        <a class="dropdown-item" href="javascript:void(0);" ><i class="bx bxs-edit me-1"></i> </a>
+                                                        <a class="dropdown-item" href="{{ path('app_categorie_article_edit', {'id': categorie.id}) }}" ><i class="bx bxs-edit me-1"></i> </a>
                                                         <a class="dropdown-item" href="javascript:void(0);" >
                                                             {{ include('categorie_article/_delete_form.html.twig') }}
                                                         </a>
@@ -263,8 +260,45 @@
     <script src="{{asset('/assets/js/maindash.js') }}"></script>
 
     <!-- Page JS -->
-
     <script>
+        window.onload = function() {
+            setTimeout(function() {
+                var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+                var toastList = toastElList.map(function (toastEl) {
+                    return new bootstrap.Toast(toastEl)
+                })
+                toastList.forEach(toast => toast.show())
+            }, 500)
+        }
+        $(document).ready(function() {
+            $('tr').on('dblclick', function() {
+                var categoryData = $(this).find('td.categoryCat').text();
+                alert('Category data: ' + categoryData);
+            });
+        });
+
+        /*       $(document).ready(function() {
+                   // Add event listener to table rows
+                   $('.chose').on('dblclick', function() {
+                       // Get the data of the clicked article
+                       var articleId = $(this).find('td:first-child').text();
+                       // Replace this with your own code to retrieve the article data using Ajax or a similar method
+                       var articleData = {
+                           id: articleId,
+                           title: 'Article Title',
+                           body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                           // ... other properties of the article
+                       };
+                       // Create the popup window
+                       var popupWindow = window.open('', 'Article Details', 'width=400,height=400');
+                       // Populate the popup window with the article data
+                       popupWindow.document.write('<h1>' + articleData.title + '</h1>');
+                       popupWindow.document.write('<p>' + articleData.body + '</p>');
+                       // ... add other elements to the popup window to display the rest of the article data
+                       // Display the popup window to the user
+                       popupWindow.focus();
+                   });
+               });*/
     </script>
     </body>
 {% endblock %}

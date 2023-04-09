@@ -72,7 +72,8 @@ class CategorieArticleController extends AbstractController
     {
 
         $categorieArticleRepository->removeCat($categorieArticle, true);
-
+        $message = 'Suppression réussie pour la catégorie : ' . $categorieArticle->getLibelleCat();
+        $this->addFlash('delete_message', $message);
         return $this->redirectToRoute('app_categorie_article_index', [], Response::HTTP_SEE_OTHER);
     }
 }

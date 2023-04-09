@@ -59,7 +59,8 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $articleRepository->savea($article,$this->getUser(),true);
-
+            $message = 'Update réussie de l\'article : ' . $article->getId();
+            $this->addFlash('update_message', $message);
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -74,8 +75,9 @@ class ArticleController extends AbstractController
     {
             $articleRepository->removeA($article, true);
             /* redirect to route 'app_article_index', [], Response::HTTP_SEE_OTHER and popup alert on page load */
-            $this->addFlash('delete_success', 'Supression réussie !');
-            $this->addFlash('delete_id', $article->getId());
+            $message = 'Suppression réussie de l\'article : ' . $article->getId();
+            $this->addFlash('delete_message', $message);
+
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
     }
 }
