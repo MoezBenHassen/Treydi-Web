@@ -40,7 +40,7 @@ class ReclamationController extends AbstractController
         ]);
     }
 
-    #[Route('/reclamation/add', name: 'app_reclamationAdd')]
+    #[Route('/reclamation/add', name: 'app_reclamationAdd' , methods: ['POST','GET'])]
     public function add(Request $request, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
@@ -70,7 +70,7 @@ class ReclamationController extends AbstractController
         $entityManager->flush();
         return $this->redirectToRoute('app_reclamationList');
     }
-    #[Route('/reclamation/update/{id}', name: 'app_reclamationUpdate')]
+    #[Route('/reclamation/update/{id}', name: 'app_reclamationUpdate' , methods: ['POST','GET'])]
     public function update(Request $request, ManagerRegistry $doctrine, int $id): Response
     {
         $em = $doctrine->getManager();
@@ -87,6 +87,7 @@ class ReclamationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
             return $this->redirectToRoute('app_reclamationList');
+
         }
 
         return $this->renderForm('reclamation/update.html.twig', ['formU' => $form]);

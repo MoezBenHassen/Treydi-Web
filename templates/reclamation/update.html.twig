@@ -115,13 +115,13 @@
                                             <label class="form-label" for="basic-default-fullname">Full Name</label>
 
                                             {{ form_widget(formU.titre_reclamation, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'Titre reclamation'}}) }}
-
+                                            {{ form_errors(formU.titre_reclamation)}}
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="basic-default-message">Description</label>
 
                                             {{ form_widget(formU.description_reclamation, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Description reclamation'}}) }}
-
+                                            {{ form_errors(formU.description_reclamation)}}
                                         </div>
                                         {{ form_widget(formU.modifier , {'attr': {'class': 'btn btn-primary'}}) }}
 

@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\ReponseRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ReponseRepository::class)]
 class Reponse
 {
@@ -15,9 +15,25 @@ class Reponse
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+
+    #[Assert\NotBlank(message: 'Le champ titre de la réponse ne peut pas être vide.')]
+    #[Assert\Length(
+        min: 2,
+        max: 25,
+        minMessage: 'Le titre de la réponse doit comporter au moins {{ limit }} caractères.',
+        maxMessage: 'Le titre de la réponse doit comporter au plus {{ limit }} caractères.'
+    )]
+
     private ?string $titre_reponse = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Le champ titre de la réponse ne peut pas être vide.')]
+    #[Assert\Length(
+        min: 2,
+        max: 150,
+        minMessage: 'La description de la réponse doit comporter au moins {{ limit }} caractères.',
+        maxMessage: 'La description de la réponse doit comporter au plus {{ limit }} caractères.'
+    )]
     private ?string $description_reponse = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]

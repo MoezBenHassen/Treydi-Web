@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ReclamationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReclamationRepository::class)]
 class Reclamation
@@ -15,9 +16,27 @@ class Reclamation
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Le champ titre de la réclamation ne peut pas être vide.')]
+    #[Assert\Length(
+        min: 2,
+        max: 25,
+        minMessage: 'Le titre de la réclamation doit comporter au moins {{ limit }} caractères.',
+        maxMessage: 'Le titre de la réclamation doit comporter au plus {{ limit }} caractères.'
+    )]
+    #[Assert\Regex(
+        pattern: '/^[^0-9\W]\w+$/',
+        message: "Le titre de la réclamation ne peut pas commencer par un chiffre ou un symbole."
+    )]
     private ?string $titre_reclamation = null;
 
     #[ORM\Column(length: 500, nullable: true)]
+    #[Assert\NotBlank(message: 'Le champ description de la réclamation ne peut pas être vide.')]
+    #[Assert\Length(
+        min: 2,
+        max: 150,
+        minMessage: 'La description de la réclamation doit comporter au moins {{ limit }} caractères.',
+        maxMessage: 'La description de la réclamation doit comporter au plus {{ limit }} caractères.'
+    )]
     private ?string $description_reclamation = null;
 
     #[ORM\Column(length: 10, nullable: true)]
