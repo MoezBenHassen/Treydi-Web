@@ -136,7 +136,11 @@
                                         <button type="submit" class="btn btn-primary me-sm-3 me-1">Register</button>
                                         <button type="reset" class="btn btn-label-secondary">Cancel</button>
                                     </div>
-                                {{ form_end(form) }}
+                                    <p>You already have an account ?
+                                        <a href="{{ path('app_login') }}">Log in</a>
+                                    </p>
+
+                                    {{ form_end(form) }}
 
                         </div>
                     </div>

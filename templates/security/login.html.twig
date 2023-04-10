@@ -107,11 +107,12 @@
 
                                 <label for="inputPassword">Password</label>
                                 <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="new-password" required>
-
                                 <button class="btn btn-lg btn-primary" type="submit">
                                     Log in
                                 </button>
-
+                                <p>You don't have an account ?
+                                <a href="{{ path('app_register') }}">Join Us</a>
+                                </p>
                                 <input type="hidden" name="_csrf_token"
                                        value="{{ csrf_token('authenticate') }}">
 

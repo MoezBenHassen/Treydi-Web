@@ -26,9 +26,7 @@ class UserType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('adresse')
-            ->add('avatar_url')
             ->add('score')
-            ->add('archived')
             ->add('date_naissance')
         ;
     }

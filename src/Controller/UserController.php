@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Doctrine\Persistence\ManagerRegistry;
 #[Route('/user')]
 class UserController extends AbstractController
 {
@@ -68,14 +68,12 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
-    public function delete(Request $request, Utilisateur $user, UtilisateurRepository $userRepository): Response
+    #[Route('user/delete/{id}', name: 'app_user_delete', methods: ['POST','GET'])]
+    public function delete(Utilisateur $user, ManagerRegistry $doctrine): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $user->setArchived(true);
-            $userRepository->save($user, true);
-        }
-
-        return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+        $user->setArchived(1);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->flush();
+        return $this->redirectToRoute('app_user_index');
     }
 }
