@@ -9,48 +9,76 @@
                 <h5 class="mb-0">Article</h5> {#<small class="text-muted float-end">Default label</small>#}
             </div>
             <div class="card-body">
+                <style>
+                    .text-danger {
+                        color: #dc3545 !important;
+                    }
+
+                    .text-danger li {
+                        margin-top: 5px;
+                        color: #dc3545 !important;
+                        list-style-type: "> " !important;
+                    }
+                </style>
                 {{ form_start(form) }}
 
                 <div class="mb-3">
                     {{ form_label(form.titre) }}
                     {{ form_widget(form.titre) }}
-                    {{ form_errors(form.titre) }}
+                    <div class="text-danger">
+                    {{ form_errors(form.titre, {'attr': {'class': 'text-danger', 'style':'color:red;'}}) }}
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     {{ form_label(form.description) }}
                     {{ form_widget(form.description) }}
-                    {{ form_errors(form.description) }}
+                    {#make the form errors appear in red#}
+
+                    <div class="text-danger">
+                        {{ form_errors(form.description, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+
                 </div>
 
                 <div class="mb-3">
                     {{ form_label(form.contenu) }}
                     {{ form_widget(form.contenu) }}
-                    {{ form_errors(form.contenu) }}
+                    <div class="text-danger">
+                    {{ form_errors(form.contenu, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     {{ form_label(form.date_publication) }}
                     {{ form_widget(form.date_publication) }}
-                    {{ form_errors(form.date_publication) }}
+                    <div class="text-danger">
+                    {{ form_errors(form.date_publication, {'attr': {'style': 'color:red;'}}) }}
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     {{ form_label(form.auteur) }}
                     {{ form_widget(form.auteur) }}
-                    {{ form_errors(form.auteur) }}
+                    <div class="text-danger">
+                    {{ form_errors(form.auteur, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     {{ form_label(form.id_categorie) }}
                     {{ form_widget(form.id_categorie) }}
-                    {{ form_errors(form.id_categorie) }}
+                    <div class="text-danger">
+                    {{ form_errors(form.id_categorie, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     {{ form_label(form.id_user) }}
                     {{ form_widget(form.id_user) }}
-                    {{ form_errors(form.id_user) }}
+                    <div class="text-danger">
+                    {{ form_errors(form.id_user, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
                 </div>
                 <div class="d-grid gap-2">
                     {{ form_widget(form.submit) }}

@@ -6,6 +6,7 @@ use App\Repository\CategorieArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategorieArticleRepository::class)]
 class CategorieArticle
@@ -16,6 +17,10 @@ class CategorieArticle
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    /*not blank*/
+    #[Assert\NotBlank(message: 'Le libellé ne peut pas être vide')]
+    /*must be between 2 and 255 characters*/
+    #[Assert\Length(min: 2, max: 255, minMessage: 'Le libellé doit faire au moins 2 caractères', maxMessage: 'Le libellé ne peut pas faire plus de 255 caractères')]
     private ?string $libelle_cat = null;
 
     #[ORM\Column(nullable: true)]

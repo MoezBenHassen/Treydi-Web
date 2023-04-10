@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
@@ -17,27 +18,51 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    /*must be not blank*/
+    #[Assert\NotBlank(message: 'Le titre ne peut pas être vide')]
+    /*must be between 5 and 255 characters*/
+    #[Assert\Length(min: 5, max: 255, minMessage: 'Le titre doit faire au moins 5 caractères', maxMessage: 'Le titre ne peut pas faire plus de 255 caractères')]
     private ?string $titre = null;
 
     #[ORM\Column(length: 500, nullable: true)]
+    /*must be not blank*/
+    #[Assert\NotBlank(message: 'La description ne peut pas être vide')]
+    /*must be between 5 and 500 characters*/
+    #[Assert\Length(min: 5, max: 500, minMessage: 'La description doit faire au moins 5 caractères', maxMessage: 'La description ne peut pas faire plus de 500 caractères')]
     private ?string $description = null;
 
+
     #[ORM\Column(length: 16777215, nullable: true)]
+    /*must be not blank*/
+    #[Assert\NotBlank(message: 'Le contenu ne peut pas être vide')]
+    /*must be between 5 and 16777215 characters*/
+    #[Assert\Length(min: 5, max: 16777215, minMessage: 'Le contenu doit faire au moins 5 caractères', maxMessage: 'Le contenu ne peut pas faire plus de 16777215 caractères')]
     private ?string $contenu = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    /*not blank*/
+    #[Assert\NotBlank(message: 'La date de publication ne peut pas être vide')]
     private ?\DateTimeInterface $date_publication = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
+    /*not blank*/
+    #[Assert\NotBlank(message: 'Veuillez choisir une catégorie')]
     private ?CategorieArticle $id_categorie = null;
 
+
     #[ORM\ManyToOne]
+    /*not blank*/
+    #[Assert\NotBlank(message: 'Veuillez choisir un utilisateur')]
     private ?Utilisateur $id_user = null;
 
     #[ORM\Column(nullable: true)]
     private bool $archived = false;
 
     #[ORM\Column(length: 255, nullable: true)]
+    /*must be not blank*/
+    #[Assert\NotBlank(message: 'L\'auteur ne peut pas être vide')]
+    /*must be between 5 and 255 characters*/
+    #[Assert\Length(min: 5, max: 255, minMessage: 'L\'auteur doit faire au moins 5 caractères', maxMessage: 'L\'auteur ne peut pas faire plus de 255 caractères')]
     private ?string $auteur = null;
 
     #[ORM\Column(nullable: true)]

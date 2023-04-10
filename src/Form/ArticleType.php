@@ -32,13 +32,13 @@ class ArticleType extends AbstractType
                 'label' => 'Description',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-decription'],
                 'attr' => ['class' => 'form-control', 'id' => 'basic-default-description',
-                    'placeholder' => 'Titre de l\'article'],
+                    'placeholder' => 'Description de l\'article'],
             ])
             ->add('contenu',TextareaType::class, [
                 'label' => 'Contenu',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-contenu'],
                 'attr' => ['class' => 'form-control', 'id' => 'basic-default-contenu',
-                    'placeholder' => 'Titre de l\'article'],
+                    'placeholder' => 'Contenu de l\'article'],
             ])
             ->add('date_publication', DateType::class, [
                 'label' => 'Date de publication',
@@ -51,7 +51,7 @@ class ArticleType extends AbstractType
                 'label' => 'Auteur',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-auteur'],
                 'attr' => ['class' => 'form-control', 'id' => 'basic-default-auteur',
-                    'placeholder' => 'Titre de l\'article'],
+                    'placeholder' => 'Auteur de l\'article'],
             ])
             //choice type for categories with label automattically loaded from database
             ->add('id_categorie', EntityType::class,[
