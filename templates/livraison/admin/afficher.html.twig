@@ -134,6 +134,7 @@
                             <div class="grid-container" style="padding-top: 10px;">
                                 <div class="text-center">
                                     {{ user1.nom }}
+                                    <div>{{ user1.adresse }}</div>
                                     <div class="grid" id="grid1">
                                         {% for item in user1_items %}
                                             <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
@@ -145,6 +146,7 @@
                                         Pas d'Echange
                                     {% else %}
                                         {{ user2.nom }}
+                                        <div>{{ user2.adresse }}</div>
                                     {% endif %}
                                     <div class="grid" id="grid2">
                                         {% for item in user2_items %}

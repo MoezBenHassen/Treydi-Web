@@ -65,11 +65,22 @@
         }
 
         .item {
-            background-color: blue;
+            background-color: #f1f1f1;
             width: 100px;
             height: 100px;
             cursor: pointer;
-            border: 1px solid black;
+            border: 1px solid white;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 2px 2px 5px #888;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .item:hover {
+            background-color: #d9d9d9;
         }
 
         #grid1 {
@@ -132,20 +143,27 @@
                         {{ form_start(formA, {'attr': {'id': 'formA'}}) }}
                         <div class="card" style="padding-bottom: 10px; ">
                             <div class="grid-container" style="display: flex; flex-direction: row;">
+                                <div class = "text-center">
+                                    User Items
                                 <div class="grid" id="grid1">
                                     {% for item in user1_items %}
                                         <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
                                     {% endfor %}
-                                </div>
+                                </div></div>
+                                <div class = "text-center">
+                                    Echange Items
                                 <div class="grid" id="grid2">
                                     {% for item in user1_items_in_echange %}
                                         <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
                                     {% endfor %}
                                 </div>
-                            </div>
+                                </div></div>
+                            <div class = "align-content-center">{{ form_row(formA.confirmer) }}</div>
+
                         </div>
                     </div>
-                    <input type="hidden" id="items" name="items[]" value="">
+                    <input type="hidden" id="items1" name="items1[]" value="">
+                    <input type="hidden" id="items2" name="items2[]" value="">
                     <div>
                         {{ form_end(formA) }}
                     </div>
@@ -184,48 +202,46 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Add event listeners to the objects
             const items = document.querySelectorAll('.item');
             items.forEach(obj => {
                 obj.addEventListener('click', moveItem);
             });
 
-            // Define a function to move objects between grids
+
             function moveItem(e) {
-                // Get the object being moved
                 const obj = e.target;
 
-                // Find the current grid of the object
                 const currentGrid = obj.closest('.grid');
 
-                // Find the other grid
                 const otherGrid = currentGrid.id === 'grid1' ? document.querySelector('#grid2') : document.querySelector('#grid1');
 
-                // Move the object to the other grid
                 otherGrid.appendChild(obj);
 
-                // Adjust the grid template rows to fit the number of objects
                 currentGrid.style.gridTemplateRows = `repeat(${Math.ceil(currentGrid.children.length / 1)}, 1fr)`;
                 otherGrid.style.gridTemplateRows = `repeat(${Math.ceil(otherGrid.children.length / 1)}, 1fr)`;
             }
 
-            // Add event listener to form submit
             const form = document.querySelector('#formA');
             form.addEventListener('submit', (e) => {
-                // Prevent the form from submitting normally
                 e.preventDefault();
 
-                // Get the selected items from grid2 and store their IDs in an array
                 const selectedItems = [];
                 const grid2Items = document.querySelectorAll('#grid2 .item');
                 grid2Items.forEach(item => {
                     selectedItems.push(item.id);
                 });
 
-                // Set the value of the hidden input field to the selected items array
-                const itemsInput = document.querySelector('#items');
+                const userItems = [];
+                const grid1Items = document.querySelectorAll('#grid1 .item');
+                grid1Items.forEach(item => {
+                    userItems.push(item.id);
+                });
+
+                const itemsInput = document.querySelector('#items1');
                 itemsInput.value = JSON.stringify(selectedItems);
-                // Submit the form
+
+                const userItemsInput = document.querySelector('#items2');
+                userItemsInput.value = JSON.stringify(userItems);
                 form.submit();
             });
         });

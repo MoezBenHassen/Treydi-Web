@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Entity\Echange;
 use App\Entity\EchangeProposer;
 use App\Entity\Item;
+use App\Entity\Utilisateur;
 use App\Form\EchangeProposerType;
-use App\Form\EchangeType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +27,7 @@ class EchangeProposerController extends AbstractController
 
     //ECHANGE PROPOSER
     #[Route('/echange/proposer/{id}', name: 'app_echange_proposer')]
-    public function proposer(Request $request,ManagerRegistry $doctrine, $id, Security $security): Response
+    public function proposer(Request $request, ManagerRegistry $doctrine, $id, Security $security): Response
     {
         $current_date = date('Y-m-d');
         $date = new DateTime($current_date);
@@ -49,7 +49,7 @@ class EchangeProposerController extends AbstractController
 
         $user2_items = $doctrine
             ->getRepository(Item::class)
-            ->findBy(['id_echange' => NULL,'id_user' => $test_user2->getId()]);
+            ->findBy(['id_echange' => NULL, 'id_user' => $test_user2->getId()]);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $echange_proposer = new EchangeProposer();
@@ -76,7 +76,7 @@ class EchangeProposerController extends AbstractController
             }
             $em->flush();
 
-            return $this->redirectToRoute('app_echangeList');
+            return $this->redirectToRoute('app_echange_list_user');
         }
 
         return $this->render('echange_proposer/proposer.html.twig', [
@@ -85,4 +85,85 @@ class EchangeProposerController extends AbstractController
             'formA' => $form->createView(),
         ]);
     }
+
+    #[Route('/echange_proposer/user/afficher/{id}', name: 'app_echangeproposer_user_afficher')]
+    public function afficherEchangeUser(ManagerRegistry $doctrine, $id): Response
+    {
+        $em = $doctrine->getManager();
+
+        $echange_proposer = $em->getRepository(EchangeProposer::class)
+            ->find($id);
+
+        $echange = $em->getRepository(Echange::class)
+            ->find($echange_proposer->getIdEchange());
+
+        $user1 = $em->getRepository(Utilisateur::class)
+            ->find($echange->getIdUser1());
+
+        $user2 = $em->getRepository(Utilisateur::class)
+            ->find($echange_proposer->getIdUser());
+
+        $user1_items = $em
+            ->getRepository(Item::class)
+            ->findBy(['id_echange' => $echange->getId(), 'id_user' => $echange->getIdUser1()]);
+
+        $user2_items = $em
+            ->getRepository(Item::class)
+            ->findBy(['id_echange' => $echange->getId(), 'id_user' => $echange_proposer->getIdUser()]);
+
+
+        return $this->render('echange_proposer/afficher.html.twig', [
+            'user1_items' => $user1_items,
+            'user2_items' => $user2_items,
+            'user1' => $user1,
+            'user2' => $user2,
+            'echange_proposer' => $echange_proposer,
+        ]);
+    }
+
+    #[Route('/echange_proposer/user/accepter/{id}', name: 'app_echangeproposer_user_accepter')]
+    public function accepterEchangeUser(ManagerRegistry $doctrine, $id): Response
+    {
+        $em = $doctrine->getManager();
+
+        $echange_proposer = $em->getRepository(EchangeProposer::class)
+            ->find($id);
+
+        $echange = $em->getRepository(Echange::class)
+            ->find($echange_proposer->getIdEchange());
+
+        $user1 = $em->getRepository(Utilisateur::class)
+            ->find($echange->getIdUser1());
+
+        $user2 = $em->getRepository(Utilisateur::class)
+            ->find($echange_proposer->getIdUser());
+
+        $echange->setIdUser2($user2);
+
+        $other_echange_proposers = $em
+            ->getRepository(EchangeProposer::class)
+            ->findBy(['id_echange' => $echange->getId()]);
+
+        foreach ($other_echange_proposers as $other_echange_proposer) {
+            if ($other_echange_proposer->getId() !== $echange_proposer->getId()) {
+                $other_items = $em
+                    ->getRepository(Item::class)
+                    ->findBy(['id_echange' => $echange->getId(), 'id_user' => $other_echange_proposer->getIdUser()]);
+
+                foreach ($other_items as $other_item) {
+                    $other_item->setIdEchange(null);
+                    $em->persist($other_item);
+                }
+            }
+        }
+
+        $em->persist($echange);
+        $em->flush();
+
+        return $this->redirectToRoute('app_echange_list_user');
+    }
+
+
 }
+
+

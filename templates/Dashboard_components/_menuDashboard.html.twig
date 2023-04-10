@@ -87,13 +87,28 @@
                 </ul>
             </li>
 
+            {# REDIRECT TO ECHANGE LIST#}
+            <li class="menu-item"  {#style="border:solid  pink 2px;"#}>
+                <a href="{{ path('app_echangeList') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <div>Echange</div>
+                </a>
+            </li>
+
+            {# REDIRECT TO LIVRAISON LIST#}
+            <li class="menu-item"  {#style="border:solid  pink 2px;"#}>
+                <a href="{{ path('app_livraison_list') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <div>Livraison</div>
+                </a>
+            </li>
+
             {# REDIRECT WITHOUT COLLAPSABLE MENU#}
             <li class="menu-item"  {#style="border:solid  pink 2px;"#}>
                 <a href="layouts-collapsed-menu.html" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
                     <div data-i18n="Collapsed menu">Collapsed XD</div>
                 </a>
-
             </li>
 
             {######################################################################################}

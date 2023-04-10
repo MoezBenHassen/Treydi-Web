@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }}Article index{% endblock %}
+{% block title %}{{ parent() }}Livraison index{% endblock %}
 
 {% block stylesheets %}
     <!-- Fonts -->
@@ -95,11 +95,13 @@
                                 <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Titre Echange</th>
-                                    <th>User 1</th>
-                                    <th>User 2</th>
-                                    <th>Date Echange</th>
+                                    <th>Livreur</th>
+                                    <th>Echange</th>
+                                    <th>Date Creation</th>
                                     <th>Etat Livraison</th>
+                                    <th>Date Terminer</th>
+                                    <th>Adresse 1</th>
+                                    <th>Adresse 2</th>
                                     <th>Archived</th>
                                     <th>Actions</th>
                                 </tr>
@@ -111,20 +113,26 @@
                                         {{ i.id }}
                                     </td>
                                     <td>
-                                        {{ i.titreEchange }}
+                                        {{ i.idLivreur }}
                                     </td>
                                     <td>
-                                        {{ i.idUser1 }}
+                                        {{ i.idEchange.titreEchange }}
                                     </td>
                                     <td>
-                                        {{ i.idUser2 }}
+                                        {{ i.dateCreationLivraison|date('Y-m-d') }}
                                     </td>
 
                                     <td>
-                                        {{ i.dateEchange|date('Y-m-d') }}
+                                        {{ i.etatLivraison }}
                                     </td>
                                     <td>
-                                        {{ i.livEtat }}
+                                        {{ i.dateTerminerLivraison|date('Y-m-d') }}
+                                    </td>
+                                    <td>
+                                        {{ i.adresseLivraison1 }}
+                                    </td>
+                                    <td>
+                                        {{ i.adresseLivraison2 }}
                                     </td>
                                     <td>
                                         {% if i.archived %}
@@ -137,10 +145,8 @@
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{ url('app_echange_afficher',{'id':i.getId()} ) }}"><i class="bx bx-edit-alt me-1"></i> Afficher</a>
-                                                <a class="dropdown-item" href="{{ url('app_echangeDelete',{'id':i.getId()} ) }}"><i class="bx bx-trash me-1"></i> Supprimer</a>
-                                                <a class="dropdown-item" href="{{ url('app_echange_modifier1',{'id':i.getId()} ) }}"><i class="bx bx-edit-alt me-1"></i> Modifier User 1</a>
-                                                <a class="dropdown-item" href="{{ url('app_echange_modifier2',{'id':i.getId()} ) }}"><i class="bx bx-edit-alt me-1"></i> Modifier User 2</a>
+                                                <a class="dropdown-item" href="{{ url('app_livraison_afficher',{'id':i.getId()} ) }}"><i class="bx bx-trash me-1"></i> Afficher</a>
+                                                <a class="dropdown-item" href="{{ url('app_livraison_remove',{'id':i.getId()} ) }}"><i class="bx bx-trash me-1"></i> Supprimer</a>
                                             </div>
                                         </div>
                                     </td>
