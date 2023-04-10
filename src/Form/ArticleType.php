@@ -55,7 +55,7 @@ class ArticleType extends AbstractType
                     'placeholder' => 'Auteur de l\'article'],
             ])
             //choice type for categories with label automattically loaded from database
-
+            //only categories with archived = 0 are displayed
             ->add('id_categorie', EntityType::class,[
                 'class' => CategorieArticle::class,
                 'query_builder' => function (CategorieArticleRepository $categorieArticle) {
