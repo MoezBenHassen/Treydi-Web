@@ -20,19 +20,12 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('password', PasswordType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                    new Regex([
-                        'pattern' => '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{4,}$/',
-                        'message' => 'Your password must be at least 4 characters long, and contain at least one letter, one number, and one special character'
-                    ]),
-                ],
-            ])
-            ->add('nom' , TextType::class )
-            ->add('prenom', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('adresse', TextType::class)
+            ->add('email')
+            ->add('password',PasswordType::class )
+            ->add('nom' )
+            ->add('prenom')
+            ->add('email')
+            ->add('adresse')
             ->add('date_naissance', BirthdayType::class, [
                 'label' => 'Date de naissance',
                 'required' => true,

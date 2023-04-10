@@ -9,9 +9,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use App\Repository\UtilisateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -19,7 +22,9 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Email(message: 'L\'email "{{ value }}" n\'est pas valide.')]
     private ?string $email = null;
 
     #[ORM\Column(type: 'json')]
@@ -30,6 +35,16 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\Length(
+        min: 4,
+        max: 255,
+        minMessage: 'Le mot de passe doit comporter au moins {{ limit }} caractères.',
+        maxMessage: 'Le mot de passe doit comporter au plus {{ limit }} caractères.'
+    )]
+    #[Assert\Regex(
+        pattern: '/\d/',
+        message: 'Le mot de passe doit comporter au moins un chiffre.'
+    )]
     private ?string $password = null;
 
     #[ORM\Column(length: 255, nullable: true)]
