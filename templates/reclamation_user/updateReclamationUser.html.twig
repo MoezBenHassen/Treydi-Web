@@ -80,7 +80,18 @@
                                                 <li><a href="blog-details.html">Blog Details</a></li>
                                             </ul>
                                         </li>
-                                        <li class="active"><a href="contact.html">contact</a></li>
+                                        <li class="menu-item-has-children"><a href="#">contact</a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-item-has-children"><a href="#">Reclamation</a>
+                                                    <ul class="sub-menu">
+                                                        <li class="active"><a href="{{ path('app_reclamationUserList') }}">List Reclamation</a></li>
+                                                        <li class="active"><a href="{{ path('app_reclamationUserAdd') }}">Ajouter Une Reclamation</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="active"><a href="{{ path('app_reponseUserList') }}">List Reponse</a></li>
+
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="tgmenu__action d-none d-md-block">

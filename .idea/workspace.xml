@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/reclamation/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/reclamation_user/addReclamationUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation_user/addReclamationUser.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/reclamation_user/showReclamationUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation_user/showReclamationUser.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/reclamation_user/updateReclamationUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation_user/updateReclamationUser.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/reponse_user/showReponseUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reponse_user/showReponseUser.html.twig" afterDir="false" />
@@ -253,7 +251,7 @@
       <workItem from="1680966879329" duration="3032000" />
       <workItem from="1680989288305" duration="17845000" />
       <workItem from="1681028300978" duration="13297000" />
-      <workItem from="1681076490115" duration="11533000" />
+      <workItem from="1681076490115" duration="12579000" />
     </task>
     <servers />
   </component>
