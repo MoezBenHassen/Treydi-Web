@@ -5,11 +5,24 @@
                 <h5 class="mb-0">Article</h5> {#<small class="text-muted float-end">Default label</small>#}
             </div>
             <div class="card-body">
+                <style>
+                    .text-danger {
+                        color: #dc3545 !important;
+                    }
+
+                    .text-danger li {
+                        margin-top: 5px;
+                        color: #dc3545 !important;
+                        list-style-type: "> " !important;
+                    }
+                </style>
             {{ form_start(form) }}
                 <div class="mb-3">
                     {{ form_label(form.libelle_cat) }}
                     {{ form_widget(form.libelle_cat) }}
-                    {{ form_errors(form.libelle_cat) }}
+                    <div class="text-danger">
+                        {{ form_errors(form.libelle_cat) }}
+                    </div>
                 </div>
                 <div class="d-grid gap-2">
                     {{ form_widget(form.submit) }}
