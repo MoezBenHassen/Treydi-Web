@@ -62,7 +62,10 @@
     <section class="blog-area">
         <div class="container">
             <div class="row justify-content-center">
+
                 <div class="blog-post-wrapper">
+                    <!-- blog-post-item -->
+                    {% for article in articles %}
                     <div class="blog-post-item">
                         <div class="blog-post-thumb">
                             <a href="blog-details.html"><img src=" {{ asset('assets/img/blog/blog_post01.jpg') }}" alt="img"></a>
@@ -70,13 +73,13 @@
                         <div class="blog-post-content">
                             <div class="blog-post-meta">
                                 <ul class="list-wrap">
-                                    <li>By<a href="#">Admin</a></li>
-                                    <li><i class="far fa-calendar-alt"></i> Aug 19, 2023</li>
-                                    <li><i class="far fa-comments"></i><a href="#">No comments</a></li>
+                                    <li><i class="fa-regular fa-user"></i> By<a href="#">{{ article.auteur }}</a></li>
+                                    <li><i class="fa-regular fa-calendar-days"></i>{{ article.datePublication|date('d-M-Y') }}</li>
+                                    <li><i class="fa-solid fa-star"></i><a href="#">{{ article.avgRating }}</a></li>
                                 </ul>
                             </div>
-                            <h2 class="title"><a href="blog-details.html">zombie land TOURNAMENT max</a></h2>
-                            <p>Lorem ipsum dolor sit amet, consteur adipiscing Duis elementum solliciin is yaugue euismods Nulla ullaorper. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+                            <h2 class="title"><a href="blog-details.html">{{ article.titre }}</a></h2>
+                            <p>{{ article.description }}</p>
                             <div class="blog-post-bottom">
                                 <div class="blog-post-read">
                                     <a href="blog-details.html">READ MORE <i class="fas fa-arrow-right"></i></a>
@@ -84,15 +87,17 @@
                                 <div class="blog-post-share">
                                     <h5 class="share">share :</h5>
                                     <ul class="list-wrap">
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+
+                                        <li><a href="http://www.twitter.com/share?url=http://www.google.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
                                         <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="blog-post-item">
+                    {% endfor %}
+                    {#<div class="blog-post-item">
                         <div class="blog-post-thumb">
                             <a href="blog-details.html"><img src="{{ asset('assets/img/blog/blog_post02.jpg') }}" alt="img"></a>
                         </div>
@@ -163,8 +168,10 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </div>#}
+                    <!--/// blog-post-item-end -->
                 </div>
+                <!-- blog post sidebar -->
                 <div class="blog-post-sidebar">
                     <aside class="blog-sidebar">
                         <div class="blog-widget">
@@ -280,6 +287,7 @@
                         </div>
                     </aside>
                 </div>
+                <!--/// sidebar-area-end -->
             </div>
         </div>
     </section>
