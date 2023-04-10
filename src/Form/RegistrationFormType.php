@@ -47,7 +47,6 @@ class RegistrationFormType extends AbstractType
                 'choices' => [
                     'Trader' => 'ROLE_TRADER',
                     'Livreur' => 'ROLE_LIVREUR',
-                    'Admin' => 'ROLE_ADMIN' ,
                 ],
             ])
         ;

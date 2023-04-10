@@ -14,11 +14,11 @@ class EditUserController extends AbstractController
     #[Route('/HomeTr', name: 'app_home_user')]
     public function index(): Response
     {
-        return $this->render('home/index.html.twig', [
+        return $this->render('user_home/home_user.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
-    #[Route('/edit/user', name: 'app_edit_user')]
+    #[Route('/HomeTr/edit', name: 'app_edit_user')]
     public function edit(Request $request ): Response
     {
         $user = $this->getUser();
@@ -30,11 +30,20 @@ class EditUserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_user_index');
+            return $this->redirectToRoute('app_home_user');
         }
 
-        return $this->render('edit_user/edituser.html.twig', [
+        return $this->render('user_home/edituser.html.twig', [
             'form' => $form->createView(),
         ]);
     }
+    #[Route('/HomeTr/show', name: 'app_show_user', methods: ['GET'])]
+    public function showConnectedUser(): Response
+    {
+        $user = $this->getUser();
+        return $this->render('user/show.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
 }
