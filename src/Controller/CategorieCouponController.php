@@ -5,11 +5,11 @@ namespace App\Controller;
 use App\Entity\CategorieCoupon;
 use App\Form\CategorieCouponType;
 use App\Repository\CategorieCouponRepository;
-use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class CategorieCouponController extends AbstractController
 {
@@ -50,7 +50,7 @@ class CategorieCouponController extends AbstractController
         ]);
     }
 
-    #[Route('/categorie_coupon/delete/{id}', name: 'app_categoriecoupon_delete', methods: ['POST','GET'])]
+    #[Route('/categoriecoupon/delete/{id}', name: 'app_categoriecoupon_delete', methods: ['POST','GET'])]
     public function deleteReclamation(CategorieCoupon $categorieCoupon, \Doctrine\Persistence\ManagerRegistry $doctrine): Response
     {
         $categorieCoupon->setArchived(1);
@@ -59,7 +59,7 @@ class CategorieCouponController extends AbstractController
         return $this->redirectToRoute('app_categoriecoupon_show');
     }
 
-    #[Route('/edit/{id}', name: 'app_categoriecoupon_edit', methods: ['GET', 'POST'])]
+    #[Route('/categoriecoupon/edit/{id}', name: 'app_categoriecoupon_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, CategorieCoupon $categorieCoupon, CategorieCouponRepository $categorieCouponRepository): Response
     {
         $form = $this->createForm(CategorieCouponType::class, $categorieCoupon);
@@ -68,7 +68,7 @@ class CategorieCouponController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $categorieCouponRepository->save($categorieCoupon, true);
 
-            return $this->redirectToRoute('app_coupon_show', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_categoriecoupon_show', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('categorie_coupon/edit.html.twig', [

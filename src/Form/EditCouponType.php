@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CouponType extends AbstractType
+class EditCouponType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -16,6 +16,7 @@ class CouponType extends AbstractType
             ->add('titre_coupon')
             ->add('description_coupon')
             ->add('date_expiration')
+            ->add('etat_coupon')
             ->add('code')
             ->add('id_user')
             ->add('id_categorie')

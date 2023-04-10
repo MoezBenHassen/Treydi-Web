@@ -107,12 +107,7 @@
                                                 {{ form_widget(form.description_coupon, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Description Coupon'}}) }}
                                                 {{ form_errors(form.description_coupon)}}
                                             </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="basic-default-message">Etat</label>
 
-                                                {{ form_widget(form.etat_coupon, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Etat Coupon'}}) }}
-                                                {{ form_errors(form.etat_coupon)}}
-                                            </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="basic-default-message">Date d'expiration</label>
                                                     <input type="date" class="form-control" placeholder="YYYY-MM-DD" id="flatpickr-date" />
@@ -138,7 +133,7 @@
                                                 {{ form_widget(form.id_categorie, {'attr': {'class': 'form-control','id':'basic-default-message', 'placeholder': 'Date Expiration'}}) }}
                                                 {{ form_errors(form.id_categorie)}}
                                             </div>
-                                            {{ form_row(form.add, {'attr': {'class': 'btn btn-primary'}}) }}
+                                        {{ form_row(form.add, {'attr': {'class': 'btn btn-primary'}}) }}
                                         {{ form_end(form) }}
                                     </div>
                                 </div>

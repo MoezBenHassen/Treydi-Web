@@ -5,16 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/CategorieCouponController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/CategorieCouponType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/categorie_coupon/add.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/categorie_coupon/edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/categorie_coupon/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/categorie_coupon/show.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/EditCouponType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/coupon/mycoupons.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/coupon/scoreboard.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/coupon/scoreboardfront.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CategorieCouponController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CategorieCouponController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CouponController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CouponController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CouponControllerFront.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CouponControllerFront.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/CategorieCoupon.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/CategorieCoupon.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/CategorieCouponRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CategorieCouponRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/coupon/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/coupon/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Coupon.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Coupon.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/CouponType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CouponType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Dashboard_components/_menuDashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Dashboard_components/_menuDashboard.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/categorie_coupon/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/categorie_coupon/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/categorie_coupon/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/categorie_coupon/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/coupon/add.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/coupon/add.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/coupon/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/coupon/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,6 +212,9 @@
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Form" />
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Controller" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\admin\Desktop\PI DEV\Treydi-Web\templates\coupon" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -255,7 +265,7 @@
       <workItem from="1680909528586" duration="4282000" />
       <workItem from="1680995130567" duration="1037000" />
       <workItem from="1680996189542" duration="13814000" />
-      <workItem from="1681053022663" duration="3045000" />
+      <workItem from="1681053022663" duration="19849000" />
     </task>
     <servers />
   </component>
@@ -275,5 +285,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/coupon/show.html.twig</url>
+          <line>94</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

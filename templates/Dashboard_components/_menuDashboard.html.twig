@@ -96,6 +96,14 @@
 
             </li>
 
+            <li class="menu-item"  {#style="border:solid  pink 2px;"#}>
+            <a href="{{ path('app_coupon_scoreboard') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <div >Scoreboard</div>
+            </a>
+            </li>
+
+
             <li class="menu-item"  {#style="border:solid  green 2px;"#}>
                 <a href="" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
@@ -103,10 +111,17 @@
                 </a>
                 <ul class="menu-sub" {#style="border:solid  yellow 2px;"#}>
                     <li class="menu-item">
-                        <a href="layouts-collapsed-menu.html" class="menu-link">
+                        <a href="{{ path('app_coupon_show') }}" class="menu-link">
                             {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
                             <i class="menu-icon tf-icons bx bx-layout"></i>
-                            <div data-i18n="Collapsed menu">Collapsed XD</div>
+                            <div>Afficher les coupons</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ path('app_coupon_ajouter') }}" class="menu-link">
+                            {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
+                            <i class="menu-icon tf-icons bx bx-layout"></i>
+                            <div>Ajouter un coupon</div>
                         </a>
                     </li>
                 </ul>
@@ -115,18 +130,27 @@
             <li class="menu-item"  {#style="border:solid  green 2px;"#}>
                 <a href="" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div >Categorie Coupons</div>
+                    <div >Catégorie des Coupons</div>
                 </a>
                 <ul class="menu-sub" {#style="border:solid  yellow 2px;"#}>
                     <li class="menu-item">
-                        <a href="layouts-collapsed-menu.html" class="menu-link">
+                        <a href="{{ path('app_categoriecoupon_show') }}" class="menu-link">
                             {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
                             <i class="menu-icon tf-icons bx bx-layout"></i>
-                            <div data-i18n="Collapsed menu">Collapsed XD</div>
+                            <div>Afficher les catégories coupons</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ path('app_categoriecoupon_ajouter') }}" class="menu-link">
+                            {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
+                            <i class="menu-icon tf-icons bx bx-layout"></i>
+                            <div>Ajouter une catégorie coupon</div>
                         </a>
                     </li>
                 </ul>
             </li>
+
+
 
             {######################################################################################}
         </ul>
