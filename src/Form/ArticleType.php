@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\CategorieArticle;
 use App\Entity\CategorieCoupon;
 use App\Entity\Utilisateur;
+use App\Repository\CategorieArticleRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -54,8 +55,13 @@ class ArticleType extends AbstractType
                     'placeholder' => 'Auteur de l\'article'],
             ])
             //choice type for categories with label automattically loaded from database
+
             ->add('id_categorie', EntityType::class,[
                 'class' => CategorieArticle::class,
+                'query_builder' => function (CategorieArticleRepository $categorieArticle) {
+                    return $categorieArticle->createQueryBuilder('c')
+                        ->where('c.archived = 0');
+                },
                 'choice_label' => 'libelle_cat',
                 'label' => 'Catégorie',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],

@@ -37,6 +37,8 @@ class Article
     #[Assert\NotBlank(message: 'Le contenu ne peut pas être vide')]
     /*must be between 5 and 16777215 characters*/
     #[Assert\Length(min: 5, max: 16777215, minMessage: 'Le contenu doit faire au moins 5 caractères', maxMessage: 'Le contenu ne peut pas faire plus de 16777215 caractères')]
+//    doesn't start with a number
+    #[Assert\Regex(pattern: '/^[^0-9]/', message: 'Le contenu ne peut pas commencer par un chiffre')]
     private ?string $contenu = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
