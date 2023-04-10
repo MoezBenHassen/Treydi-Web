@@ -61,9 +61,6 @@ class CategorieCoupon
     { return $this->description_categorie;
     }
 
-    public function _toString(): string
-    { return $this->nom_categorie;
-    }
     public function getId(): ?int
     {
         return $this->id;

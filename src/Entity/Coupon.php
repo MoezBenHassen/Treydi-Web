@@ -45,6 +45,10 @@ class Coupon
     private ?string $description_coupon = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Assert\GreaterThan(
+        value: 'today',
+        message: 'La date doit être supérieure à la date d\'aujourd\'hui.'
+    )]
     private ?\DateTimeInterface $date_expiration = null;
 
     #[ORM\Column(length: 255, nullable: true)]
