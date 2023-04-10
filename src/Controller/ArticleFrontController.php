@@ -43,10 +43,15 @@ class ArticleFrontController extends AbstractController
             return $a->getCount() < $b->getCount();
         });
 
+        /*get auteur avatarUrl*/
+        $article = $articleRepository->find($id);
+        $auteur = $article->getIdUser();
+        $avatarUrl = $auteur->getAvatarUrl();
         return $this->render('article_front/show.html.twig', [
             'article' => $articleRepository->find($id),
             'articles' => $articleRepository->findBy(['archived' => false]),
             'categories' => $categories,
+            'auteurAvatarUrl' => $avatarUrl,
         ]);
     }
 
