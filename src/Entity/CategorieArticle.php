@@ -24,6 +24,25 @@ class CategorieArticle
     #[ORM\OneToMany(mappedBy: 'id_categorie', targetEntity: Article::class)]
     private Collection $articles;
 
+    /*LOCAL ATTRIBUTE THAT DOESN4T GO TO THE DATABASE FOR COUNT*/
+    private int $count = 0;
+
+    /**
+     * @return int
+     */
+    public function getCount(): int
+    {
+        return $this->count;
+    }
+
+    /**
+     * @param int $count
+     */
+    public function setCount(int $count): void
+    {
+        $this->count = $count;
+    }
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();

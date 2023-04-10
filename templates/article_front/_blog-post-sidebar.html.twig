@@ -1,0 +1,95 @@
+<div class="blog-post-sidebar">
+    <aside class="blog-sidebar">
+        <div class="blog-widget">
+            <div class="sidebar__author">
+                <div class="sidebar__author-thumb">
+                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt="img">
+                </div>
+                <div class="sidebar__author-content">
+                    <h4 class="name">Kaceytron G.</h4>
+                    <p>Lorem ipsum sitamet conteur adipiscing Duis elementum solliciin</p>
+                    <div class="sidebar__author-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--blog widget search bar-->
+        <div class="blog-widget">
+            <form class="sidebar-search-form position-relative">
+                <input type="text" placeholder="Search here..">
+                <button><i class="flaticon-loupe"></i></button>
+            </form>
+        </div>
+        <!--/// blog widget search bar-->
+        <!--blog widget CATGORIES-->
+        <div class="blog-widget widget_categories">
+            <h4 class="fw-title">CATEGORIES</h4>
+            <ul class="list-wrap">
+                {% for category in categories|slice(0, 5) %}
+                    {#print the category count#}
+
+                <li><a href="#">{{ category.libelleCat }}</a><span class="float-right">({{ category.count }})</span></li>
+                {% endfor %}
+             {#   <li><a href="#">ELECTRONIC</a><span class="float-right">(4)</span></li>
+                <li><a href="#">online</a><span class="float-right">(21)</span></li>
+                <li><a href="#">TOURNAMENT</a><span class="float-right">(15)</span></li>
+                <li><a href="#">controller</a><span class="float-right">(2)</span></li>
+                <li><a href="#">live</a><span class="float-right">(7)</span></li>#}
+            </ul>
+        </div>
+        <!--/// blog widget CATEGORIES end-->
+
+        <!-- recent posts start-->
+        {{ include('article_front/_recent-posts.html.twig') }}
+        <!--/// recent posts end-->
+
+        <div class="blog-widget">
+            <h4 class="fw-title">Newsletter</h4>
+            <div class="sidebar__newsletter">
+                <p>Subscribe to our newsletter now !!!</p>
+                <form action="#" class="sidebar__newsletter-form">
+                    <input type="email" name="email" placeholder="Enter Your Email">
+                    <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="blog-widget">
+            <h4 class="fw-title">INSTAGRAM</h4>
+            <div class="sidebar__insta">
+                <div class="sidebar__insta-item">
+                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta01.jpg') }}" alt="img"></a>
+                </div>
+                <div class="sidebar__insta-item">
+                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta02.jpg') }}" alt="img"></a>
+                </div>
+                <div class="sidebar__insta-item">
+                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta03.jpg') }}" alt="img"></a>
+                </div>
+                <div class="sidebar__insta-item">
+                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta04.jpg') }}" alt="img"></a>
+                </div>
+                <div class="sidebar__insta-item">
+                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta05.jpg') }}" alt="img"></a>
+                </div>
+                <div class="sidebar__insta-item">
+                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta06.jpg') }}" alt="img"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="blog-widget">
+            <h4 class="fw-title">Tag Cloud</h4>
+            <div class="tagcloud">
+                <a href="#">E-sports</a>
+                <a href="#">Fantasy</a>
+                <a href="#">game</a>
+                <a href="#">Tournaments</a>
+                <a href="#">Matches</a>
+                <a href="#">Streamers</a>
+            </div>
+        </div>
+    </aside>
+</div>
