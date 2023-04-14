@@ -23,6 +23,8 @@ class CategorieArticleRepository extends ServiceEntityRepository
 
     public function save(CategorieArticle $entity, bool $flush = false): void
     {
+        /*set archived to false before saving to database*/
+        $entity->setArchived(false);
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {
