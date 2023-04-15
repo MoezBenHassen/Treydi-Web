@@ -23,22 +23,23 @@ class ReclamationController extends AbstractController
         ]);
     }
     #[Route('/reclamation/list', name: 'app_reclamationList', methods: ['GET', 'POST'])]
-    public function list(ManagerRegistry $doctrine): Response
+    public function list(Request $request, ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Reclamation::class);
 
-        //  $query = $repository->createQueryBuilder('r')
-        //    ->where('r.archived = :archived')
-        //  ->setParameter('archived', 0)
-        //->getQuery();
-        $query = $repository->findByArchived(false);
-        $list = $query ;
+        $search = $request->query->get('search');
+        $dateCreation = $request->query->get('dateCreation');
+        $query = $repository->findByTitreEtDescriptionEtDateCreation(false, $search, $dateCreation);
+        $list = $query;
 
         return $this->render('reclamation/show.html.twig', [
             'controller_name' => 'ReclamationListController',
-            'list' => $list
+            'list' => $list,
+            'search' => $search,
+            'dateCreation' => $dateCreation,
         ]);
     }
+
 
     #[Route('/reclamation/add', name: 'app_reclamationAdd' , methods: ['POST','GET'])]
     public function add(Request $request, ManagerRegistry $doctrine): Response

@@ -30,6 +30,26 @@ class ReclamationRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByTitreEtDescriptionEtDateCreation(bool $archived, string $search = null, string $dateCreation = null): array
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->where('r.archived = :archived')
+            ->setParameter('archived', $archived);
+
+        if ($search) {
+            $qb->andWhere('r.titre_reclamation LIKE :search OR r.description_reclamation LIKE :search')
+                ->setParameter('search', '%'.$search.'%');
+        }
+
+        if ($dateCreation) {
+            $qb->andWhere('r.date_creation = :dateCreation')
+                ->setParameter('dateCreation', new \DateTime($dateCreation));
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
+
     public function remove(Reclamation $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);

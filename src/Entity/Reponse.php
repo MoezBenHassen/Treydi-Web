@@ -23,7 +23,10 @@ class Reponse
         minMessage: 'Le titre de la réponse doit comporter au moins {{ limit }} caractères.',
         maxMessage: 'Le titre de la réponse doit comporter au plus {{ limit }} caractères.'
     )]
-
+    #[Assert\Regex(
+        pattern: '/^[^0-9]/',
+        message: "Le titre de la réclamation ne peut pas commencer par un chiffre ou un symbole."
+    )]
     private ?string $titre_reponse = null;
 
     #[ORM\Column(length: 255, nullable: true)]

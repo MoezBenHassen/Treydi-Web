@@ -122,9 +122,23 @@
 
                     <hr class="my-5">
 
+                        <form method="get">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" id="search" name="search" class="form-control" value="{{ search ?? '' }}">
+                                    <input type="date" id="dateCreation" name="dateCreation" class="form-control" value="{{ dateCreation ?? '' }}">
+                                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                                </div>
+                            </div>
+                        </form>
+
+
+
+
+                        <br>
 
                     <div class="card">
-                        <h5 class="card-header">Table Basic</h5>
+                        <h5 class="card-header">Reclamations</h5>
                         <div class="table-responsive text-nowrap">
                             <table class="table">
                                 <thead>
@@ -133,6 +147,7 @@
                                     <th>Date </th>
                                     <th>avatar </th>
                                     <th>Description</th>
+                                    <th>Etat</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -151,13 +166,14 @@
                                         </ul>
                                     </td>
                                     <td><span class="badge bg-label-primary me-1">{{ reclamation.descriptionReclamation }}</span></td>
+                                    <td>{{ reclamation.etatReclamation }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                                             <div class="dropdown-menu">
-                                                <a  href="{{ path('app_reclamationUpdate', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                                                 <a href="{{ path('app_reclamationDelete', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> supprimer</a>
                                                 <a href="{{ path('app_reponseAdd', {'id': reclamation.id}) }}" method="GET"   class="dropdown-item" href="javascript:void(0);"><i class='bx bx-reply-all'></i>  Repondre</a>
+                                                <a href="{{ path('app_reponseList', {'id': reclamation.id}) }}" class="dropdown-item" href="javascript:void(0);"><i class='bx bx-reply-all'></i>afficher Reponse</a>
 
                                             </div>
 

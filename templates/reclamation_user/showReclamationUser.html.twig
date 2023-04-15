@@ -229,7 +229,7 @@
                                                         <li class="active"><a href="{{ path('app_reclamationUserAdd') }}">Ajouter Une Reclamation</a></li>
                                                     </ul>
                                                 </li>
-                                                <li class="active"><a href="{{ path('app_reponseUserList') }}">List Reponse</a></li>
+
 
                                             </ul>
                                         </li>
@@ -393,6 +393,7 @@
                                             <div class="dropdown-menu">
                                                 <a  href="{{ path('app_reclamationUpdateUser', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                                                 <a href="{{ path('app_reclamationUserDelete', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> supprimer</a>
+                                                <a href="{{ path('app_reponseUserList', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class='bx bx-reply-all'></i> afficher Reponse</a>
 
                                             </div>
 

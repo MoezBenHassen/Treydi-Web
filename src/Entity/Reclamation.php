@@ -24,7 +24,7 @@ class Reclamation
         maxMessage: 'Le titre de la réclamation doit comporter au plus {{ limit }} caractères.'
     )]
     #[Assert\Regex(
-        pattern: '/^[^0-9\W]\w+$/',
+        pattern: '/^[^0-9]/',
         message: "Le titre de la réclamation ne peut pas commencer par un chiffre ou un symbole."
     )]
     private ?string $titre_reclamation = null;

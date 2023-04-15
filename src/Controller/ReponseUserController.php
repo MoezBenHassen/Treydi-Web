@@ -18,19 +18,24 @@ class ReponseUserController extends AbstractController
         ]);
     }
 
-    #[Route('/reponse/listUser', name: 'app_reponseUserList', methods: ['GET', 'POST'])]
-    public function list(ManagerRegistry $doctrine): Response
+    #[Route('/reponse/listUser/{id}', name: 'app_reponseUserList', methods: ['GET', 'POST'])]
+    public function list(ManagerRegistry $doctrine,int $id): Response
     {
-        $repository = $doctrine->getRepository(Reponse::class);
 
-        $query = $repository->createQueryBuilder('r')
-            ->where('r.archived = :archived')
-            ->setParameter('archived', 0)
-            ->getQuery();
-        $listr = $query->getResult();
+
+       // $query = $repository->createQueryBuilder('r')
+         //   ->where('r.archived = :archived')
+           // ->andWhere('r.id_reclamation = :idr')
+        //    ->setParameter('archived', 0)
+           // ->setParameter('idr', $idr)
+        //    ->getQuery();
+           //     $listr = $query->getResult();
+
+        $repository = $doctrine->getRepository(Reponse::class);
+        $listr = $repository->listReponseparReclamation($id);
 
         return $this->render('reponse_user/showReponseUser.html.twig', [
-            'controller_name' => 'ReponseListController',
+            'controller_name' => 'ReponseListUserController',
             'listr' => $listr
         ]);
     }

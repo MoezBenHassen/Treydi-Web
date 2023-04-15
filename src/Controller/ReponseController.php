@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use App\Repository\ReponseRepository;
 use App\Entity\Reclamation;
 use App\Entity\Reponse;
 use App\Form\ReponseAddType;
@@ -13,6 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use DateTime;
+
+
 
 class ReponseController extends AbstractController
 {
@@ -43,21 +45,26 @@ class ReponseController extends AbstractController
         return $this->renderForm('reponse/add_reponse.html.twig', ['formR' => $form]);
     }
 
-    #[Route('/reponse/list', name: 'app_reponseList', methods: ['GET', 'POST'])]
-    public function list(ManagerRegistry $doctrine): Response
+    #[Route('/reponse/list/{id}', name: 'app_reponseList', methods: ['POST','GET'])]
+    public function list(ManagerRegistry $doctrine,int $id): Response
     {
-        $repository = $doctrine->getRepository(Reponse::class);
 
-        $query = $repository->createQueryBuilder('r')
-            ->where('r.archived = :archived')
-            ->setParameter('archived', 0)
-            ->getQuery();
-        $listr = $query->getResult();
+
+      //  $query = $repository->createQueryBuilder('r')
+            //->where('r.archived = :archived')
+           // ->andwhere('r.id_reclamation' =: id)
+          //  ->setParameter('archived', 0)
+          //  ->>setParameter('id', $id)
+        //    ->getQuery();
+        $repository = $doctrine->getRepository(Reponse::class);
+        $listr = $repository->listReponseparReclamation($id);
+
 
         return $this->render('reponse/showReponse.html.twig', [
             'controller_name' => 'ReponseListController',
-            'listr' => $listr
+            'listr' => $listr,
         ]);
+
     }
 
     #[Route('/reponse/delete/{id}', name: 'app_reponseDelete', methods: ['POST', 'GET'])]

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Reponse;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * @extends ServiceEntityRepository<Reponse>
@@ -28,6 +29,18 @@ class ReponseRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+
+    public function listReponseparReclamation(int $id){
+        $query = $this->createQueryBuilder('r')
+            ->andWhere('r.archived = :archived')
+            ->andWhere('r.id_reclamation = :id')
+            ->setParameter('archived', false)
+            ->setParameter('id', $id)
+            ->getQuery();
+        $list = $query ->getResult();
+        return $list;
     }
 
     public function remove(Reponse $entity, bool $flush = false): void

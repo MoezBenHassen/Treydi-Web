@@ -27,7 +27,8 @@ class ReclamationUserController extends AbstractController
     {
         $em = $doctrine->getManager();
         $req = new Reclamation();
-        $req->setArchived(0); // set archived property to 0 (not archived)
+       // $req->setIdUser($this->getUser());
+        $req->setArchived(0);
         $req->setEtatReclamation("en cours");
         $req->setDateCreation(new DateTime());
         $form = $this->createForm(ReclamationType::class, $req);
@@ -49,7 +50,10 @@ class ReclamationUserController extends AbstractController
 
         $query = $repository->createQueryBuilder('r')
             ->where('r.archived = :archived')
+            ->andWhere('r.id_user = :idu')
             ->setParameter('archived', 0)
+            // badalha b getid user
+            ->setParameter('idu', 1)
             ->getQuery();
         $list = $query->getResult();
 
