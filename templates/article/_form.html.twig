@@ -19,6 +19,7 @@
                         color: #dc3545 !important;
                         list-style-type: "> " !important;
                     }
+
                 </style>
                 {{ form_start(form) }}
 
@@ -26,7 +27,7 @@
                     {{ form_label(form.titre) }}
                     {{ form_widget(form.titre) }}
                     <div class="text-danger">
-                    {{ form_errors(form.titre, {'attr': {'class': 'text-danger', 'style':'color:red;'}}) }}
+                        {{ form_errors(form.titre, {'attr': {'class': 'text-danger', 'style':'color:red;'}}) }}
                     </div>
                 </div>
 
@@ -45,7 +46,7 @@
                     {{ form_label(form.contenu) }}
                     {{ form_widget(form.contenu) }}
                     <div class="text-danger">
-                    {{ form_errors(form.contenu, {'attr': {'class': 'text-danger'}}) }}
+                        {{ form_errors(form.contenu, {'attr': {'class': 'text-danger'}}) }}
                     </div>
                 </div>
 
@@ -53,7 +54,7 @@
                     {{ form_label(form.date_publication) }}
                     {{ form_widget(form.date_publication) }}
                     <div class="text-danger">
-                    {{ form_errors(form.date_publication, {'attr': {'style': 'color:red;'}}) }}
+                        {{ form_errors(form.date_publication, {'attr': {'style': 'color:red;'}}) }}
                     </div>
                 </div>
 
@@ -61,7 +62,7 @@
                     {{ form_label(form.auteur) }}
                     {{ form_widget(form.auteur) }}
                     <div class="text-danger">
-                    {{ form_errors(form.auteur, {'attr': {'class': 'text-danger'}}) }}
+                        {{ form_errors(form.auteur, {'attr': {'class': 'text-danger'}}) }}
                     </div>
                 </div>
 
@@ -69,7 +70,7 @@
                     {{ form_label(form.id_categorie) }}
                     {{ form_widget(form.id_categorie) }}
                     <div class="text-danger">
-                    {{ form_errors(form.id_categorie, {'attr': {'class': 'text-danger'}}) }}
+                        {{ form_errors(form.id_categorie, {'attr': {'class': 'text-danger'}}) }}
                     </div>
                 </div>
 
@@ -77,10 +78,41 @@
                     {{ form_label(form.id_user) }}
                     {{ form_widget(form.id_user) }}
                     <div class="text-danger">
-                    {{ form_errors(form.id_user, {'attr': {'class': 'text-danger'}}) }}
+                        {{ form_errors(form.id_user, {'attr': {'class': 'text-danger'}}) }}
                     </div>
                 </div>
+                <div class="mb-3">
+
+                    <div class="rating">
+                        {% for i in 1..5 %}
+                            <div class="star" data-value="{{ i }}"></div>
+                        {% endfor %}
+
+
+                        <div style="border: 1px black solid">
+                            <span class="rating" data-rating="0">
+                                <i class="star" data-checked="false" data-note="1">&#9733;</i>
+                                <i class="star" data-checked="false" data-note="2">&#9733;</i>
+                                <i class="star" data-checked="false" data-note="3">&#9733;</i>
+                                <i class="star" data-checked="false" data-note="4">&#9733;</i>
+                                <i class="star" data-checked="false" data-note="5">&#9733;</i>
+                            </span>
+                            <span>
+                                <i class="note">Note: 0</i>
+                            </span>
+                        </div>
+
+                        {#form widget form rating with disabled attribute#}
+                        {{ form_widget(form.avgRating) }}
+                </div>
+
+                    {#{{ 3|rating }}#}
+                    <!--star rating-->
+
+                    <!--/// END star rating-->
+                </div>
                 <div class="d-grid gap-2">
+
                     {{ form_widget(form.submit) }}
                 </div>
                 {{ form_end(form) }}

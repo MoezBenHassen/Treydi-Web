@@ -7,10 +7,12 @@ use App\Entity\CategorieArticle;
 use App\Entity\CategorieCoupon;
 use App\Entity\Utilisateur;
 use App\Repository\CategorieArticleRepository;
+use Brokoskokoli\StarRatingBundle\Form\RatingType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -72,12 +74,17 @@ class ArticleType extends AbstractType
                 'label' => 'Utilisateur',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],
             ])
+            ->add('avgRating', NumberType::class, [
+                'label' => 'Rating',
+
+            ])
             //add submit button
             ->add('submit', SubmitType::class, [
                 'label' => '<i class="fa-solid fa-cloud-arrow-up"></i>',
                 'label_html' => true,
                 'attr' => ['class' => 'btn btn-label-primary mt-3', 'style' => 'font-size: 30px;']
             ])
+
         ;
     }
 

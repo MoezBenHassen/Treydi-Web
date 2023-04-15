@@ -73,6 +73,25 @@ class Article
     #[ORM\OneToMany(mappedBy: 'id_article', targetEntity: ArticleRatings::class)]
     private Collection $articleRatings;
 
+    // property rating is not mapped to the database
+    private ?float $rating = null;
+
+    /**
+     * @return float|null
+     */
+    public function getRating(): ?float
+    {
+        return $this->rating;
+    }
+
+    /**
+     * @param float|null $rating
+     */
+    public function setRating(?float $rating): void
+    {
+        $this->rating = $rating;
+    }
+
     public function __construct()
     {
         $this->articleRatings = new ArrayCollection();

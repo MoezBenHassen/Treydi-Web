@@ -4,8 +4,121 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92ff05667505b0689067bdce41b6153d",
+    "content-hash": "acbe32647bc5c02081bfaba5ad309f63",
     "packages": [
+        {
+            "name": "blackknight467/star-rating-bundle",
+            "version": "v2.0.1",
+            "target-dir": "blackknight467/StarRatingBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blackknight467/StarRatingBundle.git",
+                "reference": "5a95fe9cef75f8b3e3e763dc92b020091103d5b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blackknight467/StarRatingBundle/zipball/5a95fe9cef75f8b3e3e763dc92b020091103d5b1",
+                "reference": "5a95fe9cef75f8b3e3e763dc92b020091103d5b1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "symfony/framework-bundle": ">=2.1"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "blackknight467\\StarRatingBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Derick Felsman",
+                    "email": "derickfelsman@gmail.com"
+                },
+                {
+                    "name": "Steven Ng"
+                }
+            ],
+            "description": "Star Rating Bundle for use with Symfony 2 using Font Awesome.  This bundle adds the 'rating' form type and rating filter to render ratings.  Simple and easy to use.",
+            "homepage": "http://github.com/blackknight467/StarRatingBundle",
+            "keywords": [
+                "Rating",
+                "Symfony2",
+                "bundle",
+                "star",
+                "symfony"
+            ],
+            "support": {
+                "issues": "https://github.com/blackknight467/StarRatingBundle/issues",
+                "source": "https://github.com/blackknight467/StarRatingBundle/tree/master"
+            },
+            "time": "2016-04-12T01:57:35+00:00"
+        },
+        {
+            "name": "brokoskokoli/star-rating-bundle",
+            "version": "v4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brokoskokoli/StarRatingBundle.git",
+                "reference": "97d4caf542c110584c34a7c0558308272bbcdc88"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brokoskokoli/StarRatingBundle/zipball/97d4caf542c110584c34a7c0558308272bbcdc88",
+                "reference": "97d4caf542c110584c34a7c0558308272bbcdc88",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1",
+                "twig/twig": "^2.4"
+            },
+            "require-dev": {
+                "symfony/framework-bundle": ">=5.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Brokoskokoli\\StarRatingBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brokoskokoli",
+                    "email": "brokoskokoli@gmail.com"
+                },
+                {
+                    "name": "Derick Felsman",
+                    "email": "derickfelsman@gmail.com"
+                },
+                {
+                    "name": "Steven Ng"
+                }
+            ],
+            "description": "Star Rating Bundle for use with Symfony 4 using Font Awesome.  This bundle adds the 'rating' form type and rating filter to render ratings.  Simple and easy to use.",
+            "homepage": "http://github.com/brokoskokoli/StarRatingBundle",
+            "keywords": [
+                "Rating",
+                "bundle",
+                "star",
+                "symfony",
+                "symfony4"
+            ],
+            "support": {
+                "source": "https://github.com/brokoskokoli/StarRatingBundle/tree/v4.0.0"
+            },
+            "time": "2020-01-26T21:41:59+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "2.0.1",
@@ -7640,22 +7753,23 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.5.1",
+            "version": "v2.15.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "a6e0510cc793912b451fd40ab983a1d28f611c15"
+                "reference": "3e059001d6d597dd50ea7c74dd2464b4adea48d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a6e0510cc793912b451fd40ab983a1d28f611c15",
-                "reference": "a6e0510cc793912b451fd40ab983a1d28f611c15",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3e059001d6d597dd50ea7c74dd2464b4adea48d3",
+                "reference": "3e059001d6d597dd50ea7c74dd2464b4adea48d3",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.5",
+                "php": ">=7.1.3",
                 "symfony/polyfill-ctype": "^1.8",
-                "symfony/polyfill-mbstring": "^1.3"
+                "symfony/polyfill-mbstring": "^1.3",
+                "symfony/polyfill-php72": "^1.8"
             },
             "require-dev": {
                 "psr/container": "^1.0",
@@ -7664,10 +7778,13 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.5-dev"
+                    "dev-master": "2.15-dev"
                 }
             },
             "autoload": {
+                "psr-0": {
+                    "Twig_": "lib/"
+                },
                 "psr-4": {
                     "Twig\\": "src/"
                 }
@@ -7700,7 +7817,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.5.1"
+                "source": "https://github.com/twigphp/Twig/tree/v2.15.4"
             },
             "funding": [
                 {
@@ -7712,7 +7829,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-08T07:49:20+00:00"
+            "time": "2022-12-27T12:26:20+00:00"
         },
         {
             "name": "webmozart/assert",
