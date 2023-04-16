@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\ArticleRatings;
+use App\Entity\Utilisateur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,8 +22,23 @@ class ArticleRatingsRepository extends ServiceEntityRepository
         parent::__construct($registry, ArticleRatings::class);
     }
 
+    public function getAvgRating (int $id_article): float
+    {
+        $query = $this->createQueryBuilder('a')
+            ->select('AVG(a.rating) as avg_rating')
+            ->where('a.id_article = :id_article')
+            ->setParameter('id_article', $id_article)
+            ->getQuery();
+
+        $result = $query->getOneOrNullResult();
+
+        return $result['avg_rating'];
+    }
     public function save(ArticleRatings $entity, bool $flush = false): void
     {
+        /*add the current user id and the article id that's in the url*/
+
+
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {

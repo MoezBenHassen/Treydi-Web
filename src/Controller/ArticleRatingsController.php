@@ -31,7 +31,7 @@ class ArticleRatingsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $articleRatingsRepository->save($articleRating, true);
 
-            return $this->redirectToRoute('app_article_ratings_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_article_front_show', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('article_ratings/new.html.twig', [

@@ -47,7 +47,6 @@
     }
     #chose{
       width:25px;
-
     }
 
     #article-modal-content:first-child:first-letter{
@@ -68,7 +67,6 @@
 
 {% block javascripts %}
   <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
-
   <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
   <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
   <script src="{{ asset('public/assets/vendor/js/template-customizer.js') }}"></script>
@@ -90,11 +88,9 @@
 <div class="layout-wrapper layout-content-navbar  ">
   <div class="layout-container">
     <!-- Menu -->
-
       <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           {{ include('Dashboard_components/_menuDashboard.html.twig') }}
       </aside>
-
     <!-- / Menu -->
 
     <!-- Layout container -->
@@ -220,7 +216,6 @@
                       </div>
                       </p>#}
                       <!-- Modal layout -->
-
                     </td>
                     <td>
                       {{ article.datePublication ? article.datePublication|date('Y-m-d') : '' }}
@@ -299,7 +294,6 @@
             </div>
           </div>
           <br>
-
           <!--/ Hoverable Table rows -->
 
       </div>

@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\ArticleRatings;
 use App\Form\ArticleRatingsType;
+use App\Repository\ArticleRatingsRepository;
 use App\Repository\ArticleRepository;
 use App\Repository\CategorieArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -34,7 +36,7 @@ class ArticleFrontController extends AbstractController
     }
 
     #[Route('/article/{id}', name: 'app_article_front_show')]
-    public function show(ArticleRepository $articleRepository, $id, CategorieArticleRepository $categorieArticleRepository): Response
+    public function show(Request $request, ArticleRatingsRepository $articleRatingsRepository ,ArticleRepository $articleRepository, $id, CategorieArticleRepository $categorieArticleRepository): Response
     {
         $categories = $categorieArticleRepository->findBy(['archived' => false]);
         foreach ($categories as $categorie) {
@@ -53,6 +55,29 @@ class ArticleFrontController extends AbstractController
         /*article ratings form*/
         $articleRating = new ArticleRatings();
         $form = $this->createForm(ArticleRatingsType::class, $articleRating);
+
+        /* star rating form submission*/
+        $form->handleRequest($request);
+        dump($id, $this->getUser());
+        if ($form->isSubmitted() && $form->isValid()) {
+            /*set the current article id  + the voters id ( current user session id )*/
+            $articleRating->setIdArticle($article);
+            $articleRating->setIdUser($this->getUser());
+            /*save the article rating in the database*/
+            $articleRatingsRepository->save($articleRating,true);
+
+            /*update the avgRating in article table with the new average rating from the ArticleRatings table*/
+            $article->setAvgRating($articleRatingsRepository->getAvgRating($id));
+            $articleRepository->save($article,true);
+            /*redirect to the article page*/
+            return $this->render('article_front/show.html.twig', [
+                'article' => $articleRepository->find($id),
+                'articles' => $articleRepository->findBy(['archived' => false]),
+                'categories' => $categories,
+                'auteurAvatarUrl' => $avatarUrl,
+                'form2' => $form->createView(),
+            ]);
+        }
         return $this->render('article_front/show.html.twig', [
             'article' => $articleRepository->find($id),
             'articles' => $articleRepository->findBy(['archived' => false]),
@@ -61,6 +86,4 @@ class ArticleFrontController extends AbstractController
             'form2' => $form->createView(),
         ]);
     }
-
-
 }

@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\ArticleRatings;
+use App\Form\ArticleRatingsType;
 use App\Form\ArticleType;
+use App\Repository\ArticleRatingsRepository;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -80,4 +83,11 @@ class ArticleController extends AbstractController
 
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
+  /*add a new article rating in the show page*/
+
+
+
 }
