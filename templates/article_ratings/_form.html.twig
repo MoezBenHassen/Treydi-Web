@@ -1,0 +1,28 @@
+{{ form_start(form2) }}
+<div class="mb-3">
+
+    <!--star rating-->
+
+
+    <div style="border: 1px black solid">
+                            <span class="rating" data-rating="0">
+                                <i class="star ratingStar" data-checked="false" data-note="1">&#9733;</i>
+                                <i class="star ratingStar" data-checked="false" data-note="2">&#9733;</i>
+                                <i class="star ratingStar" data-checked="false" data-note="3">&#9733;</i>
+                                <i class="star ratingStar" data-checked="false" data-note="4">&#9733;</i>
+                                <i class="star ratingStar" data-checked="false" data-note="5">&#9733;</i>
+                            </span>
+        <span>
+                                <i class="note">Note: 0</i>
+                            </span>
+    </div>
+
+
+    {#form widget form rating with disabled attribute#}
+
+</div>
+{#form2.rating form widget with input value being article.avgRating#}
+{{ form_widget(form2.rating, {'attr': {'value': article.avgRating}}) }}
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form2) }}

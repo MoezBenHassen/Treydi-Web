@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\ArticleRatings;
+use App\Form\ArticleRatingsType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategorieArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,11 +49,16 @@ class ArticleFrontController extends AbstractController
         $article = $articleRepository->find($id);
         $auteur = $article->getIdUser();
         $avatarUrl = $auteur->getAvatarUrl();
+
+        /*article ratings form*/
+        $articleRating = new ArticleRatings();
+        $form = $this->createForm(ArticleRatingsType::class, $articleRating);
         return $this->render('article_front/show.html.twig', [
             'article' => $articleRepository->find($id),
             'articles' => $articleRepository->findBy(['archived' => false]),
             'categories' => $categories,
             'auteurAvatarUrl' => $avatarUrl,
+            'form2' => $form->createView(),
         ]);
     }
 

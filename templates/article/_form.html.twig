@@ -83,10 +83,7 @@
                 </div>
                 <div class="mb-3">
 
-                    <div class="rating">
-                        {% for i in 1..5 %}
-                            <div class="star" data-value="{{ i }}"></div>
-                        {% endfor %}
+                    <!--star rating-->
 
 
                         <div style="border: 1px black solid">
@@ -103,7 +100,8 @@
                         </div>
 
                         {#form widget form rating with disabled attribute#}
-                        {{ form_widget(form.avgRating) }}
+
+                    {{ form_widget(form.avgRating) }}
                 </div>
 
                     {#{{ 3|rating }}#}

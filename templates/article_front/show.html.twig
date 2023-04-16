@@ -51,7 +51,17 @@
 {% endblock %}
 #}
 {% extends 'base.html.twig' %}
-{% block title %}Hello ArticleFrontController!{% endblock %}
+{% block title %}{{ parent() }}Blog{% endblock %}
+{% block stylesheets %}
+    <style>
+        /*STAR RATING HOVER*/
+
+        .hover {
+            color: yellow !important;
+        }
+
+    </style>
+{% endblock %}
 {% block body %}
 
 <!-- Scroll-top -->
@@ -98,7 +108,14 @@
                             <ul class="list-wrap">
                                 <li><i class="fa-regular fa-user"></i> By<a href="#">{{ article.auteur }}</a></li>
                                 <li><i class="fa-regular fa-calendar-days"></i>{{ article.datePublication|date('d-M-Y') }}</li>
-                                <li><i class="fa-solid fa-star"></i><a href="#">{{ article.avgRating }}</a></li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                    {# add article rating form#}
+
+                                    {{ include('article_ratings/_form.html.twig') }}
+
+
+                                </li>
                             </ul>
                         </div>
                         <h2 class="title">{{ article.titre }}</h2>
@@ -258,5 +275,7 @@
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/js/ajax-form.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    <script src="{{ asset('assets/js/customStarRating.js') }}"></script>
 
 {% endblock %}

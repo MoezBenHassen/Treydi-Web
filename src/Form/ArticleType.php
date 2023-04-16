@@ -76,7 +76,6 @@ class ArticleType extends AbstractType
             ])
             ->add('avgRating', NumberType::class, [
                 'label' => 'Rating',
-
             ])
             //add submit button
             ->add('submit', SubmitType::class, [

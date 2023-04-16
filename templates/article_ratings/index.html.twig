@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ArticleRatings index{% endblock %}
+
+{% block body %}
+    <h1>ArticleRatings index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Rating</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article_rating in article_ratings %}
+            <tr>
+                <td>{{ article_rating.id }}</td>
+                <td>{{ article_rating.rating }}</td>
+                <td>
+                    <a href="{{ path('app_article_ratings_show', {'id': article_rating.id}) }}">show</a>
+                    <a href="{{ path('app_article_ratings_edit', {'id': article_rating.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_article_ratings_new') }}">Create new</a>
+{% endblock %}
