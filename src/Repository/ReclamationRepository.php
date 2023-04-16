@@ -6,6 +6,9 @@ use App\Entity\Reclamation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+
+
+
 /**
  * @extends ServiceEntityRepository<Reclamation>
  *
@@ -29,6 +32,17 @@ class ReclamationRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function compterReclamationsParMois()
+    {
+        $em = $this->getEntityManager();
+        $query = $this->createQueryBuilder('r')
+            ->select("MONTH(r.dateCreation) as mois, YEAR(r.dateCreation) as annee, COUNT(r) as nb_reclamations")
+            ->groupBy('mois, annee')
+            ->getQuery();
+
+        return $resultats = $query->getResult();
+    }
+
 
     public function findByTitreEtDescriptionEtDateCreation(bool $archived, string $search = null, string $dateCreation = null): array
     {
@@ -45,10 +59,51 @@ class ReclamationRepository extends ServiceEntityRepository
             $qb->andWhere('r.date_creation = :dateCreation')
                 ->setParameter('dateCreation', new \DateTime($dateCreation));
         }
+        if (isset($_GET['etatReclamationEnCours'])) {
+            $qb->andWhere('r.etat_reclamation = :etatReclamationEnCours')
+                ->setParameter('etatReclamationEnCours', 'en cours');
+        }
+
+        if (isset($_GET['etatReclamationTraite'])) {
+            $qb->andWhere('r.etat_reclamation = :etatReclamationTraite')
+                ->setParameter('etatReclamationTraite', 'traite');
+        }
+
 
         return $qb->getQuery()->getResult();
     }
 
+    public function findByTitreEtDescriptionEtDateCreationUser(bool $archived, string $search = null, string $dateCreation = null): array
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->where('r.archived = :archived')
+            ->setParameter('archived', $archived);
+
+        if ($search) {
+            $qb->andWhere('r.titre_reclamation LIKE :search OR r.description_reclamation LIKE :search')
+                ->setParameter('search', '%'.$search.'%');
+        }
+
+        if ($dateCreation) {
+            $qb->andWhere('r.date_creation = :dateCreation')
+                ->setParameter('dateCreation', new \DateTime($dateCreation));
+        }
+
+        if (isset($_GET['etatReclamationEnCours'])) {
+            $qb->andWhere('r.etat_reclamation = :etatReclamationEnCours')
+                ->setParameter('etatReclamationEnCours', 'en cours');
+        }
+
+        if (isset($_GET['etatReclamationTraite'])) {
+            $qb->andWhere('r.etat_reclamation = :etatReclamationTraite')
+                ->setParameter('etatReclamationTraite', 'traite');
+        }
+
+        $qb->andWhere('r.id_user = :idu')
+            ->setParameter('idu', 1);
+
+        return $qb->getQuery()->getResult();
+    }
 
     public function remove(Reclamation $entity, bool $flush = false): void
     {

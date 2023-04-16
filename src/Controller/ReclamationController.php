@@ -22,6 +22,7 @@ class ReclamationController extends AbstractController
             'controller_name' => 'ReclamationController',
         ]);
     }
+
     #[Route('/reclamation/list', name: 'app_reclamationList', methods: ['GET', 'POST'])]
     public function list(Request $request, ManagerRegistry $doctrine): Response
     {
@@ -93,5 +94,16 @@ class ReclamationController extends AbstractController
 
         return $this->renderForm('reclamation/update.html.twig', ['formU' => $form]);
     }
+    #[Route('/reclamation/stat', name: 'app_reclamationstat' , methods: ['POST','GET'])]
+    public function ReclamationsParMois(ManagerRegistry $doctrine)
+    {
+        $repository = $doctrine->getRepository(Reclamation::class);
+        $resultats = $repository->compterReclamationsParMois();
+
+        return $this->render('reclamation/stat.html.twig', [
+            'resultats' => $resultats
+        ]);
+    }
+
 
 }

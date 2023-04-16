@@ -5,19 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/reclamation/stat.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ReclamationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReclamationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ReclamationUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReclamationUserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ReponseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReponseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ReponseUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReponseUserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Reclamation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reclamation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Reponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reponse.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/ReclamationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ReclamationRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ReponseRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ReponseRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Dashboard_components/_menuDashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Dashboard_components/_menuDashboard.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/reclamation/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/reclamation_user/showReclamationUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation_user/showReclamationUser.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/reponse_user/showReponseUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reponse_user/showReponseUser.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,7 +262,10 @@
       <workItem from="1681254661174" duration="10000" />
       <workItem from="1681291735517" duration="1079000" />
       <workItem from="1681495748720" duration="1064000" />
-      <workItem from="1681513949549" duration="4939000" />
+      <workItem from="1681513949549" duration="5107000" />
+      <workItem from="1681551899186" duration="2872000" />
+      <workItem from="1681652825162" duration="550000" />
+      <workItem from="1681665617310" duration="6811000" />
     </task>
     <servers />
   </component>

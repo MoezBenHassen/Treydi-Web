@@ -44,22 +44,22 @@ class ReclamationUserController extends AbstractController
     }
 
     #[Route('/reclamation/listUser', name: 'app_reclamationUserList', methods: ['GET', 'POST'])]
-    public function list(ManagerRegistry $doctrine): Response
+    public function list(Request $request,ManagerRegistry $doctrine): Response
     {
-        $repository = $doctrine->getRepository(Reclamation::class);
 
-        $query = $repository->createQueryBuilder('r')
-            ->where('r.archived = :archived')
-            ->andWhere('r.id_user = :idu')
-            ->setParameter('archived', 0)
-            // badalha b getid user
-            ->setParameter('idu', 1)
-            ->getQuery();
-        $list = $query->getResult();
+          $repository = $doctrine->getRepository(Reclamation::class);
+
+        $search = $request->query->get('search');
+        $dateCreation = $request->query->get('dateCreation');
+        $query = $repository->findByTitreEtDescriptionEtDateCreationUser(false, $search, $dateCreation);
+        $list = $query;
 
         return $this->render('reclamation_user/showReclamationUser.html.twig', [
             'controller_name' => 'ReclamationListController',
-            'list' => $list
+            'list' => $list,
+            'search' => $search,
+            'dateCreation' => $dateCreation,
+
         ]);
     }
 

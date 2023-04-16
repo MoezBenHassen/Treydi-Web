@@ -30,6 +30,7 @@ class ReponseController extends AbstractController
     {
         $em = $doctrine->getManager();
         $req = new Reponse();
+        $reclamation->setEtatReclamation("Traité");
         $req->setArchived(0); // set archived property to 0 (not archived)
         $req->setIdReclamation($reclamation);
         $req->setDateReponse(new DateTime());

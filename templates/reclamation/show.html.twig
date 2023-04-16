@@ -124,13 +124,26 @@
 
                         <form method="get">
                             <div class="form-group">
+                                <div class="form-check form-switch"style=" margin-left: 13px">
+                                    <input class="form-check-input" type="checkbox" id="etatReclamationEnCours" name="etatReclamationEnCours" value="en cours">
+                                    <label class="form-check-label" for="etatReclamationEnCours">En cours</label>
+                                </div>
+                                <div class="form-check form-switch" style="margin-bottom: 10px; margin-left: 13px">
+                                    <input class="form-check-input" type="checkbox" id="etatReclamationTraite" name="etatReclamationTraite" value="traite">
+                                    <label class="form-check-label" for="etatReclamationTraite">Traité</label>
+                                </div>
+
+
                                 <div class="input-group">
                                     <input type="text" id="search" name="search" class="form-control" value="{{ search ?? '' }}">
                                     <input type="date" id="dateCreation" name="dateCreation" class="form-control" value="{{ dateCreation ?? '' }}">
                                     <button type="submit" class="btn btn-primary">Rechercher</button>
                                 </div>
+
                             </div>
                         </form>
+
+
 
 
 
