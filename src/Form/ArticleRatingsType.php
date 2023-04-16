@@ -16,7 +16,7 @@ class ArticleRatingsType extends AbstractType
             ->add('rating', NumberType::class, [
                 'label' => 'Rating',
                 /*make the field hidden with an id of avgRatingInput*/
-                'attr' => ['class' => 'avgRatingInput', 'hidden' => false],
+                'attr' => ['class' => 'avgRatingInput', 'hidden' => true],
             ])
         ;
     }
@@ -25,6 +25,8 @@ class ArticleRatingsType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => ArticleRatings::class,
+            'name' => 'article_ratings',
+            'id' => 'article_ratings',
         ]);
     }
 }

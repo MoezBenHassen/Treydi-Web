@@ -9,6 +9,8 @@
         }
 
     </style>
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />
 {% endblock %}
 {% block body %}
 
@@ -57,8 +59,8 @@
                                 <li><i class="fa-regular fa-user"></i> By<a href="#">{{ article.auteur }}</a></li>
                                 <li><i class="fa-regular fa-calendar-days"></i>{{ article.datePublication|date('d-M-Y') }}</li>
                                 <li>
-                                    <i class="fa-solid fa-star"></i>
-                                    {# add article rating form#}
+                                  {#  <i class="fa-solid fa-star"></i>
+                                    #}{# add article rating form#}
 
                                     {{ include('article_ratings/_form.html.twig') }}
 
@@ -186,7 +188,7 @@
                         <div class="form-grp">
                             <textarea name="message" placeholder="Comment *"></textarea>
                         </div>
-                        <button type="submit">Post Comment</button>
+                        <button>Post Comment</button>
                     </form>
                 </div>
             </div>

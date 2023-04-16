@@ -1,7 +1,4 @@
 {{ form_start(form2) }}
-<div
-    class="mb-3">
-
     <!--star rating-->
 
     <style>
@@ -20,16 +17,23 @@
             font-size: 2em;
             cursor: pointer;
         }*/
+        /*.rating {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+        }*/
     </style>
-    <div style="border: 1px black solid">
+    <div id="starDiv">
         <span class="rating" data-rating="0">
             {#PRINT FIVE STAR WITH A FOR LOOP EACH STAR HAVING DATA NOTE AS THE LOOP INDEX#}
             {% for i in 1..5 %}
                 {#if i < article.avgRating then the star has a 'low' class#}
                 {% if i < article.avgRating %}
-                    <i class="star hover" data-checked="true" data-note="{{ i }}">&#9733;</i>
+                    <i class="fa-solid fa-star star hover " data-checked="true" data-note="{{ i }}"></i>
                 {% else %}
-                    <i class="star " data-checked="false" data-note="{{ i }}">&#9733;</i>
+                    <i class="fa-solid fa-star star" data-checked="false" data-note="{{ i }}"></i>
                 {% endif %}
             {% endfor %}
  {#           <i class="star ratingStar" data-checked="false" data-note="1">&#9733;</i>
@@ -38,17 +42,12 @@
             <i class="star ratingStar" data-checked="false" data-note="4">&#9733;</i>
             <i class="star ratingStar" data-checked="false" data-note="5">&#9733;</i>#}
         </span>
-        <span>
-            <i class="note">Note: 0</i>
-        </span>
+
     </div>
 
 
     {#form widget form rating with disabled attribute#}
-
-</div>
 {#form2.rating form widget with input value being article.avgRating#}
 {{ form_widget(form2.rating, {'attr': {'value': article.avgRating}}) }}
-
-<button class="btn">{{ button_label|default('Save') }}</button>
+{#<button class="btn" type="submit">chose</button>#}
 {{ form_end(form2) }}

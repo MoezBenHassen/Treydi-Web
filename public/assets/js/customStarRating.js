@@ -35,9 +35,9 @@ function ratingHandler(e) {
             star.classList.remove('hover');
         }
         // Add 'hover' class to the avgRatingValue star
-  /*      if (star.dataset.note === avgRatingValue.toString()) {
-            star.classList.add('hover');
-        }*/
+        /*      if (star.dataset.note === avgRatingValue.toString()) {
+                  star.classList.add('hover');
+              }*/
     }
 }
 
@@ -60,7 +60,7 @@ function starSelection(e) {
 
     // Add 'hover' class to the avgRatingValue star
 
-  /*  avgRatingStars.forEach(star => star.classList.add('hover'));*/
+    /*  avgRatingStars.forEach(star => star.classList.add('hover'));*/
 }
 
 
@@ -98,4 +98,7 @@ function activeSelect(e) {
 
     /*UPDATE THE HIDDEN INPUT VALUE AFTER RATING CHANGE  BY USER*/
     document.getElementsByClassName('avgRatingInput')[0].value = note;
+    alert("chose ");
+    document.querySelector('form[name="article_ratings"]').submit();
+
 }
