@@ -99,7 +99,7 @@ class ReclamationController extends AbstractController
     {
         $repository = $doctrine->getRepository(Reclamation::class);
         $resultats = $repository->compterReclamationsParMois();
-
+        dump($resultats);
         return $this->render('reclamation/stat.html.twig', [
             'resultats' => $resultats
         ]);

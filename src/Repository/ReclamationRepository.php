@@ -36,7 +36,7 @@ class ReclamationRepository extends ServiceEntityRepository
     {
         $em = $this->getEntityManager();
         $query = $this->createQueryBuilder('r')
-            ->select("MONTH(r.dateCreation) as mois, YEAR(r.dateCreation) as annee, COUNT(r) as nb_reclamations")
+            ->select("MONTH(r.date_creation) as mois, YEAR(r.date_creation) as annee, COUNT(r) as nb_reclamations")
             ->groupBy('mois, annee')
             ->getQuery();
 
