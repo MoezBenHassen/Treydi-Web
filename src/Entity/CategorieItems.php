@@ -21,6 +21,10 @@ class CategorieItems
     #[ORM\Column(length: 30, nullable: true)]
     #[Assert\NotBlank(message: 'nom categorie obligatoire! (entre 3 et 30)')]
     #[Assert\Length(min:3,max: 30)]
+    #[Assert\Regex(
+        pattern: '/^(?!\d+$)\s*[a-zA-Z0-9\s]+$/i',
+        message: 'Le nom categorie doit contenir des lettres et des chiffres, mais ne doit pas être composé uniquement de chiffres.'
+    )]
     private ?string $nom_categorie = null;
 
     #[ORM\Column(nullable: true)]

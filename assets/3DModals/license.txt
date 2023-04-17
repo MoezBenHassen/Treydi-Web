@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sci-fi Great Sword
+* source:	https://sketchfab.com/3d-models/sci-fi-great-sword-d0c12e5781b7400fb8268452cde79533
+* author:	Kai Xiang (https://sketchfab.com/kirikom9000)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sci-fi Great Sword" (https://sketchfab.com/3d-models/sci-fi-great-sword-d0c12e5781b7400fb8268452cde79533) by Kai Xiang (https://sketchfab.com/kirikom9000) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

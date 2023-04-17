@@ -37,7 +37,18 @@ class ItemType extends AbstractType
                     'Service' => 'Service',
                 ],
             ])
-            ->add('imageurl')
+            ->add('imageurl', FileType::class, [
+                'label' => 'Image',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                
+                        'mimeTypesMessage' => 'Please upload a valid image',
+                    ]),
+                ],
+            ])
             ->add(
                 'id_categorie',
                 EntityType::class,

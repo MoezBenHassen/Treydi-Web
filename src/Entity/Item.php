@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ItemRepository;
 use Doctrine\ORM\Mapping as ORM;
 use PHPUnit\Util\Exception;
+use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
@@ -18,6 +19,10 @@ class Item
 
     #[ORM\Column(length: 30, nullable: true)]
     #[Assert\NotBlank(message: 'Libelle est obligatoire! (entre 3 et 30)')]
+    #[Assert\Regex(
+        pattern: '/^(?!\d+$)\s*[a-zA-Z0-9\s]+$/i',
+        message: 'Le libellé doit contenir des lettres et des chiffres, mais ne doit pas être composé uniquement de chiffres.'
+    )]
     #[Assert\Length(min:3,max: 30)]
     private ?string $libelle = null;
 
@@ -32,9 +37,9 @@ class Item
     #[ORM\Column(length: 10, nullable: true)]
     private ?string $type = null;
 
+    
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\NotBlank(message: 'image url obligatoire!')]
-    #[Assert\Length(min:2,max: 300)]
+    #[Assert\Regex(pattern: '/\.(png|jpg)$/', message: 'image doit etre png ou jpg')]
     private ?string $imageurl = null;
 
     #[ORM\ManyToOne(inversedBy: 'items')]
@@ -54,8 +59,6 @@ class Item
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Echange $id_echange = null;
-
-
 
 
     public function getId(): ?int

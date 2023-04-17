@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ parent() }}Article index
+	{{ parent() }}Ajouter Item
 {% endblock %}
 
 {% block stylesheets %}
@@ -85,7 +85,7 @@
 				<!-- Navbar -->
 				{{ include('Dashboard_components/_navbarDashboard.html.twig') }}
 				<!-- / Navbar -->
-
+<br>
 				<!-- Content wrapper -->
 					<div
 					class="content-wrapper"> <!-- Content -->
@@ -147,6 +147,7 @@
 										<div class="col-sm-10">
 							{{ form_widget(formA.imageurl,{'attr':{'class':'form-control'}})}}
 							{{ form_errors(formA.imageurl)}}
+							{{ err }}
 										</div>
 									</div>
 									<div class="row justify-content-end">

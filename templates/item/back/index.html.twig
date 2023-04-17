@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ parent() }}Article index
+	{{ parent() }}Items
 {% endblock %}
 
 {% block stylesheets %}
@@ -85,13 +85,14 @@
 				<!-- Navbar -->
 				{{ include('Dashboard_components/_navbarDashboard.html.twig') }}
 				<!-- / Navbar -->
-
+				<br>
 				<!-- Content wrapper -->
-					<div
-					class="content-wrapper"> <!-- Content -->
+				<div
+					class="content-wrapper">
+					<!-- Content -->
 
 					<div
-						class="">
+						class="container-fluid">
 						<!-- Content -->
 
 						<div class="card">
@@ -122,8 +123,8 @@
 
 											<tr>
 												<td>
-												<a href="{{ i.getImageurl() }}">
-													<img src="{{ i.getImageurl() }}" alt="" width="100">
+													<a href="{{ i.getImageurl() }}">
+														<img src="{{ i.getImageurl() }}" alt="" width="100">
 													</a>
 												</td>
 
@@ -144,14 +145,14 @@
 												<td>{{ i.getIdUser().getNom() }}</td>
 												<td>{{ i.getIdEchange() }}</td>
 												<td>
-														<div class="dropdown">
+													<div class="dropdown">
 														<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-														<i class='bx bx-text'></i> 
+															<i class='bx bx-text'></i>
 														</button>
 														<div class="dropdown-menu">
-														<div class="container">
-												{{ i.getDescription() }}
-												</div>
+															<div class="container">
+																{{ i.getDescription() }}
+															</div>
 														</div>
 													</div>
 													<div class="dropdown">
@@ -177,9 +178,6 @@
 
 									{% endfor %}
 								</table>
-
-
-		
 
 
 							</div>
