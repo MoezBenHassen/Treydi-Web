@@ -97,8 +97,8 @@ function activeSelect(e) {
     noteTextElement.innerText = `Note: ${note}`;
 
     /*UPDATE THE HIDDEN INPUT VALUE AFTER RATING CHANGE  BY USER*/
-    document.getElementsByClassName('avgRatingInput')[0].value = note;
-    alert("chose ");
+    /*document.getElementsByClassName('avgRatingInput')[0].value = note;*/
+    /*alert("chose ");*/
     document.querySelector('form[name="article_ratings"]').submit();
 
 }

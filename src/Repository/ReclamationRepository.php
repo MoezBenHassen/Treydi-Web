@@ -21,6 +21,34 @@ class ReclamationRepository extends ServiceEntityRepository
         parent::__construct($registry, Reclamation::class);
     }
 
+    /*function that selects the month and the year and counts the number of reclamations and groups them by month and year*/
+    public function compterReclamationsParMoisAnnee()
+    {
+        $query = $this->createQueryBuilder('r')
+            ->select('count(r.id) as nb, MONTH(r.dateReclamation) as mois, YEAR(r.dateReclamation) as annee')
+            ->groupBy('mois')
+            ->addGroupBy('annee')
+            ->getQuery();
+
+        $result = $query->getResult();
+
+        return $result;
+    }
+
+
+
+    public function compterReclamationsParMois($mois)
+    {
+        $query = $this->createQueryBuilder('r')
+            ->select('count(r.id) as nb')
+            ->where('r.dateReclamation LIKE :mois')
+            ->setParameter('mois', $mois)
+            ->getQuery();
+
+        $result = $query->getOneOrNullResult();
+
+        return $result['nb'];
+    }
     public function save(Reclamation $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

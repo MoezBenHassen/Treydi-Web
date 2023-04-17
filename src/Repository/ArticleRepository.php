@@ -23,6 +23,7 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
     public function save(Article $entity, bool $flush = false): void
+
     {
         $this->getEntityManager()->persist($entity);
 

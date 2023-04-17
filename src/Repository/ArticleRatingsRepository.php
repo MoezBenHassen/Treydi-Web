@@ -36,8 +36,20 @@ class ArticleRatingsRepository extends ServiceEntityRepository
     }
     public function save(ArticleRatings $entity, bool $flush = false): void
     {
-        /*add the current user id and the article id that's in the url*/
+        /*check if the user already voted*/
+        $query = $this->createQueryBuilder('a')
+            ->where('a.id_article = :id_article')
+            ->andWhere('a.id_user = :id_user')
+            ->setParameter('id_article', $entity->getIdArticle()->getId())
+            ->setParameter('id_user', $entity->getIdUser()->getId())
+            ->getQuery();
 
+        $result = $query->getOneOrNullResult();
+
+        if ($result) {
+            $result->setRating($entity->getRating());
+            $entity = $result;
+        }
 
         $this->getEntityManager()->persist($entity);
 

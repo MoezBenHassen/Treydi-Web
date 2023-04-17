@@ -42,6 +42,7 @@ class ArticleFrontController extends AbstractController
         foreach ($categories as $categorie) {
             $categorie->setCount($articleRepository->count(['id_categorie' => $categorie->getId(), 'archived' => false]));
         }
+
         /*sort bigger first*/
         usort($categories, function ($a, $b) {
             return $a->getCount() < $b->getCount();
