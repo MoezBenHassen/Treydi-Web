@@ -87,7 +87,15 @@
                 <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="content-wrapper">
                     <!-- Content -->
-                    <hr class="my-5">
+                    <hr class="my-5"> <!--
+                    <div class="input-group mb-3">
+                        {{ form_start(form, {'attr': {'class': 'form-control search-input container-xxl border-0 tt-input'}}) }}
+                        {{ form_widget(form.search, {'attr': {'placeholder': 'Search for a coupon :', 'aria-label': 'Search...', 'autocomplete': 'off', 'spellcheck': 'false', 'dir': 'auto'}}) }}
+                        {{ form_end(form) }}
+                    </div>
+
+                    <input type="text" class="form-control search-input container-xxl border-0 tt-input" placeholder="Search for a coupon :" aria-label="Search..." autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+                        <div> <br> </div> -->
 
                     <div class="card">
                         <h5 class="card-header">Liste des coupons</h5>

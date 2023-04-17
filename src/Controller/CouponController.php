@@ -6,6 +6,7 @@ use App\Entity\Coupon;
 use App\Entity\Utilisateur;
 use App\Form\CouponType;
 use App\Form\EditCouponType;
+use App\Form\SearchForm;
 use App\Repository\CouponRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,7 +38,6 @@ class CouponController extends AbstractController
     }
 
 
-
     #[Route('/coupon/show', name: 'app_coupon_show')]
     public function show(ManagerRegistry $doctrine): Response
     {
@@ -47,6 +47,7 @@ class CouponController extends AbstractController
             'coupons' => $list,
         ]);
     }
+
     /*
     #[Route('/coupon/add', name: 'app_coupon_ajouter')]
     public function ajouter(
@@ -87,7 +88,7 @@ class CouponController extends AbstractController
     }
 
 
-    #[Route('/coupon/delete/{id}', name: 'app_coupon_delete', methods: ['POST','GET'])]
+    #[Route('/coupon/delete/{id}', name: 'app_coupon_delete', methods: ['POST', 'GET'])]
     public function deleteReclamation(Coupon $coupon, ManagerRegistry $doctrine): Response
     {
         $coupon->setArchived(1);
@@ -114,6 +115,50 @@ class CouponController extends AbstractController
         ]);
     }
 
+    #[Route('/couponsearch', name: 'app_couponcontroller_search')]
+    public function search(Request $request)
+    {
+        $form = $this->createForm(SearchForm::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $searchTerm = $form->get('search')->getData();
+            $archived = $form->get('archived')->getData();
+            $isValid = $form->get('isValid')->getData();
+            $categorie = $form->get('categorie')->getData();
+
+            $qb = $this->getDoctrine()->getRepository(Coupon::class)->createQueryBuilder('c');
+
+            if ($searchTerm) {
+                $qb->andWhere('c.titre_coupon LIKE :searchTerm')
+                    ->setParameter('searchTerm', '%' . $searchTerm . '%');
+            }
+
+            if ($archived !== null) {
+                $qb->andWhere('c.archived = :archived')
+                    ->setParameter('archived', $archived);
+            }
+
+            if ($categorie !== null) {
+                $qb->andWhere('c.id_categorie = :categorie')
+                    ->setParameter('categorie', $categorie);
+            }
+
+            if ($isValid !== null) {
+                $qb->andWhere('c.isValid = :isValid')
+                    ->setParameter('isValid', $isValid);
+            }
+
+            $coupons = $qb->getQuery()->getResult();
+            return $this->render('coupon/show.html.twig', [
+                'form' => $form->createView(),
+                'coupons' => $coupons
+            ]);
+
+        }
+
+
+    }
 
 }
 
