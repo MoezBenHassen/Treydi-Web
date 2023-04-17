@@ -115,7 +115,13 @@
                                                 <li><a href="blog-details.html">Blog Details</a></li>
                                             </ul>
                                         </li>
-                                        <li class="active"><a href="contact.html">contact</a></li>
+                                        <li class="menu-item-has-children"><a href="#">Echange</a>
+                                            <ul class="sub-menu">
+                                                <li><a href= {{ path('app_echange_creer') }}>Creer Echange</a></li>
+                                                <li><a href={{ path('app_echange_list_user') }}>Tous les Echanges</a></li>
+                                                <li><a href={{ path('app_echange_list_mesechanges') }}>Mes Echanges</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="tgmenu__action d-none d-md-block">
@@ -222,7 +228,7 @@
                 {{ form_start(formA, {'attr': {'id': 'formA', 'novalidate': 'novalidate'}}) }}
                 <div class="grid-container" style="margin-top: 20px">
                     <div class="text-center">
-                        Mes Items
+                        Vos Items
                         <div class="grid" id="grid1">
                             {% for item in user_items %}
                                 <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
@@ -230,7 +236,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        Echange Items
+                        Les Items de l'echange que vous voulez créez
                         <div class="grid" id="grid2">
                         </div>
                     </div>

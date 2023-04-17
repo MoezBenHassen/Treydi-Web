@@ -126,7 +126,13 @@
                                                 <li><a href="blog-details.html">Blog Details</a></li>
                                             </ul>
                                         </li>
-                                        <li class="active"><a href="contact.html">contact</a></li>
+                                        <li class="menu-item-has-children"><a href="#">Echange</a>
+                                            <ul class="sub-menu">
+                                                <li><a href= {{ path('app_echange_creer') }}>Creer Echange</a></li>
+                                                <li><a href={{ path('app_echange_list_user') }}>Tous les Echanges</a></li>
+                                                <li><a href={{ path('app_echange_list_mesechanges') }}>Mes Echanges</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="tgmenu__action d-none d-md-block">
@@ -233,13 +239,16 @@
                 {{ form_start(formA, {'attr': {'id': 'formA', 'novalidate': 'novalidate'}}) }}
                 <div class="grid-container">
                     <div class="grid" id="grid1">
+                        <div class = "align-content-center"> Vos Items</div>
                         {% for item in user2_items %}
                             <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
                         {% endfor %}
                     </div>
                     <div class="grid" id="grid2">
+                        <div class = "align-content-center"> Les Items que vous voulez proposez</div>
                     </div>
                     <div class="grid" id="grid3">
+                        <div class = "align-content-center"> Les Items dans cette echange</div>
                         {% for item in user1_items %}
                             <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
                         {% endfor %}

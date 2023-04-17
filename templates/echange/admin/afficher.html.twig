@@ -144,7 +144,7 @@
                         <div class="card" style="padding-bottom: 10px;">
                             <div class="grid-container" style="padding-top: 10px;">
                                 <div class="text-center">
-                                    {{ user1.nom }}
+                                    Les Items de l'utilisateur: {{ user1.nom }}
                                     <div class="grid" id="grid1">
                                         {% for item in user1_items %}
                                             <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
@@ -153,9 +153,9 @@
                                 </div>
                                 <div class="text-center">
                                     {% if user2 == null %}
-                                        Pas d'Echange
+                                        Pas d'Echange Accepter
                                     {% else %}
-                                        {{ user2.nom }}
+                                        Les Items de l'utilisateur: {{ user2.nom }}
                                     {% endif %}
                                     <div class="grid" id="grid2">
                                         {% for item in user2_items %}

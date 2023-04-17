@@ -223,7 +223,7 @@
                     <!-- Content -->
                         <div class="grid-container" style="padding-top: 10px;">
                             <div class="text-center">
-                                {{ user1.nom }}
+                                Les items de l'utilisateur: {{ user1.nom }}
                                 <div class="grid" id="grid1">
                                     {% for item in user1_items %}
                                         <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
@@ -232,9 +232,9 @@
                             </div>
                             <div class="text-center">
                                 {% if user2 == null %}
-                                    Pas d'Echange
+                                    Pas d'echange encore accepter
                                 {% else %}
-                                    {{ user2.nom }}
+                                    Les items de l'utilisateur: {{ user2.nom }}
                                 {% endif %}
                                 <div class="grid" id="grid2">
                                     {% for item in user2_items %}
@@ -243,43 +243,7 @@
                                 </div>
                             </div>
                         </div>
-                    {# TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLEEEEEEEEEEEEEEEEEEEEEE #}
 
-                        <hr class="my-3">
-                        <h1 class="text-center">Echange Proposer</h1>
-                        <div class="table-responsive text-nowrap my-20">
-                            <table class="table mx-20" style="color: white">
-                                <thead>
-                                <tr>
-                                    <th>User 2</th>
-                                    <th>Date Proposer</th>
-                                    <th>Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody class="table-border-bottom-0">
-                                {% for i in echange_proposer %}
-                                    <tr>
-                                        <td>
-                                            {{ i.idUser }}
-                                        </td>
-                                        <td>
-                                            {{ i.dateProposer|date('Y-m-d') }}
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item"
-                                                       href="{{ url('app_echangeproposer_user_afficher',{'id':i.getId()} ) }}"><i
-                                                                class="bx bx-show me-1"></i> Afficher</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
                 </div>
             </div>
         </section>

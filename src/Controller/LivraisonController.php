@@ -93,14 +93,53 @@ class LivraisonController extends AbstractController
     }
 
     //Livreur
+    //meslivraisons
     #[Route('/livraison/livreur/list', name: 'app_livraison_livreur_list')]
     public function listLivreur(ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
         $repository = $em->getRepository(Livraison::class);
-        $list = $repository->findBy(['archived' => false, 'livEtat' => 'Non_Accepter']);
-        return $this->render('livraison/admin/list.html.twig', [
+        $list = $repository->findall();
+        return $this->render('livraison/user/meslivraison.tml.twig', [
             'list' => $list
+        ]);
+    }
+
+    #[Route('/livraison/user/afficher/{id}', name: 'app_livraison_user_afficher')]
+    public function afficherUserLivraison(ManagerRegistry $doctrine, $id): Response
+    {
+        $em = $doctrine->getManager();
+        $livraison = $doctrine->getRepository(Livraison::class)->find($id);
+        $echange = $doctrine->getRepository(Echange::class)->find($livraison->getIdEchange());
+
+        $user1 = $em->getRepository(Utilisateur::class)
+            ->find($echange->getIdUser1());
+
+        if ($echange->getIdUser2() == null) {
+            $user2 = null;
+        } else {
+            $user2 = $em->getRepository(Utilisateur::class)
+                ->find($echange->getIdUser2());
+        }
+
+        $user1_items = $em
+            ->getRepository(Item::class)
+            ->findBy(['id_echange' => $echange->getId(), 'id_user' => $echange->getIdUser1()]);
+
+        $user2_items = $em
+            ->getRepository(Item::class)
+            ->findBy(['id_echange' => $echange->getId(), 'id_user' => $echange->getIdUser2()]);
+
+        $echange_proposer = $em
+            ->getRepository(EchangeProposer::class)
+            ->findBy(['id_echange' => $echange->getId()]);
+
+        return $this->render('livraison/user/afficher.html.twig', [
+            'user1_items' => $user1_items,
+            'user2_items' => $user2_items,
+            'user1' => $user1,
+            'user2' => $user2,
+            'echange_proposer' => $echange_proposer,
         ]);
     }
 

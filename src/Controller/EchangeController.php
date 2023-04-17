@@ -16,9 +16,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
-
-
-
 class EchangeController extends AbstractController
 {
     #[Route('/echange', name: 'app_echange')]
@@ -170,6 +167,8 @@ class EchangeController extends AbstractController
         $form->remove('titre_echange');
         $form->handleRequest($request);
 
+        $user1 = $em->getRepository(Utilisateur::class)->find($echange->getIdUser1());
+
         $user1_items = $doctrine
             ->getRepository(Item::class)
             ->findBy(['id_echange' => NULL, 'id_user' => $echange->getIdUser1(), 'archived' => false]);
@@ -215,6 +214,7 @@ class EchangeController extends AbstractController
             'user1_items' => $user1_items,
             'user1_items_in_echange' => $user1_items_in_echange,
             'echange' => $echange,
+            'user1' => $user1,
             'formA' => $form->createView(),
         ]);
     }
@@ -225,6 +225,8 @@ class EchangeController extends AbstractController
         $em = $doctrine->getManager();
         $echange = $em->getRepository(Echange::class)
             ->find($id);
+
+        $user2 = $em->getRepository(Utilisateur::class)->find($echange->getIdUser2());
 
         $echange_proposer = $em
             ->getRepository(EchangeProposer::class)
@@ -279,6 +281,7 @@ class EchangeController extends AbstractController
             'user2_items' => $user2_items,
             'user2_items_in_echange' => $user2_items_in_echange,
             'echange' => $echange,
+            'user2' => $user2,
             'formA' => $form->createView(),
         ]);
     }
@@ -290,7 +293,7 @@ class EchangeController extends AbstractController
     {
         $em = $doctrine->getManager();
         $repository = $em->getRepository(Echange::class);
-        $list = $repository->findBy(['archived' => false]);
+        $list = $repository->findBy(['archived' => false, 'id_user2' => null]);
         return $this->render('echange/user/list.tml.twig', [
             'controller_name' => 'EchangeListController',
             'list' => $list

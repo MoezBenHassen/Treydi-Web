@@ -144,14 +144,14 @@
                         <div class="card" style="padding-bottom: 10px; ">
                             <div class="grid-container" style="display: flex; flex-direction: row;">
                                 <div class = "text-center">
-                                    User Items
+                                    Les Items de l'utilisateur: {{ user1.nom }}
                                 <div class="grid" id="grid1">
                                     {% for item in user1_items %}
                                         <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
                                     {% endfor %}
                                 </div></div>
                                 <div class = "text-center">
-                                    Echange Items
+                                    Les Items dans l'Echange
                                 <div class="grid" id="grid2">
                                     {% for item in user1_items_in_echange %}
                                         <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>

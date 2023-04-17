@@ -115,13 +115,7 @@
                                                 <li><a href="blog-details.html">Blog Details</a></li>
                                             </ul>
                                         </li>
-                                        <li class="menu-item-has-children"><a href="#">Echange</a>
-                                            <ul class="sub-menu">
-                                                <li><a href= {{ path('app_echange_creer') }}>Creer Echange</a></li>
-                                                <li><a href={{ path('app_echange_list_user') }}>Tous les Echanges</a></li>
-                                                <li><a href={{ path('app_echange_list_mesechanges') }}>Mes Echanges</a></li>
-                                            </ul>
-                                        </li>
+                                        <li class="active"><a href="contact.html">contact</a></li>
                                     </ul>
                                 </div>
                                 <div class="tgmenu__action d-none d-md-block">
@@ -230,6 +224,7 @@
                     <div class="grid-container" style="padding-top: 10px;">
                         <div class="text-center">
                             {{ user1.nom }}
+                            {{ user1.adresse }}
                             <div class="grid" id="grid1">
                                 {% for item in user1_items %}
                                     <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
@@ -241,6 +236,7 @@
                                 Pas d'Echange
                             {% else %}
                                 {{ user2.nom }}
+                                {user2.adresse}
                             {% endif %}
                             <div class="grid" id="grid2">
                                 {% for item in user2_items %}
@@ -248,10 +244,7 @@
                                 {% endfor %}
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    </div></div></div></section>
     </div>
     </body>
     </html>

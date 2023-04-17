@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
+    <link src="{{ asset('assets/vendor/fonts/boxicons.css') }}">
     {{ parent() }}
     <style>
         .grid-container {
@@ -48,6 +49,7 @@
         #grid2 {
             grid-column: 3 / 5;
         }
+
     </style>
 {% endblock %}
 
@@ -115,14 +117,20 @@
                                                 <li><a href="blog-details.html">Blog Details</a></li>
                                             </ul>
                                         </li>
-                                        <li class="active"><a href="contact.html">contact</a></li>
+                                        <li class="menu-item-has-children"><a href="#">Echange</a>
+                                            <ul class="sub-menu">
+                                                <li><a href= {{ path('app_echange_creer') }}>Creer Echange</a></li>
+                                                <li><a href={{ path('app_echange_list_user') }}>Tous les Echanges</a></li>
+                                                <li><a href={{ path('app_echange_list_mesechanges') }}>Mes Echanges</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="tgmenu__action d-none d-md-block">
                                     <ul class="list-wrap">
                                         <li class="search"><a href="#"><i class="flaticon-search-1"></i></a></li>
-                                        <li class="header-btn"><a href="contact.html" class="tg-border-btn"><i
-                                                        class="flaticon-edit"></i> ~sing in</a></li>
+                                        <li class="header-btn"><a href="contact.html" class="tg-border-btn">
+                                                <i class="flaticon-edit"></i> ~sing in</a></li>
                                         <li class="side-toggle-icon">
                                             <span></span>
                                             <span></span>
@@ -221,68 +229,83 @@
             <div class="content-wrapper">
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <!-- Content -->
-                        <div class="grid-container" style="padding-top: 10px;">
-                            <div class="text-center">
-                                {{ user1.nom }}
-                                <div class="grid" id="grid1">
-                                    {% for item in user1_items %}
-                                        <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                {% if user2 == null %}
-                                    Pas d'Echange
-                                {% else %}
-                                    {{ user2.nom }}
-                                {% endif %}
-                                <div class="grid" id="grid2">
-                                    {% for item in user2_items %}
-                                        <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
-                                    {% endfor %}
-                                </div>
+                    <div class="grid-container" style="padding-top: 10px;">
+                        <div class="text-center">
+                            Les Items de l'utilisateur: {{ user1.nom }}
+                            <div class="grid" id="grid1">
+                                {% for item in user1_items %}
+                                    <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
+                                {% endfor %}
                             </div>
                         </div>
+                        <div class="text-center">
+                            {% if user2 == null %}
+                                Pas d'Echange Accepter
+                            {% else %}
+                                Les Items de l'utilisateur: {{ user2.nom }}
+                            {% endif %}
+                            <div class="grid" id="grid2">
+                                {% for item in user2_items %}
+                                    <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
                     {# TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLEEEEEEEEEEEEEEEEEEEEEE #}
 
-                        <hr class="my-3">
-                        <h1 class="text-center">Echange Proposer</h1>
-                        <div class="table-responsive text-nowrap my-20">
-                            <table class="table mx-20" style="color: white">
-                                <thead>
+                    <hr class="my-3">
+                    <h1 class="text-center">Echange Proposer</h1>
+                    <div class="table-responsive text-nowrap my-20">
+                        <table class="table mx-20" style="color: white">
+                            <thead>
+                            <tr>
+                                <th>User 2</th>
+                                <th>Date Proposer</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                            {% for i in echange_proposer %}
                                 <tr>
-                                    <th>User 2</th>
-                                    <th>Date Proposer</th>
-                                    <th>Actions</th>
+                                    <td>
+                                        {{ i.idUser }}
+                                    </td>
+                                    <td>
+                                        {{ i.dateProposer|date('Y-m-d') }}
+                                    </td>
+                                    <td>
+                                        <style>
+                                            .dropdown-item {
+                                                width: fit-content;
+                                                background-color: transparent;
+                                                color: white !important;
+                                            }
+
+                                            .dropdown-item:hover {
+                                                background-color: pink;
+                                            }
+
+                                            .dropdown {
+                                                display: flex;
+
+                                            }
+                                        </style>
+                                        <div class="dropdown">
+
+                                            <a class="dropdown-item"
+                                               href="{{ url('app_echangeproposer_user_afficher',{'id':i.getId()} ) }}">
+                                                Show
+                                                <a class="dropdown-item"
+                                                   href="{{ url('app_echangeproposer_user_accepter',{'id':i.getId()} ) }}">
+                                                    <i
+                                                            class="bx bx-check me-1"></i>Accepter</a>
+                                            </a></div>
+                                    </td>
                                 </tr>
-                                </thead>
-                                <tbody class="table-border-bottom-0">
-                                {% for i in echange_proposer %}
-                                    <tr>
-                                        <td>
-                                            {{ i.idUser }}
-                                        </td>
-                                        <td>
-                                            {{ i.dateProposer|date('Y-m-d') }}
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item"
-                                                       href="{{ url('app_echangeproposer_user_afficher',{'id':i.getId()} ) }}"><i
-                                                                class="bx bx-show me-1"></i> Afficher</a>
-                                                    <a class="dropdown-item"
-                                                       href="{{ url('app_echangeproposer_user_accepter',{'id':i.getId()} ) }}"><i
-                                                                class="bx bx-check me-1"></i> Accepter</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>
