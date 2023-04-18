@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Core CSS -->
 
@@ -62,6 +63,7 @@
 /*make the card the width of the screen available*/
 
   </style>
+  <link rel="stylesheet" href="{{ asset('assets/css/rating.css') }}">
 {% endblock %}
 
 
@@ -224,7 +226,7 @@
                       {{ article.auteur }}
                     </td>
                     <td>
-                      {{ article.avgRating }}
+                      {{ article.avgRating|rating }}
                     </td>
                     <td>
                       <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
@@ -337,7 +339,7 @@
           <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
           <!-- Main JS -->
           <script src="{{asset('/assets/js/maindash.js') }}"></script>
-
+          <script src="{{ asset('assets/css/rating.js') }}"></script>
           <!-- Page JS -->
             <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
             <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>

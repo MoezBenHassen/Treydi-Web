@@ -54,6 +54,7 @@
 }
 
 .rating div.star-empty, .rating span.star-empty {
+    font-family: FontAwesome;
     font-weight:normal;
     border: solid green 2px;
     font-style:normal;
@@ -64,10 +65,7 @@
 
 .rating div.star-empty:before ,.rating span.star-empty:before  {
     content:"\f006";
-
     padding-right:5px;
-    color:pink;
-    border: solid blue 2px;
 }
 
 .rating div.fa-norm , .rating span.fa-norm{
