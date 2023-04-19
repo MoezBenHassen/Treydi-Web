@@ -29,6 +29,7 @@
     content:"\f006";
     padding-right:5px;
     color:#999;
+    /*border: solid cyan 2Px;*/
 }
 
 .rating div.star:hover:before,.rating div.star:hover~div.star:before, .rating span.star:hover:before,.rating span.star:hover~span.star:before {
@@ -40,7 +41,7 @@
     font-family: FontAwesome;
     font-weight:normal;
     font-style:normal;
-    font-size: 25px;
+    font-size: 10px;
     display:inline-block;
     position: relative;
 
@@ -56,9 +57,9 @@
 .rating div.star-empty, .rating span.star-empty {
     font-family: FontAwesome;
     font-weight:normal;
-    border: solid green 2px;
+    /*border: solid green 2px;*/
     font-style:normal;
-    font-size: 25px;
+    font-size: 10px;
     display:inline-block;
     position: relative;
 }

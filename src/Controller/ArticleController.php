@@ -19,11 +19,22 @@ class ArticleController extends AbstractController
 {
 
     #[Route('/', name: 'app_article_index', methods: ['GET'])]
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, Request $request): Response
     {
+        //findByArchived(false) is the same as findBy(['archived' => false])
+        $queryArticleList = $articleRepository->findByArchived(false);
+        $articleList = $queryArticleList;
+        $search=$request->query->get('search');
+        $date_publication = $request->query->get('date_publication');
+
+        $queryArticleList = $articleRepository->findByTitleAndDescriptionAndDate($search, $date_publication, false);
+        $articleList = $queryArticleList;
         return $this->render('article/index.html.twig', [
             //find articles that are not archived
             'articles' => $articleRepository->findBy(['archived' => false]),
+            'articleList' => $articleList,
+            'search' => $search,
+            'date_publication' => $date_publication,
         ]);
     }
 

@@ -63,6 +63,21 @@ class ArticleRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findByTitleAndDescriptionAndDate(string $search=null, string $date_publication = null, bool $archived){
+        $queryBuilder= $this->createQueryBuilder('a');
+        $queryBuilder->where('a.archived = :archived');
+        $queryBuilder->setParameter('archived', $archived);
+        if($search){
+            $queryBuilder->andWhere('a.titre LIKE :search OR a.description LIKE :search');
+            $queryBuilder->setParameter('search', '%'.$search.'%');
+        }
+        if($date_publication){
+            $queryBuilder->andWhere('a.date_publication LIKE :dateCreation');
+            $queryBuilder->setParameter('dateCreation', '%'.new \DateTime($date_publication).'%');
+        }
+        $queryBuilder->orderBy('a.date_publication', 'DESC');
+        return $queryBuilder->getQuery()->getResult();
+    }
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */
