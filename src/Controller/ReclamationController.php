@@ -6,12 +6,18 @@ use App\Entity\Reclamation;
 use App\Form\ReclamationType;
 use App\Form\UpdateformType;
 use DateTime;
+
+use Dompdf\Dompdf;
+use mPDF;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
+
+use Twig\Environment;
+
 
 class ReclamationController extends AbstractController
 {
@@ -95,15 +101,60 @@ class ReclamationController extends AbstractController
         return $this->renderForm('reclamation/update.html.twig', ['formU' => $form]);
     }
     #[Route('/reclamation/stat', name: 'app_reclamationstat' , methods: ['POST','GET'])]
-    public function ReclamationsParMois(ManagerRegistry $doctrine)
+    public function courbe()
     {
-        $repository = $doctrine->getRepository(Reclamation::class);
-        $resultats = $repository->compterReclamationsParMois();
-        dump($resultats);
+        $reclamations = $this->getDoctrine()->getRepository(Reclamation::class)->compterReclamationsParMois();
+
+        $mois = [];
+        $annees = [];
+        $nbReclamations = [];
+
+        foreach ($reclamations as $reclamation) {
+            $mois[] = $reclamation['mois'];
+            $annees[] = $reclamation['annee'];
+            $nbReclamations[] = $reclamation['nb_reclamations'];
+        }
+
         return $this->render('reclamation/stat.html.twig', [
-            'resultats' => $resultats
+            'mois' => json_encode($mois),
+            'annees' => json_encode($annees),
+            'nbReclamations' => json_encode($nbReclamations),
         ]);
     }
+    #[Route('/reclamation/pdf/generate', name: 'app_pdf_generate' , methods: ['POST','GET'])]
+        public function generatePdf(Environment $twig,Request $request, ManagerRegistry $doctrine)
+    {
+        $repository = $doctrine->getRepository(Reclamation::class);
+
+        $search = $request->query->get('search');
+        $dateCreation = $request->query->get('dateCreation');
+        $query = $repository->findByTitreEtDescriptionEtDateCreation(false, $search, $dateCreation);
+        $list = $query;
+
+        $html = $this->renderView('reclamation/pdfReclamation.html.twig', [
+            'list' => $list,
+
+        ]);
+
+        // Instancier Dompdf
+        $dompdf = new Dompdf();
+
+        // Charger le contenu HTML dans Dompdf
+        $dompdf->loadHtml($html);
+
+        // Personnaliser les options de Dompdf
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Rendre le PDF
+        $dompdf->render();
+
+        // Envoyer le PDF en tant que réponse HTTP
+        return new Response($dompdf->output(), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="reclamation.pdf"',
+        ]);
+    }
+
 
 
 }

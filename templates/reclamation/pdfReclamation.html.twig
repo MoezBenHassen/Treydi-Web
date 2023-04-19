@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Liste de Réclamations</title>
+</head>
+<body>
+<h1>Liste de Réclamations</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Description</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in list %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.titreReclamation }}</td>
+            <td>{{ item.descriptionReclamation }}</td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
