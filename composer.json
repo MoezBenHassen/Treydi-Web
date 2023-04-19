@@ -7,7 +7,7 @@
         "php": ">=8.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
-
+        "beberlei/doctrineextensions": "dev-master",
         "brokoskokoli/star-rating-bundle": "^4.0",
         "doctrine/annotations": "^2.0",
         "doctrine/doctrine-bundle": "^2.8",

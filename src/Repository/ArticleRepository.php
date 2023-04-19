@@ -71,9 +71,12 @@ class ArticleRepository extends ServiceEntityRepository
             $queryBuilder->andWhere('a.titre LIKE :search OR a.description LIKE :search');
             $queryBuilder->setParameter('search', '%'.$search.'%');
         }
-        if($date_publication){
-            $queryBuilder->andWhere('a.date_publication LIKE :dateCreation');
-            $queryBuilder->setParameter('dateCreation', '%'.new \DateTime($date_publication).'%');
+
+        if ($date_publication) {
+            $date = new \DateTime($date_publication);
+            $dateFormatted = $date->format('Y-m-d');
+            $queryBuilder->andWhere("DATE_FORMAT(a.date_publication, '%Y-%m-%d') = :dateCreation");
+            $queryBuilder->setParameter('dateCreation', $dateFormatted);
         }
         $queryBuilder->orderBy('a.date_publication', 'DESC');
         return $queryBuilder->getQuery()->getResult();

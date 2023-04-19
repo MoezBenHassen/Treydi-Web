@@ -170,6 +170,15 @@
 
           {% endfor %}
           {#<hr class="my-5">#}
+          <form method="get">
+            <div class="form-group">
+              <div class="input-group">
+                <input type="text" id="search" name="search" class="form-control" value="{{ search ?? '' }}">
+                <input type="date" id="dateCreation" name="date_publication" class="form-control" value="{{ date_publication ?? '' }}">
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+              </div>
+            </div>
+          </form>
           <br>
           <div class="card">
             <!-- Hoverable Table rows -->

@@ -80,7 +80,7 @@
                                 <ul class="list-wrap">
                                     <li><i class="fa-regular fa-user"></i> By<a href="#">{{ article.auteur }}</a></li>
                                     <li><i class="fa-regular fa-calendar-days"></i>{{ article.datePublication|date('d-M-Y') }}</li>
-                                    <li><i class="fa-solid fa-star"></i><a href="#">{{ article.avgRating|rating }}</a></li>
+                                    <li><i class="fa-solid fa-star"></i><a href="#">{{ article.avgRating }}</a></li>
                                 </ul>
                             </div>
                             <h2 class="title"><a href="{{ path('app_article_front_show', {'id': article.id} ) }}">{{ article.titre }}</a></h2>
