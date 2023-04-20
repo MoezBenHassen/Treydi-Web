@@ -78,6 +78,7 @@ class ArticleRepository extends ServiceEntityRepository
             $queryBuilder->andWhere("DATE_FORMAT(a.date_publication, '%Y-%m-%d') = :dateCreation");
             $queryBuilder->setParameter('dateCreation', $dateFormatted);
         }
+
         $queryBuilder->orderBy('a.date_publication', 'DESC');
         return $queryBuilder->getQuery()->getResult();
     }

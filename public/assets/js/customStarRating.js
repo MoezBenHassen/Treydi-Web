@@ -1,5 +1,5 @@
 var avgRating = document.getElementsByClassName('avgRatingInput')[0].value;
-
+console.log("avgRating: "+avgRating);
 const avgRatingValue = parseInt(avgRating);
 const avgRatingStars = document.querySelectorAll(`.rating .star[data-note="${avgRatingValue}"]`);
 /*avgRatingStars.forEach(star => star.classList.add('hover'));*/
@@ -71,7 +71,7 @@ var labelWasClicked = function labelWasClicked() {
         return;
     }
     console.log('not disabled');
-    false
+
     input.val($(this).attr('data-value'));
     console.log("value: "+input.val());
 }
@@ -94,11 +94,12 @@ function activeSelect(e) {
 
     const noteTextElement = parent.parentElement.lastElementChild.children.item(0)
     console.log("note: "+note);
-    noteTextElement.innerText = `Note: ${note}`;
+    // noteTextElement.innerText = `Note: ${note}`;
 
     /*UPDATE THE HIDDEN INPUT VALUE AFTER RATING CHANGE  BY USER*/
-    /*document.getElementsByClassName('avgRatingInput')[0].value = note;*/
-    /*alert("chose ");*/
+    document.getElementsByClassName('avgRatingInput')[0].value = note;
+    console.log("avgRatingInput: "+document.getElementsByClassName('avgRatingInput')[0].value);
+    console.log(note)
     document.querySelector('form[name="article_ratings"]').submit();
 
 }

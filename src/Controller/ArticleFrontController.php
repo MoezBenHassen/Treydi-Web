@@ -56,20 +56,26 @@ class ArticleFrontController extends AbstractController
         /*article ratings form*/
         $articleRating = new ArticleRatings();
         $form = $this->createForm(ArticleRatingsType::class, $articleRating);
+        $userVote = $articleRatingsRepository->findOneBy(['id_article' => $id, 'id_user' => $this->getUser()]);
 
         /* star rating form submission*/
         $form->handleRequest($request);
-        dump($id, $this->getUser());
+        dump($id, $this->getUser(), $userVote);
         if ($form->isSubmitted() && $form->isValid()) {
             /*set the current article id  + the voters id ( current user session id )*/
             $articleRating->setIdArticle($article);
             $articleRating->setIdUser($this->getUser());
-            /*save the article rating in the database*/
+            /*save the article rating of the user in the database*/
             $articleRatingsRepository->save($articleRating,true);
 
             /*update the avgRating in article table with the new average rating from the ArticleRatings table*/
             $article->setAvgRating($articleRatingsRepository->getAvgRating($id));
             $articleRepository->save($article,true);
+            $this->addFlash('voteSuccess', 'Votre vote a été pris en compte !');
+
+            /*get user vote from article_ratings*/
+            $userVote = $articleRatingsRepository->findOneBy(['id_article' => $id, 'id_user' => $this->getUser()]);
+            dump($userVote);
             /*redirect to the article page*/
             return $this->render('article_front/show.html.twig', [
                 'article' => $articleRepository->find($id),
@@ -77,6 +83,7 @@ class ArticleFrontController extends AbstractController
                 'categories' => $categories,
                 'auteurAvatarUrl' => $avatarUrl,
                 'form2' => $form->createView(),
+                'userVote' => $userVote->getRating(),
             ]);
         }
         return $this->render('article_front/show.html.twig', [
@@ -85,6 +92,7 @@ class ArticleFrontController extends AbstractController
             'categories' => $categories,
             'auteurAvatarUrl' => $avatarUrl,
             'form2' => $form->createView(),
+            'userVote' => ($userVote === null || $userVote->getRating() === 0) ? '&#248;' : $userVote->getRating(),
         ]);
     }
 }

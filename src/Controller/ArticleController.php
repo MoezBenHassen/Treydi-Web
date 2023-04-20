@@ -26,8 +26,9 @@ class ArticleController extends AbstractController
         $articleList = $queryArticleList;*/
         $search=$request->query->get('search');
         $date_publication = $request->query->get('date_publication');
+        $archived = $request->query->get('archived');
         $date = $date_publication  ;
-        $queryArticleList = $articleRepository->findByTitleAndDescriptionAndDate($search, $date_publication, false);
+        $queryArticleList = $articleRepository->findByTitleAndDescriptionAndDate($search, $date_publication, $archived);
         $articleList = $queryArticleList;
         return $this->render('article/index.html.twig', [
             //find articles that are not archived

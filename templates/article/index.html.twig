@@ -132,17 +132,7 @@
             </div>
 #}
 
-            <div class="bs-toast toast toast-ex animate__animated my-2 fade animate__fadeIn bg-success opacity-75" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
-              <div class="toast-header">
-                <i class='bx bxs-trash me-2'></i>
-                <div class="me-auto fw-semibold">Succées</div>
-                <small>Now</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-              </div>
-              <div class="toast-body">
-                {{ message }}
-              </div>
-            </div>
+
 
 
           {% endfor %}
@@ -172,6 +162,16 @@
           {#<hr class="my-5">#}
           <form method="get">
             <div class="form-group">
+              <div class="form-check form-switch"style=" margin-left: 13px">
+                <input class="form-check-input" type="checkbox" id="archived" name="etatReclamationEnCours" value="archived">
+                <label class="form-check-label" for="archived">Archived</label>
+              </div>
+
+              <div class="form-check form-switch" style="margin-bottom: 10px; margin-left: 13px">
+                <input class="form-check-input" type="checkbox" id="etatReclamationTraite" name="etatReclamationTraite" value="noteArchived">
+                <label class="form-check-label" for="etatReclamationTraite">Not Archived</label>
+              </div>
+
               <div class="input-group">
                 <input type="text" id="search" name="search" class="form-control" value="{{ search ?? '' }}">
                 <input type="date" id="dateCreation" name="date_publication" class="form-control" value="{{ date_publication ?? '' }}">
@@ -348,7 +348,7 @@
           <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
           <!-- Main JS -->
           <script src="{{asset('/assets/js/maindash.js') }}"></script>
-          <script src="{{ asset('assets/css/rating.js') }}"></script>
+{#          <script src="{{ asset('assets/css/rating.js') }}"></script>#}
           <!-- Page JS -->
             <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
             <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>

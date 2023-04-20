@@ -31,7 +31,7 @@
             {#PRINT FIVE STAR WITH A FOR LOOP EACH STAR HAVING DATA NOTE AS THE LOOP INDEX#}
             {% for i in 1..5 %}
                 {#if i < article.avgRating then the star has a 'low' class#}
-                {% if i < article.avgRating %}
+                {% if i <= article.avgRating %}
                     <i class="fa-solid fa-star star hover " data-checked="true" data-note="{{ i }}"></i>
                 {% else %}
                     <i class="fa-solid fa-star star" data-checked="false" data-note="{{ i }}"></i>
