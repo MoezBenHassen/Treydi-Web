@@ -18,18 +18,12 @@ class SearchArticlesFormType extends AbstractType
                 'label' => false,
                 'attr' => ['class' => 'form-control'],
                 'required' => false,
-                'empty_data' => ''
-            ])
-            ->add('date_publication', DateType::class, [
-                'label' => false,
-                'widget' => 'single_text',
-                'attr' => ['class' => 'form-control'],
-                'required' => false,
-                'empty_data' => ''
+                /*placeholder*/
+                'attr' => ['placeholder' => 'Rechercher ici ...'],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Rechercher',
-                'attr' => ['class' => 'btn btn-primary']
+                'attr' => ['class' => 'flaticon-loupe']
             ]);
         ;
     }
@@ -37,6 +31,8 @@ class SearchArticlesFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
+            /*form class*/
+            'attr' => ['class' => 'sidebar-search-form position-relative'],
             // Configure your form options here
         ]);
     }

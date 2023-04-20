@@ -1,4 +1,3 @@
-<form class="sidebar-search-form position-relative">
-    <input type="text" placeholder="Search here..">
-    <button><i class="flaticon-loupe"></i></button>
-</form>
+{{ form_start(searchForm) }}
+    {{form_widget(searchForm) }}
+{{ form_end(searchForm) }}

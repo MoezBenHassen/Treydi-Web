@@ -63,7 +63,7 @@ class ArticleRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function findByTitleAndDescriptionAndDate(string $search=null, string $date_publication = null, bool $archived){
+    public function findByTitleAndDescriptionAndDate(string $search=null, ?string $date_publication = null, bool $archived){
         $queryBuilder= $this->createQueryBuilder('a');
         $queryBuilder->where('a.archived = :archived');
         $queryBuilder->setParameter('archived', $archived);

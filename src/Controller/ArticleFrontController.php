@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\ArticleRatings;
 use App\Entity\Reponse;
 use App\Form\ArticleRatingsType;
+use App\Form\SearchArticlesFormType;
 use App\Repository\ArticleRatingsRepository;
 use App\Repository\ArticleRepository;
 use App\Repository\CategorieArticleRepository;
@@ -18,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleFrontController extends AbstractController
 {
     #[Route('/article/{articleCategory?}', name: 'app_article_front')]
-    public function index(string $articleCategory = null, ArticleRepository $articleRepository, CategorieArticleRepository $categorieArticleRepository): Response
+    public function index(string $articleCategory = null,Request $request, ArticleRepository $articleRepository, CategorieArticleRepository $categorieArticleRepository): Response
     {
         /*count each categorie order them ASC*/
 
@@ -41,10 +42,23 @@ class ArticleFrontController extends AbstractController
                 ]);
             }
         }
+
+        $searchForm = $this->createForm(SearchArticlesFormType::class);
+        $searchForm->handleRequest($request);
+        $search = null;
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $search = $searchForm->get('search')->getData();
+            $queryArticleList = $articleRepository->findByTitleAndDescriptionAndDate($search, null, false);
+            $articleList = $queryArticleList;
+        } else {
+            $queryArticleList = $articleRepository->findByArchived(false);
+            $articleList = $queryArticleList;
+        }
         return $this->render('article_front/index.html.twig', [
-            'articles' => $articleRepository->findBy(['archived' => false]),
+            'articles' => $articleList,
             'categories' => $categories,
             'articleCategory' => $articleCategory,
+            'searchForm' => $searchForm->createView(),
         ]);
 
     }
