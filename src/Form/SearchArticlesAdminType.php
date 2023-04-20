@@ -16,26 +16,27 @@ class SearchArticlesAdminType extends AbstractType
     {
         $builder
             ->add('search', TextType::class, [
-                'label' => false,
+                'label' => 'Rechercher',
+                'label_attr' => ['class' => 'form-label', 'for' => 'basic-default-titre'],
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control input-sm',
                     'name' => 'search',
                     'id' => 'search',
                 ],
             ])
             ->add('date_publication', DateType::class, [
-                'label' => false,
+                'label' => true,
                 'required' => false,
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control input-sm',
                 ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Rechercher',
                 'attr' => [
-                    'class' => 'btn btn-primary',
+                    'class' => 'btn btn-primary btn-sm',
                 ],
             ]);
         ;

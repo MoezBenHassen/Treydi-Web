@@ -160,7 +160,7 @@
 
           {% endfor %}
           {#<hr class="my-5">#}
-          {{ include('article/_search-form.html.twig') }}
+
           <br>
           <div class="card">
             <!-- Hoverable Table rows -->
@@ -171,6 +171,10 @@
               </div>
             </div>#}
             <h5 class="card-header">Liste des articles</h5>
+            <div class="card-body">
+              {{ include('article/_search-form.html.twig') }}
+            </div>
+
             <div class="table-responsive text-nowrap">
 
               <table class="table table-hover table-responsive">
