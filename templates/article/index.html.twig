@@ -160,25 +160,7 @@
 
           {% endfor %}
           {#<hr class="my-5">#}
-          <form method="get">
-            <div class="form-group">
-              <div class="form-check form-switch"style=" margin-left: 13px">
-                <input class="form-check-input" type="checkbox" id="archived" name="etatReclamationEnCours" value="archived">
-                <label class="form-check-label" for="archived">Archived</label>
-              </div>
-
-              <div class="form-check form-switch" style="margin-bottom: 10px; margin-left: 13px">
-                <input class="form-check-input" type="checkbox" id="etatReclamationTraite" name="etatReclamationTraite" value="noteArchived">
-                <label class="form-check-label" for="etatReclamationTraite">Not Archived</label>
-              </div>
-
-              <div class="input-group">
-                <input type="text" id="search" name="search" class="form-control" value="{{ search ?? '' }}">
-                <input type="date" id="dateCreation" name="date_publication" class="form-control" value="{{ date_publication ?? '' }}">
-                <button type="submit" class="btn btn-primary">Rechercher</button>
-              </div>
-            </div>
-          </form>
+          {{ include('article/_search-form.html.twig') }}
           <br>
           <div class="card">
             <!-- Hoverable Table rows -->

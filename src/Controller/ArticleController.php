@@ -6,6 +6,8 @@ use App\Entity\Article;
 use App\Entity\ArticleRatings;
 use App\Form\ArticleRatingsType;
 use App\Form\ArticleType;
+use App\Form\SearchArticlesAdminType;
+use App\Form\SearchArticlesFormType;
 use App\Repository\ArticleRatingsRepository;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,21 +23,39 @@ class ArticleController extends AbstractController
     #[Route('/', name: 'app_article_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository, Request $request): Response
     {
+
         //findByArchived(false) is the same as findBy(['archived' => false])
-     /*   $queryArticleList = $articleRepository->findByArchived(false);
-        $articleList = $queryArticleList;*/
-        $search=$request->query->get('search');
-        $date_publication = $request->query->get('date_publication');
-        $archived = $request->query->get('archived');
-        $date = $date_publication  ;
-        $queryArticleList = $articleRepository->findByTitleAndDescriptionAndDate($search, $date_publication, $archived);
-        $articleList = $queryArticleList;
+         /*   $queryArticleList = $articleRepository->findByArchived(false);
+            $articleList = $queryArticleList;
+         */
+
+        // SEARCH FORM
+        $searchForm = $this->createForm(SearchArticlesAdminType::class);
+        $searchForm->handleRequest($request);
+        $search = null;
+        $date_publication = null;
+        // HANDLE SEARCH FORM
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $search = $searchForm->get('search')->getData();
+            $date_publication = $searchForm->get('date_publication')->getData();
+            if ($date_publication instanceof \DateTime) {
+                $date_publication = $date_publication->format('Y-m-d');
+            }
+//            $archived = $searchForm->get('archived')->getData();
+            $queryArticleList = $articleRepository->findByTitleAndDescriptionAndDate($search, $date_publication, false);
+            $articleList = $queryArticleList;
+        } else {
+            $queryArticleList = $articleRepository->findByArchived(false);
+            $articleList = $queryArticleList;
+        }
+
         return $this->render('article/index.html.twig', [
             //find articles that are not archived
             /*'articles' => $articleRepository->findBy(['archived' => false]),*/
+            'searchForm'=> $searchForm->createView(),
             'articles' => $articleList,
             'search' => $search,
-            'date_publication' => $date,
+            'date_publication' => $date_publication,
         ]);
     }
 

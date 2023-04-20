@@ -79,7 +79,7 @@ class ArticleRepository extends ServiceEntityRepository
             $queryBuilder->setParameter('dateCreation', $dateFormatted);
         }
 
-        $queryBuilder->orderBy('a.date_publication', 'DESC');
+        $queryBuilder->orderBy('a.id', 'ASC');
         return $queryBuilder->getQuery()->getResult();
     }
 //    /**

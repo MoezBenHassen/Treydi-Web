@@ -1,29 +1,11 @@
-<div class="blog-post-sidebar">
-    <aside class="blog-sidebar">
-        <div class="blog-widget">
-            <div class="sidebar__author">
-                <div class="sidebar__author-thumb">
-                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt="img">
-                </div>
-                <div class="sidebar__author-content">
-                    <h4 class="name">Kaceytron G.</h4>
-                    <p>Lorem ipsum sitamet conteur adipiscing Duis elementum solliciin</p>
-                    <div class="sidebar__author-social">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!--blog widget search bar-->
         <div class="blog-widget">
-            <form class="sidebar-search-form position-relative">
-                <input type="text" placeholder="Search here..">
-                <button><i class="flaticon-loupe"></i></button>
-            </form>
+            {{ include('article_front/_form-search-article.html.twig') }}
         </div>
         <!--/// blog widget search bar-->
+
+
         <!--blog widget CATGORIES-->
         <div class="blog-widget widget_categories">
             <h4 class="fw-title">TOP CATEGORIES</h4>
@@ -88,5 +70,3 @@
                 <a href="#">Streamers</a>
             </div>
         </div>
-    </aside>
-</div>
