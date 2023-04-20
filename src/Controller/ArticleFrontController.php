@@ -49,7 +49,7 @@ class ArticleFrontController extends AbstractController
 
     }
 
-    #[Route('/article/{id<\d+>}', name: 'app_article_front_show')]
+    #[Route('/article/show/{id<\d+>}', name: 'app_article_front_show')]
     public function show(Article $article ,Request $request, ArticleRatingsRepository $articleRatingsRepository ,ArticleRepository $articleRepository,int $id, CategorieArticleRepository $categorieArticleRepository): Response
     {
         // ###################  REPLACED BY SENSION BUNDLE FRAMEWORK BUNDLE : BY CALLING THE ARTICLE ENTITY AS A PARAMETER IN THE FUNCTION ###########
