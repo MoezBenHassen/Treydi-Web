@@ -24,18 +24,23 @@
                 {{ form_start(form) }}
 
                 <div class="mb-3">
-                    {{ form_label(form.titre) }}
-                    {{ form_widget(form.titre) }}
+                    <div class="form-floating">
+
+                        {{ form_widget(form.titre) }}
+                        <label style="color: #a3a4cc">Titre</label>
+                    </div>
                     <div class="text-danger">
                         {{ form_errors(form.titre, {'attr': {'class': 'text-danger', 'style':'color:red;'}}) }}
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    {{ form_label(form.description) }}
-                    {{ form_widget(form.description) }}
-                    {#make the form errors appear in red#}
 
+                    {#make the form errors appear in red#}
+                    <div class="form-floating">
+                        {{ form_widget(form.description) }}
+                        <label style="color: #a3a4cc">Description</label>
+                    </div>
                     <div class="text-danger">
                         {{ form_errors(form.description, {'attr': {'class': 'text-danger'}}) }}
                     </div>
@@ -43,16 +48,23 @@
                 </div>
 
                 <div class="mb-3">
-                    {{ form_label(form.contenu) }}
-                    {{ form_widget(form.contenu) }}
+                    <div class="form-floating">
+                        {{ form_widget(form.contenu) }}
+                        <label style="color: #a3a4cc">Contenu</label>
+                    </div>
+
                     <div class="text-danger">
                         {{ form_errors(form.contenu, {'attr': {'class': 'text-danger'}}) }}
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    {{ form_label(form.date_publication) }}
-                    {{ form_widget(form.date_publication) }}
+                    {#date_publication with form-control class#}
+                    <div class="form-floating">
+                        {{ form_widget(form.date_publication) }}
+                        <label style="color: #a3a4cc">Date de publication</label>
+                    </div>
+
                     <div class="text-danger">
                         {{ form_errors(form.date_publication, {'attr': {'style': 'color:red;'}}) }}
                     </div>
@@ -81,7 +93,7 @@
                         {{ form_errors(form.id_user, {'attr': {'class': 'text-danger'}}) }}
                     </div>
                 </div>
-                <div class="mb-3">
+               {# <div class="mb-3">
 
                     <!--star rating-->
                         <div style="border: 1px black solid">
@@ -97,18 +109,17 @@
                             </span>
                         </div>
 
-                        {#form widget form rating with disabled attribute#}
+                        #}{#form widget form rating with disabled attribute#}{#
 
                     {{ form_widget(form.avgRating) }}
-                </div>
+                </div>#}
 
                     {#{{ 3|rating }}#}
                     <!--star rating-->
 
                     <!--/// END star rating-->
-                </div>
-                <div class="d-grid gap-2">
 
+                <div class="d-grid gap-2">
                     {{ form_widget(form.submit) }}
                 </div>
                 {{ form_end(form) }}

@@ -34,21 +34,28 @@ class ArticleType extends AbstractType
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-decription'],
-                'attr' => ['class' => 'form-control', 'id' => 'basic-default-description',
-                    'placeholder' => 'Description de l\'article'],
+                'attr' => [
+                    'class' => 'form-control', 'id' => 'basic-default-description',
+                    'placeholder' => 'Description de l\'article',
+                    'style' => 'height: 100px',
+                ],
             ])
             ->add('contenu',TextareaType::class, [
                 'label' => 'Contenu',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-contenu'],
-                'attr' => ['class' => 'form-control', 'id' => 'basic-default-contenu',
-                    'placeholder' => 'Contenu de l\'article'],
+                'attr' => [
+                    'class' => 'form-control', 'id' => 'basic-default-contenu',
+                    'placeholder' => 'Contenu de l\'article',
+                    'style' => 'height: 300px',
+                ],
             ])
-            ->add('date_publication', DateType::class, [
+                ->add('date_publication', DateType::class, [
                 'label' => 'Date de publication',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'bs-datepicker-basic'],
                 'attr' => ['class' => 'form-control',
                     'id' => 'bs-datepicker-basic',
                     'placeholder' => 'YYYY-MM-DD'],
+                'widget' => 'single_text',
             ])
             ->add('auteur', TextType::class,[
                 'label' => 'Auteur',
@@ -67,16 +74,22 @@ class ArticleType extends AbstractType
                 'choice_label' => 'libelle_cat',
                 'label' => 'Catégorie',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],
+                'attr' => ['class' => 'form-select', 'id' => 'basic-default-fullname',
+                    'placeholder' => 'Sélectionnez une catégorie'],
+                'placeholder' => 'Sélectionnez une catégorie',
             ])
             ->add('id_user', EntityType::class,[
                 'class' => Utilisateur::class,
                 'choice_label' => 'nom',
                 'label' => 'Utilisateur',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],
+                'attr' => ['class' => 'form-select', 'id' => 'basic-default-fullname',
+                    'placeholder' => 'Sélectionnez un utilisateur'],
+                'placeholder' => 'Sélectionnez un utilisateur',
             ])
-            ->add('avgRating', NumberType::class, [
+            /*->add('avgRating', NumberType::class, [
                 'label' => 'Rating',
-            ])
+            ])*/
             //add submit button
             ->add('submit', SubmitType::class, [
                 'label' => '<i class="fa-solid fa-cloud-arrow-up"></i>',

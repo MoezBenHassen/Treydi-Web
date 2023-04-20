@@ -33,6 +33,7 @@ doctrine:
                 DATE_DIFF: DoctrineExtensions\Query\Mysql\DateDiff
                 DATE_TRUNC: DoctrineExtensions\Query\Mysql\DateTrunc
                 DATE_MOD: DoctrineExtensions\Query\Mysql\DateMod
+                SOUNDEX: DoctrineExtensions\Query\Mysql\Soundex
 
 when@test:
     doctrine:
