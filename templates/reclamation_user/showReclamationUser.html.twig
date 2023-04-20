@@ -341,7 +341,7 @@
             <div class="container-xxl flex-grow-1 container-p-y">
 
                 <hr class="my-5">
-
+<!--
                 <form method="get">
                     <div class="form-group">
                         <div class="form-check form-switch"style=" margin-left: 13px">
@@ -357,11 +357,56 @@
                         <div class="input-group">
                             <input type="text" id="search" name="search" class="form-control" value="{{ search ?? '' }}">
                             <input type="date" id="dateCreation" name="dateCreation" class="form-control" value="{{ dateCreation ?? '' }}">
-                            <button type="submit" class="btn btn-primary">Rechercher</button>
+                                <button type="submit" class="btn btn-primary">Rechercher</button>
                         </div>
 
                     </div>
                 </form>
+
+                --> <button id="filter-btn" class="btn btn-primary">Filtrer les réclamations</button>
+                <br><br>
+
+                <div id="filter-form" style="display: none;">
+                    <h1>Filtrer les réclamations</h1>
+                    {{ form_start(form,{'attr': {'novalidate': 'novalidate', 'method': 'POST'}} ) }}
+                    <div class="form-group">
+                        {{ form_label(form.titre_reclamation) }}
+
+                        {{ form_widget(form.titre_reclamation, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        {{ form_label(form.description_reclamation) }}
+
+                        {{ form_widget(form.description_reclamation, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        {{ form_label(form.etatReclamation) }}
+                        {{ form_widget(form.etatReclamation) }}
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        {{ form_label(form.date_creation) }}
+                        {{ form_widget(form.date_creation) }}
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Filtrer</button>
+                    {{ form_end(form) }}
+                </div>
+
+                <script>
+                    const filterBtn = document.getElementById('filter-btn');
+                    const filterForm = document.getElementById('filter-form');
+
+                    filterBtn.addEventListener('click', () => {
+                        filterForm.style.display = filterForm.style.display === 'none' ? 'block' : 'none';
+                    });
+                </script>
+                <br>
+                <br>
+                <a href="{{ path('app_pdf_generateUser') }}" class="dropdown-item"  href="javascript:void(0);"><i class='bx bxs-file-pdf'></i>imprimer Reclamation</a>
+
 
 
 
@@ -418,6 +463,7 @@
                                                 <a  href="{{ path('app_reclamationUpdateUser', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                                                 <a href="{{ path('app_reclamationUserDelete', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> supprimer</a>
                                                 <a href="{{ path('app_reponseUserList', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class='bx bx-reply-all'></i> afficher Reponse</a>
+                                                <a href="{{ path('app_pdf_generate_id_user', {'id': reclamation.id}) }}" class="dropdown-item" href="javascript:void(0);"><i class='bx bxs-file-pdf'></i>imprimer cette Reclamation</a>
 
                                             </div>
 

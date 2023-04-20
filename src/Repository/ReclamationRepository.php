@@ -9,6 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 
 
+
 /**
  * @extends ServiceEntityRepository<Reclamation>
  *
@@ -22,6 +23,14 @@ class ReclamationRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Reclamation::class);
+    }
+    public function returnall(){
+        $qd =  $this->createQueryBuilder('r')
+            ->where('r.archived = :archived')
+            ->setParameter('archived', false);
+
+        return  $qd->getQuery()->getResult();
+
     }
 
     public function save(Reclamation $entity, bool $flush = false): void
@@ -42,61 +51,68 @@ class ReclamationRepository extends ServiceEntityRepository
 
         return $resultats = $query->getResult();
     }
+        public function findByidreclamation(int $id){
+             $qd =  $this->createQueryBuilder('r')
+                ->where('r.id = :id ')
+                 ->andWhere('r.archived = :archived')
+                 ->setParameter('id',$id)
+            ->setParameter('archived', false);
 
+            return  $qd->getQuery()->getResult();
 
-    public function findByTitreEtDescriptionEtDateCreation(bool $archived, string $search = null, string $dateCreation = null): array
+    }
+
+    public function findByTitreEtDescriptionEtDateCreation(bool $archived, string $search = null, string $search2 = null, string $dateCreation = null,String $etatReclamation =null): array
     {
         $qb = $this->createQueryBuilder('r')
             ->where('r.archived = :archived')
             ->setParameter('archived', $archived);
 
         if ($search) {
-            $qb->andWhere('r.titre_reclamation LIKE :search OR r.description_reclamation LIKE :search')
+            $qb->andWhere('SOUNDEX(r.titre_reclamation) = SOUNDEX(:search) OR r.titre_reclamation LIKE :search')
                 ->setParameter('search', '%'.$search.'%');
         }
 
+        if ($search2) {
+            $qb->andWhere('SOUNDEX(r.description_reclamation) = SOUNDEX(:search2) OR r.description_reclamation LIKE :search2')
+                ->setParameter('search2', '%'.$search2.'%');
+        }
         if ($dateCreation) {
             $qb->andWhere('r.date_creation = :dateCreation')
                 ->setParameter('dateCreation', new \DateTime($dateCreation));
         }
-        if (isset($_GET['etatReclamationEnCours'])) {
-            $qb->andWhere('r.etat_reclamation = :etatReclamationEnCours')
-                ->setParameter('etatReclamationEnCours', 'en cours');
+        if ($etatReclamation) {
+            $qb->andWhere('r.etat_reclamation = :etatReclamation')
+                ->setParameter('etatReclamation', $etatReclamation);
         }
 
-        if (isset($_GET['etatReclamationTraite'])) {
-            $qb->andWhere('r.etat_reclamation = :etatReclamationTraite')
-                ->setParameter('etatReclamationTraite', 'traite');
-        }
 
 
         return $qb->getQuery()->getResult();
     }
 
-    public function findByTitreEtDescriptionEtDateCreationUser(bool $archived, string $search = null, string $dateCreation = null): array
+    public function findByTitreEtDescriptionEtDateCreationUser(bool $archived, string $search = null, string $search2 = null, string $dateCreation = null): array
     {
         $qb = $this->createQueryBuilder('r')
             ->where('r.archived = :archived')
             ->setParameter('archived', $archived);
 
         if ($search) {
-            $qb->andWhere('r.titre_reclamation LIKE :search OR r.description_reclamation LIKE :search')
+            $qb->andWhere('SOUNDEX(r.titre_reclamation) = SOUNDEX(:search) OR r.titre_reclamation LIKE :search')
                 ->setParameter('search', '%'.$search.'%');
         }
 
+        if ($search2) {
+            $qb->andWhere('SOUNDEX(r.description_reclamation) = SOUNDEX(:search2) OR r.description_reclamation LIKE :search2')
+                ->setParameter('search2', '%'.$search2.'%');
+        }
         if ($dateCreation) {
             $qb->andWhere('r.date_creation = :dateCreation')
                 ->setParameter('dateCreation', new \DateTime($dateCreation));
         }
-
-        if (isset($_GET['etatReclamationEnCours'])) {
-            $qb->andWhere('r.etat_reclamation = :etatReclamationEnCours')
-                ->setParameter('etatReclamationEnCours', 'en cours');
-        }
-
-        if (isset($_GET['etatReclamationTraite'])) {
-            $qb->andWhere('r.etat_reclamation = :etatReclamationTraite')
-                ->setParameter('etatReclamationTraite', 'traite');
+        if ($etatReclamation) {
+            $qb->andWhere('r.etat_reclamation = :etatReclamation')
+                ->setParameter('etatReclamation', $etatReclamation);
         }
 
         $qb->andWhere('r.id_user = :idu')

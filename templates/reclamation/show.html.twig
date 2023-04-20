@@ -121,7 +121,7 @@
                     <div class="container-xxl flex-grow-1 container-p-y">
 
                     <hr class="my-5">
-
+<!--
                         <form method="get">
                             <div class="form-group">
                                 <div class="form-check form-switch"style=" margin-left: 13px">
@@ -142,9 +142,49 @@
 
                             </div>
                         </form>
-                        <a href="{{ path('app_pdf_generate') }}" class="dropdown-item" href="javascript:void(0);"><i class='bx bx-reply-all'></i>imprimer Reclamation</a>
+-->
+                        <button id="filter-btn" class="btn btn-primary">Filtrer les réclamations</button>
+                        <br><br>
 
+                        <div id="filter-form" style="display: none;">
+                            <h1>Filtrer les réclamations</h1>
+                            {{ form_start(form,{'attr': {'novalidate': 'novalidate', 'method': 'POST'}} ) }}
+                            <div class="form-group">
+                                {{ form_label(form.titre_reclamation) }}
 
+                                {{ form_widget(form.titre_reclamation, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                {{ form_label(form.description_reclamation) }}
+
+                                {{ form_widget(form.description_reclamation, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                {{ form_label(form.etatReclamation) }}
+                                {{ form_widget(form.etatReclamation) }}
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                {{ form_label(form.date_creation) }}
+                                {{ form_widget(form.date_creation) }}
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Filtrer</button>
+                            {{ form_end(form) }}
+                        </div>
+
+                        <script>
+                            const filterBtn = document.getElementById('filter-btn');
+                            const filterForm = document.getElementById('filter-form');
+
+                            filterBtn.addEventListener('click', () => {
+                                filterForm.style.display = filterForm.style.display === 'none' ? 'block' : 'none';
+                            });
+                        </script>
+                        <br>
+                        <a href="{{ path('app_pdf_generate')  }}" class="dropdown-item" href="javascript:void(0);"><i class='bx bxs-file-pdf'></i>imprimer Reclamation</a>
 
 
 
@@ -185,8 +225,11 @@
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                                             <div class="dropdown-menu">
                                                 <a href="{{ path('app_reclamationDelete', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> supprimer</a>
+                                                {% if reclamation.etatReclamation == "en cours" %}
                                                 <a href="{{ path('app_reponseAdd', {'id': reclamation.id}) }}" method="GET"   class="dropdown-item" href="javascript:void(0);"><i class='bx bx-reply-all'></i>  Repondre</a>
+                                                {% endif %}
                                                 <a href="{{ path('app_reponseList', {'id': reclamation.id}) }}" class="dropdown-item" href="javascript:void(0);"><i class='bx bx-reply-all'></i>afficher Reponse</a>
+                                                <a href="{{ path('app_pdf_generate_id', {'id': reclamation.id}) }}" class="dropdown-item" href="javascript:void(0);"><i class='bx bxs-file-pdf'></i>imprimer cette Reclamation</a>
 
                                             </div>
 

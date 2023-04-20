@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Reclamation;
+use App\Entity\Reponse;
+use App\Form\FiltrereclamationType;
 use App\Form\ReclamationType;
 use App\Form\UpdateformType;
 use DateTime;
@@ -34,18 +36,31 @@ class ReclamationController extends AbstractController
     {
         $repository = $doctrine->getRepository(Reclamation::class);
 
-        $search = $request->query->get('search');
-        $dateCreation = $request->query->get('dateCreation');
-        $query = $repository->findByTitreEtDescriptionEtDateCreation(false, $search, $dateCreation);
-        $list = $query;
+        $form = $this->createForm(FiltrereclamationType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $data = $form->getData();
+            $search = $data->getTitreReclamation() ?? null;
+            $search2 = $data->getDescriptionReclamation() ?? null;
+            $dateCreation = $data->getDateCreation() ? $data->getDateCreation()->format('Y-m-d') : null;
+            $etatReclamation = $data->getEtatReclamation() ?? null ;
+
+
+            $query = $repository->findByTitreEtDescriptionEtDateCreation(false, $search, $search2, $dateCreation, $etatReclamation);
+            $list = $query;
+        } else {
+            $list = $repository->findByTitreEtDescriptionEtDateCreation(false);
+        }
 
         return $this->render('reclamation/show.html.twig', [
             'controller_name' => 'ReclamationListController',
             'list' => $list,
-            'search' => $search,
-            'dateCreation' => $dateCreation,
+            'form' => $form->createView(),
         ]);
     }
+
+
 
 
     #[Route('/reclamation/add', name: 'app_reclamationAdd' , methods: ['POST','GET'])]
@@ -122,18 +137,27 @@ class ReclamationController extends AbstractController
         ]);
     }
     #[Route('/reclamation/pdf/generate', name: 'app_pdf_generate' , methods: ['POST','GET'])]
-        public function generatePdf(Environment $twig,Request $request, ManagerRegistry $doctrine)
+    public function generatePdf(Environment $twig, Request $request, ManagerRegistry $doctrine)
     {
         $repository = $doctrine->getRepository(Reclamation::class);
+        $form = $this->createForm(FiltrereclamationType::class);
+        $form->handleRequest($request);
 
-        $search = $request->query->get('search');
-        $dateCreation = $request->query->get('dateCreation');
-        $query = $repository->findByTitreEtDescriptionEtDateCreation(false, $search, $dateCreation);
-        $list = $query;
+        $list = [];
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $search = $data->getTitreReclamation();
+            $search2 = $data->getDescriptionReclamation();
+            $dateCreation = $data->getDateCreation() ? $data->getDateCreation()->format('Y-m-d') : null;
+            $etatReclamation = $data->getEtatReclamation();
+            $query = $repository->findByTitreEtDescriptionEtDateCreation(false, $search, $search2, $dateCreation, $etatReclamation);
+            $list = $query;
+        } else {
+            $list = $repository->findByTitreEtDescriptionEtDateCreation(false);
+        }
 
         $html = $this->renderView('reclamation/pdfReclamation.html.twig', [
             'list' => $list,
-
         ]);
 
         // Instancier Dompdf
@@ -154,6 +178,51 @@ class ReclamationController extends AbstractController
             'Content-Disposition' => 'inline; filename="reclamation.pdf"',
         ]);
     }
+
+
+
+    #[Route('/reclamation/pdf/generate/{id}', name: 'app_pdf_generate_id', methods: ['POST', 'GET'])]
+    public function generatePdfpressit(Environment $twig, Request $request, ManagerRegistry $doctrine, int $id)
+    {
+        $repository = $doctrine->getRepository(Reclamation::class);
+        $query = $repository->findByidreclamation($id);
+        $list = $query;
+
+        $repositoryreponse = $doctrine->getRepository(Reponse::class);
+        $queryReponse = $repositoryreponse->findByidreclamation_reponse($id);
+        $listReponse = $queryReponse;
+
+
+
+        $html = $twig->render('reclamation/pdfReclamation_Reponse.html.twig', [
+            'list' => $list,
+            'listreponse' => $listReponse,
+        ]);
+
+        $dompdf = new Dompdf();
+
+        $dompdf->loadHtml($html);
+
+        $dompdf->setPaper('A4', 'portrait');
+
+        $dompdf->render();
+
+        return new Response(
+            $dompdf->output(),
+            Response::HTTP_OK,
+            [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="reclamation.pdf"',
+            ]
+        );
+
+    }
+
+
+
+
+
+
 
 
 

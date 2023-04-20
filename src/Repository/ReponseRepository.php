@@ -31,7 +31,16 @@ class ReponseRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByidreclamation_reponse(int $id){
+        $qd =  $this->createQueryBuilder('r')
+            ->where('r.id_reclamation = :id ')
+            ->andWhere('r.archived = :archived')
+            ->setParameter('id',$id)
+            ->setParameter('archived', false);
 
+        return  $qd->getQuery()->getResult();
+
+    }
     public function listReponseparReclamation(int $id){
         $query = $this->createQueryBuilder('r')
             ->andWhere('r.archived = :archived')

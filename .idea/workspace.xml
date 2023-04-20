@@ -5,15 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/reclamation/pdfReclamation.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/FiltrereclamationType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/reclamation/pdfReclamation_Reponse.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Treydi-Web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Treydi-Web.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ReclamationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReclamationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ReclamationUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReclamationUserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ReclamationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ReclamationRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ReponseRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ReponseRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reclamation/pdfReclamation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/pdfReclamation.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/reclamation/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/reclamation/stat.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/stat.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reclamation_user/showReclamationUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation_user/showReclamationUser.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,8 +174,11 @@
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
       <path value="$PROJECT_DIR$/vendor/beberlei/doctrineextensions" />
-      <path value="$PROJECT_DIR$/vendor/mpdf/mpdf" />
-      <path value="$PROJECT_DIR$/vendor/setasign/fpdi" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -274,7 +284,9 @@
       <workItem from="1681718121169" duration="1323000" />
       <workItem from="1681722469933" duration="1048000" />
       <workItem from="1681850727081" duration="2865000" />
-      <workItem from="1681866535612" duration="4993000" />
+      <workItem from="1681866535612" duration="5501000" />
+      <workItem from="1681899958957" duration="10443000" />
+      <workItem from="1681994305108" duration="15628000" />
     </task>
     <servers />
   </component>

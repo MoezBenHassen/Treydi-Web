@@ -98,5 +98,27 @@
     {% endfor %}
     </tbody>
 </table>
+
+<header>
+    <h1>Liste de Reponse</h1>
+</header>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in listreponse %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.getTitreReponse }}</td>
+            <td>{{ i.getDescriptionReponse }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 </body>
 </html>
