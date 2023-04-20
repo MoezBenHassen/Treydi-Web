@@ -29,15 +29,12 @@
             <h4 class="fw-title">TOP CATEGORIES</h4>
             <ul class="list-wrap">
                 {% for category in categories|slice(0, 5) %}
-                    {#print the category count#}
-
-                <li><a href="#">{{ category.libelleCat }}</a><span class="float-right">({{ category.count }})</span></li>
+                    {#print the category + count#}
+                    <li>
+                        <a href="{{ path('app_article_front', {'articleCategory': category.libelleCat} ) }}">{{ category.libelleCat }}</a>
+                        <span class="float-right">({{ category.count }})</span>
+                    </li>
                 {% endfor %}
-             {#   <li><a href="#">ELECTRONIC</a><span class="float-right">(4)</span></li>
-                <li><a href="#">online</a><span class="float-right">(21)</span></li>
-                <li><a href="#">TOURNAMENT</a><span class="float-right">(15)</span></li>
-                <li><a href="#">controller</a><span class="float-right">(2)</span></li>
-                <li><a href="#">live</a><span class="float-right">(7)</span></li>#}
             </ul>
         </div>
         <!--/// blog widget CATEGORIES end-->

@@ -84,7 +84,7 @@
                     </div>
                     <div class="blog-post-content blog-details-content">
                         <div class="blog-post-meta">
-                            <ul class="list-wrap">
+                            <ul class="list-wrap d-flex justify-content-around">
                                 <li><i class="fa-regular fa-user"></i> By<a href="#">{{ article.auteur }}</a></li>
                                 <li><i class="fa-regular fa-calendar-days"></i>{{ article.datePublication|date('d-M-Y') }}</li>
                                 <li>
@@ -92,8 +92,8 @@
                                     #}{# add article rating form#}
                                     {{ include('article_ratings/_form.html.twig') }}
                                 </li>
-                                <li>
-
+                                <li  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Your vote">
+                                    <i class="fa-solid fa-check-to-slot"></i>
                                     {{ userVote|raw }}
                                 </li>
                             </ul>

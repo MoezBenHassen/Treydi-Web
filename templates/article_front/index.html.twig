@@ -70,38 +70,47 @@
             <div class="row justify-content-center">
                 <div class="blog-post-wrapper">
                     <!-- blog-post-item -->
-                    {% for article in articles %}
-                    <div class="blog-post-item">
-                        <div class="blog-post-thumb">
-                            <a href="blog-details.html"><img src=" {{ asset('assets/img/blog/blog_post01.jpg') }}" alt="img"></a>
-                        </div>
-                        <div class="blog-post-content">
-                            <div class="blog-post-meta">
-                                <ul class="list-wrap">
-                                    <li><i class="fa-regular fa-user"></i> By<a href="#">{{ article.auteur }}</a></li>
-                                    <li><i class="fa-regular fa-calendar-days"></i>{{ article.datePublication|date('d-M-Y') }}</li>
-                                    <li><i class="fa-solid fa-star"></i><a href="#">{{ article.avgRating }}</a></li>
-                                </ul>
+                    {% if articles is empty %}
+                        <div class="blog-post-item">
+                            <div class="blog-post-content " style="font-size: 24px; font-family: 'United Kingdom'">
+                                <i class="fa-regular fa-face-sad-tear" ></i>
+                                <em>Pas d'articles encore !</em>
                             </div>
-                            <h2 class="title"><a href="{{ path('app_article_front_show', {'id': article.id} ) }}">{{ article.titre }}</a></h2>
-                            <p>{{ article.description }}</p>
-                            <div class="blog-post-bottom">
-                                <div class="blog-post-read">
-                                    <a href="{{ path('app_article_front_show', {'id': article.id} ) }}">READ MORE <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    {% else %}
+                        {% for article in articles %}
+                            <div class="blog-post-item">
+                                <div class="blog-post-thumb">
+                                    <a href="blog-details.html"><img src=" {{ asset('assets/img/blog/blog_post01.jpg') }}" alt="img"></a>
                                 </div>
-                                <div class="blog-post-share">
-                                    <h5 class="share">share :</h5>
-                                    <ul class="list-wrap">
-                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                <div class="blog-post-content">
+                                    <div class="blog-post-meta">
+                                        <ul class="list-wrap">
+                                            <li><i class="fa-regular fa-user"></i> By<a href="#">{{ article.auteur }}</a></li>
+                                            <li><i class="fa-regular fa-calendar-days"></i>{{ article.datePublication|date('d-M-Y') }}</li>
+                                            <li><i class="fa-solid fa-star"></i><a href="#">{{ article.avgRating }}</a></li>
+                                        </ul>
+                                    </div>
+                                    <h2 class="title"><a href="{{ path('app_article_front_show', {'id': article.id} ) }}">{{ article.titre }}</a></h2>
+                                    <p>{{ article.description }}</p>
+                                    <div class="blog-post-bottom">
+                                        <div class="blog-post-read">
+                                            <a href="{{ path('app_article_front_show', {'id': article.id} ) }}">READ MORE <i class="fas fa-arrow-right"></i></a>
+                                        </div>
+                                        <div class="blog-post-share">
+                                            <h5 class="share">share :</h5>
+                                            <ul class="list-wrap">
+                                                <li><a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
 
-                                        <li><a href="http://www.twitter.com/share?url=http://www.google.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                    </ul>
+                                                <li><a href="http://www.twitter.com/share?url=http://www.google.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    {% endfor %}
+                        {% endfor %}
+                    {% endif %}
                     {#<div class="blog-post-item">
                         <div class="blog-post-thumb">
                             <a href="blog-details.html"><img src="{{ asset('assets/img/blog/blog_post02.jpg') }}" alt="img"></a>

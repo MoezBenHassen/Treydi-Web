@@ -12,7 +12,8 @@ model-viewer{
   background-color: #000;
 }
 :root {
-  --tg-body-font-family: "Poppins", sans-serif;
+  /*--tg-body-font-family: "Poppins", sans-serif;*/
+  --tg-body-font-family: "United Kingdom", sans-serif;
   --tg-heading-font-family: "Barlow", sans-serif;
   --tg-berlin-font-family: "berlin_sans_fb_demibold";
   --tg-icon-font-family: "Font Awesome 5 Free";
@@ -1709,7 +1710,7 @@ html.show-preloader body {
   font-weight: var(--tg-fw-bold);
   text-transform: uppercase;
   color: var(--tg-heading-color);
-  font-family: var(--tg-heading-font-family);
+  font-family: "United Kingdom", sans-serif !important;
   padding: 38px 23px;
   display: block;
   line-height: 1;
@@ -10211,3 +10212,5 @@ blockquote p {
   }
 }
 /*# sourceMappingURL=main.css.map */
+
+

@@ -1,4 +1,4 @@
-<header>
+<header >
     <div id="sticky-header" class="tg-header__area transparent-header">
         <div class="container custom-container">
             <div class="row">
@@ -11,7 +11,7 @@
                             </div>
                             <div class="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex">
                                 <ul class="navigation">
-                                    <li class="">
+                                    <li class="font">
                                         <a href="{{ path('app_home') }}">Home</a>
                                     </li>
                                     <li><a href="about-us.html">ABOUT US</a></li>
@@ -33,6 +33,7 @@
                                     <li class="active menu-item-has-children"><a href="#">News</a>
                                         <ul class="sub-menu">
                                             <li class="active"><a href="{{ path('app_article_front') }}">Our Blog</a></li>
+                                            {#<li><a href="{{ path('app_article_front', {'articleCategory': ""}) }}">Our Blog</a></li>#}
                                             <li><a href="blog-details.html">Blog Details</a></li>
                                         </ul>
                                     </li>

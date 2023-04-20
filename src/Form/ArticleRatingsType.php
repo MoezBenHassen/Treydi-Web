@@ -17,8 +17,7 @@ class ArticleRatingsType extends AbstractType
                 'label' => 'Rating',
                 /*make the field hidden with an id of avgRatingInput*/
                 'attr' => ['class' => 'avgRatingInput', 'hidden' => true],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
