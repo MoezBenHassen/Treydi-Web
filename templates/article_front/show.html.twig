@@ -80,7 +80,8 @@
             <div class="blog-post-wrapper">
                 <div class="blog-post-item">
                     <div class="blog-post-thumb">
-                        <img src="{{ asset('assets/img/blog/blog_post03.jpg') }}" alt="img">
+{#                        <img src="{{ asset('assets/img/blog/blog_post03.jpg') }}" alt="img">#}
+                        <img src="{{ vich_uploader_asset(article,'imageFile') }}" alt="img">
                     </div>
                     <div class="blog-post-content blog-details-content">
                         <div class="blog-post-meta">
