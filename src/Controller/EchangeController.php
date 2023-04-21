@@ -7,7 +7,7 @@ use App\Entity\EchangeProposer;
 use App\Entity\Item;
 use App\Entity\Echange;
 use App\Entity\Utilisateur;
-use App\Form\EchangeSearchType;
+use App\Form\EchangeSearchTypeUser;
 use App\Form\EchangeType;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
@@ -79,15 +79,27 @@ class EchangeController extends AbstractController
         ]);
     }
 
+    //ADMIN
     #[Route('/echange/list', name: 'app_echangeList')]
-    public function list(ManagerRegistry $doctrine): Response
+    public function list(ManagerRegistry $doctrine, Request $request): Response
     {
         $em = $doctrine->getManager();
         $repository = $em->getRepository(Echange::class);
-        $list = $repository->findBy(['archived' => false]);
+
+        $searchForm = $this->createForm(EchangeSearchTypeUser::class);
+        $searchForm->handleRequest($request);
+
+        if($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $search = $searchForm->get('search')->getData();
+            $list = $repository->SearchByTitreEchangeUser($search, false);
+        } else {
+            $list = $repository->findBy(['archived' => false]);
+        }
+
         return $this->render('echange/admin/list.html.twig', [
             'controller_name' => 'EchangeListController',
-            'list' => $list
+            'list' => $list,
+            'searchForm' => $searchForm->createView(),
         ]);
     }
 
@@ -295,7 +307,7 @@ class EchangeController extends AbstractController
         $em = $doctrine->getManager();
         $repository = $em->getRepository(Echange::class);
 
-        $searchForm = $this->createForm(EchangeSearchType::class);
+        $searchForm = $this->createForm(EchangeSearchTypeUser::class);
         $searchForm->handleRequest($request);
 
         if($searchForm->isSubmitted() && $searchForm->isValid()) {

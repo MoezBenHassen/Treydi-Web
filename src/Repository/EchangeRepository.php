@@ -54,6 +54,21 @@ class EchangeRepository extends ServiceEntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    public function SearchByTitreEchangeAdmin(string $search, bool $archived)
+    {
+        $queryBuilder = $this->createQueryBuilder('e');
+        $queryBuilder->where('e.archived = :archived')
+            ->setParameter('archived', $archived);
+
+        if ($search) {
+            $queryBuilder
+                ->andWhere('e.titre_echange LIKE :searchTerm')
+                ->setParameter('searchTerm', '%' . $search . '%');
+        }
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 //    /**
 //     * @return Echange[] Returns an array of Echange objects
 //     */
