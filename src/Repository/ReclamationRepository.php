@@ -51,6 +51,21 @@ class ReclamationRepository extends ServiceEntityRepository
 
         return $resultats = $query->getResult();
     }
+
+    public function compterReclamationsParMoisTraité()
+    {
+        $em = $this->getEntityManager();
+        $query = $this->createQueryBuilder('r')
+            ->where('r.etat_reclamation = :etat')
+            ->setParameter('etat', "Traité")
+            ->select("MONTH(r.date_creation) as mois, YEAR(r.date_creation) as annee, COUNT(r) as nb_reclamations")
+            ->groupBy('mois, annee')
+            ->getQuery();
+
+        return $resultats = $query->getResult();
+    }
+
+
         public function findByidreclamation(int $id){
              $qd =  $this->createQueryBuilder('r')
                 ->where('r.id = :id ')
@@ -91,7 +106,7 @@ class ReclamationRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findByTitreEtDescriptionEtDateCreationUser(bool $archived, string $search = null, string $search2 = null, string $dateCreation = null): array
+    public function findByTitreEtDescriptionEtDateCreationUser(bool $archived, string $search = null, string $search2 = null, string $dateCreation = null,String $etatReclamation =null): array
     {
         $qb = $this->createQueryBuilder('r')
             ->where('r.archived = :archived')

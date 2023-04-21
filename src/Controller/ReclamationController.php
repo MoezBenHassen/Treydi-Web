@@ -7,6 +7,7 @@ use App\Entity\Reponse;
 use App\Form\FiltrereclamationType;
 use App\Form\ReclamationType;
 use App\Form\UpdateformType;
+use App\Repository\UtilisateurRepository;
 use DateTime;
 
 use Dompdf\Dompdf;
@@ -115,27 +116,7 @@ class ReclamationController extends AbstractController
 
         return $this->renderForm('reclamation/update.html.twig', ['formU' => $form]);
     }
-    #[Route('/reclamation/stat', name: 'app_reclamationstat' , methods: ['POST','GET'])]
-    public function courbe()
-    {
-        $reclamations = $this->getDoctrine()->getRepository(Reclamation::class)->compterReclamationsParMois();
 
-        $mois = [];
-        $annees = [];
-        $nbReclamations = [];
-
-        foreach ($reclamations as $reclamation) {
-            $mois[] = $reclamation['mois'];
-            $annees[] = $reclamation['annee'];
-            $nbReclamations[] = $reclamation['nb_reclamations'];
-        }
-
-        return $this->render('reclamation/stat.html.twig', [
-            'mois' => json_encode($mois),
-            'annees' => json_encode($annees),
-            'nbReclamations' => json_encode($nbReclamations),
-        ]);
-    }
     #[Route('/reclamation/pdf/generate', name: 'app_pdf_generate' , methods: ['POST','GET'])]
     public function generatePdf(Environment $twig, Request $request, ManagerRegistry $doctrine)
     {

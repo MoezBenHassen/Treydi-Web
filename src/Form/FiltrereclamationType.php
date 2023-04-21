@@ -6,6 +6,7 @@ use App\Entity\Reclamation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,7 +26,14 @@ class FiltrereclamationType extends AbstractType
                     'Traité' => 'Traité',
                 ],
             ])
-            ->add('date_creation');
+            ->add('date_creation', DateType::class, [
+                'label' => 'date creation',
+                'required' => false,
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-control input-sm',
+                ],
+            ])
 
 
 

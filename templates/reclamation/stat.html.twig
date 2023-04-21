@@ -115,36 +115,146 @@
                 </div>
                 <div class="pt-4">
                     <h5 class="mb-3">Number of complaints per month</h5>
-                    <canvas id="courbe"></canvas>
+                    <canvas id="courbe" ></canvas>
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <style>
+                        /* Customize chart font and color */
+                        #courbe {
+                            font-family: Arial, sans-serif;
+                            color: #333;
+                        }
+                        /* Style chart legend */
+                        .chart-legend {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin-top: 10px;
+                            font-size: 14px;
+                        }
+                        .chart-legend__color {
+                            display: inline-block;
+                            width: 12px;
+                            height: 12px;
+                            margin-right: 5px;
+                        }
+                    </style>
                     <script>
                         var ctx = document.getElementById('courbe').getContext('2d');
                         var mois = {{ mois }};
                         var annees = {{ annees }};
                         var nbReclamations = {{ nbReclamations }};
+                        var nbReclamationst = {{ nbReclamationst }};
+                        var monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+                        var monthLabels = mois.map(function(monthNumber) {
+                            return monthNames[monthNumber - 1];
+                        });
+
                         var data = {
-                            labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+                            labels: monthLabels,
                             datasets: [{
                                 label: 'Nombre de réclamations',
                                 data: nbReclamations,
                                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                                 borderColor: 'rgba(54, 162, 235, 1)',
-                                borderWidth: 1
+                                borderWidth: 2
+                            }, {
+                                label: 'Nombre de réclamations traitées',
+                                data: nbReclamationst,
+                                backgroundColor: 'rgba(255, 205, 86, 0.2)',
+                                borderColor: 'rgba(255, 205, 86, 1)',
+                                borderWidth: 2
                             }]
                         };
+
+
                         var options = {
+                            animation: {
+                                duration: 2000, // Animation duration in milliseconds
+                                easing: 'easeInOutQuart' // Animation easing function
+                            },
                             scales: {
                                 yAxes: [{
                                     ticks: {
-                                        beginAtZero: true
+                                        beginAtZero: true,
+                                        fontColor: '#666',
+                                        fontFamily: 'Arial, sans-serif'
+                                    },
+                                    gridLines: {
+                                        color: '#eee'
+                                    }
+                                }],
+                                xAxes: [{
+                                    ticks: {
+                                        fontColor: '#666',
+                                        fontFamily: 'Arial, sans-serif'
+                                    },
+                                    gridLines: {
+                                        color: '#eee'
                                     }
                                 }]
+                            },
+                            legend: {
+                                display: false
+                            },
+                            tooltips: {
+                                mode: 'index',
+                                intersect: false,
+                                titleFontFamily: 'Arial, sans-serif',
+                                bodyFontFamily: 'Arial, sans-serif',
+                                backgroundColor: '#fff',
+                                borderColor: '#aaa',
+                                borderWidth: 1,
+                                titleFontColor: '#333',
+                                bodyFontColor: '#666',
+                                caretSize: 5,
+                                cornerRadius: 2,
+                                xPadding: 10,
+                                yPadding: 10
                             }
                         };
                         var courbe = new Chart(ctx, {
-                            type: 'line',
+                            type: 'bar',
                             data: data,
                             options: options
+                        });
+                        // Add custom legend
+                        var legend = document.createElement('div');
+                        legend.className = 'chart-legend';
+
+                        document.getElementById('courbe').parentNode.insertBefore(legend, document.getElementById('courbe').nextSibling);
+                    </script>
+
+                </div>
+                <div class="pt-4">
+                    <h1>Utilisateurs par âge</h1>
+
+                    <canvas id="chart" width="50" height="50"></canvas>
+
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <script>
+                        var ctx = document.getElementById('chart').getContext('2d');
+                        var chartData = {{ chartData|json_encode|raw }};
+
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: chartData.labels,
+                                datasets: [{
+                                    label: 'Nombre d\'utilisateurs',
+                                    data: chartData.values,
+                                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                    borderColor: 'rgba(54, 162, 235, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
                         });
                     </script>
                 </div>
