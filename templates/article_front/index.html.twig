@@ -81,7 +81,8 @@
                         {% for article in articles %}
                             <div class="blog-post-item">
                                 <div class="blog-post-thumb">
-                                    <a href="blog-details.html"><img src=" {{ asset('assets/img/blog/blog_post01.jpg') }}" alt="img"></a>
+                                    {#<a href="blog-details.html"><img src=" {{ asset('assets/img/blog/blog_post01.jpg') }}" alt="img"></a>#}
+                                    <a href="blog-details.html"><img src=" {{ vich_uploader_asset(article,'imageFile') }}" alt="img"></a>
                                 </div>
                                 <div class="blog-post-content">
                                     <div class="blog-post-meta">

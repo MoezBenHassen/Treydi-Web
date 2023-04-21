@@ -89,7 +89,16 @@ class ArticleType extends AbstractType
                     'placeholder' => 'Sélectionnez un utilisateur'],
                 'placeholder' => 'Sélectionnez un utilisateur',
             ])
-            ->add('imageFile',VichImageType::class )
+            ->add('imageFile',VichImageType::class,[
+                'required' => false,
+                'label' => 'Image de l\'article',
+                'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'basic-default-fullname',
+                    'placeholder' => 'Sélectionnez une image',
+                ],
+            ])
             /*->add('avgRating', NumberType::class, [
                 'label' => 'Rating',
             ])*/

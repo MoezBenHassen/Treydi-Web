@@ -64,12 +64,6 @@ class Article
     #[ORM\Column(nullable: true)]
     private bool $archived = false;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    /*must be not blank*/
-    #[Assert\NotBlank(message: 'L\'auteur ne peut pas être vide')]
-    /*must be between 5 and 255 characters*/
-    #[Assert\Length(min: 5, max: 255, minMessage: 'L\'auteur doit faire au moins 5 caractères', maxMessage: 'L\'auteur ne peut pas faire plus de 255 caractères')]
-    private ?string $auteur = null;
 
     #[ORM\Column(nullable: true)]
     private ?float $avg_rating = null;
@@ -92,6 +86,9 @@ class Article
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    private ?Authors $Auteur = null;
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -249,17 +246,7 @@ class Article
         return $this;
     }
 
-    public function getAuteur(): ?string
-    {
-        return $this->auteur;
-    }
 
-    public function setAuteur(?string $auteur): self
-    {
-        $this->auteur = $auteur;
-
-        return $this;
-    }
 
     public function getAvgRating(): ?float
     {
@@ -299,6 +286,18 @@ class Article
                 $articleRating->setIdArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAuteur(): ?Authors
+    {
+        return $this->Auteur;
+    }
+
+    public function setAuteur(?Authors $Auteur): self
+    {
+        $this->Auteur = $Auteur;
 
         return $this;
     }
