@@ -307,70 +307,65 @@
         <div class="content-wrapper">
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
-
                 <hr class="my-5">
-
 
                 <div class="card">
                     <h5 class="card-header">Mes Echanges</h5>
-                    <div class="table-responsive text-nowrap">
-                        <style>
-                            .card {
+                    <div class="card-body">
+                            <div class="input-group mb-3">
+                                {{ form_start(searchForm) }}
+                                {{ form_end(searchForm) }}
+                            </div>
+                        <div class="table-responsive text-nowrap">
+                            <style>
+                                .card {
+                                    background-color: #2b2c40 !important;
+                                }
 
-                                background-color: #2b2c40 !important;
+                                .card td {
+                                    color: #a3a4cc;
+                                }
 
-
-                            }
-
-                            .card td {
-                                color: #a3a4cc;
-                            }
-
-                            .btn {
-                                background-color: transparent;
-                                color: #a3a4cc;
-                            }
-                        </style>
-                        <table class="table ">
-                            <thead>
-                            <tr>
-                                <th>Titre Echange</th>
-                                <th>User 1</th>
-                                <th>User 2</th>
-                                <th>Date Echange</th>
-                                <th>Etat Livraison</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            {% for i in list %}
-                                <tbody class="table-border-bottom-0">
+                                .btn {
+                                    background-color: transparent;
+                                    color: #a3a4cc;
+                                }
+                            </style>
+                            <table class="table">
+                                <thead>
                                 <tr>
-                                    <td><i></i> <strong>{{ i.titreEchange }}</strong></td>
-                                    <td>{{ i.idUser1 }}</td>
-                                    <td>{{ i.idUser2 }}</td>
-                                    <td>{{ i.dateEchange|date('Y-m-d') }}</td>
-                                    <td>{{ i.livEtat }}</td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item"
-                                                   href="{{ url('app_echange_user_afficher_sans',{'id':i.getId()} ) }}"><i
-                                                            class="bx bx-show me-1"></i> Afficher</a>
-                                                <a class="dropdown-item"
-                                                   href="{{ url('app_echange_proposer',{'id':i.getId()} ) }}"><i
-                                                            class="bx bx-show me-1"></i> Proposer</a>
-                                            </div>
-                                        </div>
-                                    </td>
+                                    <th>Titre Echange</th>
+                                    <th>User 1</th>
+                                    <th>User 2</th>
+                                    <th>Date Echange</th>
+                                    <th>Etat Livraison</th>
+                                    <th>Actions</th>
                                 </tr>
-                                </tbody>
-                            {% endfor %}
-                        </table>
-
+                                </thead>
+                                {% for i in list %}
+                                    <tbody class="table-border-bottom-0">
+                                    <tr>
+                                        <td><i></i> <strong>{{ i.titreEchange }}</strong></td>
+                                        <td>{{ i.idUser1 }}</td>
+                                        <td>{{ i.idUser2 }}</td>
+                                        <td>{{ i.dateEchange|date('Y-m-d') }}</td>
+                                        <td>{{ i.livEtat }}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="{{ url('app_echange_user_afficher_sans',{'id':i.getId()} ) }}"><i class="bx bx-show me-1"></i> Afficher</a>
+                                                    <a class="dropdown-item" href="{{ url('app_echange_proposer',{'id':i.getId()} ) }}"><i class="bx bx-show me-1"></i> Proposer</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                {% endfor %}
+                            </table>
+                        </div>
                     </div>
-
                 </div>
-
             </div>
 
 

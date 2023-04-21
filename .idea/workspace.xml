@@ -5,21 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/livraison/user/afficher.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/livraison/user/meslivraison.tml.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/EchangeSearchType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/EchangeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EchangeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LivraisonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LivraisonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/admin/afficher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/admin/afficher.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/admin/modifieruser1.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/admin/modifieruser1.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/admin/modifieruser2.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/admin/modifieruser2.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/user/afficher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/user/afficher.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/user/affichersansproposer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/user/affichersansproposer.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/user/creer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/user/creer.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/EchangeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/EchangeRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/echange/user/list.tml.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/user/list.tml.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/user/mesechangelist.tml.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/user/mesechangelist.tml.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange_proposer/afficher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange_proposer/afficher.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange_proposer/proposer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange_proposer/proposer.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,6 +260,8 @@
       <workItem from="1681010170698" duration="6147000" />
       <workItem from="1681079088592" duration="24839000" />
       <workItem from="1681114015944" duration="7990000" />
+      <workItem from="1681965105572" duration="934000" />
+      <workItem from="1682015161023" duration="4753000" />
     </task>
     <servers />
   </component>
