@@ -11,6 +11,8 @@ use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
@@ -144,7 +146,7 @@ class LivraisonController extends AbstractController
     }
 
     #[Route('/livraison/livreur/accepter/{id}', name: 'app_livraison_livreur_accepter')]
-    public function accepterLivreur(ManagerRegistry $doctrine, Security $security, $id): Response
+    public function accepterLivreur(ManagerRegistry $doctrine, Security $security, $id, MailerInterface $mailer): Response
     {
         $em = $doctrine->getManager();
         $user = $security->getUser();
@@ -161,20 +163,28 @@ class LivraisonController extends AbstractController
         $user2 = $em->getRepository(Utilisateur::class)
             ->find($echange->getIdUser2());
 
-            $echange->setLivEtat("Accepter");
-            $em->persist($echange);
-            $livraison->setIdEchange($echange);
-            $livraison->setIdLivreur($user);
-            $livraison->setDateCreationLivraison($date);
-            $livraison->setEtatLivraison("En_Cours");
-            $livraison->setArchived(false);
-            $livraison->setAdresseLivraison1($user1->getAdresse());
-            $livraison->setAdresseLivraison2($user2->getAdresse());
-            $em->persist($livraison);
+        $echange->setLivEtat("Accepter");
+        $em->persist($echange);
+        $livraison->setIdEchange($echange);
+        $livraison->setIdLivreur($user);
+        $livraison->setDateCreationLivraison($date);
+        $livraison->setEtatLivraison("En_Cours");
+        $livraison->setArchived(false);
+        $livraison->setAdresseLivraison1($user1->getAdresse());
+        $livraison->setAdresseLivraison2($user2->getAdresse());
+        $em->persist($livraison);
 
-            $em->flush();
+        $em->flush();
 
-            return $this->redirectToRoute('app_livraison_livreur_list');
+        $email = (new Email())
+            ->from("treydiechange@no-reply.com")
+            ->to($user->getEmail())
+            ->subject("Livraison de l'Echange accepter")
+            ->text("La livraison de votre Echange est accepter. Le titre de cet Echange : {$echange->getTitreEchange()}");
+
+        $mailer->send($email);
+
+        return $this->redirectToRoute('app_livraison_livreur_list');
     }
 
 }
