@@ -69,7 +69,7 @@ class EchangeController extends AbstractController
             }
             $em->flush();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_echange_list_mesechanges');
         }
 
         return $this->render('echange/user/creer.html.twig', [
@@ -93,7 +93,7 @@ class EchangeController extends AbstractController
             $search = $searchForm->get('search')->getData();
             $list = $repository->SearchByTitreEchangeUser($search, false);
         } else {
-            $list = $repository->findBy(['archived' => false]);
+            $list = $repository->findAll();
         }
 
         return $this->render('echange/admin/list.html.twig', [
@@ -357,21 +357,20 @@ class EchangeController extends AbstractController
         $repository = $em->getRepository(Echange::class);
         $echange = $repository->find($id);
 
-        if ( $echange->getIdUser2() != null) {
-            $items = $echange->getItems();
-            $items->initialize();
 
-            foreach ($items as $item) {
-                $item->setIdEchange(null);
-                $em->persist($item);
-            }
+        $items = $echange->getItems();
+        $items->initialize();
 
-            $echange->setArchived(true);
-            $em->persist($echange);
-
-            $em->flush();
-
+        foreach ($items as $item) {
+            $item->setIdEchange(null);
+            $em->persist($item);
         }
+
+
+        $echange->setArchived(true);
+        $em->persist($echange);
+
+        $em->flush();
         return $this->redirectToRoute('app_echange_list_mesechanges');
 
     }

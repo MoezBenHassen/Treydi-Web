@@ -11,9 +11,16 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use DateTime;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\Notifier\Recipient\Recipient;
+use Symfony\Component\Mime\Email;
+
 
 class EchangeProposerController extends AbstractController
 {
@@ -26,8 +33,12 @@ class EchangeProposerController extends AbstractController
     }
 
     //ECHANGE PROPOSER
+
+    /**
+     * @throws TransportExceptionInterface
+     */
     #[Route('/echange/proposer/{id}', name: 'app_echange_proposer')]
-    public function proposer(Request $request, ManagerRegistry $doctrine, $id, Security $security): Response
+    public function proposer(Request $request, ManagerRegistry $doctrine, $id, Security $security, NotifierInterface $notifier, MailerInterface $mailer): Response
     {
         $current_date = date('Y-m-d');
         $date = new DateTime($current_date);
@@ -38,6 +49,8 @@ class EchangeProposerController extends AbstractController
         $echange = $em->getRepository(Echange::class)
             ->find($id);
         $echange_proposer = new EchangeProposer();
+
+        $user1 = $em->getRepository(Utilisateur::class)->find($echange->getIdUser1());
 
         //change to echangeproposertype (propably make a new controller)
         $form = $this->createForm(EchangeProposerType::class, $echange_proposer);
@@ -74,6 +87,15 @@ class EchangeProposerController extends AbstractController
                     }
                 }
             }
+            //Proposer Mailer
+            $email = (new Email())
+                ->from("treydiechange@no-reply.com")
+                ->to($user1->getEmail())
+                ->subject('Nouvelle Echange Proposer')
+                ->text("Vous avez un nouvel échange proposé pour l'échange : {$echange->getTitreEchange()}");
+
+            $mailer->send($email);
+
             $em->flush();
 
             return $this->redirectToRoute('app_echange_list_user');
