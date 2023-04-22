@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Reclamation;
+use App\Entity\Reponse;
 use App\Repository\UtilisateurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,6 +53,20 @@ class StatistiqueController extends AbstractController
             $chartData['values'][] = $userAge['count'];
         }
 
+        $satisfiedCount = $this->getDoctrine()->getRepository(Reponse::class)->compterReponsesatisfait();
+        $unsatisfiedCount = $this->getDoctrine()->getRepository(Reponse::class)->compterReponsenonsatisfait();
+
+        $data = [
+            'labels' => ['Satisfait', 'Non satisfait'],
+            'datasets' => [
+                [
+                    'data' => [$satisfiedCount, $unsatisfiedCount],
+                    'backgroundColor' => ['#36A2EB', '#FF6384'],
+                ],
+            ],
+        ];
+
+
 
         return $this->render('statistique/dashboardStat.html.twig', [
             'mois' => json_encode($mois),
@@ -59,6 +74,7 @@ class StatistiqueController extends AbstractController
             'nbReclamations' => json_encode($nbReclamations),
             'nbReclamationst' => json_encode($nbReclamationst),
             'chartData' => $chartData,
+            'data' => json_encode($data),
         ]);
     }
 

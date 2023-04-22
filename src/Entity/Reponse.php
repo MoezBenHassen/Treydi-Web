@@ -48,6 +48,9 @@ class Reponse
     #[ORM\Column(nullable: true)]
     private ?bool $archived = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $avis = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -109,6 +112,18 @@ class Reponse
     public function setArchived(?bool $archived): self
     {
         $this->archived = $archived;
+
+        return $this;
+    }
+
+    public function getAvis(): ?string
+    {
+        return $this->avis;
+    }
+
+    public function setAvis(?string $avis): self
+    {
+        $this->avis = $avis;
 
         return $this;
     }

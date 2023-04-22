@@ -60,6 +60,30 @@ class ReponseRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function compterReponsesatisfait()
+    {
+        return $this->createQueryBuilder('r')
+            ->select('COUNT(r.id)')
+            ->where('r.avis = :satisfied')
+            ->setParameter('satisfied', 'satisfait')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+    }
+
+    public function compterReponsenonsatisfait()
+    {
+        return $this->createQueryBuilder('r')
+            ->select('COUNT(r.id)')
+            ->where('r.avis = :satisfied')
+            ->setParameter('satisfied', 'non satisfait')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+    }
+
+
+
 
 //    /**
 //     * @return Reponse[] Returns an array of Reponse objects

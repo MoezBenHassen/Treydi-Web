@@ -127,12 +127,13 @@ class ReclamationController extends AbstractController
         $list = [];
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            $search = $data->getTitreReclamation();
-            $search2 = $data->getDescriptionReclamation();
+            $search = $data->getTitreReclamation() ?? null;
+            $search2 = $data->getDescriptionReclamation() ?? null;
             $dateCreation = $data->getDateCreation() ? $data->getDateCreation()->format('Y-m-d') : null;
             $etatReclamation = $data->getEtatReclamation();
             $query = $repository->findByTitreEtDescriptionEtDateCreation(false, $search, $search2, $dateCreation, $etatReclamation);
             $list = $query;
+
         } else {
             $list = $repository->findByTitreEtDescriptionEtDateCreation(false);
         }

@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Reclamation;
 use App\Entity\Reponse;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class ReponseUserController extends AbstractController
 {
@@ -50,6 +54,24 @@ class ReponseUserController extends AbstractController
         return $this->redirectToRoute('app_reponseUserList');
     }
 
+
+    #[Route('/reponse/avis/{id}/{avis}', name: 'app_reponseUseravis', methods: ['POST','GET'])]
+    public function updateSatisfaction(Request $request, ManagerRegistry $doctrine, int $id,string $avis): Response
+    {
+        $em = $doctrine->getManager();
+        $reponse = $em->getRepository(Reponse::class)->find($id);
+
+        // Get the value of avis from the request parameters
+        $rec = $em->getRepository(Reclamation::class)->find($reponse->getIdReclamation());
+
+        // Set the value of avis based on the request parameter value
+        $reponse->setAvis($avis);
+        $ide = $rec->getId();
+        $em->persist($reponse);
+        $em->flush();
+
+        return $this->redirectToRoute('app_reponseUserList', ['id' => $ide ]);
+    }
 
 
 }

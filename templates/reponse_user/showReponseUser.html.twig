@@ -333,7 +333,7 @@
                                 <th>Date </th>
                                 <th>avatar </th>
                                 <th>Description</th>
-
+                                <th>Avis</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -352,6 +352,56 @@
                                         </ul>
                                     </td>
                                     <td><span class="badge bg-label-primary me-1">{{  reponse.descriptionReponse }}</span></td>
+
+
+
+
+                                    <td>
+                                        {% if reponse.Avis == "satisfait" %}
+                                            <a href="{{ path('app_reponseUseravis', {'id': reponse.id, 'avis': 'satisfait' }) }}" id="happy" method="GET">
+                                                <i class='bx bxs-happy-heart-eyes' ></i>
+                                            </a>
+
+                                            <a href="{{ path('app_reponseUseravis', {'id': reponse.id, 'avis': 'non satisfait' }) }}" id="angry" method="GET">
+                                                <i class="bx bx-angry"></i>
+                                            </a>
+
+
+
+                                        {% elseif reponse.Avis == "non satisfait" %}
+
+                                            <a href="{{ path('app_reponseUseravis', {'id': reponse.id, 'avis': 'satisfait' }) }}" methods="GET" id="happy">
+                                                <i class="bx bx-happy-heart-eyes"></i>
+                                            </a>
+
+                                            <a href="{{ path('app_reponseUseravis', {'id': reponse.id, 'avis': 'non satisfait' }) }}" methods="GET" id="angry">
+                                                <i class='bx bxs-angry' ></i>
+                                            </a>
+
+                                        {% else %}
+
+                                            <a href="{{ path('app_reponseUseravis', {'id': reponse.id, 'avis': 'satisfait' }) }}" methods="GET" id="happy" >
+                                                <i class="bx bx-happy-heart-eyes"></i>
+                                            </a>
+
+                                            <a href="{{ path('app_reponseUseravis', {'id': reponse.id, 'avis': 'non satisfait' }) }}" methods="GET" id="angry" >
+                                                <i class="bx bx-angry"></i>
+                                            </a>
+
+                                        {% endif %}
+
+
+                                        {{ reponse.Avis }}
+
+
+
+
+
+
+
+
+
+                                    </td>
 
 
 

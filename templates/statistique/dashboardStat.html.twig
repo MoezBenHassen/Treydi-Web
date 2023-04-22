@@ -230,6 +230,41 @@
                                     </div>
 
                                 </div>
+
+
+
+
+
+
+
+                                    <div class="card" style="margin: 50px">
+                                        <div class="pt-4" >
+
+                                            <h1>Réponses</h1>
+
+                                            <div class="chart-container" style="position: relative; height:400px; width:100%">
+                                                <canvas id="response-chart"></canvas>
+                                            </div>
+
+                                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                            <script>
+                                                var data = {{ data|raw }};
+                                                var ctx = document.getElementById('response-chart').getContext('2d');
+                                                var myChart = new Chart(ctx, {
+                                                    type: 'doughnut',
+                                                    data: data,
+                                                });
+                                            </script>
+
+
+
+                                        </div></div>
+
+
+
+
+
+
                                     <div class="card" style="margin: 50px; padding: 10px;">
                                         <div class="pt-4">
 

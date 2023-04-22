@@ -5,16 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/StatistiqueController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/statistique/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/statistique/userparage.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20230407220616.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20230422112857.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20230408131214.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ReclamationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReclamationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/FiltrereclamationType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/FiltrereclamationType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ReclamationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ReclamationRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UtilisateurRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UtilisateurRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/reclamation/stat.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/stat.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ReponseUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReponseUserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/StatistiqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/StatistiqueController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Reponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reponse.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ReponseRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ReponseRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reclamation_user/addReclamationUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation_user/addReclamationUser.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reclamation_user/showReclamationUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation_user/showReclamationUser.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reponse/showReponse.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reponse/showReponse.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/reponse_user/showReponseUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reponse_user/showReponseUser.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/statistique/dashboardStat.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/statistique/dashboardStat.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +284,9 @@
       <workItem from="1681866535612" duration="5501000" />
       <workItem from="1681899958957" duration="10443000" />
       <workItem from="1681994305108" duration="16453000" />
-      <workItem from="1682077375586" duration="13603000" />
+      <workItem from="1682077375586" duration="14884000" />
+      <workItem from="1682162475941" duration="15442000" />
+      <workItem from="1682195475648" duration="1653000" />
     </task>
     <servers />
   </component>
