@@ -24,7 +24,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MYKD - eSports and Gaming NFT Template</title>
+        <title>Treydi - eSports and Gaming NFT Template</title>
         <meta name="description" content="eSports and Gaming NFT Template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
@@ -94,7 +94,6 @@
                                 <div class="tgmenu__action d-none d-md-block">
                                     <ul class="list-wrap">
                                         <li class="search"><a href="#"><i class="flaticon-search-1"></i></a></li>
-                                        <li class="header-btn"><a href="contact.html" class="tg-border-btn"><i class="flaticon-edit"></i> ~sing in</a></li>
                                         <li class="side-toggle-icon">
                                             <span></span>
                                             <span></span>
@@ -109,7 +108,7 @@
                             <nav class="tgmobile__menu-box">
                                 <div class="close-btn"><i class="flaticon-swords-in-cross-arrangement"></i></div>
                                 <div class="nav-logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
+                                    <a href="index.html"><img src="{{ asset('assets/img/logo/treydi3.png') }}" alt="Logo"></a>
                                 </div>
                                 <div class="tgmobile__search">
                                     <form action="#">
@@ -145,25 +144,6 @@
         <!-- Scroll-top-end-->
 
         <!-- breadcrumb-area -->
-        <section class="breadcrumb-area breadcrumb__hide-img" data-background="assets/img/bg/breadcrumb_bg02.jpg">
-            <div class="container">
-                <div class="breadcrumb__wrapper">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="breadcrumb__content">
-                                <h2 class="title"> modifier  user</h2>
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">user</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- header-search -->
         <div class="search__popup-wrap">
@@ -189,66 +169,71 @@
         </div>
         <!-- contact-area -->
         <!-- contact-area -->
-        <h1>User</h1>
-
-        <table class="table">
-            <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ user.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ user.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ user.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Avatar_url</th>
-                <td>{{ user.avatarUrl }}</td>
-            </tr>
-            <tr>
-                <th>Score</th>
-                <td>{{ user.score }}</td>
-            </tr>
-            <tr>
-                <th>Archived</th>
-                <td>{{ user.archived ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Date_naissance</th>
-                <td>{{ user.dateNaissance ? user.dateNaissance|date('Y-m-d') : '' }}</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <a href="{{ path('app_user_index') }}">back to list</a>
-
-        <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-
-        <!-- contact-area-end -->
-
-
-
-    </div>
+        <section class="breadcrumb-area" data-background="assets/img/bg/breadcrumb_bg01.jpg" style="background-image: url({{ asset('') }});">
+            <div class="container">
+                <div class="breadcrumb__wrapper">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="breadcrumb__content">
+                                <h2 class="title">{{ app.user.nom }} {{ app.user.prenom }}</h2>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.html">Email</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">{{ app.user.email }}</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-5 position-relative d-none d-lg-block">
+                            <div class="breadcrumb__img">
+                                <img src="{{ app.user.avatarUrl }}" alt="img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="team__info-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="team__info-wrap">
+                            <div class="team__info-discord">
+                                <div class="team__info-discord-info">
+                                    <span class="sub">Trader</span>
+                                </div>
+                            </div>
+                            <div class="team__info-list">
+                                <ul class="list-wrap">
+                                    <li>
+                                        <div class="team__info-item">
+                                            <div class="team__info-icon">
+                                                <i class="flaticon-swords-1"></i>
+                                            </div>
+                                            <div class="team__info-content">
+                                                <span class="sub">Adresse</span>
+                                                <h5 class="title">{{ app.user.adresse }}</h5>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="team__info-item">
+                                            <div class="team__info-icon">
+                                                <i class="flaticon-diamond"></i>
+                                            </div>
+                                            <div class="team__info-content">
+                                                <span class="sub">Score</span>
+                                                <h5 class="title">{{ app.user.score }}</h5>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     <!-- main-area-end -->
 
     <!-- main-area -->
@@ -266,7 +251,7 @@
                             <div class="col-xl-4 col-lg-5 col-md-7">
                                 <div class="footer-widget">
                                     <div class="footer-logo logo">
-                                        <a href="index.html"><img src="{{ asset('assets/img/logo/logo.png') }}" alt="Logo"></a>
+                                        <a href="index.html"><img src="{{ asset('assets/img/logo/treydi3.png') }}" alt="Logo"></a>
                                     </div>
                                     <div class="footer-text">
                                         <p class="desc">Lorem ipsum dolor sitamet consectur adipiscing Duis esollici tudin augue euismod. Nulla ullam dolor sitamet consectetur</p>
@@ -327,7 +312,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-7">
                             <div class="copyright__text">
-                                <p>Copyright © 2023 - All Rights Reserved By <span>Mykd</span></p>
+                                <p>Copyright © 2023 - All Rights Reserved By <span>treydi</span></p>
                             </div>
                         </div>
                         <div class="col-md-5">

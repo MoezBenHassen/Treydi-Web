@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Utilisateur;
 
-class EditUserController extends AbstractController
+class UserHomeController extends AbstractController
 {
     #[Route('/HomeTr', name: 'app_home_user')]
     public function index(): Response
@@ -38,11 +38,16 @@ class EditUserController extends AbstractController
         ]);
     }
     #[Route('/HomeTr/show', name: 'app_show_user', methods: ['GET'])]
-    public function showConnectedUser(): Response
+    public function showConnectedUser(Request $request): Response
     {
         $user = $this->getUser();
+        // Set the avatar URL property based on the user's ID and the image filename
+        $avatarUrl = $request->getSchemeAndHttpHost().'/assets/img/team/'.$user->getId().'.png';
+        $user->setAvatarUrl($avatarUrl);
+
         return $this->render('user/show.html.twig', [
             'user' => $user,
+
         ]);
     }
 

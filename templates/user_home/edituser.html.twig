@@ -38,8 +38,14 @@
     </head>
 
     <body>
+    <!-- Scroll-top -->
+    <button class="scroll__top scroll-to-target" data-target="html">
+        <i class="flaticon-right-arrow"></i>
+    </button>
+    <!-- Scroll-top-end-->
 
-    <div>
+    <!-- header-area -->
+    <header>
         <div id="sticky-header" class="tg-header__area transparent-header">
             <div class="container custom-container">
                 <div class="row">
@@ -48,7 +54,7 @@
                         <div class="tgmenu__wrap">
                             <nav class="tgmenu__nav">
                                 <div class="logo">
-                                    <a href="index.html"><img src="{{ asset('assets/img/logo/treydi3.png') }}" alt="Logo"></a>
+                                    <a href="index.html"><img src=" {{ asset('assets/img/logo/treydi3.png') }}" alt="Logo"></a>
                                 </div>
                                 <div class="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex">
                                     <ul class="navigation">
@@ -65,13 +71,13 @@
                                                 <li><a href="tournament-details.html">TOURNAMENT Single</a></li>
                                             </ul>
                                         </li>
-                                        <li class="menu-item-has-children"><a href="#">PAGES</a>
+                                        <li class="active menu-item-has-children"><a href="#">PAGES</a>
                                             <ul class="sub-menu">
                                                 <li><a href="shop.html">Gaming Shop</a></li>
                                                 <li><a href="shop-details.html">Shop Details</a></li>
                                                 <li><a href="services.html">Our Services</a></li>
                                                 <li><a href="services-details.html">Services Details</a></li>
-                                                <li><a href="team-details.html">Player Details</a></li>
+                                                <li class="active"><a href="team-details.html">Player Details</a></li>
                                             </ul>
                                         </li>
                                         <li class="menu-item-has-children"><a href="#">News</a>
@@ -80,15 +86,7 @@
                                                 <li><a href="blog-details.html">Blog Details</a></li>
                                             </ul>
                                         </li>
-                                        <li class="menu-item-has-children"><a href="#">contact</a>
-                                            <ul class="sub-menu">
-                                                <li class="menu-item-has-children"><a href="#">Edit User</a>
-                                                    <ul class="sub-menu">
-                                                    </ul>
-                                                </li>
-
-                                            </ul>
-                                        </li>
+                                        <li><a href="contact.html">contact</a></li>
                                     </ul>
                                 </div>
                                 <div class="tgmenu__action d-none d-md-block">
@@ -109,7 +107,7 @@
                             <nav class="tgmobile__menu-box">
                                 <div class="close-btn"><i class="flaticon-swords-in-cross-arrangement"></i></div>
                                 <div class="nav-logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
+                                    <a href="index.html"><img src="{{ asset('assets/img/logo/treydi3.png') }}" alt="Logo"></a>
                                 </div>
                                 <div class="tgmobile__search">
                                     <form action="#">
@@ -138,33 +136,6 @@
             </div>
         </div>
 
-        <!-- Scroll-top -->
-        <button class="scroll__top scroll-to-target" data-target="html">
-            <i class="flaticon-right-arrow"></i>
-        </button>
-        <!-- Scroll-top-end-->
-
-        <!-- breadcrumb-area -->
-        <section class="breadcrumb-area breadcrumb__hide-img" data-background="assets/img/bg/breadcrumb_bg02.jpg">
-            <div class="container">
-                <div class="breadcrumb__wrapper">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="breadcrumb__content">
-                                <h2 class="title"> modifier  user</h2>
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">user</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- header-search -->
         <div class="search__popup-wrap">
             <div class="search__layer"></div>
@@ -187,75 +158,116 @@
                 </div>
             </div>
         </div>
-        <!-- contact-area -->
-        <!-- contact-area -->
-        <section class="contact-area">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 col-md-10">
-                        <div class="contact__form-wrap">
-                            {{ form_start(form) }}
-                            <div class="row g-3">
-                                <h4>Modifier Utilisateur</h4>
+        <!-- header-search-end -->
 
-                                <div class="col-md-6">
-                                    <label class="form-label" for="multicol-email">Email</label>
-                                    <div class="input-group input-group-merge">
-                                        <span class="input-group-text" id="multicol-email2">@example.com</span>
-                                        {{ form_widget(form.email, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'email'}}) }}
-                                        {{ form_errors(form.email)}}
-                                    </div>
+        <!-- offCanvas-area -->
+        <div class="offCanvas__wrap">
+            <div class="offCanvas__body">
+                <div class="offCanvas__top">
+                    <div class="offCanvas__logo logo">
+
+                    </div>
+                    <div class="offCanvas__toggle">
+                        <i class="flaticon-swords-in-cross-arrangement"></i>
+                    </div>
+                </div>
+                <div class="offCanvas__content">
+                    <h2 class="title">Best Seller of Month Ideas for <span>NFT Wallet</span></h2>
+                    <div class="offCanvas__contact">
+                        <h4 class="small-title">CONTACT US</h4>
+                        <ul class="offCanvas__contact-list list-wrap">
+                            <li><a href="tel:93332225557">+9 333 222 5557</a></li>
+                            <li><a href="mailto:info@webmail.com">info@webmail.com</a></li>
+                            <li>New Central Park W7 Street ,New York</li>
+                        </ul>
+                    </div>
+                    <div class="offCanvas__newsletter">
+                        <h4 class="small-title">Subscribe</h4>
+                        <form action="#" class="offCanvas__newsletter-form">
+                            <input type="email" placeholder="Get News & Updates">
+                            <button type="submit"><i class="flaticon-send"></i></button>
+                        </form>
+                        <p>Subscribe dolor sitamet, consectetur adiping eli. Duis esollici tudin augue.</p>
+                    </div>
+                    <ul class="offCanvas__social list-wrap">
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+                <div class="offCanvas__copyright">
+                    <p>Copyright © 2023 - By <span>MYKD</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="offCanvas__overlay"></div>
+        <!-- offCanvas-area-end -->
+
+    </header>
+    <!-- header-area-end -->
+    <!-- main-area-end -->
+    <section class="contact-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-10">
+                    <div class="contact__form-wrap">
+                        {{ form_start(form) }}
+                        <div class="row g-3">
+                            <h4>Modifier Profile</h4>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="multicol-email">Email</label>
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-text" id="multicol-email2">@example.com</span>
+                                    {{ form_widget(form.email, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'email'}}) }}
+                                    {{ form_errors(form.email)}}
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-password-toggle">
-                                        <label class="form-label" for="multicol-password">Password</label>
-                                        <div class="input-group input-group-merge">
-                                            {{ form_widget(form.password, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'password'}}) }}
-                                            {{ form_errors(form.password)}}
-                                            <span class="input-group-text cursor-pointer" id="multicol-password2"><i class="bx bx-hide"></i></span>
-                                        </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-password-toggle">
+                                    <label class="form-label" for="multicol-password">Password</label>
+                                    <div class="input-group input-group-merge">
+                                        {{ form_widget(form.password, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'password'}}) }}
+                                        {{ form_errors(form.password)}}
+                                        <span class="input-group-text cursor-pointer" id="multicol-password2"><i class="bx bx-hide"></i></span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label" for="multicol-first-name">Nom</label>
-                                    {{ form_widget(form.nom, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'nom'}}) }}
-                                    {{ form_errors(form.nom)}}
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label" for="multicol-last-name">Prenom</label>
-                                    {{ form_widget(form.prenom, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'prenom'}}) }}
-                                    {{ form_errors(form.prenom)}}
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label" for="multicol-last-name">Adresse</label>
-                                    {{ form_widget(form.adresse, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'adresse'}}) }}
-                                    {{ form_errors(form.adresse)}}
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label" for="multicol-last-name">Date Naissance </label>
-                                    {{ form_widget(form.date_naissance, {'attr': {'class': 'form-control dob-picker', 'id': 'multicol-country', 'data-allow-clear': 'true'}}) }}
-                                    {{ form_errors(form.date_naissance) }}
-                                </div>
-                                <div class="pt-4">
-                                    <button type="submit" class="btn btn-primary me-sm-3 me-1">Register</button>
-                                </div>
-                                {{ form_end(form) }}
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label" for="multicol-first-name">Nom</label>
+                                {{ form_widget(form.nom, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'nom'}}) }}
+                                {{ form_errors(form.nom)}}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="multicol-last-name">Prenom</label>
+                                {{ form_widget(form.prenom, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'prenom'}}) }}
+                                {{ form_errors(form.prenom)}}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="multicol-last-name">Adresse</label>
+                                {{ form_widget(form.adresse, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'adresse'}}) }}
+                                {{ form_errors(form.adresse)}}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="multicol-last-name">Date Naissance </label>
+                                {{ form_widget(form.date_naissance, {'attr': {'class': 'form-control dob-picker', 'id': 'multicol-country', 'data-allow-clear': 'true'}}) }}
+                                {{ form_errors(form.date_naissance) }}
+                            </div>
+                            <div class="pt-4">
+                                <button type="submit" class="btn btn-primary me-sm-3 me-1">Register</button>
+                            </div>
+                            {{ form_end(form) }}
 
-                                <p class="ajax-response"></p>
+                            <p class="ajax-response"></p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- contact-area-end -->
-
-
-
-    </div>
-    <!-- main-area-end -->
-
+        </div>
+    </section>
     <!-- main-area -->
     <div class="main--area">
 
@@ -351,9 +363,9 @@
 
         <!-- JS here -->
         <script href={{  "assets/js/vendor/jquery-3.6.0.min.js" }}></script>
-        <script src="assets/js/plugins.js"></script>
-        <script src="assets/js/ajax-form.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="{{ asset('assets/js/plugins.js') }}"></script>
+        <script src="{{ asset('assets/js/ajax-form.js') }}"></script>
+        <script src="{{ asset('assets/js/main.js') }}"></script>
 
     </div>i</body>
     </html>

@@ -1,0 +1,9 @@
+<p>Scan the QR code below with the Google Authenticator app:</p>
+<img id="imageQRcode" src="{{ qrCode }}" alt="QR code" name="imageQRcode" />
+<form class="form" action="{{ path('2fa_login') }}" method="post">
+    <p class="widget"><input id="_auth_code" type="text" autocomplete="off" name="auth_code" /></p>
+    <p class="submit"><input type="submit" value="login" /></p>
+    {{ dump(qrCode) }}
+
+</form>
+<p class="cancel"><a href="/{{ path('app_logout') }}"></a></p>

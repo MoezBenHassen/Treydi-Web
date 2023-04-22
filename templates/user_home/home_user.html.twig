@@ -140,13 +140,12 @@
                     </div>
                 </div>
                 <div>
-                    <a href="{{ path('app_show_user') }}" class="offCanvas__btn"> Profile</a>
-                    <a href="{{ path('app_edit_user') }}" class="offCanvas__btn">Edit Profile</a>
-
-
+                    <li class="active menu-item-has-children"><a  href="{{ path('app_show_user') }}">Profile</a>
+                    </li>
+                    <li class="active menu  -item-has-children"><a  href="{{ path('app_edit_user') }}">Edit Profile</a></li>
                 </div>
                 <div class="offCanvas__copyright">
-                    <p>Copyright © 2023 - By <span>MYKD</span></p>
+                    <li class="header-btn"><a href="contact.html" class="tg-border-btn">Log out</a></li>
                 </div>
             </div>
         </div>
@@ -190,7 +189,7 @@
                 </div>
             </div>
             <div class="slider__shapes">
-                <img src="assets/img/slider/slider_shape01.png" alt="shape">
+                <img src="{{asset('assets/img/slider/slider_shape01.png')  }}" alt="shape">
                 <img src="assets/img/slider/slider_shape02.png" alt="shape">
                 <img src="assets/img/slider/slider_shape03.png" alt="shape">
                 <img src="assets/img/slider/slider_shape04.png" alt="shape">
