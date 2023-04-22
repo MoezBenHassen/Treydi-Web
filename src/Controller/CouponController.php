@@ -22,36 +22,16 @@ use Symfony\Component\Form\FormInterface;
 class CouponController extends AbstractController
 {
     #[Route('/coupon', name: 'app_coupon')]
-    public function index(CouponRepository $couponRepository, Request $request): Response
+    public function index(CouponRepository $couponRepository): Response
     {
-        $form = $this->createForm(CouponType::class);
-        $form->handleRequest($request);
-        $search = null;
-        $date_expiration = null;
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $search = $form->get('titreCoupon')->getData();
-            $description = $form->get('descriptionCoupon')->getData();
-            $date_expiration = $form->get('dateExpiration')->getData();
-            $archived = $form->get('archived')->getData();
-            $idCategorie = $form->get('idCategorie')->getData();
-            $etat_coupon = $form->get('etat_coupon')->getData();
-
-            $queryList = $couponRepository->findByAllAttributes($search, $date_expiration, $description, $archived, $idCategorie, $etat_coupon);
-            $couponslist = $queryList;
-        } else {
-            $queryList = $couponRepository->findByArchived(false);
-            $couponslist = $queryList;
-        }
-
-        return $this->render('article/index.html.twig', [
-            'form'=> $form->createView(),
-            'coupons' => $couponslist,
-            'search' => $search,
-            'date_expiration' => $date_expiration,
+        return $this->render('coupon/index.html.twig', [
+            'coupons' => $couponRepository->findAll()
         ]);
     }
 
+    public function search (CouponRepository $couponRepository, Request $request): Response {
+
+    }
 
 
     #[Route('/scoreboard', name: 'app_coupon_scoreboard')]
@@ -67,13 +47,39 @@ class CouponController extends AbstractController
 
 
     #[Route('/coupon/show', name: 'app_coupon_show')]
-    public function show(ManagerRegistry $doctrine): Response
+    public function show(ManagerRegistry $doctrine, Request $request, CouponRepository $couponRepository): Response
     {
+
         $repository = $doctrine->getRepository(Coupon::class);
         $list = $repository->findAll();
+        $form = $this->createForm(SearchFormType::class);
+        $form->handleRequest($request);
+        $search = null;
+        $date_expiration = null;
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->get('titre_coupon')->getData();
+            $description = $form->get('description_coupon')->getData();
+            $date_expiration = $form->get('date_expiration')->getData();
+            $archived = $form->get('archived')->getData();
+            $idCategorie = $form->get('id_categorie')->getData();
+            $etat_coupon = $form->get('etat_coupon')->getData();
+
+            $queryList = $couponRepository->findByAllAttributes($search, $date_expiration, $description, $archived, $idCategorie, $etat_coupon);
+            $couponslist = $queryList;
+        } else {
+            $queryList = $couponRepository->findByArchived(false);
+            $couponslist = $queryList;
+        }
+
         return $this->render('coupon/show.html.twig', [
+            'form'=> $form->createView(),
+            'couponslist' => $couponslist,
             'coupons' => $list,
+            'search' => $search,
+            'date_expiration' => $date_expiration,
         ]);
+
     }
 
 

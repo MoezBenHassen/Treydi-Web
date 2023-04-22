@@ -87,30 +87,29 @@
                 <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="content-wrapper">
                     <!-- Content -->
-               <<hr class="my-5">
                     {{ form_start(form) }}
                     <div class="form-row align-items-center">
                         <div class="col">
-                            {{ form_row(form.titreCoupon) }}
+                            {{ form_row(form.titre_coupon) }}
                         </div>
                     <div class="col">
-                       {{ form_row(form.descriptionCoupon) }}
+                       {{ form_row(form.description_coupon) }}
                     </div>
                     <div class="col">
-                        {{ form_row(form.dateExpiration) }}
+                        {{ form_row(form.date_expiration) }}
                     </div>
+                        <div class="col">
+                            {{ form_row(form.id_categorie) }}
+                        </div>
                     <div class="col">
                         {{ form_row(form.archived) }}
-                    </div>
-                    <div class="col">
-                        {{ form_row(form.idCategorie) }}
                     </div>
                     <div class="col">
                         {{ form_row(form.etat_coupon) }}
                     </div>
                     <div class="col">
                         <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Search for a coupon :"</button> </div>
+                        <button type="submit" class="btn btn-primary">Search for a coupon :</button> </div>
                     </div>
                     {{ form_end(form) }}
                     </div>
@@ -141,10 +140,10 @@
                                 <tbody class="table-border-bottom-0">
                                 <tr>
                                     <td><strong> {{ coupon.id }}</strong></td>
-                                    <td>{{ coupon.titreCoupon }}</td>
-                                    <td><span>{{ coupon.descriptionCoupon }}</span></td>
-                                    <td>{{ coupon.etatCoupon }}</span></td>
-                                    <td>{{ coupon.dateExpiration ? coupon.dateExpiration|date('Y-m-d') : '' }}</span></td>
+                                    <td>{{ coupon.titre_coupon }}</td>
+                                    <td><span>{{ coupon.description_coupon }}</span></td>
+                                    <td>{{ coupon.etat_Coupon }}</span></td>
+                                    <td>{{ coupon.date_expiration ? coupon.date_expiration|date('Y-m-d') : '' }}</span></td>
                                     <td><span class="badge bg-label-info me-1">{{ coupon.archived ? 'Oui' : 'Non' }}</span></td>
                                     <td><span class="badge bg-label-primary me-1">{{ coupon.code }}</span></td>
                                     <td>

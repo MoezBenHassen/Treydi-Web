@@ -12,12 +12,13 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/log-04.png">
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="assets/css/plugins.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href={{ asset('assets/css/plugins.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/main.css') }}>
 
     <!-- Page-Revealer -->
     <script src="assets/js/tg-page-head.js"></script>
 </head>
+
 
 <body>
 
@@ -262,36 +263,6 @@
                             color : #a3a4cc;
                         }
                     </style>
-
-                    <table class="table ">
-                        <thead>
-                        <tr>
-                            <th> </th>
-                            <th>Prenom </th>
-                            <th>Nom </th>
-                            <th>Score </th>
-                        </tr>
-                        </thead>
-                        {% for user in users %}
-                            <tbody class="table-border-bottom-0">
-                            <tr>
-                                <td>
-                                    <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center aa">
-
-                                        <li class="avatar-img" data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Sophia Wilkerson">
-                                            <img src="{{ asset('assets/img/avatars/6.png') }}" alt="Avatar" class="rounded-circle">
-                                        </li>
-
-                                    </ul>
-                                </td>
-
-                                <td><i class='bx bxs-report'></i> <strong>{{ user.prenom }}</strong></td>
-                                <td><i class='bx bxs-report'></i> <strong>{{ user.nom }}</strong></td>
-                                <td><i class='bx bxs-report'></i> <strong>{{ user.score }}</strong></td>
-                            </tr>
-                            </tbody>
-                        {% endfor %}
-                    </table>
 
                 </div>
 

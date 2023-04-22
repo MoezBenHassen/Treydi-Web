@@ -76,6 +76,7 @@ class Coupon
         return $this->titre_coupon;
     }
 
+
     public function getTitre_Coupon(): ?string
     {
         return $this->titre_coupon;
@@ -185,9 +186,6 @@ class Coupon
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getArchived(): ?bool
     {
         return $this->archived;

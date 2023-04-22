@@ -100,22 +100,22 @@ class CouponRepository extends ServiceEntityRepository
             ->setParameter('archived', $archived);
 
         if (!empty($search)) {
-            $qb->andWhere('c.titreCoupon LIKE :search OR c.descriptionCoupon LIKE :search')
+            $qb->andWhere('c.titre_coupon LIKE :search')
                 ->setParameter('search', '%' . $search . '%');
         }
 
         if (!empty($date_expiration)) {
-            $qb->andWhere('c.dateExpiration = :date_expiration')
+            $qb->andWhere('c.date_expiration = :date_expiration')
                 ->setParameter('date_expiration', $date_expiration);
         }
 
         if (!empty($description)) {
-            $qb->andWhere('c.descriptionCoupon LIKE :description')
+            $qb->andWhere('c.description_coupon LIKE :description')
                 ->setParameter('description', '%' . $description . '%');
         }
 
         if (!empty($idCategorie)) {
-            $qb->andWhere('c.idCategorie = :idCategorie')
+            $qb->andWhere('c.id_categorie = :idCategorie')
                 ->setParameter('idCategorie', $idCategorie);
         }
 

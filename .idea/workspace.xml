@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Form/SearchFormType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/CouponController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CouponController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/CategorieCoupon.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/CategorieCoupon.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Coupon.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Coupon.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/SearchForm.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/SearchFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SearchFormType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/CouponRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CouponRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/coupon/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/coupon/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/coupon/transformscore.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/coupon/transformscore.html.twig" afterDir="false" />
@@ -268,7 +266,7 @@
       <workItem from="1681511275526" duration="1286000" />
       <workItem from="1681721470492" duration="1761000" />
       <workItem from="1681951781182" duration="4426000" />
-      <workItem from="1682116311761" duration="5332000" />
+      <workItem from="1682116311761" duration="10972000" />
     </task>
     <servers />
   </component>
@@ -294,7 +292,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/templates/coupon/show.html.twig</url>
-          <line>127</line>
+          <line>126</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
