@@ -17,10 +17,8 @@ class Authors
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Nom = null;
+    private ?string $FullName = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Prenom = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateDeNaissance = null;
@@ -30,6 +28,9 @@ class Authors
 
     #[ORM\OneToMany(mappedBy: 'Auteur', targetEntity: Article::class)]
     private Collection $articles;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $archived = null;
 
     public function __construct()
     {
@@ -41,29 +42,19 @@ class Authors
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getFullName(): ?string
     {
-        return $this->Nom;
+        return $this->FullName;
     }
 
-    public function setNom(?string $Nom): self
+    public function setFullName(?string $FullName): self
     {
-        $this->Nom = $Nom;
+        $this->Nom = $FullName;
 
         return $this;
     }
 
-    public function getPrenom(): ?string
-    {
-        return $this->Prenom;
-    }
 
-    public function setPrenom(?string $Prenom): self
-    {
-        $this->Prenom = $Prenom;
-
-        return $this;
-    }
 
     public function getDateDeNaissance(): ?\DateTimeInterface
     {
@@ -115,6 +106,23 @@ class Authors
                 $article->setAuteur(null);
             }
         }
+
+        return $this;
+    }
+    
+    public function __toString(): string
+    {
+        return $this->FullName;
+    }
+
+    public function isArchived(): ?bool
+    {
+        return $this->archived;
+    }
+
+    public function setArchived(?bool $archived): self
+    {
+        $this->archived = $archived;
 
         return $this;
     }

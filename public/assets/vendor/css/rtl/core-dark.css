@@ -5295,7 +5295,7 @@ fieldset:disabled .btn {
   position: relative;
   width: auto;
   margin: var(--bs-modal-margin);
-  pointer-events: none
+  pointer-events: none;
 }
 
 .modal.fade .modal-dialog {

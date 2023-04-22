@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Authors;
 use App\Entity\CategorieArticle;
 use App\Entity\CategorieCoupon;
 use App\Entity\Utilisateur;
@@ -59,7 +60,8 @@ class ArticleType extends AbstractType
                     'placeholder' => 'YYYY-MM-DD'],
                 'widget' => 'single_text',
             ])
-            ->add('auteur', TextType::class,[
+            ->add('auteur', EntityType::class,[
+                'class' => Authors::class,
                 'label' => 'Auteur',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-auteur'],
                 'attr' => ['class' => 'form-control', 'id' => 'basic-default-auteur',

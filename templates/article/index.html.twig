@@ -243,18 +243,19 @@
 
                           <!-- Modal -->
                           <div class="modal fade" id="Target{{ article.id }}" tabindex="-1" style="display: none; " aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document" {#style="border:solid red 2px; "#}>
+                            <div class="modal-dialog modal-dialog-centered modal-xl" role="document" {#style="border:solid red 2px; "#}>
                               <div class="modal-content">
                                 <div class="modal-header">
                                   <h3 class="modal-title" id="modalCenterTitle">{{ article.titre }}</h3>
 
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #e83e8c; color: white !important;"></button>
                                 </div>
                                 <div class="modal-header">
                                   {{ article.auteur }}
                                   <i>{{ article.datePublication|date('d-M-Y') }}</i>
                                 </div>
                                 <div class="modal-body">
+                                  <img src="{{ vich_uploader_asset(article,'imageFile') }}" alt="">
                                   <p id="article-modal-content">
                                     {{ article.contenu|raw }}
                                   </p>
