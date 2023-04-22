@@ -43,7 +43,7 @@ class ArticleType extends AbstractType
                     'style' => 'height: 100px',
                 ],
             ])
-            /*imageFile*/
+            
             ->add('contenu',TextareaType::class, [
                 'label' => 'Contenu',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-contenu'],
