@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Treydi-Web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Treydi-Web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/controllers.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/controllers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/messenger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/messenger.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/EchangeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EchangeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/EchangeProposerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EchangeProposerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/user/afficher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/user/afficher.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/user/affichersansproposer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/user/affichersansproposer.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,7 +264,7 @@
       <workItem from="1681079088592" duration="24839000" />
       <workItem from="1681114015944" duration="7990000" />
       <workItem from="1681965105572" duration="934000" />
-      <workItem from="1682015161023" duration="16555000" />
+      <workItem from="1682015161023" duration="18690000" />
     </task>
     <servers />
   </component>

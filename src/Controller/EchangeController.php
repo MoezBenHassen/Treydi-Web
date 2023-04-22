@@ -447,6 +447,7 @@ class EchangeController extends AbstractController
             'user1' => $user1,
             'user2' => $user2,
             'echange_proposer' => $echange_proposer,
+            'echange' => $echange,
         ]);
     }
 

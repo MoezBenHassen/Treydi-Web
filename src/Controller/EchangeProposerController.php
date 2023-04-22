@@ -67,7 +67,7 @@ class EchangeProposerController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $echange_proposer = new EchangeProposer();
             $echange_proposer->setIdEchange($echange);
-            $echange_proposer->setArchived(0);
+            $echange_proposer->setArchived(false);
             $echange_proposer->setIdUser($test_user2);
             $echange_proposer->setDateProposer($date);
             $em->persist($echange_proposer);
@@ -143,6 +143,7 @@ class EchangeProposerController extends AbstractController
         ]);
     }
 
+    //accepter proposition
     #[Route('/echange_proposer/user/accepter/{id}', name: 'app_echangeproposer_user_accepter')]
     public function accepterEchangeUser(ManagerRegistry $doctrine, $id, MailerInterface $mailer): Response
     {
@@ -179,19 +180,61 @@ class EchangeProposerController extends AbstractController
             }
         }
 
+        $em->flush();
+
         //Accepter Mailer
         $email = (new Email())
             ->from("treydiechange@no-reply.com")
             ->to($user2->getEmail())
-            ->subject('Nouvelle Echange Proposer')
+            ->subject("Proposition d'Echange accepter")
             ->text("Votre proposition d'Echange est accepter. Le titre de cet Echange : {$echange->getTitreEchange()}");
 
         $mailer->send($email);
 
-        $em->flush();
-
         $em->persist($echange);
         $em->flush();
+
+        return $this->redirectToRoute('app_echange_list_user');
+    }
+
+    //Refuser proposition
+    #[Route('/echange_proposer/user/refuser/{id}', name: 'app_echangeproposer_user_refuser')]
+    public function refuserEchangeUser(ManagerRegistry $doctrine, $id, MailerInterface $mailer): Response
+    {
+        $em = $doctrine->getManager();
+
+        $echange_proposer = $em->getRepository(EchangeProposer::class)
+            ->find($id);
+
+        $echange = $em->getRepository(Echange::class)
+            ->find($echange_proposer->getIdEchange());
+
+        $user = $em->getRepository(Utilisateur::class)
+            ->find($echange_proposer->getIdUser());
+
+        $proposer_items = $em
+            ->getRepository(Item::class)
+            ->findBy(['id_echange' => $echange->getId(), 'id_user' => $echange_proposer->getIdUser()]);
+
+        foreach ($proposer_items as $proposer_item) {
+            $proposer_item->setIdEchange(null);
+            $em->persist($proposer_item);
+        }
+
+        $echange_proposer->setArchived(true);
+
+        $em->persist($echange);
+        $em->persist($echange_proposer);
+        $em->flush();
+
+        //Refuser Mailer
+        $email = (new Email())
+            ->from("treydiechange@no-reply.com")
+            ->to($user->getEmail())
+            ->subject("Proposition d'Echange refuser")
+            ->text("Votre proposition d'Echange est refuser. Le titre de cet Echange : {$echange->getTitreEchange()}");
+
+        $mailer->send($email);
 
         return $this->redirectToRoute('app_echange_list_user');
     }

@@ -299,7 +299,12 @@
                                                    href="{{ url('app_echangeproposer_user_accepter',{'id':i.getId()} ) }}">
                                                     <i
                                                             class="bx bx-check me-1"></i>Accepter</a>
-                                            </a></div>
+                                                <a class="dropdown-item"
+                                                   href="{{ url('app_echangeproposer_user_refuser',{'id':i.getId()} ) }}">
+                                                    <i
+                                                            class="bx bx-check me-1"></i>Refuser</a>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             {% endfor %}
