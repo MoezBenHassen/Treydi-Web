@@ -144,7 +144,7 @@ class EchangeProposerController extends AbstractController
     }
 
     #[Route('/echange_proposer/user/accepter/{id}', name: 'app_echangeproposer_user_accepter')]
-    public function accepterEchangeUser(ManagerRegistry $doctrine, $id): Response
+    public function accepterEchangeUser(ManagerRegistry $doctrine, $id, MailerInterface $mailer): Response
     {
         $em = $doctrine->getManager();
 
@@ -178,6 +178,17 @@ class EchangeProposerController extends AbstractController
                 }
             }
         }
+
+        //Accepter Mailer
+        $email = (new Email())
+            ->from("treydiechange@no-reply.com")
+            ->to($user2->getEmail())
+            ->subject('Nouvelle Echange Proposer')
+            ->text("Votre proposition d'Echange est accepter. Le titre de cet Echange : {$echange->getTitreEchange()}");
+
+        $mailer->send($email);
+
+        $em->flush();
 
         $em->persist($echange);
         $em->flush();
