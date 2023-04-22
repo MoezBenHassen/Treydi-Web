@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Form/SearchForm.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/coupon/transformscore.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Treydi-Web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Treydi-Web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/SearchFormType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/CouponController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CouponController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CouponControllerFront.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CouponControllerFront.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/categorie_coupon/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/categorie_coupon/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/coupon/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/coupon/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/CategorieCoupon.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/CategorieCoupon.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Coupon.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Coupon.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/SearchForm.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CouponRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CouponRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/coupon/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/coupon/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/coupon/transformscore.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/coupon/transformscore.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +190,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/admin/Desktop/PI DEV/Treydi-Web&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/admin/Desktop/PI DEV/Treydi-Web/templates/coupon&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -205,6 +202,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\admin\Desktop\PI DEV\Treydi-Web\templates\coupon" />
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src" />
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\templates" />
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Form" />
@@ -268,6 +266,9 @@
       <workItem from="1681256082556" duration="4741000" />
       <workItem from="1681510534865" duration="721000" />
       <workItem from="1681511275526" duration="1286000" />
+      <workItem from="1681721470492" duration="1761000" />
+      <workItem from="1681951781182" duration="4426000" />
+      <workItem from="1682116311761" duration="5332000" />
     </task>
     <servers />
   </component>
@@ -293,7 +294,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/templates/coupon/show.html.twig</url>
-          <line>108</line>
+          <line>127</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
+
 #[ORM\Entity(repositoryClass: CategorieCouponRepository::class)]
 #[ORM\Table(name: 'categorie_coupon')]
 class CategorieCoupon

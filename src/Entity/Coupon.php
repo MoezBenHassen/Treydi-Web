@@ -184,4 +184,13 @@ class Coupon
 
         return $this;
     }
+
+    /**
+     * @return bool|null
+     */
+    public function getArchived(): ?bool
+    {
+        return $this->archived;
+    }
+
 }
