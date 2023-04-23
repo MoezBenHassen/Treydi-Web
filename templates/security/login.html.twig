@@ -11,50 +11,21 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}" />
+
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core-dark.css') }}" class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default-dark.css') }}" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
-
-
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/flatpickr/flatpickr.css" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/select2/select2.css" />
+    <!-- Vendor -->
+    <link rel="stylesheet" href="../../assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
 
-    <style>
-        .table-responsive {
-            overflow-x: auto;
-        }
-        /* custom css that makes the table cell wrap if the text exceeds the cell length*/
-        .table-responsive td {
-            white-space: normal;
-            text-align: justify;
-        }
-        ::-moz-selection { /* Code for Firefox */
-            background: yellow;
-        }
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="../../assets/vendor/css/pages/page-auth.css">
 
-        ::selection {
-            background: yellow;
-        }
-        #chose{
-            width:25px;
-
-        }
-        img {
-             display: block;
-            margin: 0 auto 20px;
-            max-width: 20%;
-        }
-
-
-
-
-        /*make the card the width of the screen available*/
-
-    </style>
 {% endblock %}
 
 {% block javascripts %}
@@ -69,104 +40,107 @@
 
 {% block body %}
     <!-- Google Tag Manager (noscript) (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0" style="display: none; visibility: hidden"></iframe>
-    </noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-            <!-- Layout container -->
-    <div class="layout-wrapper layout-content-navbar  ">
-        <div class="layout-container">
-            <!-- Layout container -->
-            <div class="layout-page">
-                <!-- Content wrapper -->
-                <div class="content-wrapper">
-                    <!-- Content -->
-                    <div class="container-xxl flex-grow-1 container-p-y">
-                        <!-- Multi Column with Form Separator -->
-                        <h2 class="title wow fadeInUp" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s;">Treydi</h2>
-                        <div class="card mb-4">
+    <div class="container-xxl">
+        <div class="authentication-wrapper authentication-basic container-p-y">
+            <div class="authentication-inner">
+                <!-- Register -->
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Logo -->
+                        <div class="app-brand justify-content-center">
+                            <a href="index-2.html" class="app-brand-link gap-2">
+              <span class="app-brand-logo demo">
 
-                            <!--  <form class="card-body"> -->
-                            <form method="post">
-                                {% if error %}
-                                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                                {% endif %}
+<img id="chose" src="/assets/img/logo/log-04.png" alt="" style="width: 35px; height: auto;">
 
-                                {% if app.user %}
-                                    <div class="mb-3">
-                                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-                                    </div>
-                                {% endif %}
+</span>
+                                <span class="app-brand-text demo text-body fw-bolder">Treydi</span>
+                            </a>
+                        </div>
+                        <!-- /Logo -->
+                        <h4 class="mb-2">Welcome to Treydi! 👋</h4>
+                        <p class="mb-4">Please Scan the QR code below with the Google Authenticator app</p>
+
+                        <!--  <form class="card-body"> -->
+                        <form method="post">
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+
+                            {% if app.user %}
+                                <div class="mb-3">
+                                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                </div>
+                            {% endif %}
 
 
-                                <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
+                            <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
 
-                                <label for="inputEmail">Email</label>
-                                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                            <label for="inputEmail">Email</label>
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
 
-                                <label for="inputPassword">Password</label>
-                                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="new-password" required>
-                                <button class="btn btn-lg btn-primary" type="submit">
-                                    Log in
-                                </button>
-                                <p>You don't have an account ?
+                            <label for="inputPassword">Password</label>
+                            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="new-password" required>
+                            <button class="btn btn-lg btn-primary" type="submit">
+                                Log in
+                            </button>
+                            <p>You don't have an account ?
                                 <a href="{{ path('app_register') }}">Join Us</a>
-                                </p>
-                                <input type="hidden" name="_csrf_token"
-                                       value="{{ csrf_token('authenticate') }}">
+                            </p>
+                            <input type="hidden" name="_csrf_token"
+                                   value="{{ csrf_token('authenticate') }}">
 
                         </form>
                     </div>
-                    <!-- / Content -->
-                    <div class="content-backdrop fade"></div>
-                    </div>
-                    <!-- Content wrapper -->
                 </div>
-                <!-- / Layout page -->
+                <!-- /Register -->
             </div>
-            <!-- Overlay -->
-            <div class="layout-overlay layout-menu-toggle"></div>
-
-            <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-            <div class="drag-target"></div>
         </div>
     </div>
+    <!-- / Content -->
+
+
+    <div class="buy-now">
+        <a href="https://themeselection.com/item/sneat-bootstrap-html-admin-template/" target="_blank" class="btn btn-danger btn-buy-now">Buy Now</a>
+    </div>
+
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
+    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="{{ asset('/assets/vendor/libs/popper/popper.js') }}"></script>
+    <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
+    <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
 
-    <script src="{{ asset('/assets/vendor/js/bootstrap.js') }}"></script>
-
-    <script src="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-
-    <script src="{{ asset('/assets/vendor/libs/hammer/hammer.js') }}"></script>
-
-    <script src="{{ asset('/assets/vendor/libs/i18n/i18n.js') }}"></script>
-
-    <script src="{{ asset('/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
-
-    <script src="{{ asset('/assets/vendor/js/menu.js') }}"></script>
-
+    <script src="../../assets/vendor/js/menu.js"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="../../assets/vendor/libs/cleavejs/cleave.js"></script>
-    <script src="../../assets/vendor/libs/cleavejs/cleave-phone.js"></script>
-    <script src="../../assets/vendor/libs/moment/moment.js"></script>
-    <script src="../../assets/vendor/libs/flatpickr/flatpickr.js"></script>
-    <script src="../../assets/vendor/libs/select2/select2.js"></script>
-    <!-- Vendors JS -->
+    <script src="../../assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js"></script>
+    <script src="../../assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
+    <script src="../../assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
 
     <!-- Main JS -->
-    <script src="{{asset('/assets/js/maindash.js') }}"></script>
+    <script src="../../assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src='{{ asset('assets/js/form-layouts.js') }}'></script>
+    <script src="{{ asset('/assets/js/pages-auth.js') }}"></script>
 
-    <script>
-    </script>
+    </body>
+
+
+    <!-- Mirrored from demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/auth-login-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 Apr 2023 04:31:51 GMT -->
+    </html>
+
+    <!-- beautify ignore:end -->
+
+
+
 
 {% endblock %}
