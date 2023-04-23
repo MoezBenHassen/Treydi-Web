@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 
     <!-- Vendors CSS -->
+
     <style>
         .table-responsive {
             overflow-x: auto;
@@ -106,13 +107,13 @@
                             <tr>
                                 <td>{{ user.id }}</td>
                                 <td>{{ user.email }}</td>
-                                <td>
-                                    <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Lilian Fuller">
-                                            <img src="../../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle">
-                                        </li>
-                                    </ul>
+                                <div class="card mb-4">
+                                <td class="avatar me-2">
+                                   <span class="avatar-initial rounded-circle bg-label-success" style="width: 45px; height: auto;">
+                                       {{ user.nom|slice(0,1) }}{{ user.prenom|slice(0,1) }}
+                                    </span>
                                 </td>
+                                </div>
                                 <td><span class="badge bg-label-primary me-1">{{ user.adresse }}</span></td>
                                 <td>{{ user.prenom }}</td>
                                 <td>{{ user.nom }}</td>
