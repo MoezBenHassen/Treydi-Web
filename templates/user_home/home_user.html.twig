@@ -139,15 +139,15 @@
                         <i class="flaticon-swords-in-cross-arrangement"></i>
                     </div>
                 </div>
-                <div>
-                    <li class="active menu-item-has-children"><a  href="{{ path('app_show_user') }}">Profile</a>
-                    </li>
-                    <li class="active menu  -item-has-children"><a  href="{{ path('app_edit_user') }}">Edit Profile</a></li>
+                <div class="offCanvas__content">
+                    <ul class="offCanvas__contact-list list-wrap">
+                        <li class="active menu-item-has-children"><a  href="{{ path('app_show_user') }}">Profile</a></li>
+                        <li class="active menu  -item-has-children"><a  href="{{ path('app_edit_user') }}">Edit Profile</a></li>
+                    </ul>
                 </div>
                 <div class="offCanvas__copyright">
                     <li class="header-btn"><a href="{{ path('app_logout') }}" class="tg-border-btn">Log out</a></li>
                 </div>
-
             </div>
         </div>
         <div class="offCanvas__overlay"></div>
@@ -180,10 +180,7 @@
                             <div class="col-xxl-6 col-xl-5 col-lg-6">
                                 <div class="slider__img text-center">
                                         <img src="assets/img/slider/slider_img01.png" data-magnetic alt="img">
-                                    <!--
-                                                                <model-viewer src="assets/3DModals/berserk/scene.gltf" alt="A 3D model of a car" shadow-intensity="1" camera-controls auto-rotate ar >
-                                                                </model-viewer> -->
-                                </div>
+                              </div>
                             </div>
                         </div>
                     </div>
