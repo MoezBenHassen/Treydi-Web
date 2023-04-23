@@ -107,10 +107,11 @@
 											<th>Categorie</th>
 											<th>Type</th>
 											<th>Etat</th>
+											<th>Vues</th>
 											<th>Likes</th>
 											<th>Dislikes</th>
 											<th>User</th>
-											<th>Echange</th>
+											<th>Ech</th>
 											<th>Actions</th>
 										</tr>
 									</thead>
@@ -140,6 +141,7 @@
 												<td>
 													<span class="badge bg-label-warning me-1">{{ i.getEtat() }}</span>
 												</td>
+												<td>{{ i.getViews() }}</td>
 												<td>{{ i.getLikes() }}</td>
 												<td>{{ i.getDislikes() }}</td>
 												<td>{{ i.getIdUser().getNom() }}</td>

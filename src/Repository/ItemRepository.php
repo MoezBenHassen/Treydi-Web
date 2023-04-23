@@ -86,4 +86,14 @@ public function findUnarchivedFront($userid): array
         ->getResult();
     return $req;
 }
+
+public function findAlll(): array
+{
+    $req =  $this->createQueryBuilder('s')
+        ->andWhere('s.archived = :val')
+        ->setParameter('val', 0)
+        ->getQuery()
+        ->getResult();
+    return $req;
+}
 }

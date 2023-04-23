@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\LikeItemsRepository;
+use App\Repository\ViewItemsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: LikeItemsRepository::class)]
-#[ORM\Table(name: 'like_items')]
-class LikeItems
+#[ORM\Entity(repositoryClass: ViewItemsRepository::class)]
+#[ORM\Table(name: 'view_items')]
+class ViewItems
 {
     #[ORM\Id]
     #[ORM\Column]
@@ -17,20 +17,12 @@ class LikeItems
     {
         return $this->itemid;
     }
-    #[ORM\Id]
     #[ORM\Column]
     private ?int $userid = null;
 
     public function getiduser(): ?int
     {
         return $this->userid;
-    }
-    #[ORM\Column]
-    private ?int $liked = null;
-
-    public function getlike(): ?int
-    {
-        return $this->liked;
     }
 
     public function setiduser(?int $iduser): self
@@ -43,13 +35,6 @@ class LikeItems
     public function setiditem(?int $iditem): self
     {
         $this->itemid = $iditem;
-
-        return $this;
-    }
-
-    public function setlike(?int $liked): self
-    {
-        $this->liked = $liked;
 
         return $this;
     }

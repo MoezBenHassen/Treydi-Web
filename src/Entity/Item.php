@@ -51,6 +51,9 @@ class Item
     #[ORM\Column(nullable: true)]
     private ?int $dislikes = 0;
 
+    #[ORM\Column]
+    private ?int $views = 0;
+
     #[ORM\Column(nullable: true)]
     private ?bool $archived = false;
 
@@ -146,6 +149,18 @@ class Item
     public function setLikes(?int $likes): self
     {
         $this->likes = $likes;
+
+        return $this;
+    }
+
+    public function getViews(): ?int
+    {
+        return $this->views;
+    }
+
+    public function setViews(?int $views): self
+    {
+        $this->views = $views;
 
         return $this;
     }

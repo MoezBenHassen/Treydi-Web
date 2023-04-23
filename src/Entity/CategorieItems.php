@@ -27,6 +27,9 @@ class CategorieItems
     )]
     private ?string $nom_categorie = null;
 
+    #[ORM\Column]
+    private ?int $qt = 0;
+
     #[ORM\Column(nullable: true)]
     private ?bool $archived = null;
 
@@ -51,6 +54,18 @@ class CategorieItems
     public function setNomCategorie(?string $nom_categorie): self
     {
         $this->nom_categorie = $nom_categorie;
+
+        return $this;
+    }
+
+    public function getQt(): ?int
+    {
+        return $this->qt;
+    }
+
+    public function setQt(?int $qt): self
+    {
+        $this->qt = $qt;
 
         return $this;
     }

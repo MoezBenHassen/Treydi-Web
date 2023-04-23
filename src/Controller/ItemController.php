@@ -2,12 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\CategorieItems;
+use App\Entity\CommentItems;
 use App\Entity\Item;
 use App\Entity\LikeItems;
+use App\Entity\ViewItems;
 use App\Entity\Utilisateur;
 use App\Form\ItemType;
 use App\Repository\ItemRepository;
 use App\Repository\LikeItemsRepository;
+use App\Repository\ViewItemsRepository;
+use App\Repository\CommentItemsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,15 +51,43 @@ class ItemController extends AbstractController
         ]);
     }
 
+    
+    #[Route('/item/front/listall', name: 'app_itemListall_f')]
+    public function listallF(ItemRepository $repository): Response
+    {
+
+        $list = $repository->findAlll();
+
+        return $this->render('item/front/all.html.twig', [
+            'controller_name' => 'List des Items',
+            'list' => $list
+        ]);
+    }
+
     #[Route('/item/back/list', name: 'app_itemList_b')]
     public function listB(ItemRepository $repository): Response
     {
 
-        $list = $repository->findUnarchived();
+        $list = $repository->findAlll();
 
         return $this->render('item/back/index.html.twig', [
             'controller_name' => 'List des Items',
             'list' => $list
+        ]);
+    }
+
+    #[Route('/item/back/stats', name: 'app_itemStats_b')]
+    public function statsB(ManagerRegistry $doctrine, ItemRepository $repository): Response
+    {
+
+        $list = $repository->findAll();
+        $rrepository = $doctrine->getRepository(CategorieItems::class);
+        $listc = $rrepository->findAll();
+
+        return $this->render('item/back/stat.html.twig', [
+            'controller_name' => 'Stats des Items',
+            'list' => $list,
+            'listc' => $listc
         ]);
     }
 
@@ -63,9 +96,14 @@ class ItemController extends AbstractController
     public function removeF(ManagerRegistry $doctrine, $id): Response
     {
         $repository = $doctrine->getRepository(item::class);
+        $rrepository = $doctrine->getRepository(CategorieItems::class);
         $em = $doctrine->getManager();
         $item = $repository->find($id);
+        $cat = $rrepository->find($item->getIdcategorie());
+        $cat->setQt( $cat->getqt() - 1) ;
         $item->setArchived(1);
+        $em->persist($cat);
+        $em->persist($item);
         $em->flush();
 
         return $this->redirectToRoute('app_itemList_f');
@@ -75,9 +113,13 @@ class ItemController extends AbstractController
     public function removeB(ManagerRegistry $doctrine, $id): Response
     {
         $repository = $doctrine->getRepository(item::class);
+        $rrepository = $doctrine->getRepository(CategorieItems::class);
         $em = $doctrine->getManager();
         $item = $repository->find($id);
         $item->setArchived(1);
+        $cat = $rrepository->find($item->getIdcategorie());
+        $cat->setQt( $cat->getqt() - 1) ;
+        $em->persist($cat);
         $em->persist($item);
         $em->flush();
 
@@ -92,8 +134,12 @@ class ItemController extends AbstractController
         $item = new item();
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
+        $rrepository = $doctrine->getRepository(CategorieItems::class);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $cat = $rrepository->find($form->get('id_categorie')->getData());
+            $cat->setQt( $cat->getqt() + 1) ;
+
             $file = $form->get('imageurl')->getData();
             if ($file) {
                 $base64 = base64_encode(file_get_contents($file->getPathname()));
@@ -106,6 +152,7 @@ class ItemController extends AbstractController
             $user = $repository->find(1);
             $item->setIdUser($user);
             $item->setArchived(0);
+            $em->persist($cat);
             $em->persist($item);
             $em->flush();
             return $this->redirectToRoute('app_itemList_f');
@@ -122,7 +169,7 @@ class ItemController extends AbstractController
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
 
-
+        $rrepository = $doctrine->getRepository(CategorieItems::class);
 
         $filename = "";
         $file = $form['imageurl']->getData();
@@ -131,6 +178,8 @@ class ItemController extends AbstractController
         }
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $repository->find(1);
+            $cat = $rrepository->find($form->get('id_categorie')->getData());
+            $cat->setQt( $cat->getqt() + 1) ;
             $file = $form->get('imageurl')->getData();
             if ($file) {
 
@@ -145,6 +194,7 @@ class ItemController extends AbstractController
             if (strpos($filename, '.jpg') !== false) {
                 $item->setIdUser($user);
                 $item->setArchived(0);
+                $em->persist($cat);
                 $em->persist($item);
                 $em->flush();
                 return $this->redirectToRoute('app_itemList_b');
@@ -249,6 +299,7 @@ class ItemController extends AbstractController
                 $item->setLikes($item->getLikes() + 1);
                 $like[0]->setlike(0);
                 $em->persist($like[0]);
+                
                 $em->persist($item);
                 $em->flush();
             }
@@ -293,5 +344,113 @@ class ItemController extends AbstractController
 
         }
         return $this->redirectToRoute('app_itemList_f');
+    }
+
+    #[Route('/item/front/view/{id}', name: 'app_itemViews_f')]
+    public function view(ManagerRegistry $doctrine, $id,ViewItemsRepository $repository)
+    {
+        $repositoryitem = $doctrine->getRepository(item::class);
+        $repositoryview = $doctrine->getRepository(viewitems::class);
+        $em = $doctrine->getManager();
+        $item = $repositoryitem->find($id);
+        $view = $repository->obtain($id,1);
+
+        if (!$view) {
+            $item->setViews($item->getViews() + 1);
+            $viewx = new viewitems();
+            $viewx->setiduser(1);
+            $viewx->setiditem($id);
+            $em->persist($viewx);
+            $em->persist($item);
+            $em->flush();
+
+        }
+
+    }
+
+
+    #[Route('/item/front/detail/{id}', name: 'app_itemDetail_f')]
+    public function detailF(ManagerRegistry $doctrine, CommentItemsRepository $rrrepository, ViewItemsRepository $rrepository,ItemRepository $repository,$id): Response
+{
+        $this->view($doctrine,$id,$rrepository);
+        $item = $repository->find($id);
+        $comment = $rrrepository->findBy(['itemid' => $id]);
+
+        $items = $repository->findAlll();
+        $searchTerm = $item->getLibelle();
+        $itemsc = array_filter($items, function ($item) use ($searchTerm) {
+            $words = explode(' ', $searchTerm);
+            foreach ($words as $word) {
+                if (stripos( $item->getLibelle(), $word) !== false) {
+                    return true;
+                }
+            }
+            return false;
+        });
+        
+
+        $itemsd = $repository->findAlll();
+        $et = $item->getEtat();
+
+        if ($et == "Neuf") {
+        $itemsd = array_filter($items, function ($item) use ($et) {
+            return $item->getEtat() == "Occasion";
+        });
+    } else {
+        $itemsd = array_filter($items, function ($item) use ($et) {
+            return $item->getEtat() == "Neuf";
+        });
+    }
+
+    $searchTerm = $item->getLibelle();
+    $itemsd = array_filter($itemsd, function ($item) use ($searchTerm) {
+        $words = explode(' ', $searchTerm);
+        foreach ($words as $word) {
+            if (stripos( $item->getLibelle(), $word) !== false) {
+                return true;
+            }
+        }
+        return false;
+    });
+
+
+        $itemsn = $repository->findAlll();
+        $searchValue = $item->getIdCategorie();
+        $itemsn = array_filter($items, function ($item) use ($searchValue) {
+            return $item->getIdCategorie() == $searchValue;
+        });
+
+        shuffle($itemsc);
+        shuffle($itemsd);
+        shuffle($itemsn);
+
+        return $this->render('item/front/details.html.twig', [
+            'controller_name' => 'List des Items',
+            'item' => $item,
+            'comment' => $comment,
+            'itemsc' => $itemsc,
+            'itemsn' => $itemsn,
+            'itemsd' => $itemsd
+        ]);
+    }
+
+
+    #[Route('/front/item/comment/{id}', name: 'app_commentItem_f')]
+    public function comment(Request $request, ManagerRegistry $doctrine, $id): Response
+    {
+
+        $nom = $request->get('x');
+        $repository = $doctrine->getRepository(CommentItems::class);
+        $rrepository = $doctrine->getRepository(Utilisateur::class);
+        $em = $doctrine->getManager();
+        $comment = new CommentItems();
+        $user = $rrepository->find(1);
+        $comment->setUserid($user);
+        $comment->setItemid($id);
+        $comment->setComment($nom);
+        $em->persist($comment);
+        $em->flush();
+            return $this->redirectToRoute('app_itemDetail_f', ['id' => $id]);
+
     }
 }

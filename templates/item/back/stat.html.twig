@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ parent() }}Article index
+	{{ parent() }}Items
 {% endblock %}
 
 {% block stylesheets %}
@@ -85,95 +85,49 @@
 				<!-- Navbar -->
 				{{ include('Dashboard_components/_navbarDashboard.html.twig') }}
 				<!-- / Navbar -->
-<br>
+				<br>
 				<!-- Content wrapper -->
-					<div
-					class="content-wrapper"> <!-- Content -->
+				<div
+					class="content-wrapper">
+					<!-- Content -->
 
 					<div
-						class="container">
+						class="container-fluid">
 						<!-- Content -->
 
 						<div class="card">
-							<h5 class="card-header">Liste des Categories Items</h5>
-							<div class="table-responsive text-nowrap">
-								<table class="table table-hover">
-
-									<thead>
-										<tr>
-								
-											<th>Nom</th>
-											<th>Quantite</th>
-											<th>Actions</th>
-												<th></th>
-													<th></th>
-										</tr>
-									</thead>
-
-									<tbody class="table-border-bottom-0">
-
-										{% for i in list %}
-
-
-											<tr>
-
-												<td>{{ i.getNomCategorie() }}</td>
-
-												<td>{{ i.getQt() }}</td>
-
-												<td>
-													<form action={{ url('app_categorieItemsRemove_b',{'id':i.getId()} ) }}>
-														<input class="btn btn-dark" type="submit" value="Supprimer"/>
-													</form>
-
-													<form action={{ url('app_categorieItemsModify_b',{'id':i.getId()} ) }}>
-													<td>
-														<input class="form-control" type="text" name='x' value="Insérer nom"/>
-														</td>
-														<td>
-														<input class="btn btn-dark" type="submit" value="Modifier"/>
-														</td>
-													</form>
-												</td>
-
-											</tr>
-										{% endfor %}
-
-									</tbody>
-								</table>
-
-
-
-
-{{ form_start(formA, {'attr': {'novalidate': 'novalidate'}}) }}
-
-							<div class="card-body">
-							
-									<div class="row mb-3">
-										<label class="col-sm-2 col-form-label" for="basic-default-name">Nom</label>
-										<div class="col-sm-10">
-
-											{{ form_widget(formA.nom_categorie,{'attr':{'class':'form-control', 'placeholder': 'Insérer le nom de la categorie. (Max 30c)'}})}}
-											{{ form_errors(formA.nom_categorie)}}
-                                            
-										</div>
-									</div>
-									<div class="row justify-content-end">
-										<div class="col-sm-10">
-																		{{ form_widget(formA.submit,{'attr':{'class':'btn btn-dark'}})}}
-							
-										</div>
-									</div>
-						
+							<h4 class="card-header">Quantite</h4>
+							<div class="table-responsive text-nowrap"></div>
+							<div class="card">
+								<h5 class="card-header">Nombre des items total : {{list | length }}</h5>
+								<h5 class="card-header">Nombre des categories total : {{listc | length }}</h5>
+								<h5 class="card-header">Nombre des items disponible : {{list|filter(object => object.isArchived() == 0) | length }}</h5>
+								<h5 class="card-header">Nombre des categories disponible : {{listc|filter(object => object.isArchived() == 0) | length }}</h5>
+								<h5 class="card-header">Nombre des items archivees : {{list|filter(object => object.isArchived() == 1) | length }}</h5>
+								<h5 class="card-header">Nombre des categories archivees : {{list|filter(object => object.isArchived() == 0) | length }}</h5>
+								<h5 class="card-header">Nombre des items dans echange : {{list|filter(object => object.getIdEchange() != null) | length }}</h5>
+								<h5 class="card-header">Nombre des items physique : {{list|filter(object => object.getType() == "Physique") | length }}</h5>
+								<h5 class="card-header">Nombre des items physique neuf : {{list|filter(object => object.getEtat() == "Neuf") | length }}</h5>
+								<h5 class="card-header">Nombre des items physique occasion : {{list|filter(object => object.getEtat() == "Occasion") | length }}</h5>
+								<h5 class="card-header">Nombre des items virtuelle : {{list|filter(object => object.getType() == "Virtuelle") | length }}</h5>
+								<h5 class="card-header">Nombre des items service : {{list|filter(object => object.getType() == "Service") | length }}</h5>
+								<h5 class="card-header">Nombre total des vues :</h5>
+								<h5 class="card-header">Nombre total des likes :</h5>
+								<h5 class="card-header">Nombre total des dislikes :</h5>
 							</div>
-							
-	
-
-							{{ form_end(formA) }}
-
-
-
-
+						</div>
+<br>
+										<div class="card">
+							<h4 class="card-header">Top</h4>
+							<div class="table-responsive text-nowrap"></div>
+							<div class="card">
+								<h5 class="card-header">La categorie avec le plus d'items :</h5>
+								<h5 class="card-header">La catégorie avec le plus vues :</h5>
+								<h5 class="card-header">La catégorie avec le plus likes :</h5>
+								<h5 class="card-header">La catégorie avec le plus dislikes :</h5>
+								<h5 class="card-header">L'item avec le plus vues :</h5>
+								<h5 class="card-header">L'item avec le plus likes :</h5>
+								<h5 class="card-header">L'item avec le plus dislikes :</h5>
 							</div>
 						</div>
 
