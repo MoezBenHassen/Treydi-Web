@@ -1,9 +1,137 @@
-<p>Scan the QR code below with the Google Authenticator app:</p>
+{# <p>Scan the QR code below with the Google Authenticator app:</p>
 <img id="imageQRcode" src="{{ qrCode }}" alt="QR code" name="imageQRcode" />
-<form class="form" action="{{ path('2fa_login') }}" method="post">
-    <p class="widget"><input id="_auth_code" type="text" autocomplete="off" name="auth_code" /></p>
+<form class="form" action="/2fa_check" method="post">
+    <p class="widget"><input id="_auth_code" type="text" autocomplete="off" name="_auth_code" /></p>
     <p class="submit"><input type="submit" value="login" /></p>
-    {{ dump(qrCode) }}
-
 </form>
-<p class="cancel"><a href="/{{ path('app_logout') }}"></a></p>
+<p class="cancel"><a href="/{{ path('app_logout') }}"></a></p> #}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}Google Authenticattion{% endblock %}
+
+{% block stylesheets %}
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core-dark.css') }}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default-dark.css') }}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
+    <!-- Vendor -->
+    <link rel="stylesheet" href="../../assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
+
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="../../assets/vendor/css/pages/page-auth.css">
+
+{% endblock %}
+
+{% block javascripts %}
+<!-- Helpers -->
+    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="{{ asset('public/assets/vendor/js/template-customizer.js') }}"></script>
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{{ asset('assets/js/config.js') }}"></script>
+    <script>
+    </script>
+{% endblock %}
+
+{% block body %}
+    <!-- Google Tag Manager (noscript) (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="container-xxl">
+        <div class="authentication-wrapper authentication-basic container-p-y">
+            <div class="authentication-inner">
+                <!-- Register -->
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Logo -->
+                        <div class="app-brand justify-content-center">
+                            <a href="index-2.html" class="app-brand-link gap-2">
+              <span class="app-brand-logo demo">
+
+<img id="chose" src="/assets/img/logo/log-04.png" alt="" style="width: 35px; height: auto;">
+
+</span>
+                                <span class="app-brand-text demo text-body fw-bolder">Treydi</span>
+                            </a>
+                        </div>
+                        <!-- /Logo -->
+                        <h4 class="mb-2">Welcome to Treydi! 👋</h4>
+                        <p class="mb-4">Please Scan the QR code below with the Google Authenticator app</p>
+
+                        <form id="formAuthentication" class="form" action="/2fa_check" method="POST">
+                            <div class="mb-3">
+                                <img id="imageQRcode" src="{{ qrCode }}" alt="QR code" name="imageQRcode" style="width: 350px; height: auto; "/>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="_auth_code" name="_auth_code" placeholder="Enter your code" autocomplete="off" autofocus>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary d-grid w-100" type="submit" value="login">Log in</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /Register -->
+            </div>
+        </div>
+    </div>
+    <!-- / Content -->
+
+
+    <div class="buy-now">
+        <a href="https://themeselection.com/item/sneat-bootstrap-html-admin-template/" target="_blank" class="btn btn-danger btn-buy-now">Buy Now</a>
+    </div>
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
+    <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+
+    <script src="../../assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="../../assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js"></script>
+    <script src="../../assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
+    <script src="../../assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="../../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="{{ asset('/assets/js/pages-auth.js') }}"></script>
+
+    </body>
+
+
+    <!-- Mirrored from demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/auth-login-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 Apr 2023 04:31:51 GMT -->
+    </html>
+
+    <!-- beautify ignore:end -->
+
+
+
+
+{% endblock %}

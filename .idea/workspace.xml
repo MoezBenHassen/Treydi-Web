@@ -5,30 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/security/2fa_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Treydi-Web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Treydi-Web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/controllers.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/controllers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230407220616.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230408182659.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230408182856.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/EditUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserHomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Utilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Utilisateur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/EditUserFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/EditUserFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_home/edituser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_home/edituser.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_home/home_user.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_home/home_user.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/2fa_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/2fa_form.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,7 +273,8 @@
       <workItem from="1682011570059" duration="6462000" />
       <workItem from="1682089620473" duration="5637000" />
       <workItem from="1682102465932" duration="2883000" />
-      <workItem from="1682166210589" duration="14319000" />
+      <workItem from="1682166210589" duration="14747000" />
+      <workItem from="1682196331764" duration="8002000" />
     </task>
     <servers />
   </component>
@@ -357,6 +337,11 @@
           <url>file://$PROJECT_DIR$/templates/user_home/home_user.html.twig</url>
           <line>64</line>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/security/2fa_form.html.twig</url>
+          <line>1</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
