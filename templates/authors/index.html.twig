@@ -1,47 +1,6 @@
-{#
 {% extends 'base.html.twig' %}
 
-{% block title %}Authors index{% endblock %}
-
-{% block body %}
-    <h1>Authors index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>FullName</th>
-                <th>DateDeNaissance</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for author in authors %}
-            <tr>
-                <td>{{ author.id }}</td>
-                <td>{{ author.FullName }}</td>
-                <td>{{ author.DateDeNaissance ? author.DateDeNaissance|date('Y-m-d') : '' }}</td>
-                <td>{{ author.Description }}</td>
-                <td>
-                    <a href="{{ path('app_authors_show', {'id': author.id}) }}">show</a>
-                    <a href="{{ path('app_authors_edit', {'id': author.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_authors_new') }}">Create new</a>
-{% endblock %}
-#}
-{% extends 'base.html.twig' %}
-
-{% block title %}{{ parent() }} Admin | Article{% endblock %}
+{% block title %}{{ parent() }} Admin | Auteurs{% endblock %}
 
 {% block stylesheets %}
 
@@ -151,13 +110,13 @@
 
 
                         <h4 class="fw-bold py-3 mb-4">
-                            <span class="text-muted fw-light">Admin /</span>  Articles
+                            <span class="text-muted fw-light">Admin /</span>  Auteurs
                         </h4>
                         <a href="{{ path('app_authors_new') }}">
                             <div class="d-grid gap-2">
                                 <button class="btn btn-outline-primary">
                                     <i class='bx bx-book-add'></i> &nbsp;
-                                    Ajouter un article
+                                    Ajouter un auteur
                                 </button>
                             </div>
                         </a>
@@ -172,8 +131,6 @@
               </button>
             </div>
                             #}
-
-
 
 
                         {% endfor %}
@@ -222,9 +179,10 @@
                                     <thead>
                                     <tr>
                                         <th> <i class="fas fa-key"></i> Id</th>
-                                        <th>FullName</th>
+                                        <th>Nom / Pseudo</th>
                                         <th>Date de naissance</th>
                                         <th>Description</th>
+                                        <th>Image</th>
                                         <th>actions</th>
                                     </tr>
                                     </thead>
@@ -242,22 +200,34 @@
                                                 {{ author.Description }}
                                             </td>
                                             <td>
+                                                image
 {#                                                <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">#}
 {#                                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-m pull-up" title="{{ article.idUser.nom ~ " " ~ article.idUser.prenom}}">#}
 {#                                                        <img src=" {{asset('assets/img/avatars/1.png')}}" alt="Avatar" class="rounded-circle">#}
 {#                                                    </li>#}
 {#                                                </ul>#}
                                             </td>
+
                                             {# //TODO::  if categorie is archived add background color gray#}
 
 {#                                            <td><span class="badge bg-label-success me-1">{{ article.idCategorie }}</span></td>#}
                                             <td>
-                                                <div class="crud-icons-layout">
+                                                <div class="d-flex ">
+                                                    <a class="dropdown-item" href="{{ path('app_authors_edit', {'id': author.id}) }}" style="padding:0; margin: 0px; ">
+                                                        <button class="btn" style="padding:0;margin: 0px; "><i class="bx bx-edit-alt me-1"></i></button>
+                                                    </a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" style="padding:0;margin: 0px; ">
+                                                        {{ include('authors/_delete_form.html.twig') }}
+                                                    </a>
+                                                </div>
+
+                                            </td>
+{#                                                <div class="crud-icons-layout">#}
                                                     <!-- Button trigger modal -->
 {#                                                    <button type="button" class="btn rounded-pill btn-xs btn-label-info" data-bs-toggle="modal" data-bs-target="#Target{{ article.id }}" style="font-size: 10px">#}
 {#                                                        <i class='bx bx-expand-alt'></i>#}
 {#                                                    </button> &nbsp;&nbsp;&nbsp;&nbsp;#}
-                                                    <div class="mt-3">
+{#                                                    <div class="mt-3">#}
 
                                                         <!-- Modal -->
                                                         {#<div class="modal fade" id="Target{{ article.id }}" tabindex="-1" style="display: none; " aria-hidden="true">
@@ -301,9 +271,9 @@
 {#                                                    </div>#}
 
 
-                                                </div>
-                                                </div>
-                                            </td>
+                                           {#     </div>
+                                                </div>#}
+
                                         </tr>
                                     {% endfor %}
                                     </tbody>

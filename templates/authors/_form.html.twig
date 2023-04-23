@@ -1,4 +1,75 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{#{{ form_start(form) }}#}
+{#    {{ form_widget(form) }}#}
+{#    <button class="btn">{{ button_label|default('Save') }}</button>#}
+{#{{ form_end(form) }}#}
+
+    {#{{ form_widget(form) }}#}
+
+
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Auteur</h5> {#<small class="text-muted float-end">Default label</small>#}
+            </div>
+            <div class="card-body">
+                <style>
+                    .text-danger {
+                        color: #dc3545 !important;
+                    }
+
+                    .text-danger li {
+                        margin-top: 5px;
+                        color: #dc3545 !important;
+                        list-style-type: "> " !important;
+                    }
+
+                </style>
+                {{ form_start(form) }}
+
+                <div class="mb-3">
+                    <div class="form-floating">
+                        {{ form_widget(form.FullName) }}
+                        <label style="color: #a3a4cc">Full Name / Pseudo</label>
+                    </div>
+                    <div class="text-danger">
+                        {{ form_errors(form.FullName, {'attr': {'class': 'text-danger', 'style':'color:red;'}}) }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+
+                    {#make the form errors appear in red#}
+                    <div class="form-floating">
+                        {{ form_widget(form.DateDeNaissance) }}
+                        <label style="color: #a3a4cc">Date De Naissance</label>
+                    </div>
+                    <div class="text-danger">
+                        {{ form_errors(form.DateDeNaissance, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-floating">
+                        {{ form_widget(form.Description) }}
+                        <label style="color: #a3a4cc">Description</label>
+                    </div>
+
+                    <div class="text-danger">
+                        {{ form_errors(form.Description, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    {{ form_widget(form.submit) }}
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{#<button class="btn btn-primary">{{ button_label|default('Save') }}</button>#}
+

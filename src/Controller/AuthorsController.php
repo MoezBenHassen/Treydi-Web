@@ -59,7 +59,7 @@ class AuthorsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $authorsRepository->save($author, true);
-
+            dump($form->getData());
             return $this->redirectToRoute('app_authors_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -72,10 +72,10 @@ class AuthorsController extends AbstractController
     #[Route('/{id}', name: 'app_authors_delete', methods: ['POST'])]
     public function delete(Request $request, Authors $author, AuthorsRepository $authorsRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$author->getId(), $request->request->get('_token'))) {
-            $authorsRepository->remove($author, true);
-        }
 
+            $authorsRepository->removeAuthor($author, true);
+            $message = 'Suppression réussie de l\'auteur : ' . $author->getFullName();
+            $this->addFlash('delete_message', $message);
         return $this->redirectToRoute('app_authors_index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -45,6 +45,9 @@
         .hover {
             color: #e83e8c;
         }
+        .image-link{
+            border: solid red 10px !important;
+        }
     </style>
 
 
@@ -97,7 +100,7 @@
 
                     <a href="{{ path('app_article_index') }}">back to list</a>#}
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4"><span class="te$avg_ratingxt-muted fw-light">Admin / Articles / </span>Ajouter un Article</h4>
+                        <h4 class="fw-bold py-3 mb-4"><span class="te$avg_ratingxt-muted fw-light">Admin / Auteur / </span>Ajouter un Auteur</h4>
                         {{ include('article/_form.html.twig') }}
                 </div>
             </div>
@@ -139,6 +142,31 @@
     <!-- Star RAting JS -->
     {#<script src="{{ asset('assets/css/rating.js') }}"></script>#}
     <script src="{{ asset('assets/js/customStarRating.js')}}"></script>
+    <script>
+        // Select all anchor tags with an href attribute
+        const allLinks = document.querySelectorAll('a[href]');
 
+        // Loop through all the links
+        allLinks.forEach(link => {
+
+            // Check if the link href ends with ".jpg" or ".png"
+            if (link.href.endsWith('.jpg') || link.href.endsWith('.png')) {
+                // Add a class to the anchor tag with the image inside
+                link.classList.add('image-link');
+            }
+
+            // Check if the link has innerText equal to "Download"
+            if (link.innerText === "Download") {
+                // Add a class to the anchor tag with the "Download" text inside
+                link.classList.add('download-link');
+            }
+        });
+
+        // select the delete checkbox
+        const deleteCheckbox = document.querySelector('#article_imageFile_delete');
+
+        // select the parent div of the delete checkbox
+        const deleteDiv = deleteCheckbox.closest('.mb-3');
+    </script>
     </body>
 {% endblock %}

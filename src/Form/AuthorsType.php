@@ -5,10 +5,12 @@ namespace App\Form;
 use App\Entity\Authors;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class AuthorsType extends AbstractType
 {
@@ -24,7 +26,7 @@ class AuthorsType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'id' => 'basic-default-titre',
-                    'placeholder' => 'FullName de l\'auteur'
+                    'placeholder' => 'flen ben foulen'
                 ]
             ])
             ->add('DateDeNaissance', DateType::class, [
@@ -47,7 +49,24 @@ class AuthorsType extends AbstractType
                     'class' => 'form-control', 'id' => 'basic-default-description',
                     'placeholder' => 'Description de l\'article',
                     'style' => 'height: 100px',
+                ]])
+            ->add('imageFile',VichImageType::class,[
+                'required' => false,
+                'label' => 'Image de l\'auteur',
+                'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],
+                'delete_label' => 'Supprimer l\'image',
+                'download_uri' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'basic-default-fullname',
+                    'placeholder' => 'Sélectionnez une image',
+                    'data-check' => 'true',
                 ],
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => '<i class="fa-solid fa-cloud-arrow-up"></i>',
+                'label_html' => true,
+                'attr' => ['class' => 'btn btn-label-primary mt-3', 'style' => 'font-size: 30px;']
             ])
         ;
     }

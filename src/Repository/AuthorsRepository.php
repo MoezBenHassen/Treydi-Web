@@ -21,8 +21,9 @@ class AuthorsRepository extends ServiceEntityRepository
         parent::__construct($registry, Authors::class);
     }
 
-    public function save(Authors $entity, bool $flush = false): void
+    public function save(Authors $entity, bool $flush = true): void
     {
+        $entity->setArchived(false);
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {
@@ -38,7 +39,15 @@ class AuthorsRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function removeAuthor(Authors $entity, bool $flush = false): void
+    {
+        $entity->setArchived(true);
+        $this->getEntityManager()->persist($entity);
 
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 //    /**
 //     * @return Authors[] Returns an array of Authors objects
 //     */

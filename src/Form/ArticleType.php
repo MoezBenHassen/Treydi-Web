@@ -7,7 +7,9 @@ use App\Entity\Authors;
 use App\Entity\CategorieArticle;
 use App\Entity\CategorieCoupon;
 use App\Entity\Utilisateur;
+use App\Repository\AuthorsRepository;
 use App\Repository\CategorieArticleRepository;
+use App\Repository\UtilisateurRepository;
 use Brokoskokoli\StarRatingBundle\Form\RatingType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -63,6 +65,10 @@ class ArticleType extends AbstractType
             ])
             ->add('auteur', EntityType::class,[
                 'class' => Authors::class,
+                'query_builder' => function (AuthorsRepository $authors) {
+                    return $authors->createQueryBuilder('a')
+                        ->where('a.archived = 0');
+                },
                 'label' => 'Auteur',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-auteur'],
                 'attr' => ['class' => 'form-control', 'id' => 'basic-default-auteur',
@@ -85,6 +91,10 @@ class ArticleType extends AbstractType
             ])
             ->add('id_user', EntityType::class,[
                 'class' => Utilisateur::class,
+                'query_builder' => function (UtilisateurRepository $utilisateur) {
+                    return $utilisateur->createQueryBuilder('u')
+                        ->where('u.archived = 0');
+                },
                 'choice_label' => 'nom',
                 'label' => 'Utilisateur',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],
@@ -96,10 +106,13 @@ class ArticleType extends AbstractType
                 'required' => false,
                 'label' => 'Image de l\'article',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],
+                'delete_label' => 'Supprimer l\'image',
+                'download_uri' => true,
                 'attr' => [
                     'class' => 'form-control',
                     'id' => 'basic-default-fullname',
                     'placeholder' => 'Sélectionnez une image',
+                    'data-check' => 'true',
                 ],
             ])
             /*->add('avgRating', NumberType::class, [
