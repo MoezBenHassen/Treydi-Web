@@ -405,7 +405,14 @@
                 </script>
                 <br>
                 <br>
-                <a href="{{ path('app_pdf_generateUser') }}" class="dropdown-item"  href="javascript:void(0);"><i class='bx bxs-file-pdf'></i>imprimer Reclamation</a>
+                {% set urlParams = {
+                    'titre': form.titre_reclamation.vars.value,
+                    'description': form.description_reclamation.vars.value,
+                    'etat': form.etatReclamation.vars.value,
+                    'date': form.date_creation.vars.value,
+                } %}
+                <a href="{{ path('app_pdf_generate', urlParams) }}" class="dropdown-item" href="javascript:void(0);"><i class='bx bxs-file-pdf'></i>imprimer Reclamation</a>
+
 
 
 

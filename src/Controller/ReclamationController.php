@@ -124,19 +124,14 @@ class ReclamationController extends AbstractController
         $form = $this->createForm(FiltrereclamationType::class);
         $form->handleRequest($request);
 
-        $list = [];
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $search = $data->getTitreReclamation() ?? null;
-            $search2 = $data->getDescriptionReclamation() ?? null;
-            $dateCreation = $data->getDateCreation() ? $data->getDateCreation()->format('Y-m-d') : null;
-            $etatReclamation = $data->getEtatReclamation();
+        $search = $request->query->get('titre');
+        $search2 = $request->query->get('description');
+        $dateCreation = $request->query->get('etat');
+        $etatReclamation = $request->query->get('date');
             $query = $repository->findByTitreEtDescriptionEtDateCreation(false, $search, $search2, $dateCreation, $etatReclamation);
             $list = $query;
 
-        } else {
-            $list = $repository->findByTitreEtDescriptionEtDateCreation(false);
-        }
+
 
         $html = $this->renderView('reclamation/pdfReclamation.html.twig', [
             'list' => $list,

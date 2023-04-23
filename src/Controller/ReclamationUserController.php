@@ -115,10 +115,16 @@ class ReclamationUserController extends AbstractController
     {
         $repository = $doctrine->getRepository(Reclamation::class);
 
-        $search = $request->query->get('search');
-        $dateCreation = $request->query->get('dateCreation');
-        $query = $repository->findByTitreEtDescriptionEtDateCreationUser(false, $search, $dateCreation);
+        $form = $this->createForm(FiltrereclamationType::class);
+        $form->handleRequest($request);
+
+        $search = $request->query->get('titre');
+        $search2 = $request->query->get('description');
+        $dateCreation = $request->query->get('etat');
+        $etatReclamation = $request->query->get('date');
+        $query = $repository->findByTitreEtDescriptionEtDateCreationUser(false, $search, $search2, $dateCreation, $etatReclamation);
         $list = $query;
+
 
         $html = $this->renderView('reclamation/pdfReclamation.html.twig', [
             'list' => $list,
