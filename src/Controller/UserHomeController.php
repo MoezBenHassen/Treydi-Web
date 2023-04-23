@@ -45,7 +45,7 @@ class UserHomeController extends AbstractController
         $avatarUrl = $request->getSchemeAndHttpHost().'/assets/img/team/'.$user->getId().'.png';
         $user->setAvatarUrl($avatarUrl);
 
-        return $this->render('user/show.html.twig', [
+        return $this->render('user_home/show.html.twig', [
             'user' => $user,
 
         ]);
