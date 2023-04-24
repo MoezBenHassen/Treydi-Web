@@ -63,7 +63,66 @@
         </div>
     </section>
     <!-- breadcrumb-area-end -->
+    <style>
+        .pagination {
+            --bs-pagination-padding-x: 0.5125rem;
+            --bs-pagination-padding-y: 0.625rem;
+            --bs-pagination-font-size: 0.9375rem;
+            --bs-pagination-color: #a3a4cc !important;
+            --bs-pagination-bg: rgba(124, 125, 182, 0.08);
+            --bs-pagination-border-width: 0px;
+            --bs-pagination-border-color: rgba(255, 255, 255, 0.09);
+            --bs-pagination-border-radius: 0.25rem;
+            --bs-pagination-hover-color: #a3a4cc;
+            --bs-pagination-hover-bg: rgba(124, 125, 182, 0.16);
+            --bs-pagination-hover-border-color: rgba(255, 255, 255, 0.4);
+            --bs-pagination-focus-color: #a3a4cc;
+            --bs-pagination-focus-bg: rgba(124, 125, 182, 0.16);
+            --bs-pagination-focus-box-shadow: none;
+            --bs-pagination-active-color: #fff;
+            --bs-pagination-active-bg: #fff;
+            --bs-pagination-active-border-color: #fff;
+            --bs-pagination-disabled-color: #7071a4;
+            --bs-pagination-disabled-bg: rgba(124, 125, 182, 0.04);
+            --bs-pagination-disabled-border-color: rgba(255, 255, 255, 0.4);
+            display: flex;
+            justify-content: center;
+            padding-left: 0;
+            list-style: none;
 
+            /*border: solid red 2px !important;*/
+        }
+        .pagination li {
+            margin: 10px;
+
+        }
+        .pagination li:hover {
+
+        }
+        .pagination-item  .active {
+            background-color: red !important;
+        }
+        .page-link {
+            position: relative;
+            display: block;
+            padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+            font-size: var(--bs-pagination-font-size);
+            color: var(--bs-pagination-color);
+            background-color: var(--bs-pagination-bg);
+            border: var(--bs-pagination-border-width) solid var(--bs-pagination-border-color);
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+        }
+        .active .page-link {
+            background-color: #b81d6d !important;
+        }
+        li:hover{
+
+        }
+        li .page-item .disabled {
+            background-color: #b81d6d !important;
+        }
+    </style>
     <!-- blog-area -->
     <section class="blog-area">
         <div class="container">
