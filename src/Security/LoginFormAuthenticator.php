@@ -42,7 +42,18 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        // Redirect to app_home route
+        $user = $token->getUser();
+        $roles = $user->getRoles();
+
+        foreach ($roles as $role) {
+            if ($role === 'ROLE_ADMIN') {
+                return new RedirectResponse($this->urlGenerator->generate('app_user_index'));
+            } elseif ($role === 'ROLE_TRADER' || $role === 'ROLE_LIVREUR') {
+                return new RedirectResponse($this->urlGenerator->generate('app_home_user'));
+            }
+        }
+
+        // Redirect to app_home route if user's role is not recognized
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
     }
 

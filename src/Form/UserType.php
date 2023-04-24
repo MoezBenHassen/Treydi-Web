@@ -19,15 +19,14 @@ class UserType extends AbstractType
                 'choices' => [
                     'Trader' => 'ROLE_TRADER',
                     'Livreur' => 'ROLE_LIVREUR',
+                    'Admin' => 'ROLE_ADMIN' ,
                 ],
             ])
             ->add('password')
             ->add('nom')
             ->add('prenom')
             ->add('adresse')
-            ->add('avatar_url')
             ->add('score')
-            ->add('archived')
             ->add('date_naissance')
         ;
     }

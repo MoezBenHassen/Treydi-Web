@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/vendor/js/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/vendor/js/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/LoginFormAuthenticator.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Dashboard_components/_menuDashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Dashboard_components/_menuDashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +26,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
       <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
@@ -166,6 +161,10 @@
       <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
       <path value="$PROJECT_DIR$/vendor/symfony/ux-turbo" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
+      <path value="$PROJECT_DIR$/vendor/spomky-labs/otphp" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/vendor/scheb/2fa-bundle" />
+      <path value="$PROJECT_DIR$/vendor/scheb/2fa-google-authenticator" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -185,29 +184,34 @@
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Marayed/Desktop/PiWeb/Treydi-Web/src&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Adem/Desktop/Treydi-Web/assets/js&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\ahmed\\Desktop\\Treydi-Web\\node_modules\\prettier&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Adem\Desktop\Treydi-Web\assets\js" />
+      <recent name="C:\Users\Adem\Desktop\Treydi-Web\assets\css" />
+      <recent name="C:\Users\Adem\Desktop\Treydi-Web\assets" />
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src" />
       <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\templates" />
-      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Form" />
-      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Controller" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ahmed\Desktop\Treydi-Web\templates\user_home" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner scope="XML" />
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" scope="XML" />
       <method v="2" />
     </configuration>
   </component>
@@ -252,6 +256,28 @@
       <workItem from="1680903866658" duration="156000" />
       <workItem from="1680904476148" duration="2082000" />
       <workItem from="1680909528586" duration="4282000" />
+      <workItem from="1680963537081" duration="838000" />
+      <workItem from="1680965909621" duration="596000" />
+      <workItem from="1680978360373" duration="2184000" />
+      <workItem from="1680989912436" duration="30784000" />
+      <workItem from="1681048561421" duration="10873000" />
+      <workItem from="1681082121051" duration="16941000" />
+      <workItem from="1681107738548" duration="375000" />
+      <workItem from="1681112368277" duration="9055000" />
+      <workItem from="1681380470077" duration="559000" />
+      <workItem from="1681381696982" duration="246000" />
+      <workItem from="1681382195313" duration="983000" />
+      <workItem from="1681517341378" duration="853000" />
+      <workItem from="1681518227286" duration="1056000" />
+      <workItem from="1681571740273" duration="4174000" />
+      <workItem from="1681657199046" duration="2529000" />
+      <workItem from="1681943746062" duration="5387000" />
+      <workItem from="1682011570059" duration="6462000" />
+      <workItem from="1682089620473" duration="5637000" />
+      <workItem from="1682102465932" duration="2883000" />
+      <workItem from="1682166210589" duration="14747000" />
+      <workItem from="1682196331764" duration="13684000" />
+      <workItem from="1682262731234" duration="6997000" />
     </task>
     <servers />
   </component>
@@ -271,5 +297,41 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/Dashboard_components/_menuDashboard.html.twig</url>
+          <line>64</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/user_home/home_user.html.twig</url>
+          <line>61</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/user_home/home_user.html.twig</url>
+          <line>63</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/user_home/home_user.html.twig</url>
+          <line>62</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/user_home/home_user.html.twig</url>
+          <line>64</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/security/2fa_form.html.twig</url>
+          <line>1</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
