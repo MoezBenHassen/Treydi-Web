@@ -2,7 +2,7 @@
 <div class="blog-widget">
     <h4 class="fw-title">Recent Posts</h4>
     <div class="rc__post-wrapper">
-        {% for article in articles|slice(0, 3) %}
+        {% for article in lastArticles %}
         <div class="rc__post-item">
             <div class="rc__post-thumb">
                 <a href="blog-details.html"><img src="{{ vich_uploader_asset(article) }}" alt="img"></a>

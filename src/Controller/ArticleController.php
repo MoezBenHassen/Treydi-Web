@@ -32,7 +32,7 @@ class ArticleController extends AbstractController
         // SEARCH FORM
         $searchForm = $this->createForm(SearchArticlesAdminType::class);
         $searchForm->handleRequest($request);
-        $search = null;
+        $search = '';
         $date_publication = null;
         // HANDLE SEARCH FORM
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
@@ -42,13 +42,13 @@ class ArticleController extends AbstractController
                 $date_publication = $date_publication->format('Y-m-d');
             }
 //            $archived = $searchForm->get('archived')->getData();
-            $queryArticleList = $articleRepository->findByTitleAndDescriptionAndDate($search, $date_publication, false);
+            $queryArticleList = $articleRepository->findByTitleAndDescriptionAndDateI($search, $date_publication, false);
             $articleList = $queryArticleList;
         } else {
             $queryArticleList = $articleRepository->findByArchived(false);
             $articleList = $queryArticleList;
         }
-
+        dump($articleList);
         return $this->render('article/index.html.twig', [
             //find articles that are not archived
             /*'articles' => $articleRepository->findBy(['archived' => false]),*/

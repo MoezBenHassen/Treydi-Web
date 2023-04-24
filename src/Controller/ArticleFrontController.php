@@ -75,12 +75,16 @@ class ArticleFrontController extends AbstractController
             }
         }
 
+        /*get the last 3 articles added by date*/
+        $lastArticles = $articleRepository->findBy(['archived' => false], ['date_publication' => 'DESC'], 3);
+
+
         /*find articles with articleCategory if it exists using findBy*/
         if ($articleCategory) {
             $articleCategory = $categorieArticleRepository->findOneBy(['libelle_cat' => $articleCategory]);
             if ($articleCategory) {
                 dump($articleList);
-                $queryBuilder = $articleRepository->findByArchived(false);
+                $queryBuilder = $articleRepository->findArticlesByCategory($articleCategory, false);
                 $adapter = new QueryAdapter($queryBuilder);
                 $pagerfanta = Pagerfanta::createForCurrentPageWithMaxPerPage(
                     $adapter,
@@ -92,6 +96,7 @@ class ArticleFrontController extends AbstractController
                     'categories' => $categories,
                     'articleCategory' => $articleCategory,
                     'searchForm' => $searchForm->createView(),
+                    'lastArticles' => $lastArticles,
                 ]);
             }
         }
@@ -102,6 +107,7 @@ class ArticleFrontController extends AbstractController
             'categories' => $categories,
             'articleCategory' => $articleCategory,
             'searchForm' => $searchForm->createView(),
+            'lastArticles' => $lastArticles,
         ]);
 
     }
@@ -155,6 +161,10 @@ class ArticleFrontController extends AbstractController
         $searchForm = $this->createForm(SearchArticlesFormType::class);
         $searchForm->handleRequest($request);
         $search = null;
+
+        /*get the last 3 articles added by date*/
+        $lastArticles = $articleRepository->findBy(['archived' => false], ['date_publication' => 'DESC'], 3);
+
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
             $search = $searchForm->get('search')->getData();
             $queryArticleList = $articleRepository->findByTitleAndDescriptionAndDate($search, null, false);
@@ -195,6 +205,8 @@ class ArticleFrontController extends AbstractController
                 'searchForm' => $searchForm->createView(),
                 'authorPicture' => $authorPicture,
                 'authorDescription' => $authorDescription,
+                'lastArticles' => $lastArticles,
+
             ]);
         }
         //##############################################################################################################
@@ -211,6 +223,7 @@ class ArticleFrontController extends AbstractController
             'searchForm' => $searchForm->createView(),
             'authorPicture' => $authorPicture,
             'authorDescription' => $authorDescription,
+            'lastArticles' => $lastArticles,    
         ]);
     }
 
