@@ -369,6 +369,7 @@
 													<li>
 														<h4>{{i.getUserid().getNom()}}</h4>
 														{{i.getComment()}}
+														<a  href={{ url('app_itemCommentDel_f',{'id':i.getId(),'idu':i.getItemid()} ) }}>⌫</a>
 													</li>
 												</ul>
 											</div>

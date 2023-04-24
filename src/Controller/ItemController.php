@@ -53,21 +53,21 @@ class ItemController extends AbstractController
         ]);
     }
 
-    
+
     #[Route('/item/front/listall', name: 'app_itemListall_f')]
     public function listallF(ManagerRegistry $doctrine, ItemRepository $repository): Response
     {
 
         $list = $repository->findAlll();
         $rrepository = $doctrine->getRepository(CategorieItems::class);
-        $listc = $rrepository->findBy([ 'archived' => 0]);
+        $listc = $rrepository->findBy(['archived' => 0]);
 
         return $this->render('item/front/all.html.twig', [
             'controller_name' => 'List des Items',
             'list' => $list,
             'listc' => $listc,
             'cat' => ""
-        
+
         ]);
     }
 
@@ -84,13 +84,13 @@ class ItemController extends AbstractController
 
         $list = $repository->findAlll();
         $rrepository = $doctrine->getRepository(CategorieItems::class);
-        $listc = $rrepository->findBy([ 'archived' => 0]);
+        $listc = $rrepository->findBy(['archived' => 0]);
 
 
 
-        $filteredItems = array_filter($list, function($item) use ($c1, $c2, $c3, $c4) {
+        $filteredItems = array_filter($list, function ($item) use ($c1, $c2, $c3, $c4) {
             $included = true;
-            if ($c1 && $item->getType() !== 'Physique' && $item->getEtat() !== 'Neuf' ) {
+            if ($c1 && $item->getType() !== 'Physique' && $item->getEtat() !== 'Neuf') {
                 $included = false;
                 $this->addFlash('success', 'Your operation was successful!');
             }
@@ -109,30 +109,30 @@ class ItemController extends AbstractController
         $filteredItems = array_filter($filteredItems, function ($item) use ($lib) {
             $words = explode(' ', $lib);
             foreach ($words as $word) {
-                if (stripos( $item->getLibelle(), $word) !== false) {
+                if (stripos($item->getLibelle(), $word) !== false) {
                     return true;
                 }
             }
             return false;
         });
-        
+
 
         return $this->render('item/front/all.html.twig', [
             'controller_name' => 'List des Items',
             'list' => $filteredItems,
             'listc' => $listc,
             'cat' => " | Filtree"
-        
+
         ]);
     }
 
     #[Route('/item/front/listallc/{id}', name: 'app_itemListallc_f')]
-    public function listallcF(ManagerRegistry $doctrine, ItemRepository $repository,$id): Response
+    public function listallcF(ManagerRegistry $doctrine, ItemRepository $repository, $id): Response
     {
 
         $list = $repository->findBy(['id_categorie' => $id, 'archived' => 0]);
         $rrepository = $doctrine->getRepository(CategorieItems::class);
-        $listc = $rrepository->findBy([ 'archived' => 0]);
+        $listc = $rrepository->findBy(['archived' => 0]);
         $a = $rrepository->find($id);
 
 
@@ -140,12 +140,12 @@ class ItemController extends AbstractController
             'controller_name' => 'List des Items',
             'list' => $list,
             'listc' => $listc,
-            'cat' => "| ".$a->getNomCategorie()
+            'cat' => "| " . $a->getNomCategorie()
         ]);
     }
 
     #[Route('/item/back/list', name: 'app_itemList_b')]
-    public function listB(ManagerRegistry $doctrine,ItemRepository $repository): Response
+    public function listB(ManagerRegistry $doctrine, ItemRepository $repository): Response
     {
 
         $list = $repository->findAlll();
@@ -183,7 +183,7 @@ class ItemController extends AbstractController
         $em = $doctrine->getManager();
         $item = $repository->find($id);
         $cat = $rrepository->find($item->getIdcategorie());
-        $cat->setQt( $cat->getqt() - 1) ;
+        $cat->setQt($cat->getqt() - 1);
         $item->setArchived(1);
         $em->persist($cat);
         $em->persist($item);
@@ -201,7 +201,7 @@ class ItemController extends AbstractController
         $item = $repository->find($id);
         $item->setArchived(1);
         $cat = $rrepository->find($item->getIdcategorie());
-        $cat->setQt( $cat->getqt() - 1) ;
+        $cat->setQt($cat->getqt() - 1);
         $em->persist($cat);
         $em->persist($item);
         $em->flush();
@@ -221,7 +221,7 @@ class ItemController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $cat = $rrepository->find($form->get('id_categorie')->getData());
-            $cat->setQt( $cat->getqt() + 1) ;
+            $cat->setQt($cat->getqt() + 1);
 
             $file = $form->get('imageurl')->getData();
             if ($file) {
@@ -262,7 +262,7 @@ class ItemController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $repository->find(1);
             $cat = $rrepository->find($form->get('id_categorie')->getData());
-            $cat->setQt( $cat->getqt() + 1) ;
+            $cat->setQt($cat->getqt() + 1);
             $file = $form->get('imageurl')->getData();
             if ($file) {
 
@@ -353,13 +353,13 @@ class ItemController extends AbstractController
 
 
     #[Route('/item/front/like/{id}', name: 'app_itemLike_f')]
-    public function like(Request $request, ManagerRegistry $doctrine, $id,LikeItemsRepository $repository): Response
+    public function like(Request $request, ManagerRegistry $doctrine, $id, LikeItemsRepository $repository): Response
     {
         $repositoryitem = $doctrine->getRepository(item::class);
         $repositorylike = $doctrine->getRepository(likeitems::class);
         $em = $doctrine->getManager();
         $item = $repositoryitem->find($id);
-        $like = $repository->obtain($id,1);
+        $like = $repository->obtain($id, 1);
 
         if (!$like) {
             $item->setLikes($item->getLikes() + 1);
@@ -370,7 +370,6 @@ class ItemController extends AbstractController
             $em->persist($likex);
             $em->persist($item);
             $em->flush();
-
         } else {
             if ($like[0]->getlike() == 0) {
                 $em->remove($like[0]);
@@ -382,23 +381,22 @@ class ItemController extends AbstractController
                 $item->setLikes($item->getLikes() + 1);
                 $like[0]->setlike(0);
                 $em->persist($like[0]);
-                
+
                 $em->persist($item);
                 $em->flush();
             }
-
         }
         return $this->redirectToRoute('app_itemListall_f');
     }
 
     #[Route('/item/front/dislike/{id}', name: 'app_itemDislike_f')]
-    public function dislike(Request $request, ManagerRegistry $doctrine, $id,LikeItemsRepository $repository): Response
+    public function dislike(Request $request, ManagerRegistry $doctrine, $id, LikeItemsRepository $repository): Response
     {
         $repositoryitem = $doctrine->getRepository(item::class);
         $repositorylike = $doctrine->getRepository(likeitems::class);
         $em = $doctrine->getManager();
         $item = $repositoryitem->find($id);
-        $like = $repository->obtain($id,1);
+        $like = $repository->obtain($id, 1);
 
         if (!$like) {
             $item->setDislikes($item->getDislikes() + 1);
@@ -409,7 +407,6 @@ class ItemController extends AbstractController
             $em->persist($likex);
             $em->persist($item);
             $em->flush();
-
         } else {
             if ($like[0]->getlike() == 1) {
                 $em->remove($like[0]);
@@ -424,19 +421,18 @@ class ItemController extends AbstractController
                 $em->persist($item);
                 $em->flush();
             }
-
         }
         return $this->redirectToRoute('app_itemListall_f');
     }
 
     #[Route('/item/front/view/{id}', name: 'app_itemViews_f')]
-    public function view(ManagerRegistry $doctrine, $id,ViewItemsRepository $repository)
+    public function view(ManagerRegistry $doctrine, $id, ViewItemsRepository $repository)
     {
         $repositoryitem = $doctrine->getRepository(item::class);
         $repositoryview = $doctrine->getRepository(viewitems::class);
         $em = $doctrine->getManager();
         $item = $repositoryitem->find($id);
-        $view = $repository->obtain($id,1);
+        $view = $repository->obtain($id, 1);
 
         if (!$view) {
             $item->setViews($item->getViews() + 1);
@@ -444,17 +440,15 @@ class ItemController extends AbstractController
             $viewx->setiduser(1);
             $viewx->setiditem($id);
             $em->persist($viewx);
-                $em->flush();
-
+            $em->flush();
         }
-
     }
 
 
     #[Route('/item/front/detail/{id}', name: 'app_itemDetail_f')]
-    public function detailF(ManagerRegistry $doctrine, CommentItemsRepository $rrrepository, ViewItemsRepository $rrepository,ItemRepository $repository,$id): Response
-{
-        $this->view($doctrine,$id,$rrepository);
+    public function detailF(ManagerRegistry $doctrine, CommentItemsRepository $rrrepository, ViewItemsRepository $rrepository, ItemRepository $repository, $id): Response
+    {
+        $this->view($doctrine, $id, $rrepository);
         $item = $repository->find($id);
         $comment = $rrrepository->findBy(['itemid' => $id]);
 
@@ -463,37 +457,37 @@ class ItemController extends AbstractController
         $itemsc = array_filter($items, function ($item) use ($searchTerm) {
             $words = explode(' ', $searchTerm);
             foreach ($words as $word) {
-                if (stripos( $item->getLibelle(), $word) !== false) {
+                if (stripos($item->getLibelle(), $word) !== false) {
                     return true;
                 }
             }
             return false;
         });
-        
+
 
         $itemsd = $repository->findAlll();
         $et = $item->getEtat();
 
         if ($et == "Neuf") {
-        $itemsd = array_filter($items, function ($item) use ($et) {
-            return $item->getEtat() == "Occasion";
-        });
-    } else {
-        $itemsd = array_filter($items, function ($item) use ($et) {
-            return $item->getEtat() == "Neuf";
-        });
-    }
-
-    $searchTerm = $item->getLibelle();
-    $itemsd = array_filter($itemsd, function ($item) use ($searchTerm) {
-        $words = explode(' ', $searchTerm);
-        foreach ($words as $word) {
-            if (stripos( $item->getLibelle(), $word) !== false) {
-                return true;
-            }
+            $itemsd = array_filter($items, function ($item) use ($et) {
+                return $item->getEtat() == "Occasion";
+            });
+        } else {
+            $itemsd = array_filter($items, function ($item) use ($et) {
+                return $item->getEtat() == "Neuf";
+            });
         }
-        return false;
-    });
+
+        $searchTerm = $item->getLibelle();
+        $itemsd = array_filter($itemsd, function ($item) use ($searchTerm) {
+            $words = explode(' ', $searchTerm);
+            foreach ($words as $word) {
+                if (stripos($item->getLibelle(), $word) !== false) {
+                    return true;
+                }
+            }
+            return false;
+        });
 
 
         $itemsn = $repository->findAlll();
@@ -532,9 +526,21 @@ class ItemController extends AbstractController
         $comment->setComment($nom);
         $em->persist($comment);
         $em->flush();
-            return $this->redirectToRoute('app_itemDetail_f', ['id' => $id]);
-
+        return $this->redirectToRoute('app_itemDetail_f', ['id' => $id]);
     }
+
+    #[Route('/front/item/commentdel/{id}_{idu}', name: 'app_itemCommentDel_f')]
+    public function commentdel(Request $request, ManagerRegistry $doctrine, $id, $idu): Response
+    {
+
+        $repository = $doctrine->getRepository(CommentItems::class);
+        $em = $doctrine->getManager();
+        $comment =  $repository->find($id);
+        $em->remove($comment);
+        $em->flush();
+        return $this->redirectToRoute('app_itemDetail_f', ['id' => $idu]);
+    }
+
 
     #[Route('/front/item/pdf/', name: 'app_itemPdf_f')]
     public function generatePdf(ItemRepository $repository): Response
@@ -568,6 +574,4 @@ class ItemController extends AbstractController
             'Content-Disposition' => 'attachment; filename="items.pdf"',
         ]);
     }
-
-
 }
