@@ -124,7 +124,6 @@ class ArticleType extends AbstractType
                 'label_html' => true,
                 'attr' => ['class' => 'btn btn-label-primary mt-3', 'style' => 'font-size: 30px;']
             ])
-
         ;
     }
 

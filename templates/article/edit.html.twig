@@ -80,7 +80,7 @@
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">ADMIN / Articles / </span>Modifier Article /<span class="text-muted "> {{ article.id }} </span></h4>
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">ADMIN / <a href="{{ path('app_article_index')  }}">Articles </a> / </span>Modifier Article /<span class="text-muted "> {{ article.id }} </span></h4>
                             {{ include('article/_form.html.twig') }}
 
                     </div>

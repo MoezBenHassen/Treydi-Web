@@ -60,6 +60,14 @@
                         {{ form_errors(form.Description, {'attr': {'class': 'text-danger'}}) }}
                     </div>
                 </div>
+                <div class="mb-3">
+                    {#add margintop to form widget#}
+                    {{ form_label(form.imageFile) }}
+                    {{ form_widget(form.imageFile) }}
+                    <div class="text-danger">
+                        {{ form_errors(form.imageFile, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+                </div>
 
                 <div class="d-grid gap-2">
                     {{ form_widget(form.submit) }}

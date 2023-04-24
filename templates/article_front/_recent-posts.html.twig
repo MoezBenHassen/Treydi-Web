@@ -5,7 +5,7 @@
         {% for article in articles|slice(0, 3) %}
         <div class="rc__post-item">
             <div class="rc__post-thumb">
-                <a href="blog-details.html"><img src="{{ asset('assets/img/blog/rc_post01.jpg') }}" alt="img"></a>
+                <a href="blog-details.html"><img src="{{ vich_uploader_asset(article) }}" alt="img"></a>
             </div>
             <div class="rc__post-content">
                 <h6 class="title"><a href="{{ path('app_article_front_show', {'id': article.id} ) }}">{{ article.titre }}</a></h6>

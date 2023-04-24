@@ -23797,7 +23797,7 @@ html:not([dir=rtl]) .switches-stacked .switch {
 
 .avatar-group .avatar img,
 .avatar-group .avatar .avatar-initial {
-  border: 2px solid rgba(255, 255, 255, .3)
+  border: 2px solid yellow
 }
 
 .avatar-group .avatar .avatar-initial {

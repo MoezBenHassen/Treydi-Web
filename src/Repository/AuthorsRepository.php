@@ -21,6 +21,22 @@ class AuthorsRepository extends ServiceEntityRepository
         parent::__construct($registry, Authors::class);
     }
 
+    public  function findByFullName(string $search, bool $archived = false): array
+    {/*if search == null search ''*/
+        if ($search == null) {
+            $search = '';
+        }
+
+        $queryBuilder = $this->createQueryBuilder('a')
+            ->andWhere('a.archived = :archived')
+            ->setParameter('archived', $archived)
+            ->andWhere('a.FullName LIKE :search')
+            ->setParameter('search', '%'.$search.'%')
+            ->orderBy('a.FullName', 'ASC')
+        ;
+
+        return $queryBuilder->getQuery()->getResult();
+    }
     public function save(Authors $entity, bool $flush = true): void
     {
         $entity->setArchived(false);

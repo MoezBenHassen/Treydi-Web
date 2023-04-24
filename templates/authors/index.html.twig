@@ -124,24 +124,29 @@
 
 
                         {% for message in app.flashes('delete_message') %}
-
-                            {#          <div class="alert alert-success alert-dismissible" role="alert">
-              {{ message  }}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-              </button>
-            </div>
-                            #}
-
-
+{#                            <div class="alert alert-success alert-dismissible" role="alert">#}
+{#                              {{ message  }}#}
+{#                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">#}
+{#                              </button>#}
+{#                            </div>#}
+                            <div class="bs-toast toast toast-ex animate__animated my-2 fade animate__fadeIn bg-success opacity-75" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+                                <div class="toast-header">
+                                    <i class='bx bxs-trash me-2'></i>
+                                    <div class="me-auto fw-semibold">Succées</div>
+                                    <small>Now</small>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                                <div class="toast-body">
+                                    {{ message  }}
+                                </div>
+                            </div>
                         {% endfor %}
                         {% for message in app.flashes('update_message') %}
-
-                            {#          <div class="alert alert-success alert-dismissible" role="alert">
-              {{ message  }}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-              </button>
-            </div>
-                            #}
+{#                              <div class="alert alert-success alert-dismissible" role="alert">#}
+{#                                  {{ message  }}#}
+{#                                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">#}
+{#                                  </button>#}
+{#                              </div>#}
 
                             <div class="bs-toast toast toast-ex animate__animated my-2 fade animate__fadeIn bg-success opacity-75" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
                                 <div class="toast-header">
@@ -169,6 +174,9 @@
               </div>
             </div>#}
                             <h5 class="card-header">Liste des articles</h5>
+                            <div class="card-body">
+                                {{ include('authors/_search-form.html.twig') }}
+                            </div>
                             <div class="card-body">
 {#                                {{ include('article/_search-form.html.twig') }}#}
                             </div>
@@ -200,12 +208,11 @@
                                                 {{ author.Description }}
                                             </td>
                                             <td>
-                                                image
-{#                                                <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">#}
-{#                                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-m pull-up" title="{{ article.idUser.nom ~ " " ~ article.idUser.prenom}}">#}
-{#                                                        <img src=" {{asset('assets/img/avatars/1.png')}}" alt="Avatar" class="rounded-circle">#}
-{#                                                    </li>#}
-{#                                                </ul>#}
+                                                <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-m pull-up" title="{{ author.fullName }}">
+                                                        <img src=" {{vich_uploader_asset(author)}}" alt="Avatar" class="rounded-circle">
+                                                    </li>
+                                                </ul>
                                             </td>
 
                                             {# //TODO::  if categorie is archived add background color gray#}

@@ -44,6 +44,8 @@ class ArticleFrontController extends AbstractController
             $articleList = $queryArticleList;
         }
 
+
+
         /*find articles with articleCategory if it exists using findBy*/
         if ($articleCategory) {
             $articleCategory = $categorieArticleRepository->findOneBy(['libelle_cat' => $articleCategory]);
@@ -70,6 +72,7 @@ class ArticleFrontController extends AbstractController
     #[Route('/article/show/{id<\d+>}', name: 'app_article_front_show')]
     public function show(Article $article ,Request $request, ArticleRatingsRepository $articleRatingsRepository ,ArticleRepository $articleRepository,int $id, CategorieArticleRepository $categorieArticleRepository): Response
     {
+
         // ###################  REPLACED BY SENSION BUNDLE FRAMEWORK BUNDLE : BY CALLING THE ARTICLE ENTITY AS A PARAMETER IN THE FUNCTION ######################
         /*
           $shownArticle =$articleRepository->find($id);
@@ -91,7 +94,13 @@ class ArticleFrontController extends AbstractController
         /*get auteur avatarUrl*/
         $article = $articleRepository->find($id);
         $auteur = $article->getIdUser();
-        $avatarUrl = $auteur->getAvatarUrl();
+
+
+        /*get the authors picture*/
+        $auteur = $article->getAuteur();
+        $authorPicture = $auteur->getImageName();
+        $authorDescription = $auteur->getDescription();
+        dump($authorPicture, $auteur);
 
         // CREATE ARTICLE_RATINGS FORM
         $articleRating = new ArticleRatings();
@@ -133,23 +142,28 @@ class ArticleFrontController extends AbstractController
                 'article' => $articleRepository->find($id),
                 'articles' => $articleRepository->findBy(['archived' => false]),
                 'categories' => $categories,
-                'auteurAvatarUrl' => $avatarUrl,
+                'auteurAvatarUrl' => $authorPicture,
                 'form2' => $form->createView(),
                 'userVote' => $userVote->getRating(),
                 'searchForm' => $searchForm->createView(),
+                'authorPicture' => $authorPicture,
+                'authorDescription' => $authorDescription,
             ]);
         }
         //##############################################################################################################
+
 
         return $this->render('article_front/show.html.twig', [
             //auto fetch the article with the id in the url
             'article' => $article,
             'articles' => $articleRepository->findBy(['archived' => false]),
             'categories' => $categories,
-            'auteurAvatarUrl' => $avatarUrl,
+            'auteurAvatarUrl' => $authorPicture,
             'form2' => $form->createView(),
             'userVote' => ($userVote === null || $userVote->getRating() === 0) ? '&#248;' : $userVote->getRating(),
             'searchForm' => $searchForm->createView(),
+            'authorPicture' => $authorPicture,
+            'authorDescription' => $authorDescription,
         ]);
     }
 

@@ -54,10 +54,11 @@ class AuthorsType extends AbstractType
                 'required' => false,
                 'label' => 'Image de l\'auteur',
                 'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],
+                'allow_delete' => false,
                 'delete_label' => 'Supprimer l\'image',
-                'download_uri' => true,
+                'download_uri' => false,
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control ',
                     'id' => 'basic-default-fullname',
                     'placeholder' => 'Sélectionnez une image',
                     'data-check' => 'true',

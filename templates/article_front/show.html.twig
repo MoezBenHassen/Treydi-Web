@@ -134,12 +134,12 @@
                 </div>
                 <div class="blog__avatar-wrap mb-65">
                     <div class="blog__avatar-img">
-                        <a href="#"><img src="{{ auteurAvatarUrl }}" alt="img"></a>
+                        <a href="#"><img src="/images/articles/{{ auteurAvatarUrl }}" alt="img"></a>
                     </div>
                     <div class="blog__avatar-info">
                         <span class="designation">Written by</span>
                         <h4 class="name"><a href="#">{{ article.auteur }}</a></h4>
-                        <p>Axcepteur sint occaecat atat non proident, sunt culpa officia deserunt mollit anim id est labor umLor emdolor.</p>
+                        <p>{{ authorDescription }}</p>
                     </div>
                 </div>
                 <div class="comments-wrap">
@@ -222,11 +222,14 @@
                     <div class="blog-widget">
                         <div class="sidebar__author">
                             <div class="sidebar__author-thumb">
-                                <img src="{{ asset('assets/img/avatars/1.png') }}" alt="img">
+                                <img src="/images/articles/{{ authorPicture }}" alt="img">
                             </div>
-                            <div class="sidebar__author-content">
+                            <div class="sidebar__author-content " style="border: solid red 2px; overflow-wrap: break-word;
+  word-wrap: break-word;">
                                 <h4 class="name">{{ article.auteur }}</h4>
-                                <p>Lorem ipsum sitamet conteur adipiscing Duis elementum solliciin</p>
+
+                                {#p tag that wraps if exceeds the div width#}
+                                <p class="designation overflow-hidden">{{ authorDescription }}</p>
                                 <div class="sidebar__author-social">
                                     <a href="#"><i class="fab fa-twitter"></i></a>
                                     <a href="#"><i class="fab fa-facebook-f"></i></a>

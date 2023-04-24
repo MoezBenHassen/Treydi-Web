@@ -8,8 +8,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AuthorsRepository::class)]
+#[Vich\Uploadable]
 class Authors
 {
     #[ORM\Id]
@@ -18,13 +21,19 @@ class Authors
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    /*fullName not blank*/
+    #[Assert\NotBlank(message: 'Le nom ne peut pas être vide')]
     private ?string $FullName = null;
 
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    /*date of birth not blank*/
+    #[Assert\NotBlank(message: 'La date de naissance ne peut pas être vide')]
     private ?\DateTimeInterface $DateDeNaissance = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    /*description at least 10 caracters*/
+    #[Assert\Length(min: 10, minMessage: 'La description doit faire au moins 10 caractères')]
     private ?string $Description = null;
 
     #[ORM\OneToMany(mappedBy: 'Auteur', targetEntity: Article::class)]
@@ -171,7 +180,6 @@ class Authors
 
         return $this;
     }
-    
     public function __toString(): string
     {
         return $this->FullName;

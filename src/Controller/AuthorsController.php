@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Authors;
 use App\Form\AuthorsType;
+use App\Form\SearchAuthorsAdminType;
 use App\Repository\AuthorsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,13 +15,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class AuthorsController extends AbstractController
 {
     #[Route('/', name: 'app_authors_index', methods: ['GET'])]
-    public function index(AuthorsRepository $authorsRepository): Response
+    public function index(AuthorsRepository $authorsRepository, Request $request): Response
     {
+        $searchForm = $this->createForm(SearchAuthorsAdminType::class);
+        $searchForm->handleRequest($request);
+        $search = null;
         /*findBy archived falseµ/*/
-        $authors=$authorsRepository->findBy(['archived' => false]);
-        dump($authors);
+
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $search = $searchForm->get('search')->getData();
+            $queryAuthorList = $authorsRepository->findByFullName($search, false);
+            $authorList = $queryAuthorList;
+        } else {
+            $queryAuthorList = $authorsRepository->findByArchived(false);
+            $authorList = $queryAuthorList;
+        }
+//        $authors=$authorsRepository->findBy(['archived' => false]);
+        dump($authorList);
         return $this->render('authors/index.html.twig', [
-            'authors' => $authors,
+            'authors' => $authorList,
+            'searchForm' => $searchForm->createView(),
+            'search' => $search,
         ]);
     }
 
@@ -60,6 +75,8 @@ class AuthorsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $authorsRepository->save($author, true);
             dump($form->getData());
+            $message = 'Update réussie de l\'auteur : ' . $author->getFullName();
+            $this->addFlash('update_message', $message);
             return $this->redirectToRoute('app_authors_index', [], Response::HTTP_SEE_OTHER);
         }
 
