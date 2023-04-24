@@ -22,7 +22,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleFrontController extends AbstractController
 {
     #[Route('/article/{articleCategory?}', name: 'app_article_front')]
-    public function index(DateTimeFormatter $dateTimeFormatter,string $articleCategory = null,Request $request, ArticleRepository $articleRepository, CategorieArticleRepository $categorieArticleRepository): Response
+    public function index(
+        DateTimeFormatter $dateTimeFormatter,
+        string $articleCategory = null,
+        Request $request,
+        ArticleRepository $articleRepository,
+        CategorieArticleRepository $categorieArticleRepository
+    ): Response
     {
         /*count each categorie order them ASC*/
 
@@ -44,7 +50,10 @@ class ArticleFrontController extends AbstractController
 
             $queryBuilder = $articleRepository->findByTitleAndDescriptionAndDate($search, null, false);
             $adapter = new QueryAdapter($queryBuilder);
-            $pagerfanta = Pagerfanta::createForCurrentPageWithMaxPerPage($adapter, 1, 3);
+            $pagerfanta = Pagerfanta::createForCurrentPageWithMaxPerPage(
+                $adapter,
+                $request->query->get('page', 1),
+                3);
             $articleList = $pagerfanta;
             foreach ($articleList as $key => $article) {
                 $ago = $dateTimeFormatter->formatDiff($article->getDatePublication());
@@ -55,7 +64,10 @@ class ArticleFrontController extends AbstractController
 
             $queryBuilder = $articleRepository->findByArchived(false);
             $adapter = new QueryAdapter($queryBuilder);
-            $pagerfanta = Pagerfanta::createForCurrentPageWithMaxPerPage($adapter, 1, 3);
+            $pagerfanta = Pagerfanta::createForCurrentPageWithMaxPerPage(
+                $adapter,
+                $request->query->get('page', 1),
+                3);
             $articleList = $pagerfanta;
             foreach ($articleList as $key => $article) {
                 $ago = $dateTimeFormatter->formatDiff($article->getDatePublication());
@@ -70,7 +82,10 @@ class ArticleFrontController extends AbstractController
                 dump($articleList);
                 $queryBuilder = $articleRepository->findByArchived(false);
                 $adapter = new QueryAdapter($queryBuilder);
-                $pagerfanta = Pagerfanta::createForCurrentPageWithMaxPerPage($adapter, 1, 3);
+                $pagerfanta = Pagerfanta::createForCurrentPageWithMaxPerPage(
+                    $adapter,
+                    $request->query->get('page', 1),
+                    3);
                 $articleList = $pagerfanta;
                 return $this->render('article_front/index.html.twig', [
                     'articles' => $articleList,
@@ -92,7 +107,15 @@ class ArticleFrontController extends AbstractController
     }
 
     #[Route('/article/show/{id<\d+>}', name: 'app_article_front_show')]
-    public function show(Article $article , Request $request, ArticleRatingsRepository $articleRatingsRepository , ArticleRepository $articleRepository, int $id, CategorieArticleRepository $categorieArticleRepository,DateTimeFormatter $dateTimeFormatter): Response
+    public function show(
+        Article $article ,
+        Request $request,
+        ArticleRatingsRepository $articleRatingsRepository ,
+        ArticleRepository $articleRepository,
+        int $id,
+        CategorieArticleRepository $categorieArticleRepository,
+        DateTimeFormatter $dateTimeFormatter
+    ): Response
     {
 
         // ###################  REPLACED BY SENSION BUNDLE FRAMEWORK BUNDLE : BY CALLING THE ARTICLE ENTITY AS A PARAMETER IN THE FUNCTION ######################
