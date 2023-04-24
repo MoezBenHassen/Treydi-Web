@@ -111,9 +111,9 @@
 								<h5 class="card-header">Nombre des items physique occasion : {{list|filter(object => object.getEtat() == "Occasion") | length }}</h5>
 								<h5 class="card-header">Nombre des items virtuelle : {{list|filter(object => object.getType() == "Virtuelle") | length }}</h5>
 								<h5 class="card-header">Nombre des items service : {{list|filter(object => object.getType() == "Service") | length }}</h5>
-								<h5 class="card-header">Nombre total des vues :</h5>
-								<h5 class="card-header">Nombre total des likes :</h5>
-								<h5 class="card-header">Nombre total des dislikes :</h5>
+								<h5 class="card-header">Nombre total des vues : {{ list|reduce((carry, item) => carry + item.getViews(), 0) }}	</h5>
+								<h5 class="card-header">Nombre total des likes : {{ list|reduce((carry, item) => carry + item.getLikes(), 0) }}</h5>
+								<h5 class="card-header">Nombre total des dislikes : {{ list|reduce((carry, item) => carry + item.getDislikes(), 0) }}</h5>
 							</div>
 						</div>
 <br>
@@ -121,13 +121,13 @@
 							<h4 class="card-header">Top</h4>
 							<div class="table-responsive text-nowrap"></div>
 							<div class="card">
-								<h5 class="card-header">La categorie avec le plus d'items :</h5>
-								<h5 class="card-header">La catégorie avec le plus vues :</h5>
-								<h5 class="card-header">La catégorie avec le plus likes :</h5>
-								<h5 class="card-header">La catégorie avec le plus dislikes :</h5>
-								<h5 class="card-header">L'item avec le plus vues :</h5>
-								<h5 class="card-header">L'item avec le plus likes :</h5>
-								<h5 class="card-header">L'item avec le plus dislikes :</h5>
+								<h5 class="card-header">La categorie avec le plus d'items : {% set a =  listc|sort((a, b) => b.getQt() - a.getQt()) %}{{ a[0].getNomCategorie() }}</h5>
+								<h5 class="card-header">La catégorie avec le plus vues : {% set b =  list|sort((a, b) => b.getViews() - a.getViews()) %}{{ b[0].getIdCategorie().getNomCategorie() }}</h5>
+								<h5 class="card-header">La catégorie avec le plus likes : {% set c =  list|sort((a, b) => b.getLikes() - a.getLikes()) %}{{c[0].getIdCategorie().getNomCategorie() }}</h5>
+								<h5 class="card-header">La catégorie avec le plus dislikes : {% set d =  list|sort((a, b) => b.getDislikes() - a.getDislikes()) %}{{d[0].getIdCategorie().getNomCategorie() }}</h5>
+								<h5 class="card-header">L'item avec le plus vues : {% set e =  list|sort((a, b) => b.getViews() - a.getViews()) %}{{e[0].getLibelle()}}</h5>
+								<h5 class="card-header">L'item avec le plus likes : {% set f =  list|sort((a, b) => b.getLikes() - a.getLikes()) %}{{f[0].getLibelle()}}</h5>
+								<h5 class="card-header">L'item avec le plus dislikes :{% set g =  list|sort((a, b) => b.getDislikes() - a.getDislikes()) %}{{g[0].getLibelle()}}</h5>
 							</div>
 						</div>
 

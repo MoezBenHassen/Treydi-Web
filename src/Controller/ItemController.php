@@ -26,6 +26,8 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Dompdf\Options;
+use Dompdf\Dompdf;
 
 
 class ItemController extends AbstractController
@@ -53,26 +55,107 @@ class ItemController extends AbstractController
 
     
     #[Route('/item/front/listall', name: 'app_itemListall_f')]
-    public function listallF(ItemRepository $repository): Response
+    public function listallF(ManagerRegistry $doctrine, ItemRepository $repository): Response
     {
 
         $list = $repository->findAlll();
+        $rrepository = $doctrine->getRepository(CategorieItems::class);
+        $listc = $rrepository->findBy([ 'archived' => 0]);
 
         return $this->render('item/front/all.html.twig', [
             'controller_name' => 'List des Items',
-            'list' => $list
+            'list' => $list,
+            'listc' => $listc,
+            'cat' => ""
+        
+        ]);
+    }
+
+
+    #[Route('/item/front/listall/filter/', name: 'app_itemFilter_f')]
+    public function filterF(Request $request, ManagerRegistry $doctrine, ItemRepository $repository): Response
+    {
+
+        $lib = $request->get('libelle');
+        $c1 = $request->get('physiquen');
+        $c2 = $request->get('physiqueo');
+        $c3 = $request->get('virtuelle');
+        $c4 = $request->get('service');
+
+        $list = $repository->findAlll();
+        $rrepository = $doctrine->getRepository(CategorieItems::class);
+        $listc = $rrepository->findBy([ 'archived' => 0]);
+
+
+
+        $filteredItems = array_filter($list, function($item) use ($c1, $c2, $c3, $c4) {
+            $included = true;
+            if ($c1 && $item->getType() !== 'Physique' && $item->getEtat() !== 'Neuf' ) {
+                $included = false;
+                $this->addFlash('success', 'Your operation was successful!');
+            }
+            if ($c2 && $item->getType() !== 'Physique' && $item->getEtat() !== 'Occasion') {
+                $included = false;
+            }
+            if ($c3 && $item->getType() !== 'Virtuelle') {
+                $included = false;
+            }
+            if ($c4 && $item->getType() !== 'Service') {
+                $included = false;
+            }
+            return $included;
+        });
+
+        $filteredItems = array_filter($filteredItems, function ($item) use ($lib) {
+            $words = explode(' ', $lib);
+            foreach ($words as $word) {
+                if (stripos( $item->getLibelle(), $word) !== false) {
+                    return true;
+                }
+            }
+            return false;
+        });
+        
+
+        return $this->render('item/front/all.html.twig', [
+            'controller_name' => 'List des Items',
+            'list' => $filteredItems,
+            'listc' => $listc,
+            'cat' => " | Filtree"
+        
+        ]);
+    }
+
+    #[Route('/item/front/listallc/{id}', name: 'app_itemListallc_f')]
+    public function listallcF(ManagerRegistry $doctrine, ItemRepository $repository,$id): Response
+    {
+
+        $list = $repository->findBy(['id_categorie' => $id, 'archived' => 0]);
+        $rrepository = $doctrine->getRepository(CategorieItems::class);
+        $listc = $rrepository->findBy([ 'archived' => 0]);
+        $a = $rrepository->find($id);
+
+
+        return $this->render('item/front/all.html.twig', [
+            'controller_name' => 'List des Items',
+            'list' => $list,
+            'listc' => $listc,
+            'cat' => "| ".$a->getNomCategorie()
         ]);
     }
 
     #[Route('/item/back/list', name: 'app_itemList_b')]
-    public function listB(ItemRepository $repository): Response
+    public function listB(ManagerRegistry $doctrine,ItemRepository $repository): Response
     {
 
         $list = $repository->findAlll();
+        $rrepository = $doctrine->getRepository(CategorieItems::class);
+        $listc = $rrepository->findAll();
 
         return $this->render('item/back/index.html.twig', [
             'controller_name' => 'List des Items',
-            'list' => $list
+            'list' => $list,
+            'listc' => $listc
         ]);
     }
 
@@ -305,7 +388,7 @@ class ItemController extends AbstractController
             }
 
         }
-        return $this->redirectToRoute('app_itemList_f');
+        return $this->redirectToRoute('app_itemListall_f');
     }
 
     #[Route('/item/front/dislike/{id}', name: 'app_itemDislike_f')]
@@ -343,7 +426,7 @@ class ItemController extends AbstractController
             }
 
         }
-        return $this->redirectToRoute('app_itemList_f');
+        return $this->redirectToRoute('app_itemListall_f');
     }
 
     #[Route('/item/front/view/{id}', name: 'app_itemViews_f')]
@@ -361,8 +444,7 @@ class ItemController extends AbstractController
             $viewx->setiduser(1);
             $viewx->setiditem($id);
             $em->persist($viewx);
-            $em->persist($item);
-            $em->flush();
+                $em->flush();
 
         }
 
@@ -453,4 +535,39 @@ class ItemController extends AbstractController
             return $this->redirectToRoute('app_itemDetail_f', ['id' => $id]);
 
     }
+
+    #[Route('/front/item/pdf/', name: 'app_itemPdf_f')]
+    public function generatePdf(ItemRepository $repository): Response
+    {
+        // Get all items from the database using the Item class
+        $items = $repository->findAlll();
+
+        // Set the PDF options
+        $options = new Options();
+        $options->set('defaultFont', 'Helvetica');
+        $options->set('isRemoteEnabled', true);
+
+        // Instantiate Dompdf with the options
+        $dompdf = new Dompdf($options);
+
+        // Generate the HTML for the PDF
+        $html = $this->renderView('item/front/pdf.html.twig', ['items' => $items]);
+
+        // Load the HTML into Dompdf
+        $dompdf->loadHtml($html);
+
+        // Set the paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the PDF
+        $dompdf->render();
+
+        // Output the generated PDF to the browser
+        return new Response($dompdf->output(), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="items.pdf"',
+        ]);
+    }
+
+
 }

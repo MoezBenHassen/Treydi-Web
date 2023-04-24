@@ -377,9 +377,11 @@
 									</div>
 								</div>
 							</div>
+
+							{% if item.getType == "Physique" %}
 									<div class="related__product-area">
 								<div class="related__product-wrapper">
-									<h2 class="related-title">Meme articles mais etat different</h2>
+									<h2 class="related-title">Meme Items mais etat different</h2>
 									<div class="row justify-content-center row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
 										{% for i in itemsd|slice(0, 8) %}
 											<div class="col">
@@ -435,9 +437,11 @@
 									</div>
 								</div>
 							</div>
+
+							{% endif %}
 							<div class="related__product-area">
 								<div class="related__product-wrapper">
-									<h2 class="related-title">Articles similaires</h2>
+									<h2 class="related-title">Items similaires</h2>
 									<div class="row justify-content-center row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
 										{% for i in itemsc|slice(0, 8) %}
 											<div class="col">
@@ -495,7 +499,7 @@
 							</div>
 							<div class="related__product-area">
 								<div class="related__product-wrapper">
-									<h2 class="related-title">Articles de meme categorie</h2>
+									<h2 class="related-title">Items de meme categorie</h2>
 									<div class="row justify-content-center row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
 										{% for i in itemsn|slice(0, 8) %}
 											<div class="col">
