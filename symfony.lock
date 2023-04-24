@@ -1,4 +1,7 @@
 {
+    "babdev/pagerfanta-bundle": {
+        "version": "v4.0.0"
+    },
     "brokoskokoli/star-rating-bundle": {
         "version": "v4.0.0"
     },

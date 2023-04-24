@@ -12,6 +12,8 @@ use App\Repository\ArticleRepository;
 use App\Repository\CategorieArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Bundle\TimeBundle\DateTimeFormatter;
+use Pagerfanta\Doctrine\ORM\QueryAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,31 +40,40 @@ class ArticleFrontController extends AbstractController
         $search = null;
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
             $search = $searchForm->get('search')->getData();
-            $queryArticleList = $articleRepository->findByTitleAndDescriptionAndDate($search, null, false);
-            $articleList = $queryArticleList;
+
+
+            $queryBuilder = $articleRepository->findByTitleAndDescriptionAndDate($search, null, false);
+            $adapter = new QueryAdapter($queryBuilder);
+            $pagerfanta = Pagerfanta::createForCurrentPageWithMaxPerPage($adapter, 1, 3);
+            $articleList = $pagerfanta;
             foreach ($articleList as $key => $article) {
                 $ago = $dateTimeFormatter->formatDiff($article->getDatePublication());
                 $article->setAgo($ago);
             }
 
         } else {
-            $queryArticleList = $articleRepository->findByArchived(false);
-            $articleList = $queryArticleList;
+
+            $queryBuilder = $articleRepository->findByArchived(false);
+            $adapter = new QueryAdapter($queryBuilder);
+            $pagerfanta = Pagerfanta::createForCurrentPageWithMaxPerPage($adapter, 1, 3);
+            $articleList = $pagerfanta;
             foreach ($articleList as $key => $article) {
                 $ago = $dateTimeFormatter->formatDiff($article->getDatePublication());
                 $article->setAgo($ago);
             }
         }
 
-
-
         /*find articles with articleCategory if it exists using findBy*/
         if ($articleCategory) {
             $articleCategory = $categorieArticleRepository->findOneBy(['libelle_cat' => $articleCategory]);
             if ($articleCategory) {
                 dump($articleList);
+                $queryBuilder = $articleRepository->findByArchived(false);
+                $adapter = new QueryAdapter($queryBuilder);
+                $pagerfanta = Pagerfanta::createForCurrentPageWithMaxPerPage($adapter, 1, 3);
+                $articleList = $pagerfanta;
                 return $this->render('article_front/index.html.twig', [
-                    'articles' => $articleRepository->findBy(['id_categorie' => $articleCategory->getId(), 'archived' => false]),
+                    'articles' => $articleList,
                     'categories' => $categories,
                     'articleCategory' => $articleCategory,
                     'searchForm' => $searchForm->createView(),

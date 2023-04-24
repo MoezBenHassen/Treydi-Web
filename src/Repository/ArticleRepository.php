@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Article;
 use App\Entity\Utilisateur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -63,7 +64,26 @@ class ArticleRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function findByTitleAndDescriptionAndDate(string $search=null, ?string $date_publication = null, bool $archived){
+//    public function findByTitleAndDescriptionAndDate(string $search=null, ?string $date_publication = null, bool $archived){
+//        $queryBuilder= $this->createQueryBuilder('a');
+//        $queryBuilder->where('a.archived = :archived');
+//        $queryBuilder->setParameter('archived', $archived);
+//        if($search){
+//            $queryBuilder->andWhere('a.titre LIKE :search OR a.description LIKE :search');
+//            $queryBuilder->setParameter('search', '%'.$search.'%');
+//        }
+//
+//        if ($date_publication) {
+//            $date = new \DateTime($date_publication);
+//            $dateFormatted = $date->format('Y-m-d');
+//            $queryBuilder->andWhere("DATE_FORMAT(a.date_publication, '%Y-%m-%d') = :dateCreation");
+//            $queryBuilder->setParameter('dateCreation', $dateFormatted);
+//        }
+//
+//        $queryBuilder->orderBy('a.id', 'ASC');
+//        return $queryBuilder->getQuery()->getResult();
+//    }
+    public function findByTitleAndDescriptionAndDate(string $search=null, ?string $date_publication = null, bool $archived):QueryBuilder{
         $queryBuilder= $this->createQueryBuilder('a');
         $queryBuilder->where('a.archived = :archived');
         $queryBuilder->setParameter('archived', $archived);
@@ -80,7 +100,22 @@ class ArticleRepository extends ServiceEntityRepository
         }
 
         $queryBuilder->orderBy('a.id', 'ASC');
-        return $queryBuilder->getQuery()->getResult();
+        return $queryBuilder;
+    }
+
+    public function findByArchived(bool $archived):QueryBuilder{
+        $queryBuilder= $this->createQueryBuilder('a');
+        $queryBuilder->where('a.archived = :archived');
+        $queryBuilder->setParameter('archived', $archived);
+        $queryBuilder->orderBy('a.id', 'ASC');
+        return $queryBuilder;
+    }
+    public function findByCategory($cat):QueryBuilder{
+        $queryBuilder= $this->createQueryBuilder('a');
+        $queryBuilder->where('a.idCategorie = :cat');
+        $queryBuilder->setParameter('cat', $cat);
+        $queryBuilder->orderBy('a.id', 'ASC');
+        return $queryBuilder;
     }
 //    /**
 //     * @return Article[] Returns an array of Article objects
