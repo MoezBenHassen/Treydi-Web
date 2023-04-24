@@ -314,6 +314,9 @@
                     <div class="card-body">
                             <div class="input-group mb-3">
                                 {{ form_start(searchForm) }}
+                                {{ form_widget(searchForm.search, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(searchForm.itemSearch, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(searchForm.submit, {'attr': {'class': 'btn btn-primary'}}) }}
                                 {{ form_end(searchForm) }}
                             </div>
                         <div class="table-responsive text-nowrap">

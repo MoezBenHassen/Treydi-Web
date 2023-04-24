@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class EchangeController extends AbstractController
 {
@@ -91,7 +92,7 @@ class EchangeController extends AbstractController
 
         if($searchForm->isSubmitted() && $searchForm->isValid()) {
             $search = $searchForm->get('search')->getData();
-            $list = $repository->SearchByTitreEchangeUser($search, false);
+            $list = $repository->SearchByTitreEchangeAdmin($search, false);
         } else {
             $list = $repository->findAll();
         }
@@ -307,23 +308,39 @@ class EchangeController extends AbstractController
         $em = $doctrine->getManager();
         $repository = $em->getRepository(Echange::class);
 
+        $itemsRep = $em->getRepository(Item::class);
+
         $searchForm = $this->createForm(EchangeSearchTypeUser::class);
         $searchForm->handleRequest($request);
 
+        $list = [];
+
         if($searchForm->isSubmitted() && $searchForm->isValid()) {
             $search = $searchForm->get('search')->getData();
-            $list = $repository->SearchByTitreEchangeUser($search, false);
+            $searchItems = $searchForm->get('itemSearch')->getData();
+            if ($search) {
+                $list = $repository->SearchByTitreEchangeUser($search, false);
+            } elseif($searchItems) {
+                $items = $itemsRep->findBy(['libelle' => $searchItems]);
+
+                foreach ($items as $item) {
+                    $echangeId = $item->getIdEchange();
+                    $echange = $repository->find($echangeId);
+                    if ($echange && !$echange->isArchived() && $echange->getIdUser2() === null && !in_array($echange, $list)) {
+                        $list[] = $echange;
+                    }
+                }
+            }
         } else {
             $list = $repository->findBy(['archived' => false, 'id_user2' => null]);
         }
 
-
         return $this->render('echange/user/list.tml.twig', [
-            'controller_name' => 'EchangeListController',
             'list' => $list,
             'searchForm' => $searchForm->createView(),
         ]);
     }
+
     #[Route('/echange/listmesechanges', name: 'app_echange_list_mesechanges')]
     public function listMesEchanges(ManagerRegistry $doctrine, Security $security): Response
     {

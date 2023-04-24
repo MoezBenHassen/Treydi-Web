@@ -20,6 +20,7 @@ use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Mime\Email;
+use Twig\Environment;
 
 
 class EchangeProposerController extends AbstractController
@@ -72,7 +73,6 @@ class EchangeProposerController extends AbstractController
             $echange_proposer->setDateProposer($date);
             $em->persist($echange_proposer);
 
-            $em->flush();
 
             $items = json_decode(json_encode($request->request->get('items')), true);
 
@@ -83,10 +83,10 @@ class EchangeProposerController extends AbstractController
                     if ($item) {
                         $item->setIdEchange($echange);
                         $em->persist($item);
-                        echo "Item ID: $itemId\n";
                     }
                 }
             }
+
             //Proposer Mailer
             $email = (new Email())
                 ->from("treydiechange@no-reply.com")
@@ -145,7 +145,7 @@ class EchangeProposerController extends AbstractController
 
     //accepter proposition
     #[Route('/echange_proposer/user/accepter/{id}', name: 'app_echangeproposer_user_accepter')]
-    public function accepterEchangeUser(ManagerRegistry $doctrine, $id, MailerInterface $mailer): Response
+    public function accepterEchangeUser(ManagerRegistry $doctrine, $id, MailerInterface $mailer, Environment $twig): Response
     {
         $em = $doctrine->getManager();
 
@@ -182,20 +182,27 @@ class EchangeProposerController extends AbstractController
 
         $em->flush();
 
+        //Render email template with Twig
+        $emailBody = $twig->render('echange/emails/accepter.html.twig', [
+            'echange' => $echange,
+        ]);
+
         //Accepter Mailer
         $email = (new Email())
             ->from("treydiechange@no-reply.com")
             ->to($user2->getEmail())
             ->subject("Proposition d'Echange accepter")
-            ->text("Votre proposition d'Echange est accepter. Le titre de cet Echange : {$echange->getTitreEchange()}");
+            ->html($emailBody);
 
         $mailer->send($email);
+
 
         $em->persist($echange);
         $em->flush();
 
         return $this->redirectToRoute('app_echange_list_user');
     }
+
 
     //Refuser proposition
     #[Route('/echange_proposer/user/refuser/{id}', name: 'app_echangeproposer_user_refuser')]
