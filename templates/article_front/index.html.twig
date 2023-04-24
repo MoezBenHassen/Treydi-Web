@@ -88,7 +88,7 @@
                                     <div class="blog-post-meta">
                                         <ul class="list-wrap">
                                             <li><i class="fa-regular fa-user"></i> By<a href="#">{{ article.auteur }}</a></li>
-                                            <li><i class="fa-regular fa-calendar-days"></i>{{ article.datePublication|date('d-M-Y') }}</li>
+                                            <li><i class="fa-regular fa-calendar-days"></i>{#{{ article.datePublication|date('d-M-Y') }}#} {{ article.ago }}</li>
                                             <li><i class="fa-solid fa-star"></i><a href="#">{{ article.avgRating }}</a></li>
                                         </ul>
                                     </div>

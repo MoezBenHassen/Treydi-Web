@@ -11,6 +11,7 @@ use App\Repository\ArticleRatingsRepository;
 use App\Repository\ArticleRepository;
 use App\Repository\CategorieArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Bundle\TimeBundle\DateTimeFormatter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleFrontController extends AbstractController
 {
     #[Route('/article/{articleCategory?}', name: 'app_article_front')]
-    public function index(string $articleCategory = null,Request $request, ArticleRepository $articleRepository, CategorieArticleRepository $categorieArticleRepository): Response
+    public function index(DateTimeFormatter $dateTimeFormatter,string $articleCategory = null,Request $request, ArticleRepository $articleRepository, CategorieArticleRepository $categorieArticleRepository): Response
     {
         /*count each categorie order them ASC*/
 
@@ -39,9 +40,18 @@ class ArticleFrontController extends AbstractController
             $search = $searchForm->get('search')->getData();
             $queryArticleList = $articleRepository->findByTitleAndDescriptionAndDate($search, null, false);
             $articleList = $queryArticleList;
+            foreach ($articleList as $key => $article) {
+                $ago = $dateTimeFormatter->formatDiff($article->getDatePublication());
+                $article->setAgo($ago);
+            }
+
         } else {
             $queryArticleList = $articleRepository->findByArchived(false);
             $articleList = $queryArticleList;
+            foreach ($articleList as $key => $article) {
+                $ago = $dateTimeFormatter->formatDiff($article->getDatePublication());
+                $article->setAgo($ago);
+            }
         }
 
 
@@ -50,6 +60,7 @@ class ArticleFrontController extends AbstractController
         if ($articleCategory) {
             $articleCategory = $categorieArticleRepository->findOneBy(['libelle_cat' => $articleCategory]);
             if ($articleCategory) {
+                dump($articleList);
                 return $this->render('article_front/index.html.twig', [
                     'articles' => $articleRepository->findBy(['id_categorie' => $articleCategory->getId(), 'archived' => false]),
                     'categories' => $categories,
@@ -59,7 +70,7 @@ class ArticleFrontController extends AbstractController
             }
         }
 
-
+        dump($articleList);
         return $this->render('article_front/index.html.twig', [
             'articles' => $articleList,
             'categories' => $categories,
@@ -70,7 +81,7 @@ class ArticleFrontController extends AbstractController
     }
 
     #[Route('/article/show/{id<\d+>}', name: 'app_article_front_show')]
-    public function show(Article $article ,Request $request, ArticleRatingsRepository $articleRatingsRepository ,ArticleRepository $articleRepository,int $id, CategorieArticleRepository $categorieArticleRepository): Response
+    public function show(Article $article , Request $request, ArticleRatingsRepository $articleRatingsRepository , ArticleRepository $articleRepository, int $id, CategorieArticleRepository $categorieArticleRepository,DateTimeFormatter $dateTimeFormatter): Response
     {
 
         // ###################  REPLACED BY SENSION BUNDLE FRAMEWORK BUNDLE : BY CALLING THE ARTICLE ENTITY AS A PARAMETER IN THE FUNCTION ######################
@@ -119,7 +130,8 @@ class ArticleFrontController extends AbstractController
             $articleList = $queryArticleList;
         }
         /* star rating form submission*/
-
+        $article->setAgo($dateTimeFormatter->formatDiff($article->getDatePublication()));
+        dump($article);
         //################################## ARTICLE_RATINGS FORM SUBMISSION HANDLING ##################################
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -138,6 +150,7 @@ class ArticleFrontController extends AbstractController
                 $userVote = $articleRatingsRepository->findOneBy(['id_article' => $id, 'id_user' => $this->getUser()]);
                 dump($userVote);
             /*redirect to the article page*/
+
             return $this->render('article_front/show.html.twig', [
                 'article' => $articleRepository->find($id),
                 'articles' => $articleRepository->findBy(['archived' => false]),

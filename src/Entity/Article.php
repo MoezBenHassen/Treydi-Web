@@ -90,6 +90,23 @@ class Article
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?Authors $Auteur = null;
 
+    private $ago;
+
+    /**
+     * @return mixed
+     */
+    public function getAgo()
+    {
+        return $this->ago;
+    }
+
+    /**
+     * @param mixed $ago
+     */
+    public function setAgo($ago): void
+    {
+        $this->ago = $ago;
+    }
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
      * of 'UploadedFile' is injected into this setter to trigger the update. If this
