@@ -92,7 +92,6 @@
                                 <div class="tgmenu__action d-none d-md-block">
                                     <ul class="list-wrap">
                                         <li class="search"><a href="#"><i class="flaticon-search-1"></i></a></li>
-                                        <li class="header-btn"><a href="contact.html" class="tg-border-btn"><i class="flaticon-edit"></i> ~sing in</a></li>
                                         <li class="side-toggle-icon">
                                             <span></span>
                                             <span></span>
@@ -200,28 +199,18 @@
                             <div class="col-md-6">
                                 <label class="form-label" for="multicol-email">Email</label>
                                 <div class="input-group input-group-merge">
-                                    <span class="input-group-text" id="multicol-email2">@example.com</span>
                                     {{ form_widget(form.email, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'email'}}) }}
                                     {{ form_errors(form.email)}}
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-password-toggle">
-                                    <label class="form-label" for="multicol-password">Password</label>
-                                    <div class="input-group input-group-merge">
-                                        {{ form_widget(form.password, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'password'}}) }}
-                                        {{ form_errors(form.password)}}
-                                        <span class="input-group-text cursor-pointer" id="multicol-password2"><i class="bx bx-hide"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-md-6">
                                 <label class="form-label" for="multicol-first-name">Nom</label>
                                 {{ form_widget(form.nom, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'nom'}}) }}
                                 {{ form_errors(form.nom)}}
                             </div>
+                            </div>
+                        </div>
+                        <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label" for="multicol-last-name">Prenom</label>
                                 {{ form_widget(form.prenom, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'prenom'}}) }}
@@ -237,6 +226,7 @@
                                 {{ form_widget(form.date_naissance, {'attr': {'class': 'form-control dob-picker', 'id': 'multicol-country', 'data-allow-clear': 'true'}}) }}
                                 {{ form_errors(form.date_naissance) }}
                             </div>
+                            <div><a href="{{ path('app_logout') }}" class="text">Change password</a></div>
                             <div class="pt-4">
                                 <button type="submit" class="btn btn-primary me-sm-3 me-1">Register</button>
                             </div>
