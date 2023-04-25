@@ -28,7 +28,7 @@ class SearchFormType extends AbstractType
             ])
             ->add('date_expiration', DateType::class, [
                 'required' => false,
-                'label' => 'Description du Coupon',
+                'label' => 'Date Expiration du Coupon',
             ])
             ->add('id_categorie', EntityType::class, [
                 'required' => false,
@@ -36,10 +36,7 @@ class SearchFormType extends AbstractType
                 'label' => 'Category',
                 'placeholder' => 'All categories'
             ])
-            ->add('etat_coupon', CheckboxType::class, [
-                'required' => false,
-                'label' => 'Valide',
-            ])
+        
             ->add('archived', CheckboxType::class, [
                 'required' => false,
                 'label' => 'Archivé',

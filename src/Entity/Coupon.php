@@ -155,6 +155,11 @@ class Coupon
         return $this->id_categorie;
     }
 
+    public function getid_categorie(): ?categorieCoupon
+    {
+        return $this->id_categorie;
+    }
+
     public function setIdCategorie(?categorieCoupon $id_categorie): self
     {
         $this->id_categorie = $id_categorie;

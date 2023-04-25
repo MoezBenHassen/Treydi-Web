@@ -51,33 +51,31 @@ class CouponController extends AbstractController
     {
 
         $repository = $doctrine->getRepository(Coupon::class);
-        $list = $repository->findAll();
         $form = $this->createForm(SearchFormType::class);
         $form->handleRequest($request);
-        $search = null;
-        $date_expiration = null;
+       $search='';
+ 
+        if ($form->isSubmitted()) {
+            $data = $form->getData();
+            $search = $data->getTitre_Coupon() ?? null ;
+            $description = $data->getDescription() ?? null;
+            $etat_coupon= $data->getEtatCoupon() ?? null;
+            $date_expiration= $data->getDateExpiration() ?? null;
+            $archived= $data->getArchived() ?? null;
+            $idCategorie= $data->getIdCategorie() ?? null;
+            $code= $data -> getCode() ?? null;
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $search = $form->get('titre_coupon')->getData();
-            $description = $form->get('description_coupon')->getData();
-            $date_expiration = $form->get('date_expiration')->getData();
-            $archived = $form->get('archived')->getData();
-            $idCategorie = $form->get('id_categorie')->getData();
-            $etat_coupon = $form->get('etat_coupon')->getData();
-
-            $queryList = $couponRepository->findByAllAttributes($search, $date_expiration, $description, $archived, $idCategorie, $etat_coupon);
-            $couponslist = $queryList;
+            $queryList = $repository->findByAllAttributes($search, $date_expiration, $description, $archived, $idCategorie, $etat_coupon);
+            $list = $queryList;
         } else {
-            $queryList = $couponRepository->findByArchived(false);
-            $couponslist = $queryList;
+            $queryList = $repository->findAll();
+            $list = $queryList;
         }
 
         return $this->render('coupon/show.html.twig', [
             'form'=> $form->createView(),
-            'couponslist' => $couponslist,
             'coupons' => $list,
-            'search' => $search,
-            'date_expiration' => $date_expiration,
+        
         ]);
 
     }

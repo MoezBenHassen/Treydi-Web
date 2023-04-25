@@ -87,7 +87,7 @@
                 <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="content-wrapper">
                     <!-- Content -->
-                    {{ form_start(form) }}
+                    {{ form_start(form ,{'attr' :{'novalidate' : 'novalidate' , 'method' : 'POST'}} ) }}
                     <div class="form-row align-items-center">
                         <div class="col">
                             {{ form_row(form.titre_coupon) }}
@@ -104,9 +104,7 @@
                     <div class="col">
                         {{ form_row(form.archived) }}
                     </div>
-                    <div class="col">
-                        {{ form_row(form.etat_coupon) }}
-                    </div>
+                
                     <div class="col">
                         <div class="form-group">
                         <button type="submit" class="btn btn-primary">Search for a coupon :</button> </div>
@@ -132,6 +130,7 @@
                                     <th>Description</th>
                                     <th>Etat</th>
                                     <th>Date Expiration</th>
+                                    <th>Catégorie</th>
                                     <th>Archivé</th>
                                     <th>Code</th>
                                 </tr>
@@ -144,6 +143,7 @@
                                     <td><span>{{ coupon.description_coupon }}</span></td>
                                     <td>{{ coupon.etat_Coupon }}</span></td>
                                     <td>{{ coupon.date_expiration ? coupon.date_expiration|date('Y-m-d') : '' }}</span></td>
+                                    <td>{{ coupon.id_categorie }}</span></td>
                                     <td><span class="badge bg-label-info me-1">{{ coupon.archived ? 'Oui' : 'Non' }}</span></td>
                                     <td><span class="badge bg-label-primary me-1">{{ coupon.code }}</span></td>
                                     <td>
@@ -155,10 +155,13 @@
                                             </div>
                                         </div>
                                     </td>
+                                     
                                 </tr>
                                 </tbody>
                                 {% endfor %}
+                                
                             </table>
+                        
                         </div>
                     </div>
                 </div>

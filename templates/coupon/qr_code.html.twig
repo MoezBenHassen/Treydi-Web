@@ -237,143 +237,43 @@
                 <div class="container">
                     <div class="tournament__wrapper">
                         <div class="row justify-content-center">
-                            <div class="col-xl-6 col-lg-7 col-md-10">
-                                <div class="section__title text-center mb-60">
-                                    <h3 class="title">Choose a coupon</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center gutter-25">
-                            <div class="col-xl-4 col-lg-5 col-md-6 col-sm-9">
-                                <div class="tournament__box-wrap">
-                                    <svg class="main-bg" x="0px" y="0px" viewBox="0 0 357 533" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.00021 63H103C103 63 114.994 62.778 128 50C141.006 37.222 168.042 13.916 176 10C183.958 6.084 193 1.9 213 2C233 2.1 345 1 345 1C347.917 1.66957 350.51 3.33285 352.334 5.70471C354.159 8.07658 355.101 11.0093 355 14C355.093 25.1 356 515 356 515C356 515 357.368 529.61 343 530C328.632 530.39 15.0002 532 15.0002 532C15.0002 532 0.937211 535.85 1.00021 522C1.06321 508.15 2.00021 63 2.00021 63Z" fill="#19222B" stroke="#4C4C4C" stroke-width="0.25"></path>
-                                    </svg>
-                                    <svg class="price-bg" viewBox="0 0 166 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.00792892 55V11C0.00792892 11 -0.729072 0.988 12.0079 1C24.7449 1.012 160.008 0 160.008 0C160.008 0 172.491 1.863 161.008 10C148.995 18.512 115.008 48 115.008 48C115.008 48 110.021 55.238 90.0079 55C69.9949 54.762 0.00792892 55 0.00792892 55Z" fill="currentcolor"></path>
-                                    </svg>
-                                    <div class="tournament__box-price">
-                                        <i class="fas fa-trophy"></i>
-                                        <span>1000</span>
-                                    </div>
-                                    <div class="tournament__box-countdown">
-                                    </div>
-                                    <div class="tournament__box-caption">
-                                        <span class="sub">Catégorie 1</span>
-                                        <h4 class="title">Coupon Mensuel</h4>
-                                    </div>
-                                    <div class="tournament__box-prize">
-                                        <i class="fas fa-trophy"></i>
-                                        <span>50% off sur la livraison</span>
-                                    </div>
-                                    <div> <button class="tournament__details-form-btn" id="button1">
-                                    <a href="{{ path('AffecterCouponMensuel') }}"></button> </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-5 col-md-6 col-sm-9">
-                                <div class="tournament__box-wrap active">
-                                    <svg class="main-bg" x="0px" y="0px" viewBox="0 0 357 533" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.00021 63H103C103 63 114.994 62.778 128 50C141.006 37.222 168.042 13.916 176 10C183.958 6.084 193 1.9 213 2C233 2.1 345 1 345 1C347.917 1.66957 350.51 3.33285 352.334 5.70471C354.159 8.07658 355.101 11.0093 355 14C355.093 25.1 356 515 356 515C356 515 357.368 529.61 343 530C328.632 530.39 15.0002 532 15.0002 532C15.0002 532 0.937211 535.85 1.00021 522C1.06321 508.15 2.00021 63 2.00021 63Z" fill="#19222B" stroke="#4C4C4C" stroke-width="0.25"></path>
-                                    </svg>
-                                    <svg class="price-bg" viewBox="0 0 166 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.00792892 55V11C0.00792892 11 -0.729072 0.988 12.0079 1C24.7449 1.012 160.008 0 160.008 0C160.008 0 172.491 1.863 161.008 10C148.995 18.512 115.008 48 115.008 48C115.008 48 110.021 55.238 90.0079 55C69.9949 54.762 0.00792892 55 0.00792892 55Z" fill="currentcolor"></path>
-                                    </svg>
-                                    <div class="tournament__box-price">
-                                        <i class="fas fa-trophy"></i>
-                                        <span>2000</span>
-                                    </div>
-                                    <div class="tournament__box-countdown">
-                                    </div>
-                                    <div class="tournament__box-caption">
-                                        <span class="sub">Catégorie 2</span>
-                                        <h4 class="title">Coupon Special</h4>
-                                    </div>
-                                    <div class="tournament__box-prize">
-                                        <i class="fas fa-trophy"></i>
-                                        <span>Livraison 100% Gratuite</span>
-                                    </div>
-                                    <div> <button class="tournament__details-form-btn" id="button2">
-                                    <a href="{{ path('AffecterCouponSpecial') }}">
-                                        Acheter ce coupon!
-                                        </a></button> </div>
-                                </div>
-                            </div>
-                            <style> .title1 {
-                                    color: #6c25be;
-                                    font-size: 30px;
-                                }
-
-                                .btn3 {
-                                    background-color: #6c25be;
-                                }
-
-                            </style>
-                            <div class="col-xl-4 col-lg-5 col-md-6 col-sm-9">
-                                <div class="tournament__box-wrap">
-                                    <svg class="main-bg" x="0px" y="0px" viewBox="0 0 357 533" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.00021 63H103C103 63 114.994 62.778 128 50C141.006 37.222 168.042 13.916 176 10C183.958 6.084 193 1.9 213 2C233 2.1 345 1 345 1C347.917 1.66957 350.51 3.33285 352.334 5.70471C354.159 8.07658 355.101 11.0093 355 14C355.093 25.1 356 515 356 515C356 515 357.368 529.61 343 530C328.632 530.39 15.0002 532 15.0002 532C15.0002 532 0.937211 535.85 1.00021 522C1.06321 508.15 2.00021 63 2.00021 63Z" fill="#19222B" stroke="#4C4C4C" stroke-width="0.25"></path>
-                                    </svg>
-                                    <svg class="price-bg" viewBox="0 0 166 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.00792892 55V11C0.00792892 11 -0.729072 0.988 12.0079 1C24.7449 1.012 160.008 0 160.008 0C160.008 0 172.491 1.863 161.008 10C148.995 18.512 115.008 48 115.008 48C115.008 48 110.021 55.238 90.0079 55C69.9949 54.762 0.00792892 55 0.00792892 55Z" fill="#6c25be"></path>
-                                    </svg>
-                                    <div class="tournament__box-price">
-                                        <i class="fas fa-trophy"></i>
-                                        <span>5000</span>
-                                    </div>
-                                    <div class="tournament__box-countdown">
-                                    </div>
-                                    <div class="tournament__box-caption">
-                                        <span class="sub">Catégorie 3</span>
-                                        <h4 class="title1">Coupon Exclusif</h4>
-                                    </div>
-                                    <div class="tournament__box-prize">
-                                        <i class="fas fa-trophy"></i>
-                                        <span>Carte de recharge gratuite!</span>
-                                    </div>
-                                    <div> <button class="tournament__details-form-btn" id="button3">
-                                        <a href="{{ path('AffecterCouponExclusif') }}">
-                                        Acheter ce coupon!
-                                        </a>
-                                    </button> </div>
-
-                                </div>
-                            </div>
-                        </div>
+                            {{qrCodeDataUri}}
                     </div>
+                </div>
                 </div>
             </section>
 
-                <div class="table-responsive text-nowrap">
-                    <style>
-                        .card {
+            <div class="table-responsive text-nowrap">
+                <style>
+                    .card {
 
-                            background-color:  #2b2c40 !important;
+                        background-color:  #2b2c40 !important;
 
 
-                        }
-                        .card tr{ color: deeppink ; }
-                        .card td{ color: #a3a4cc ; }
-                        .avatar-img {
-                            width: 50px;
-                            height: 50px;
-                        }
+                    }
+                    .card tr{ color: deeppink ; }
+                    .card td{ color: #a3a4cc ; }
+                    .avatar-img {
+                        width: 50px;
+                        height: 50px;
+                    }
 
-                        .aa {
+                    .aa {
                         display:flex ;
                         justify-content: center;}
 
 
-                        .btn{
-                            background-color: transparent;
-                            color : #a3a4cc;
-                        }
-                    </style>
-
-                </div>
+                    .btn{
+                        background-color: transparent;
+                        color : #a3a4cc;
+                    }
+                </style>
 
             </div>
 
         </div>
+
+    </div>
 
 
     </div>
@@ -383,7 +283,7 @@
 
     </div>
     <!-- services-details-area-end -->
-   
+
 
     <!-- faq-area-end -->
 

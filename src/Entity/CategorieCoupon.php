@@ -59,13 +59,22 @@ class CategorieCoupon
     }
 
     public function __toString(): string
-    { return $this->description_categorie;
+    { return $this->nom_categorie;
     }
 
     public function getId(): ?int
     {
         return $this->id;
     }
+
+    /**
+     * @param int|null $id
+     */
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
 
     public function getNom_Categorie(): ?string
     {

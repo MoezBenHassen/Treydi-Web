@@ -92,7 +92,7 @@ class CouponRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function findByAllAttributes($search, $date_expiration, $description, $archived, $idCategorie, $etat_coupon)
+    public function findByAllAttributes($search, $date_expiration, $description, $archived, $idCategorie)
 
     {
         $qb = $this->createQueryBuilder('c')
@@ -119,10 +119,7 @@ class CouponRepository extends ServiceEntityRepository
                 ->setParameter('idCategorie', $idCategorie);
         }
 
-        if (!empty($etat_coupon)) {
-            $qb->andWhere('c.etat_coupon = :etat_coupon')
-                ->setParameter('etat_coupon', $etat_coupon);
-        }
+    
 
         return $qb->getQuery()->getResult();
     }
