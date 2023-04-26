@@ -229,51 +229,73 @@
     <noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0" style="display: none; visibility: hidden"></iframe>
     </noscript>
-    <div class="content-wrapper">
-        <!-- Content -->
-        <div class="container-xxl flex-grow-1 container-p-y">
-
-            <section class="tournament-area section-pt-120 section-pb-90">
-                <div class="container">
-                    <div class="tournament__wrapper">
-                        <div class="row justify-content-center">
-                            {{qrCodeDataUri}}
-                    </div>
+   <div class="content-wrapper">
+    <!-- Content -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <section class="tournament-area section-pt-120 section-pb-90">
+            <div class="container">
+                <h2 class="title1">Votre QR CODE du coupon a été généré avec succès!</h2>
+                <h3 class="title2">Veuillez le scanner...</h3>
+                <div class="row justify-content-center">
+                    <img src="assets/img/qr-codes/qrcode.png" alt="QR-CODE" class="qr-code">
                 </div>
-                </div>
-            </section>
+          <p class="title3">Partager</p> <i class="fas fa-share-alt"> </i>
+<div class="share-options">
+  <div class="social-media">
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ qrCodeDataUri|url_encode }}" target="_blank" class="social-media-btn"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://twitter.com/intent/tweet?url={{ qrCodeDataUri }}" target="_blank" class="social-media-btn"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.linkedin.com/shareArticle?url={{ qrCodeDataUri }}" target="_blank" class="social-media-btn"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</div>
 
-            <div class="table-responsive text-nowrap">
-                <style>
-                    .card {
-
-                        background-color:  #2b2c40 !important;
-
-
-                    }
-                    .card tr{ color: deeppink ; }
-                    .card td{ color: #a3a4cc ; }
-                    .avatar-img {
-                        width: 50px;
-                        height: 50px;
-                    }
-
-                    .aa {
-                        display:flex ;
-                        justify-content: center;}
-
-
-                    .btn{
-                        background-color: transparent;
-                        color : #a3a4cc;
-                    }
-                </style>
-
+                    
+            
             </div>
 
-        </div>
+            </section>
 
-    </div>
+                <style>
+             .qr-code {
+                 width: 300px;
+              }
+              .title1 {
+                  text-align: center;
+                  margin-bottom: 20px;
+                
+            }
+           .title2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: deeppink;
+            font-family: 'arial';
+            text-transform: capitalize;
+            }
+
+
+            .share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-icon-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.title3 {
+  margin-right: 10px;
+}
+
+.social-media {
+  display: flex;
+  align-items: center;
+}
+</style>
+
+
+                </style>
+
 
 
     </div>

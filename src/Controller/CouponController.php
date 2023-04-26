@@ -19,6 +19,7 @@ use Symfony\Component\Form\FormInterface;
 
 
 
+
 class CouponController extends AbstractController
 {
     #[Route('/coupon', name: 'app_coupon')]
@@ -29,9 +30,6 @@ class CouponController extends AbstractController
         ]);
     }
 
-    public function search (CouponRepository $couponRepository, Request $request): Response {
-
-    }
 
 
     #[Route('/scoreboard', name: 'app_coupon_scoreboard')]
