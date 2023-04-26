@@ -1,0 +1,18 @@
+<style>
+    .form-control{
+
+    }
+</style>
+{{ form_start(searchForm) }}
+<div class="form-group-sm">
+    <div class="input-group">
+        <div class="form-floating">
+            {{ form_widget(searchForm.search, {'attr': {'class': 'form-control input-sm', 'id': 'search', 'placeholder': 'Article title | description'}}) }}
+            <label for="search_articles_admin[search]" style="color: #a3a4cc">Rechercher un auteur</label>
+        </div>
+
+        {{ form_widget(searchForm.submit, {'attr': {'class': 'btn btn-label-primary btn-sm'}}) }}
+    </div>
+
+</div>
+{{ form_end(searchForm) }}

@@ -441,7 +441,8 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(): string
     {
         // TODO: Implement __toString() method.
-        return $this->getNom();
+
+        return $this->nom;
     }
 
 }

@@ -1,4 +1,34 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">cATEGORIE</h5> {#<small class="text-muted float-end">Default label</small>#}
+            </div>
+            <div class="card-body">
+                <style>
+                    .text-danger {
+                        color: #dc3545 !important;
+                    }
+
+                    .text-danger li {
+                        margin-top: 5px;
+                        color: #dc3545 !important;
+                        list-style-type: "> " !important;
+                    }
+                </style>
+            {{ form_start(form) }}
+                <div class="mb-3">
+                    {{ form_label(form.libelle_cat) }}
+                    {{ form_widget(form.libelle_cat) }}
+                    <div class="text-danger">
+                        {{ form_errors(form.libelle_cat) }}
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    {{ form_widget(form.submit) }}
+                </div>
+            {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
