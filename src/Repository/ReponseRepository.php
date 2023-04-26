@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Reponse;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * @extends ServiceEntityRepository<Reponse>
@@ -30,6 +31,27 @@ class ReponseRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByidreclamation_reponse(int $id){
+        $qd =  $this->createQueryBuilder('r')
+            ->where('r.id_reclamation = :id ')
+            ->andWhere('r.archived = :archived')
+            ->setParameter('id',$id)
+            ->setParameter('archived', false);
+
+        return  $qd->getQuery()->getResult();
+
+    }
+    public function listReponseparReclamation(int $id){
+        $query = $this->createQueryBuilder('r')
+            ->andWhere('r.archived = :archived')
+            ->andWhere('r.id_reclamation = :id')
+            ->setParameter('archived', false)
+            ->setParameter('id', $id)
+            ->getQuery();
+        $list = $query ->getResult();
+        return $list;
+    }
+
     public function remove(Reponse $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -38,6 +60,30 @@ class ReponseRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function compterReponsesatisfait()
+    {
+        return $this->createQueryBuilder('r')
+            ->select('COUNT(r.id)')
+            ->where('r.avis = :satisfied')
+            ->setParameter('satisfied', 'satisfait')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+    }
+
+    public function compterReponsenonsatisfait()
+    {
+        return $this->createQueryBuilder('r')
+            ->select('COUNT(r.id)')
+            ->where('r.avis = :satisfied')
+            ->setParameter('satisfied', 'non satisfait')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+    }
+
+
+
 
 //    /**
 //     * @return Reponse[] Returns an array of Reponse objects

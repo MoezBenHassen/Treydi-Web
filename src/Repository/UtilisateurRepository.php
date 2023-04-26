@@ -52,6 +52,20 @@ class UtilisateurRepository extends ServiceEntityRepository
 
         $this->save($user, true);
     }
+    public function countUsersByAge()
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT COUNT(u.id) AS count, YEAR(CURRENT_DATE()) - YEAR(u.date_naissance) AS age
+        FROM App\Entity\Utilisateur u
+        GROUP BY age'
+        );
+
+        return $query->getResult();
+    }
+
+
+
 
 //    /**
 //     * @return Utilisateur[] Returns an array of Utilisateur objects

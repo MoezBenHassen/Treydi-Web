@@ -1,0 +1,518 @@
+{% extends 'base.html.twig' %}
+
+{#  {% block body %}
+    <h1>List des Reponses</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reponse in listr %}
+            <tr>
+                <td>{{ reponse.id }}</td>
+                <td>{{ reponse.titreReponse }}</td>
+                <td>{{ reponse.descriptionReponse }}</td>
+                <td>{{ reponse.dateReponse|date('Y-m-d') }}</td>
+                <td>
+                    <form action="{{ path('app_reponseUserDelete', {'id': reponse.id}) }}" >
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reponse.id) }}">
+                        <input type="submit" value="Delete" onclick="return confirmDelete({{ reponse.id }})">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function confirmDelete(id) {
+            if (confirm("Are you sure you want to delete this reponse?")) {
+                // Submit the form
+                document.getElementById('delete-form-' + id).submit();
+            } else {
+                // Cancel the submission
+                return false;
+            }
+        }
+    </script>
+{% endblock %}#}
+
+ {% block stylesheets %}
+     <!-- Fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com/">
+     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
+
+     <!-- Icons -->
+     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
+     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />
+     <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}" />
+     <!-- Core CSS -->
+     <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core-dark.css') }}" class="template-customizer-core-css" />
+     <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default-dark.css') }}" class="template-customizer-theme-css" />
+     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+
+     <!-- Vendors CSS -->
+     <style>
+         .table-responsive {
+             overflow-x: auto;
+         }
+         /* custom css that makes the table cell wrap if the text exceeds the cell length*/
+         .table-responsive td {
+             white-space: normal;
+             text-align: justify;
+         }
+         ::-moz-selection { /* Code for Firefox */
+             background: yellow;
+         }
+
+         ::selection {
+             background: yellow;
+         }
+         #chose{
+             width:25px;
+
+         }
+
+         /*make the card the width of the screen available*/
+     </style>
+ {% endblock %}
+
+
+{% block javascripts %}
+    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="{{ asset('public/assets/vendor/js/template-customizer.js') }}"></script>
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{{ asset('assets/js/config.js') }}"></script>
+    <script>
+
+
+
+    </script>
+{% endblock %}
+
+{% block body %}
+
+    <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/popper/popper.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/js/bootstrap.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/hammer/hammer.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/i18n/i18n.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/js/menu.js') }}"></script>
+
+
+
+
+    <!doctype html>
+    <html class="no-js" lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MYKD - eSports and Gaming NFT Template</title>
+        <meta name="description" content="eSports and Gaming NFT Template">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
+
+        <!-- CSS here -->
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+
+        <!-- Page-Revealer -->
+        <script src="{{ asset('assets/js/tg-page-head.js') }}"></script>
+    </head>
+
+    <body>
+
+    <div>
+        <div id="sticky-header" class="tg-header__area transparent-header">
+            <div class="container custom-container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
+                        <div class="tgmenu__wrap">
+                            <nav class="tgmenu__nav">
+                                <div class="logo">
+                                    <a href="index.html"><img src="{{ asset('assets/img/logo/treydi3.png') }}" alt="Logo"></a>
+                                </div>
+                                <div class="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex">
+                                    <ul class="navigation">
+                                        <li class="menu-item-has-children"><a href="#">Home</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="index.html">Home One</a></li>
+                                                <li><a href="index-2.html">Home Two</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="about-us.html">ABOUT US</a></li>
+                                        <li class="menu-item-has-children"><a href="#">TOURNAMENT</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="tournament.html">TOURNAMENT</a></li>
+                                                <li><a href="tournament-details.html">TOURNAMENT Single</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children"><a href="#">PAGES</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="shop.html">Gaming Shop</a></li>
+                                                <li><a href="shop-details.html">Shop Details</a></li>
+                                                <li><a href="services.html">Our Services</a></li>
+                                                <li><a href="services-details.html">Services Details</a></li>
+                                                <li><a href="team-details.html">Player Details</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children"><a href="#">News</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="blog.html">Our Blog</a></li>
+                                                <li><a href="blog-details.html">Blog Details</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children"><a href="#">contact</a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-item-has-children"><a href="#">Reclamation</a>
+                                                    <ul class="sub-menu">
+                                                        <li class="active"><a href="{{ path('app_reclamationUserList') }}">List Reclamation</a></li>
+                                                        <li class="active"><a href="{{ path('app_reclamationUserAdd') }}">Ajouter Une Reclamation</a></li>
+                                                    </ul>
+                                                </li>
+
+
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tgmenu__action d-none d-md-block">
+                                    <ul class="list-wrap">
+                                        <li class="search"><a href="#"><i class="flaticon-search-1"></i></a></li>
+                                        <li class="header-btn"><a href="contact.html" class="tg-border-btn"><i class="flaticon-edit"></i> ~sing in</a></li>
+                                        <li class="side-toggle-icon">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                        <!-- Mobile Menu  -->
+                        <div class="tgmobile__menu">
+                            <nav class="tgmobile__menu-box">
+                                <div class="close-btn"><i class="flaticon-swords-in-cross-arrangement"></i></div>
+                                <div class="nav-logo">
+                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
+                                </div>
+                                <div class="tgmobile__search">
+                                    <form action="#">
+                                        <input type="text" placeholder="Search here...">
+                                        <button><i class="flaticon-loupe"></i></button>
+                                    </form>
+                                </div>
+                                <div class="tgmobile__menu-outer">
+                                    <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                                </div>
+                                <div class="social-links">
+                                    <ul class="list-wrap">
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                        <div class="tgmobile__menu-backdrop"></div>
+                        <!-- End Mobile Menu -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll-top -->
+        <button class="scroll__top scroll-to-target" data-target="html">
+            <i class="flaticon-right-arrow"></i>
+        </button>
+        <!-- Scroll-top-end-->
+
+        <!-- breadcrumb-area -->
+        <section class="breadcrumb-area breadcrumb__hide-img" data-background="assets/img/bg/breadcrumb_bg02.jpg">
+            <div class="container">
+                <div class="breadcrumb__wrapper">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="breadcrumb__content">
+                                <h2 class="title">list des reponses</h2>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">REPONSE</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- header-search -->
+        <div class="search__popup-wrap">
+            <div class="search__layer"></div>
+            <div class="search__close">
+                <span><i class="flaticon-swords-in-cross-arrangement"></i></span>
+            </div>
+            <div class="search__wrap text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="title">... <span>Search Here</span> ...</h2>
+                            <div class="search__form">
+                                <form action="#">
+                                    <input type="text" name="search" placeholder="Type keywords here" required>
+                                    <button class="search-btn"><i class="flaticon-loupe"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- contact-area -->
+        <!-- contact-area -->
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+        </noscript>
+        <div class="content-wrapper">
+            <!-- Content -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+
+                <hr class="my-5">
+                <style>
+                    .card {
+
+                        background-color:  #2b2c40 !important;
+
+
+                    }
+                .card td{ color: #a3a4cc ; }
+
+                .btn{
+                    background-color: transparent;
+                    color : #a3a4cc;
+                }
+                </style>
+
+                <div class="card">
+                    <h5 class="card-header">Table des Reponses</h5>
+                    <div class="table-responsive text-nowrap">
+
+
+
+                        <table class="table ">
+                            <thead>
+                            <tr>
+                                <th>titre </th>
+                                <th>Date </th>
+                                <th>avatar </th>
+                                <th>Description</th>
+                                <th>Avis</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            {% for reponse in listr %}
+                                <tbody class="table-border-bottom-0">
+                                <tr>
+                                    <td><i class='bx bx-reply'></i> <strong>{{ reponse.titreReponse }}</strong></td>
+                                    <td>{{  reponse.dateReponse|date('Y-m-d')  }}</td>
+                                    <td>
+                                        <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+
+                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Sophia Wilkerson">
+                                                <img src="{{ asset('assets/img/avatars/6.png') }}" alt="Avatar" class="rounded-circle">
+                                            </li>
+
+                                        </ul>
+                                    </td>
+                                    <td><span class="badge bg-label-primary me-1">{{  reponse.descriptionReponse }}</span></td>
+
+
+
+
+                                    <td>
+                                        {% if reponse.Avis == "satisfait" %}
+                                            <a href="{{ path('app_reponseUseravis', {'id': reponse.id, 'avis': 'satisfait' }) }}" id="happy" method="GET">
+                                                <i class='bx bxs-happy-heart-eyes' ></i>
+                                            </a>
+
+                                            <a href="{{ path('app_reponseUseravis', {'id': reponse.id, 'avis': 'non satisfait' }) }}" id="angry" method="GET">
+                                                <i class="bx bx-angry"></i>
+                                            </a>
+
+
+
+                                        {% elseif reponse.Avis == "non satisfait" %}
+
+                                            <a href="{{ path('app_reponseUseravis', {'id': reponse.id, 'avis': 'satisfait' }) }}" methods="GET" id="happy">
+                                                <i class="bx bx-happy-heart-eyes"></i>
+                                            </a>
+
+                                            <a href="{{ path('app_reponseUseravis', {'id': reponse.id, 'avis': 'non satisfait' }) }}" methods="GET" id="angry">
+                                                <i class='bx bxs-angry' ></i>
+                                            </a>
+
+                                        {% else %}
+
+                                            <a href="{{ path('app_reponseUseravis', {'id': reponse.id, 'avis': 'satisfait' }) }}" methods="GET" id="happy" >
+                                                <i class="bx bx-happy-heart-eyes"></i>
+                                            </a>
+
+                                            <a href="{{ path('app_reponseUseravis', {'id': reponse.id, 'avis': 'non satisfait' }) }}" methods="GET" id="angry" >
+                                                <i class="bx bx-angry"></i>
+                                            </a>
+
+                                        {% endif %}
+
+
+                                        {{ reponse.Avis }}
+
+
+
+
+
+
+
+
+
+                                    </td>
+
+
+
+
+
+
+
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                                            <div class="dropdown-menu">
+
+                                                <a href="{{ path('app_reponseUserDelete', {'id': reponse.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> supprimer</a>
+
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- contact-area-end -->
+
+
+
+    </div>
+    <!-- main-area-end -->
+
+    <!-- main-area -->
+    <div class="main--area">
+
+        <!-- breadcrumb-area -->
+
+
+        <!-- footer-start -->
+        <footer>
+            <main class="footer-style-one">
+                <div class="footer__top-wrap">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-5 col-md-7">
+                                <div class="footer-widget">
+                                    <div class="footer-logo logo">
+                                        <a href="index.html"><img src="{{ asset('assets/img/logo/logo.png') }}" alt="Logo"></a>
+                                    </div>
+                                    <div class="footer-text">
+                                        <p class="desc">Lorem ipsum dolor sitamet consectur adipiscing Duis esollici tudin augue euismod. Nulla ullam dolor sitamet consectetur</p>
+                                        <p class="social-title">Active <span>With Us <i class="fas fa-angle-double-right"></i></span></p>
+                                        <div class="footer-social">
+                                            <a href="#"><img src="{{ asset('assets/img/icons/social_icon01.png')}}" alt="iocn"></a>
+                                            <a href="#"><img src="{{ asset('assets/img/icons/social_icon02.png') }}" alt="iocn"></a>
+                                            <a href="#"><img src="{{ asset('assets/img/icons/social_icon03.png') }}" alt="iocn"></a>
+                                            <a href="#"><img src="{{ asset('assets/img/icons/social_icon04.png') }}" alt="iocn"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </footer>
+        <!-- footer-start-end -->
+
+
+
+
+        <!-- JS here -->
+        <script href={{  "assets/js/vendor/jquery-3.6.0.min.js" }}></script>
+        <script src="{{ asset('assets/js/plugins.js') }}"></script>
+        <script src="{{ asset('assets/js/ajax-form.js') }}"></script>
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+        <!-- build:js assets/vendor/js/core.js -->
+        <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
+
+        <script src="{{ asset('/assets/vendor/libs/popper/popper.js') }}"></script>
+
+        <script src="{{ asset('/assets/vendor/js/bootstrap.js') }}"></script>
+
+        <script src="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+
+        <script src="{{ asset('/assets/vendor/libs/hammer/hammer.js') }}"></script>
+
+        <script src="{{ asset('/assets/vendor/libs/i18n/i18n.js') }}"></script>
+
+        <script src="{{ asset('/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
+
+        <script src="{{ asset('/assets/vendor/js/menu.js') }}"></script>
+
+        <!-- endbuild -->
+        <script src="{{asset('/assets/js/maindash.js') }}"></script>
+    </div>i</body>
+    </html>
+
+
+
+
+
+{% endblock %}
+
