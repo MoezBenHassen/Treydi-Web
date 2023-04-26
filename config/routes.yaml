@@ -1,3 +1,6 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+2fa_login:
+  path: /2fa
+  controller: App\Controller\SecurityController::Check2fa
+
+2fa_login_check:
+  path: /2fa_check
