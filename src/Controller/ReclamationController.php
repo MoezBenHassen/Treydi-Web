@@ -11,7 +11,6 @@ use App\Repository\UtilisateurRepository;
 use DateTime;
 
 use Dompdf\Dompdf;
-use mPDF;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
@@ -137,19 +136,13 @@ class ReclamationController extends AbstractController
             'list' => $list,
         ]);
 
-        // Instancier Dompdf
         $dompdf = new Dompdf();
-
-        // Charger le contenu HTML dans Dompdf
         $dompdf->loadHtml($html);
 
-        // Personnaliser les options de Dompdf
         $dompdf->setPaper('A4', 'portrait');
 
-        // Rendre le PDF
         $dompdf->render();
 
-        // Envoyer le PDF en tant que réponse HTTP
         return new Response($dompdf->output(), 200, [
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'inline; filename="reclamation.pdf"',

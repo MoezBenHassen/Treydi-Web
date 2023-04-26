@@ -131,19 +131,16 @@ class ReclamationUserController extends AbstractController
 
         ]);
 
-        // Instancier Dompdf
+
         $dompdf = new Dompdf();
 
-        // Charger le contenu HTML dans Dompdf
-        $dompdf->loadHtml($html);
 
-        // Personnaliser les options de Dompdf
+        $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
 
-        // Rendre le PDF
         $dompdf->render();
 
-        // Envoyer le PDF en tant que réponse HTTP
+
         return new Response($dompdf->output(), 200, [
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'inline; filename="reclamation.pdf"',

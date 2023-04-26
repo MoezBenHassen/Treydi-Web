@@ -143,7 +143,7 @@
                             </div>
                         </form>
 -->
-                        <button id="filter-btn" class="btn btn-primary">Filtrer les réclamations</button>
+                        <button id="filter-btn" class="btn btn-primary">Filtrer   les réclamations</button>
                         <br><br>
 
                         <div id="filter-form" style="display: none;">
@@ -183,6 +183,9 @@
                                 filterForm.style.display = filterForm.style.display === 'none' ? 'block' : 'none';
                             });
                         </script>
+
+
+
                         <br>
                         {% set urlParams = {
                             'titre': form.titre_reclamation.vars.value,

@@ -19,7 +19,7 @@ class StatistiqueController extends AbstractController
         ]);
     }
 
-    #[Route('/statistique/stat', name: 'app_reclamationstat', methods: ['POST', 'GET'])]
+    #[Route('/statistique/stat', name: 'app_stat', methods: ['POST', 'GET'])]
     public function courbe(UtilisateurRepository $utilisateurRepository)
     {
         $reclamations = $this->getDoctrine()->getRepository(Reclamation::class)->compterReclamationsParMois();
