@@ -12,7 +12,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-        <link href="" rel="stylesheet">
+        <!-- Icons -->
+        <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}" />
+
         <!-- The following libraries and polyfills are recommended to maximize browser support -->
         <!-- NOTE: you must adjust the paths as appropriate for your project -->
 
@@ -32,14 +36,14 @@
         <meta name="description" content="eSports and Gaming NFT Template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Place favicon.ico in the root directory -->
-
+        {#done#}
 
         <!-- CSS here -->
-        <link rel="stylesheet" href="/assets/css/plugins.css">
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins.css') }}">
         <link rel="stylesheet" href="{{ asset('/assets/css/main.css') }}">
 
         <!-- Page-Revealer -->
-        <script src="assets/js/tg-page-head.js"></script>
+        <script src="{{ asset('assets/js/tg-page-head.js') }}"></script>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 
         <link rel="preconnect" href="https://fonts.gstatic.com/">
@@ -47,7 +51,27 @@
 
         <link rel="canonical" href="tables-datatables-buttons.html" />
 
+        <style>
 
+            .crud-icons-layout{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+            .crud-icons-layout a{
+                margin: 10px;
+                padding: 0;
+                width: fit-content;
+                /*border: solid red 2px;*/
+            }
+            .crud-icons-layout a i{
+                /*border: solid blue 1px;*/
+            }
+            .UnitedKingdom{
+                font-family: "United Kingdom" !important;
+            }
+        </style>
 
 
         {% block stylesheets %}

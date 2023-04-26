@@ -1,0 +1,306 @@
+{#
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleFrontController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'F:/Treydi-Web/src/Controller/ArticleFrontController.php'|file_link(0) }}">src/Controller/ArticleFrontController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'F:/Treydi-Web/templates/article_front/index.html.twig'|file_link(0) }}">templates/article_front/index.html.twig</a></code></li>
+    </ul>
+</div>
+{% endblock %}
+#}
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }}Blog{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="../../public/assets/css/rating.css">
+{% endblock %}
+{% block javascripts %}
+{#    <script src="../../public/assets/js/rating.js"></script>#}
+{% endblock %}
+{% block body %}
+
+<!-- Scroll-top -->
+<button class="scroll__top scroll-to-target" data-target="html">
+    <i class="flaticon-right-arrow"></i>
+</button>
+<!-- Scroll-top-end-->
+
+<!-- header-area -->
+    {{ include('front_components/_header-menu-front.html.twig') }}
+<!-- header-area-end -->
+<!-- main-area -->
+<main class="main--area">
+
+    <!-- breadcrumb-area -->
+    <section class="breadcrumb-area breadcrumb__hide-img" data-background="{{ asset('assets/img/bg/breadcrumb_bg02.jpg') }}">
+        <div class="container">
+            <div class="breadcrumb__wrapper">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb__content">
+                            <h2 class="title" style="font-family: 'United Kingdom'">Treydi Blog</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ path('app_home') }}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">blog list</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb-area-end -->
+    <style>
+        .pagination {
+            --bs-pagination-padding-x: 0.5125rem;
+            --bs-pagination-padding-y: 0.625rem;
+            --bs-pagination-font-size: 0.9375rem;
+            --bs-pagination-color: #a3a4cc !important;
+            --bs-pagination-bg: rgba(124, 125, 182, 0.08);
+            --bs-pagination-border-width: 0px;
+            --bs-pagination-border-color: rgba(255, 255, 255, 0.09);
+            --bs-pagination-border-radius: 0.25rem;
+            --bs-pagination-hover-color: #a3a4cc;
+            --bs-pagination-hover-bg: rgba(124, 125, 182, 0.16);
+            --bs-pagination-hover-border-color: rgba(255, 255, 255, 0.4);
+            --bs-pagination-focus-color: #a3a4cc;
+            --bs-pagination-focus-bg: rgba(124, 125, 182, 0.16);
+            --bs-pagination-focus-box-shadow: none;
+            --bs-pagination-active-color: #fff;
+            --bs-pagination-active-bg: #fff;
+            --bs-pagination-active-border-color: #fff;
+            --bs-pagination-disabled-color: #7071a4;
+            --bs-pagination-disabled-bg: rgba(124, 125, 182, 0.04);
+            --bs-pagination-disabled-border-color: rgba(255, 255, 255, 0.4);
+            display: flex;
+            justify-content: center;
+            padding-left: 0;
+            list-style: none;
+
+            /*border: solid red 2px !important;*/
+        }
+        .pagination li {
+            margin: 10px;
+
+        }
+        .pagination li:hover {
+
+        }
+        .pagination-item  .active {
+            background-color: red !important;
+        }
+        .page-link {
+            position: relative;
+            display: block;
+            padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+            font-size: var(--bs-pagination-font-size);
+            color: var(--bs-pagination-color);
+            background-color: var(--bs-pagination-bg);
+            border: var(--bs-pagination-border-width) solid var(--bs-pagination-border-color);
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+        }
+        .active .page-link {
+            background-color: #b81d6d !important;
+        }
+        li:hover{
+
+        }
+        li .page-item .disabled {
+            background-color: #b81d6d !important;
+        }
+    </style>
+    <!-- blog-area -->
+    <section class="blog-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="blog-post-wrapper">
+                    <!-- blog-post-item -->
+                    {% if articles is empty %}
+                        <div class="blog-post-item">
+                            <div class="blog-post-content " style="font-size: 24px; font-family: 'United Kingdom'">
+                                <i class="fa-regular fa-face-sad-tear" ></i>
+                                <em>Pas d'articles encore !</em>
+                            </div>
+                        </div>
+                    {% else %}
+                        {% for article in articles %}
+                            <div class="blog-post-item">
+                                <div class="blog-post-thumb">
+                                    {#<a href="blog-details.html"><img src=" {{ asset('assets/img/blog/blog_post01.jpg') }}" alt="img"></a>#}
+                                    <a href="blog-details.html"><img src=" {{ vich_uploader_asset(article,'imageFile') }}" alt="img"></a>
+                                </div>
+                                <div class="blog-post-content">
+                                    <div class="blog-post-meta">
+                                        <ul class="list-wrap">
+                                            <li><i class="fa-regular fa-user"></i> By<a href="#">{{ article.auteur }}</a></li>
+                                            <li><i class="fa-regular fa-calendar-days"></i>{#{{ article.datePublication|date('d-M-Y') }}#} {{ article.ago }}</li>
+                                            <li><i class="fa-solid fa-star"></i><a href="#">{{ article.avgRating }}</a></li>
+                                        </ul>
+                                    </div>
+                                    <h2 class="title"><a href="{{ path('app_article_front_show', {'id': article.id} ) }}">{{ article.titre }}</a></h2>
+                                    <p>{{ article.description }}</p>
+                                    <div class="blog-post-bottom">
+                                        <div class="blog-post-read">
+                                            <a href="{{ path('app_article_front_show', {'id': article.id} ) }}">READ MORE <i class="fas fa-arrow-right"></i></a>
+                                        </div>
+                                        <div class="blog-post-share">
+                                            <h5 class="share">share :</h5>
+                                            <ul class="list-wrap">
+                                                <li><a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+
+                                                <li><a href="http://www.twitter.com/share?url=http://www.google.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {{ pagerfanta(articles) }}
+                    {% endif %}
+                    {#<div class="blog-post-item">
+                        <div class="blog-post-thumb">
+                            <a href="blog-details.html"><img src="{{ asset('assets/img/blog/blog_post02.jpg') }}" alt="img"></a>
+                        </div>
+                        <div class="blog-post-content">
+                            <div class="blog-post-meta">
+                                <ul class="list-wrap">
+                                    <li>By<a href="#">Admin</a></li>
+                                    <li><i class="far fa-calendar-alt"></i> Aug 16, 2023</li>
+                                    <li><i class="far fa-comments"></i><a href="#">No comments</a></li>
+                                </ul>
+                            </div>
+                            <h2 class="title"><a href="blog-details.html">play to earn crypto games place</a></h2>
+                            <p>Lorem ipsum dolor sit amet, consteur adipiscing Duis elementum solliciin is yaugue euismods Nulla ullaorper. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+                            <div class="blog-post-bottom">
+                                <div class="blog-post-read">
+                                    <a href="blog-details.html">READ MORE <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                                <div class="blog-post-share">
+                                    <h5 class="share">share :</h5>
+                                    <ul class="list-wrap">
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-post-item">
+                        <div class="blog-post-thumb">
+                            <a href="blog-details.html"><img src="{{ asset('assets/img/blog/blog_post03.jpg') }}" alt="img"></a>
+                        </div>
+                        <div class="blog-post-content">
+                            <div class="blog-post-meta">
+                                <ul class="list-wrap">
+                                    <li>By<a href="#">Admin</a></li>
+                                    <li><i class="far fa-calendar-alt"></i> Aug 16, 2023</li>
+                                    <li><i class="far fa-comments"></i><a href="#">No comments</a></li>
+                                </ul>
+                            </div>
+                            <h2 class="title"><a href="blog-details.html">nft games android no investment</a></h2>
+                            <p>Lorem ipsum dolor sit amet, consteur adipiscing Duis elementum solliciin is yaugue euismods Nulla ullaorper. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+                            <div class="blog-post-bottom">
+                                <div class="blog-post-read">
+                                    <a href="blog-details.html">READ MORE <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                                <div class="blog-post-share">
+                                    <h5 class="share">share :</h5>
+                                    <ul class="list-wrap">
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagination__wrap">
+                        <ul class="list-wrap d-flex flex-wrap justify-content-center">
+                            <li><a href="#" class="page-numbers">01</a></li>
+                            <li><span class="page-numbers current">02</span></li>
+                            <li><a href="#" class="page-numbers">03</a></li>
+                            <li><a href="#" class="page-numbers">04</a></li>
+                            <li><a href="#" class="page-numbers">....</a></li>
+                            <li>
+                                <a href="#" class="next page-numbers">
+                                    <i class="fas fa-angle-double-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>#}
+                    <!--/// blog-post-item-end -->
+                </div>
+                <!-- blog post sidebar -->
+                <div class="blog-post-sidebar">
+                    <aside class="blog-sidebar">
+{#                        <div class="blog-widget">#}
+{#                            <div class="sidebar__author">#}
+{#                                <div class="sidebar__author-thumb">#}
+{#                                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt="img">#}
+{#                                </div>#}
+{#                                <div class="sidebar__author-content">#}
+{#                                    <h4 class="name">Kaceytron G.</h4>#}
+{#                                    <p>Lorem ipsum sitamet conteur adipiscing Duis elementum solliciin</p>#}
+{#                                    <div class="sidebar__author-social">#}
+{#                                        <a href="#"><i class="fab fa-twitter"></i></a>#}
+{#                                        <a href="#"><i class="fab fa-facebook-f"></i></a>#}
+{#                                        <a href="#"><i class="fab fa-linkedin-in"></i></a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+                    {{ include('article_front/_blog-post-sidebar.html.twig') }}
+                    </aside>
+                </div>
+                <!--/// sidebar-area-end -->
+            </div>
+        </div>
+    </section>
+    <!-- blog-area-end -->
+
+</main>
+<!-- main-area-end -->
+
+
+<!-- footer-start -->
+    {{ include('front_components/_footer-front.html.twig') }}
+<!-- footer-start-end -->
+
+
+
+<!-- JS here -->    <!-- JS here -->
+
+<!-- 💁 Include both scripts below to support all browsers! -->
+
+<!-- Loads <model-viewer> for modern browsers: -->
+<script type="module"
+        src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+</script>
+
+<!-- Loads <model-viewer> for old browsers like IE11: -->
+<script nomodule
+        src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
+</script>
+
+<script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js')  }}"></script>
+<script src="{{ asset('assets/js/plugins.js') }}"></script>
+<script src="{{ asset('assets/js/ajax-form.js') }}"></script>
+<script src="{{ asset('assets/js/main.js') }}"></script>
+
+{% endblock %}

@@ -23,6 +23,8 @@ class CategorieArticleRepository extends ServiceEntityRepository
 
     public function save(CategorieArticle $entity, bool $flush = false): void
     {
+        /*set archived to false before saving to database*/
+        $entity->setArchived(false);
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {
@@ -33,6 +35,17 @@ class CategorieArticleRepository extends ServiceEntityRepository
     public function remove(CategorieArticle $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    //removeCat function that updated the archived field to true
+    public function removeCat(CategorieArticle $entity, bool $flush = false): void
+    {
+        $entity->setArchived(true);
+        $this->getEntityManager()->persist($entity);
 
         if ($flush) {
             $this->getEntityManager()->flush();
