@@ -9,19 +9,31 @@ doctrine:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
-        dql:
-            datetime_functions:
-                DATE_FORMAT: DoctrineExtensions\Query\Mysql\DateFormat
-                DAY: DoctrineExtensions\Query\Mysql\Day
-                MONTH: DoctrineExtensions\Query\Mysql\Month
-                YEAR: DoctrineExtensions\Query\Mysql\Year
-                SOUNDEX: DoctrineExtensions\Query\Mysql\Soundex
         mappings:
             App:
                 is_bundle: false
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
+#        add date to orm dql
+        dql:
+            string_functions:
+                DATE: DoctrineExtensions\Query\Mysql\Date
+                YEAR: DoctrineExtensions\Query\Mysql\Year
+                MONTH: DoctrineExtensions\Query\Mysql\Month
+                DAY: DoctrineExtensions\Query\Mysql\Day
+                HOUR: DoctrineExtensions\Query\Mysql\Hour
+                MINUTE: DoctrineExtensions\Query\Mysql\Minute
+                SECOND: DoctrineExtensions\Query\Mysql\Second
+                WEEK: DoctrineExtensions\Query\Mysql\Week
+                QUARTER: DoctrineExtensions\Query\Mysql\Quarter
+                DATE_FORMAT: DoctrineExtensions\Query\Mysql\DateFormat
+                DATE_ADD: DoctrineExtensions\Query\Mysql\DateAdd
+                DATE_SUB: DoctrineExtensions\Query\Mysql\DateSub
+                DATE_DIFF: DoctrineExtensions\Query\Mysql\DateDiff
+                DATE_TRUNC: DoctrineExtensions\Query\Mysql\DateTrunc
+                DATE_MOD: DoctrineExtensions\Query\Mysql\DateMod
+                SOUNDEX: DoctrineExtensions\Query\Mysql\Soundex
 
 when@test:
     doctrine:

@@ -3,7 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\ArticleRatings;
+use App\Form\ArticleRatingsType;
 use App\Form\ArticleType;
+use App\Form\SearchArticlesAdminType;
+use App\Form\SearchArticlesFormType;
+use App\Repository\ArticleRatingsRepository;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,16 +16,46 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/article')]
+#[Route('/admin/article')]
 class ArticleController extends AbstractController
 {
 
     #[Route('/', name: 'app_article_index', methods: ['GET'])]
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, Request $request): Response
     {
+
+        //findByArchived(false) is the same as findBy(['archived' => false])
+         /*   $queryArticleList = $articleRepository->findByArchived(false);
+            $articleList = $queryArticleList;
+         */
+
+        // SEARCH FORM
+        $searchForm = $this->createForm(SearchArticlesAdminType::class);
+        $searchForm->handleRequest($request);
+        $search = '';
+        $date_publication = null;
+        // HANDLE SEARCH FORM
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $search = $searchForm->get('search')->getData();
+            $date_publication = $searchForm->get('date_publication')->getData();
+            if ($date_publication instanceof \DateTime) {
+                $date_publication = $date_publication->format('Y-m-d');
+            }
+//            $archived = $searchForm->get('archived')->getData();
+            $queryArticleList = $articleRepository->findByTitleAndDescriptionAndDateI($search, $date_publication, false);
+            $articleList = $queryArticleList;
+        } else {
+            $queryArticleList = $articleRepository->findByArchived(false);
+            $articleList = $queryArticleList;
+        }
+        dump($articleList);
         return $this->render('article/index.html.twig', [
             //find articles that are not archived
-            'articles' => $articleRepository->findBy(['archived' => false]),
+            /*'articles' => $articleRepository->findBy(['archived' => false]),*/
+            'searchForm'=> $searchForm->createView(),
+            'articles' => $articleList,
+            'search' => $search,
+            'date_publication' => $date_publication,
         ]);
     }
 
@@ -32,7 +67,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $articleRepository->save($article, true);
+            $articleRepository->saveA($article,$this->getUser(),  true);
 
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,8 +93,9 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $articleRepository->save($article, true);
-
+            $articleRepository->savea($article,$this->getUser(),true);
+            $message = 'Update réussie de l\'article : ' . $article->getId();
+            $this->addFlash('update_message', $message);
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -73,6 +109,17 @@ class ArticleController extends AbstractController
     public function delete(Request $request, Article $article, ArticleRepository $articleRepository): Response
     {
             $articleRepository->removeA($article, true);
+            /* redirect to route 'app_article_index', [], Response::HTTP_SEE_OTHER and popup alert on page load */
+            $message = 'Suppression réussie de l\'article : ' . $article->getId();
+            $this->addFlash('delete_message', $message);
+
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
+  /*add a new article rating in the show page*/
+
+
+
 }

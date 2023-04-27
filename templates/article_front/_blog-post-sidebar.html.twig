@@ -1,0 +1,72 @@
+
+        <!--blog widget search bar-->
+        <div class="blog-widget">
+            {{ include('article_front/_form-search-article.html.twig') }}
+        </div>
+        <!--/// blog widget search bar-->
+
+
+        <!--blog widget CATGORIES-->
+        <div class="blog-widget widget_categories">
+            <h4 class="fw-title">TOP CATEGORIES</h4>
+            <ul class="list-wrap">
+                {% for category in categories|slice(0, 5) %}
+                    {#print the category + count#}
+                    <li>
+                        <a href="{{ path('app_article_front', {'articleCategory': category.libelleCat} ) }}">{{ category.libelleCat }}</a>
+                        <span class="float-right">({{ category.count }})</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!--/// blog widget CATEGORIES end-->
+
+        <!-- recent posts start-->
+        {{ include('article_front/_recent-posts.html.twig') }}
+        <!--/// recent posts end-->
+
+        <div class="blog-widget">
+            <h4 class="fw-title">Newsletter</h4>
+            <div class="sidebar__newsletter">
+                <p>Subscribe to our newsletter now !!!</p>
+                <form action="#" class="sidebar__newsletter-form">
+                    <input type="email" name="email" placeholder="Enter Your Email">
+                    <button ><i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="blog-widget">
+            <h4 class="fw-title">INSTAGRAM</h4>
+            <div class="sidebar__insta">
+                <div class="sidebar__insta-item">
+                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta01.jpg') }}" alt="img"></a>
+                </div>
+                <div class="sidebar__insta-item">
+                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta02.jpg') }}" alt="img"></a>
+                </div>
+                <div class="sidebar__insta-item">
+                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta03.jpg') }}" alt="img"></a>
+                </div>
+                <div class="sidebar__insta-item">
+                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta04.jpg') }}" alt="img"></a>
+                </div>
+                <div class="sidebar__insta-item">
+                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta05.jpg') }}" alt="img"></a>
+                </div>
+                <div class="sidebar__insta-item">
+                    <a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('assets/img/instagram/insta06.jpg') }}" alt="img"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="blog-widget">
+            <h4 class="fw-title">Tag Cloud</h4>
+            <div class="tagcloud">
+                <a href="#">E-sports</a>
+                <a href="#">Fantasy</a>
+                <a href="#">game</a>
+                <a href="#">Tournaments</a>
+                <a href="#">Matches</a>
+                <a href="#">Streamers</a>
+            </div>
+        </div>
