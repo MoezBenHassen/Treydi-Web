@@ -10,12 +10,49 @@ use Doctrine\ORM\Mapping as ORM;
 class LikeItems
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $itemid = null;
 
-    public function getId(): ?int
+    public function getiditem(): ?int
     {
-        return $this->id;
+        return $this->itemid;
     }
+    #[ORM\Id]
+    #[ORM\Column]
+    private ?int $userid = null;
+
+    public function getiduser(): ?int
+    {
+        return $this->userid;
+    }
+    #[ORM\Column]
+    private ?int $liked = null;
+
+    public function getlike(): ?int
+    {
+        return $this->liked;
+    }
+
+    public function setiduser(?int $iduser): self
+    {
+        $this->userid = $iduser;
+
+        return $this;
+    }
+
+    public function setiditem(?int $iditem): self
+    {
+        $this->itemid = $iditem;
+
+        return $this;
+    }
+
+    public function setlike(?int $liked): self
+    {
+        $this->liked = $liked;
+
+        return $this;
+    }
+
+
 }

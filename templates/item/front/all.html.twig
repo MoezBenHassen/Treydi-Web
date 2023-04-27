@@ -1,0 +1,744 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	Items
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}"/>
+
+	<link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default-dark.css') }}" class="template-customizer-theme-css"/>
+
+{% endblock %}
+{% block body %}
+
+	<!-- scroll-top -->
+	<button class="scroll__top scroll-to-target" data-target="html">
+		<i class="flaticon-right-arrow"></i>
+	</button>
+	<!-- scroll-top-end-->
+
+	<!-- header-area -->
+	<header>
+		<div id="sticky-header" class="tg-header__area ">
+			<div class="container custom-container">
+				<div class="row">
+					<div class="col-12">
+						<div class="mobile-nav-toggler">
+							<i class="fas fa-bars"></i>
+						</div>
+						<div class="tgmenu__wrap">
+							<nav class="tgmenu__nav">
+								<div class="logo">
+									<a href="index.html"><img src="{{ asset('assets/img/logo/treydi3.png') }}" alt="Logo"></a>
+								</div>
+								<div class="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex">
+									<ul class="navigation">
+										<li class=" menu-item-has-children">
+											<a href="#">Home</a>
+											<ul class="sub-menu">
+												<li class="active">
+													<a href="index.html">Home One</a>
+												</li>
+												<li>
+													<a href="index-2.html">Home Two</a>
+												</li>
+											</ul>
+										</li>
+										<li class="active menu-item-has-children">
+											<a href="about-us.html">ITEMS</a>
+										</li>
+										<li>
+											<a href="#">ECHANGES</a>
+
+										</li>
+										<li class="menu-item-has-children">
+											<a href="#">COUPONS</a>
+											<ul class="sub-menu">
+												<li>
+													<a href="shop.html">Gaming Shop</a>
+												</li>
+												<li>
+													<a href="shop-details.html">Shop Details</a>
+												</li>
+												<li>
+													<a href="services.html">Our Services</a>
+												</li>
+												<li>
+													<a href="services-details.html">Services Details</a>
+												</li>
+												<li>
+													<a href="team-details.html">Player Details</a>
+												</li>
+											</ul>
+										</li>
+										<li class="menu-item-has-children">
+											<a href="#">ARTICLES</a>
+											<ul class="sub-menu">
+												<li>
+													<a href="{{ path('app_article_index') }}">Our Blog</a>
+												</li>
+												<li>
+													<a href="blog-details.html">Blog Details</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="contact.html">contact</a>
+										</li>
+									</ul>
+								</div>
+								<div class="tgmenu__action d-none d-md-block">
+									<ul class="list-wrap">
+										<li class="search">
+											<a href="#">
+												<i class="flaticon-search-1"></i>
+											</a>
+										</li>
+										<li class="header-btn">
+											<a href="contact.html" class="tg-border-btn">
+												<i class="flaticon-edit"></i>
+												~sing in</a>
+										</li>
+										<li class="side-toggle-icon">
+											<span></span>
+											<span></span>
+											<span></span>
+										</li>
+									</ul>
+								</div>
+							</nav>
+						</div>
+						<!-- Mobile Menu  -->
+						<div class="tgmobile__menu">
+							<nav class="tgmobile__menu-box">
+								<div class="close-btn">
+									<i class="flaticon-swords-in-cross-arrangement"></i>
+								</div>
+								<div class="nav-logo">
+									<a href="index.html"><img src="assets/img/logo/treydi3.png" alt="Logo"></a>
+								</div>
+								<div class="tgmobile__search">
+									<form action="#">
+										<input type="text" placeholder="Search here...">
+										<button>
+											<i class="flaticon-loupe"></i>
+										</button>
+									</form>
+								</div>
+								<div
+									class="tgmobile__menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+								</div>
+								<div class="social-links">
+									<ul class="list-wrap">
+										<li>
+											<a href="#">
+												<i class="fab fa-facebook-f"></i>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fab fa-twitter"></i>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fab fa-instagram"></i>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fab fa-linkedin-in"></i>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fab fa-youtube"></i>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</nav>
+						</div>
+						<div class="tgmobile__menu-backdrop"></div>
+						<!-- End Mobile Menu -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- header-search -->
+		<div class="search__popup-wrap">
+			<div class="search__layer"></div>
+			<div class="search__close">
+				<span>
+					<i class="flaticon-swords-in-cross-arrangement"></i>
+				</span>
+			</div>
+			<div class="search__wrap text-center">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<h2 class="title">...
+								<span>Search Here</span>
+								...</h2>
+							<div class="search__form">
+								<form action="#">
+									<input type="text" name="search" placeholder="Type keywords here" required>
+									<button class="search-btn">
+										<i class="flaticon-loupe"></i>
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- header-search-end -->
+
+		<!-- offCanvas-area -->
+		<div class="offCanvas__wrap">
+			<div class="offCanvas__body">
+				<div class="offCanvas__top">
+					<div class="offCanvas__logo logo">
+						<a href="index.html"><img src="assets/img/logo/treydi3.png" alt="Logo"></a>
+					</div>
+					<div class="offCanvas__toggle">
+						<i class="flaticon-swords-in-cross-arrangement"></i>
+					</div>
+				</div>
+				<div class="offCanvas__content">
+					<h2 class="title">Best Seller of Month Ideas for
+						<span>NFT Wallet</span>
+					</h2>
+					<div class="offCanvas__contact">
+						<h4 class="small-title">CONTACT US</h4>
+						<ul class="offCanvas__contact-list list-wrap">
+							<li>
+								<a href="tel:93332225557">+9 333 222 5557</a>
+							</li>
+							<li>
+								<a href="mailto:info@webmail.com">info@webmail.com</a>
+							</li>
+							<li>New Central Park W7 Street ,New York</li>
+						</ul>
+					</div>
+					<div class="offCanvas__newsletter">
+						<h4 class="small-title">Subscribe</h4>
+						<form action="#" class="offCanvas__newsletter-form">
+							<input type="email" placeholder="Get News & Updates">
+							<button type="submit">
+								<i class="flaticon-send"></i>
+							</button>
+						</form>
+						<p>Subscribe dolor sitamet, consectetur adiping eli. Duis esollici tudin augue.</p>
+					</div>
+					<ul class="offCanvas__social list-wrap">
+						<li>
+							<a href="#">
+								<i class="fab fa-twitter"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fab fa-facebook-f"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fab fa-linkedin-in"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fab fa-youtube"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="offCanvas__copyright">
+					<p>Copyright © 2023 - By
+						<span>MYKD</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="offCanvas__overlay"></div>
+		<!-- offCanvas-area-end -->
+
+	</header>
+	<!-- header-area-end -->
+
+
+	<main
+		class="main--area">
+
+		<!-- breadcrumb-area -->
+		<section class="breadcrumb-area breadcrumb__hide-img" data-background="assets/img/bg/breadcrumb_bg02.jpg">
+			<div class="container">
+				<div class="breadcrumb__wrapper">
+					<div class="row">
+						<div class="col-12">
+							<div class="breadcrumb__content">
+								<h2 class="title">Liste de tous Items</h2>
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb">
+										<br>
+										<li class="breadcrumb-item" aria-current="page">
+											<a href="{{ url('app_itemList_f' ) }}">
+												Vos Items</a>
+										</li>
+										{% if cat == "" %}
+
+											<li class="breadcrumb-item active">
+												Tous Items
+											</li>
+										{% else %}
+											<li class="breadcrumb-item">
+												<a href="{{ url('app_itemListall_f' ) }}">
+													Tous Items</a>
+
+											</li>
+										{% endif %}
+
+										<li class="breadcrumb-item active">
+											&nbsp;{{ cat }}
+										</li>
+
+
+									</ol>
+								</nav>
+								<br>
+								<img src="https://codeopinion.com/wp-content/uploads/2016/08/objects-icon.png" width="350">
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb"></ol>
+								</nav>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="shop-area">
+					<div class="container">
+
+						<div class="row justify-content-center row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
+
+							<div class="col">
+								<div class="shop__item">
+									<h5>Top 15 des catégories avec le plus d'items</h5>
+
+
+									<div class="shop__item-content">
+										<div class="shop__item-content-top">
+
+											<table>
+												<tr>
+													{% for ii in listc|sort((a, b) => b.getQt() <=> a.getQt()) |slice(0, 15) %}
+
+														<td>
+															<a href="{{ url('app_itemListallc_f',{'id':ii.getId()} ) }}">
+																{{ ii.getNomCategorie() }}
+																({{ ii.getQt() }})
+															</a>
+														</td>
+
+
+													</tr>
+												{% endfor %}
+											</table>
+
+										</div>
+
+
+									</div>
+
+								</div>
+							</div>
+							<div class="col">
+								<div class="shop__item">
+
+									<h5>Top 5 des items les plus consultés</h5>
+
+
+									<div class="shop__item-content">
+										<div class="shop__item-content-top">
+
+											<table>
+												<tr>
+													{% for ii in list|sort((a, b) => b.getViews() <=> a.getViews()) |slice(0, 5) %}
+
+														<td>
+															<a href="{{ url('app_itemDetail_f',{'id':ii.getId()} ) }}">
+																<img src="{{ ii.getImageurl() }}" width="150"></a>
+														</td>
+														<td>
+															{{ ii.getLibelle() }}
+														</td>
+
+													</tr>
+												{% endfor %}
+											</table>
+
+										</div>
+
+
+									</div>
+
+								</div>
+							</div>
+							<div class="col">
+								<div class="shop__item">
+									<h5>Top 5 des items les plus appréciés</h5>
+
+									<div class="shop__item-content">
+										<div class="shop__item-content-top">
+
+											<table>
+												<tr>
+													{% for ii in list|sort((a, b) => b.getLikes() <=> a.getLikes()) |slice(0, 5) %}
+
+														<td>
+															<a href="{{ url('app_itemDetail_f',{'id':ii.getId()} ) }}">
+																<img src="{{ ii.getImageurl() }}" width="150"></a>
+														</td>
+														<td>
+															{{ ii.getLibelle() }}
+														</td>
+
+													</tr>
+												{% endfor %}
+											</table>
+
+
+										</div>
+
+
+									</div>
+
+								</div>
+							</div>
+							<div class="col">
+								<div class="shop__item">
+									<h5>Top 5 des articles les plus détestés</h5>
+
+									<div class="shop__item-content">
+										<div class="shop__item-content-top">
+
+											<table>
+												<tr>
+													{% for ii in list|sort((a, b) => b.getDislikes() <=> a.getDislikes()) |slice(0, 5) %}
+
+														<td>
+															<a href="{{ url('app_itemDetail_f',{'id':ii.getId()} ) }}">
+																<img src="{{ ii.getImageurl() }}" width="150"></a>
+														</td>
+														<td>
+															{{ ii.getLibelle() }}
+														</td>
+
+													</tr>
+												{% endfor %}
+											</table>
+
+										</div>
+
+
+									</div>
+
+								</div>
+
+							</div>
+
+
+						</div>
+
+
+					</div>
+				</div>
+
+
+			</section>
+		</div>
+
+
+	</section>
+	<!-- breadcrumb-area-end -->
+
+	<!-- shop-area -->
+	<section class="shop-area">
+		<br>
+
+
+		<div class="container">
+
+
+			<br>
+			<div class="row justify-content-center row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
+
+				<div class="col">
+					<div class="shop__item">
+
+						<div class="shop__item-content">
+							<div class="shop__item-content-top">
+
+								<div class="container">
+									<form class="container" action={{ url('app_itemFilter_f') }}>
+										<input class="form-check" type="checkbox" name="physiquen" id="physiquen">
+										Physique Neuf
+										<input class="form-check" type="checkbox" name="physiqueo" id="physiqueo">
+										Physique Occasion
+										<input class="form-check" type="checkbox" name="virtuelle" id="virtuelle">
+										Virtuelle
+										<input class="form-check" type="checkbox" name="service" id="service">
+										Service
+
+										<input class="form-control" type="text" name='libelle' placeholder="Insérer libelle"/>
+
+
+										<input class="form-control" type="submit" value="Filtrer"/>
+									</form>
+									<br>
+									<form action={{ url('app_itemAdd_f') }}>
+										<input class="btn btn-dark" type="submit" value="   Ajouter Item   "/>
+									</form>
+									<br>
+									<form class="" action={{ url('app_itemPdf_f') }}>
+										&nbsp;<input class="btn btn-dark" type="submit" value="  Generer PDF   "/>
+									</form>
+								</div>
+							</div>
+
+
+						</div>
+
+					</div>
+				</div>
+
+
+				{% for i in list %}
+
+					<div class="col">
+						<div class="shop__item">
+							<div class="shop__item-thumb">
+								<a href="{{ url('app_itemDetail_f',{'id':i.getId()} ) }}"><img src="{{ i.getImageurl() }}" alt="img"></a>
+
+							</div>
+
+							<div class="shop__item-content">
+								<div class="shop__item-content-top">
+									<h4 class="title">
+										<a href="shop-details.html">{{ i.getLibelle() }}</a>
+									</h4>
+
+								</div>
+
+								<div class="shop__item-cat">
+									<a href="shop.html">{{ i.getIdCategorie().getNomCategorie() }}
+
+									</a>
+
+
+									<a href={{ url('app_itemLike_f',{'id':i.getId()} ) }}>👍
+										{{ i.getLikes()}}
+
+									</a>
+
+									<a href={{ url('app_itemDislike_f',{'id':i.getId()} ) }}>👎
+										{{ i.getDislikes()}}
+
+
+									</a>
+								</div>
+								<div class="dropdown">
+									<span class="badge bg-label-primary me-1">{{ i.getType() }}</span>
+									<span class="badge bg-label-primary me-1">{{ i.getEtat() }}</span>
+
+									<span class="badge bg-label-primary me-1 dropdown-toggle " data-bs-toggle="dropdown">
+										Details
+									</span>
+									<div class="dropdown-menu">
+										<div class="container">
+											{{ i.getDescription() }}
+										</div>
+									</div>
+								</div>
+
+
+								<div class="">
+									{{ i.getIduser().getNom()}}
+									|
+																																																																																																																																											👁️‍🗨️
+									{{ i.getViews() }}
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+
+				{% endfor %}
+
+
+			</div>
+
+		</section>
+
+
+		<!-- shop-area-end -->
+
+	</main>
+	<!-- main-area-end -->
+
+	<!-- main-area-end -->
+
+
+	<!-- footer-start -->
+		<footer class="footer-style-one"> <div class="footer__top-wrap">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-4 col-lg-5 col-md-7">
+						<div class="footer-widget">
+							<div class="footer-logo logo">
+								<a href="index.html"><img src="{{ asset('assets/img/logo/treydi3.png') }}" alt="Logo"></a>
+							</div>
+							<div class="footer-text">
+								<p class="desc">Lorem ipsum dolor sitamet consectur adipiscing Duis esollici tudin augue euismod. Nulla ullam dolor sitamet consectetur</p>
+								<p class="social-title">Active
+									<span>With Us
+										<i class="fas fa-angle-double-right"></i>
+									</span>
+								</p>
+								<div class="footer-social">
+									<a href="#"><img src="{{asset('assets/img/icons/social_icon01.png')}}" alt="iocn"></a>
+									<a href="#"><img src="{{asset('assets/img/icons/social_icon02.png')}}" alt="iocn"></a>
+									<a href="#"><img src="{{asset('assets/img/icons/social_icon03.png')}}" alt="iocn"></a>
+									<a href="#"><img src="{{asset('assets/img/icons/social_icon04.png')}}" alt="iocn"></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-2 col-lg-3 col-md-5 col-sm-6">
+						<div class="footer-widget widget_nav_menu">
+							<h4 class="fw-title">quick link</h4>
+							<ul class="list-wrap menu">
+								<li>
+									<a href="#">Gaming</a>
+								</li>
+								<li>
+									<a href="#">Product</a>
+								</li>
+								<li>
+									<a href="#">All NFTs</a>
+								</li>
+								<li>
+									<a href="#">Social Network</a>
+								</li>
+								<li>
+									<a href="#">Domain Names</a>
+								</li>
+								<li>
+									<a href="#">Collectibles</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-xl-2 col-lg-3 col-md-5 col-sm-6">
+						<div class="footer-widget widget_nav_menu">
+							<h4 class="fw-title">Supports</h4>
+							<ul class="list-wrap menu">
+								<li>
+									<a href="#">Setting & Privacy</a>
+								</li>
+								<li>
+									<a href="#">Help & Support</a>
+								</li>
+								<li>
+									<a href="#">Live Auctions</a>
+								</li>
+								<li>
+									<a href="#">Item Details</a>
+								</li>
+								<li>
+									<a href="#">24/7 Supports</a>
+								</li>
+								<li>
+									<a href="#">Our News</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-xl-4 col-lg-5 col-md-7">
+						<div class="footer-widget">
+							<h4 class="fw-title">Newsletter</h4>
+							<div class="footer-newsletter">
+								<p>Subscribe our newsletter to get our latest update & newsconsectetur</p>
+								<form action="#" class="footer-newsletter-form">
+									<input type="email" placeholder="Your email address">
+									<button type="submit">
+										<i class="flaticon-paper-plane"></i>
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="copyright__wrap">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-md-7">
+						<div class="copyright__text">
+							<p>Copyright © 2023 - All Rights Reserved By
+								<span>TREYDI</span>
+							</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- footer-start-end -->
+
+
+	<!-- JS here -->
+
+	<!-- 💁 Include both scripts below to support all browsers! -->
+
+	<!-- Loads <model-viewer> for modern browsers: --><script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"> </script>
+
+	<!-- Loads <model-viewer> for old browsers like IE11: -->
+	<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+
+	<script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
+	<script src="assets/js/plugins.js"></script>
+	<script src="assets/js/ajax-form.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="{{ asset('/assets/vendor/js/menu.js') }}"></script>
+	<script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
+
+	<script src="{{ asset('/assets/vendor/libs/popper/popper.js') }}"></script>
+
+	<script src="{{ asset('/assets/vendor/js/bootstrap.js') }}"></script>
+
+	<script src="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+
+	<script src="{{ asset('/assets/vendor/libs/hammer/hammer.js') }}"></script>
+
+	<script src="{{ asset('/assets/vendor/libs/i18n/i18n.js') }}"></script>
+
+	<script src="{{ asset('/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
+
+	<script src="{{ asset('/assets/vendor/js/menu.js') }}"></script>
+
+	<!-- endbuild -->
+
+	<!-- Vendors JS -->
+
+	<!-- Vendors JS -->
+
+	<!-- Main JS --><script src="{{asset('/assets/js/maindash.js') }}"> </script>
+{% endblock %}

@@ -63,4 +63,37 @@ class ItemRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+public function findUnarchived(): array
+{
+    $req =  $this->createQueryBuilder('s')
+        ->andWhere('s.archived = :val')
+        ->setParameter('val', 0)
+        ->getQuery()
+        ->getResult();
+    return $req;
+}
+
+public function findUnarchivedFront($userid): array
+{
+    $req =  $this->createQueryBuilder('s')
+        ->andWhere('s.archived = :val')
+        ->setParameter('val', 0)
+        ->andWhere('s.id_user = :valx')
+        ->setParameter('valx', $userid)
+        ->getQuery()
+        ->getResult();
+    return $req;
+}
+
+public function findAlll(): array
+{
+    $req =  $this->createQueryBuilder('s')
+        ->andWhere('s.archived = :val')
+        ->setParameter('val', 0)
+        ->getQuery()
+        ->getResult();
+    return $req;
+}
 }

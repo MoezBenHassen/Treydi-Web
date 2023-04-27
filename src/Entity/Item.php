@@ -4,6 +4,9 @@ namespace App\Entity;
 
 use App\Repository\ItemRepository;
 use Doctrine\ORM\Mapping as ORM;
+use PHPUnit\Util\Exception;
+use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
 class Item
@@ -13,10 +16,19 @@ class Item
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+
+    #[ORM\Column(length: 30, nullable: true)]
+    #[Assert\NotBlank(message: 'Libelle est obligatoire! (entre 3 et 30)')]
+    #[Assert\Regex(
+        pattern: '/^(?!\d+$)\s*[a-zA-Z0-9\s]+$/i',
+        message: 'Le libellé doit contenir des lettres et des chiffres, mais ne doit pas être composé uniquement de chiffres.'
+    )]
+    #[Assert\Length(min:3,max: 30)]
     private ?string $libelle = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Description est obligatoire! (entre 3 et 255)')]
+    #[Assert\Length(min:3,max: 255)]
     private ?string $description = null;
 
     #[ORM\Column(length: 10, nullable: true)]
@@ -25,27 +37,31 @@ class Item
     #[ORM\Column(length: 10, nullable: true)]
     private ?string $type = null;
 
+    
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Regex(pattern: '/\.(png|jpg)$/', message: 'image doit etre png ou jpg')]
     private ?string $imageurl = null;
 
     #[ORM\ManyToOne(inversedBy: 'items')]
     private ?Utilisateur $id_user = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $likes = null;
+    private ?int $likes = 0;
 
     #[ORM\Column(nullable: true)]
-    private ?int $dislikes = null;
+    private ?int $dislikes = 0;
+
+    #[ORM\Column]
+    private ?int $views = 0;
 
     #[ORM\Column(nullable: true)]
-    private ?bool $archived = null;
+    private ?bool $archived = false;
 
     #[ORM\ManyToOne(inversedBy: 'items')]
     private ?CategorieItems $id_categorie = null;
 
-    #[ORM\ManyToOne(targetEntity: Echange::class, inversedBy: 'echange')]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Echange $id_echange = null;
-
 
 
     public function getId(): ?int
@@ -133,6 +149,18 @@ class Item
     public function setLikes(?int $likes): self
     {
         $this->likes = $likes;
+
+        return $this;
+    }
+
+    public function getViews(): ?int
+    {
+        return $this->views;
+    }
+
+    public function setViews(?int $views): self
+    {
+        $this->views = $views;
 
         return $this;
     }

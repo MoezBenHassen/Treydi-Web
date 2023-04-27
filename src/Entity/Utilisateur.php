@@ -90,11 +90,15 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface ,
     #[ORM\OneToMany(mappedBy: 'id_livreur', targetEntity: Livraison::class)]
     private Collection $livraisons;
 
+    #[ORM\OneToMany(mappedBy: 'userid', targetEntity: CommentItems::class)]
+    private Collection $comments;
+
 
 
     public function __construct()
     {
         $this->items = new ArrayCollection();
+        $this->comments = new ArrayCollection();
         $this->echanges = new ArrayCollection();
         $this->reclamations = new ArrayCollection();
         $this->coupons = new ArrayCollection();
@@ -277,6 +281,26 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface ,
 
         return $this;
     }
+
+
+        /**
+     * @return Collection<int, CommentItems>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(CommentItems $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setUserId($this);
+        }
+
+        return $this;
+    }
+
 
     /**
      * @return Collection<int, Item>

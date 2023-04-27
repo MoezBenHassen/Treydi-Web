@@ -63,4 +63,16 @@ class LikeItemsRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+public function obtain($itemid,$userid): array
+{
+    $req =  $this->createQueryBuilder('s')
+        ->andWhere('s.itemid = :val')
+        ->setParameter('val', $itemid)
+        ->andWhere('s.userid = :valx')
+        ->setParameter('valx', $userid)
+        ->getQuery()
+        ->getResult();
+    return $req;
+}
 }

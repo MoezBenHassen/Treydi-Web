@@ -6,6 +6,8 @@ use App\Repository\CategorieItemsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use PHPUnit\Util\Exception;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategorieItemsRepository::class)]
 #[ORM\Table(name: 'categorie_items')]
@@ -16,8 +18,17 @@ class CategorieItems
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 30, nullable: true)]
+    #[Assert\NotBlank(message: 'nom categorie obligatoire! (entre 3 et 30)')]
+    #[Assert\Length(min:3,max: 30)]
+    #[Assert\Regex(
+        pattern: '/^(?!\d+$)\s*[a-zA-Z0-9\s]+$/i',
+        message: 'Le nom categorie doit contenir des lettres et des chiffres, mais ne doit pas être composé uniquement de chiffres.'
+    )]
     private ?string $nom_categorie = null;
+
+    #[ORM\Column]
+    private ?int $qt = 0;
 
     #[ORM\Column(nullable: true)]
     private ?bool $archived = null;
@@ -43,6 +54,18 @@ class CategorieItems
     public function setNomCategorie(?string $nom_categorie): self
     {
         $this->nom_categorie = $nom_categorie;
+
+        return $this;
+    }
+
+    public function getQt(): ?int
+    {
+        return $this->qt;
+    }
+
+    public function setQt(?int $qt): self
+    {
+        $this->qt = $qt;
 
         return $this;
     }

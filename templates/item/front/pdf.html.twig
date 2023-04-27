@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Items PDF</title>
+	</head>
+	<body>
+		<h1>Items</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Image</th>
+					<th>Libelle</th>
+					<th>Categorie</th>
+					<th>Description</th>
+					<th>Etat</th>
+					<th>Type</th>
+					<th>L</th>
+					<th>D</th>
+					<th>V</th>
+					<th>User</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in items %}
+					<tr>
+						<td><img src="{{ item.imageurl }}" width="150"></td>
+						<td>{{ item.libelle }}</td>
+						<td>{{ item.getIdCategorie().getNomCategorie() }}</td>
+						<td>{{ item.description }}</td>
+						<td>{{ item.etat }}</td>
+						<td>{{ item.type }}</td>
+						<td>{{ item.likes }}</td>
+						<td>{{ item.dislikes }}</td>
+						<td>{{ item.views }}</td>
+						<td>{{ item.getIduser().getNom() }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>
