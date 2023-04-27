@@ -61,34 +61,6 @@
 <ul class="menu-inner py-1" {#style="border: solid red 2px;"#}>
 	<!-- Dashboards -->
 
-	<!-- Articles -->
-		<ul class="menu-inner py-1" {#style="border:solid blue 2px;"#}> <li class="menu-item" {#style="border:solid green 2px;"#}>
-			<a href="" class="menu-link menu-toggle">
-				<i class='menu-icon tf-icons bx bxs-shopping-bags'></i>
-				<div>Items</div>
-			</a>
-			<ul class="menu-sub" {#style="border:solid yellow 2px;"#}>
-				<li class="menu-item">
-					<a
-						href={{ url('app_itemList_b') }} class="menu-link">
-						{#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
-						<i class='bx bx-list-ul'></i>
-						<div data-i18n="&nbsp; Liste Items">Liste Items</div>
-					</a>
-					<a
-						href={{ url('app_itemAdd_b') }} class="menu-link">
-						{#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
-						<i class='bx bxs-folder-plus'></i>
-						<div data-i18n="&nbsp; Ajouter Item">Ajouter Item</div>
-					</a>
-          	<a
-				href={{ url('app_categorieItemsList_b') }} class="menu-link">
-				{#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
-				<i class='bx bxs-category'></i>
-				<div data-i18n="&nbsp; Categories Items">Categories Items</div>
-			</a>
-
-
     <ul class="menu-inner py-1" {#style="border: solid red 2px;"#}>
         <!-- Dashboards -->
 
@@ -157,26 +129,50 @@
                     </li>
                 </ul>
             </li>
-
-            {# REDIRECT WITHOUT COLLAPSABLE MENU#}
-            <li class="menu-item"  {#style="border:solid  pink 2px;"#}>
-                <a href="{{ path('app_article_index') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-news"></i>
-                    <div >Articles (blog)</div>
+            <li class="menu-item"  {#style="border:solid  green 2px;"#}>
+                <a href="" class="menu-link menu-toggle">
+                    <i class='menu-icon tf-icons bx bxs-shopping-bags'></i>
+                    <div >Items</div>
                 </a>
+                <ul class="menu-sub "  {#style="border:solid  yellow 2px;"#}>
+                    <li class="menu-item noBullet">
+                        <a href="{{ url('app_itemList_b') }}" class="menu-link">
+                            {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
+                            <i class='bx bx-list-ul'></i>
+                            <div>Liste Items</div>
+                        </a>
+                        <a href="{{ path('app_categorie_article_index') }}" class="menu-link">
+                            {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
+                            <i class='bx bxs-folder-plus'></i>
+                            <div>Ajouter Item</div>
+                        </a>
+                        <a href="{{ path('app_authors_index') }}" class="menu-link">
+                            {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
+                            <i class='bx bxs-category'></i>
+                            <div>Categories Items</div>
+                        </a>
+                    </li>
+                </ul>
             </li>
+            {# REDIRECT WITHOUT COLLAPSABLE MENU#}
+{#            <li class="menu-item"  #}{#style="border:solid  pink 2px;"#}{#>#}
+{#                <a href="{{ path('app_article_index') }}" class="menu-link">#}
+{#                    <i class="menu-icon tf-icons bx bx-news"></i>#}
+{#                    <div >Articles (blog)</div>#}
+{#                </a>#}
+{#            </li>#}
 
             <li class="menu-item"  {#style="border:solid  pink 2px;"#}>
                 <a href="/reclamation/list" class="menu-link">
-                    <i class='bx bxs-report'></i>
-                    <div>Reclamation</div>
+                    <i class='menu-icon bx bxs-report'></i>
+                    <div>Reclamations</div>
                 </a>
 
             </li>
             <li class="menu-item"  {#style="border:solid  pink 2px;"#}>
                 <a href="{{ path('app_stat') }}" class="menu-link">
-                    <i class='bx bx-stats'></i>
-                    <div>statistique</div>
+                    <i class='menu-icon bx bx-stats'></i>
+                    <div>Statistiques</div>
                 </a>
 
             </li>
