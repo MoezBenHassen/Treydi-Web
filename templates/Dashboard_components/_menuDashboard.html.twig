@@ -88,47 +88,99 @@
 				<div data-i18n="&nbsp; Categories Items">Categories Items</div>
 			</a>
 
-			     	<a
-				href={{ url('app_itemStats_b') }} class="menu-link">
-				{#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
-				<i class='bx bx-objects-vertical-top'></i>
-				<div data-i18n="&nbsp; Statstiques Items">Statstiques Items</div>
-			</a>
-				</li>
-			</a>
-		
-	</ul>
-</li>
-<!-- MENU LINIKS || PLS ADD CODE DON4T REPLACE CODE 3AYCH AZDI9A2I -->
-<!-- MENU LINIKS || PLS ADD CODE DON4T REPLACE CODE 3AYCH AZDI9A2I -->
-<!-- MENU LINIKS || PLS ADD CODE DON4T REPLACE CODE 3AYCH AZDI9A2I -->
-<!-- MENU LINIKS || PLS ADD CODE DON4T REPLACE CODE 3AYCH AZDI9A2I -->
-{######################################################################################}
 
-{# REDIRECT WITHOUT COLLAPSABLE MENU#}
-	<li class="menu-item" {#style="border:solid green 2px;"#}> <a href="" class="menu-link menu-toggle">
-		<i class="menu-icon tf-icons bx bx-layout"></i>
-		<div>Articles</div>
-	</a>
-	<ul class="menu-sub" {#style="border:solid yellow 2px;"#}>
-		<li class="menu-item">
-			<a
-				href="layouts-collapsed-menu.html" class="menu-link">
-				{#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
-				<i class="menu-icon tf-icons bx bx-layout"></i>
-				<div data-i18n="Collapsed menu">Collapsed XD</div>
-			</a>
-		</li>
-	</ul>
-</li>
+    <ul class="menu-inner py-1" {#style="border: solid red 2px;"#}>
+        <!-- Dashboards -->
 
-{# REDIRECT WITHOUT COLLAPSABLE MENU#}
-<li class="menu-item" {#style="border:solid pink 2px;"#}>
-	<a href="layouts-collapsed-menu.html" class="menu-link">
-		<i class="menu-icon tf-icons bx bx-layout"></i>
-		<div data-i18n="Collapsed menu">Collapsed XD</div>
-	</a>
+        <!-- Articles -->
+        <ul class="menu-inner py-1" {#style="border:solid  blue 2px;"#}>
+            <!-- MENU LINIKS || PLS ADD CODE DON4T REPLACE CODE 3AYCH AZDI9A2I -->
+            <!-- MENU LINIKS || PLS ADD CODE DON4T REPLACE CODE 3AYCH AZDI9A2I -->
+            <!-- MENU LINIKS || PLS ADD CODE DON4T REPLACE CODE 3AYCH AZDI9A2I -->
+            <!-- MENU LINIKS || PLS ADD CODE DON4T REPLACE CODE 3AYCH AZDI9A2I -->
+            <!-- MENU LINIKS || PLS ADD CODE DON4T REPLACE CODE 3AYCH AZDI9A2I -->
+            {######################################################################################}
+            <style>
 
-</li>
+                .bg-menu-theme .menu-sub>.menu-item>.menu-link:before {
+                    background: transparent !important;
+                }
+                /*    .menu-link:active{
+                       color: yellow !important;
+                        !*background-color: yellow !important;*!
 
-{######################################################################################}</ul></ul>
+                    }*/
+                .menu-link:hover{
+                    color: yellow !important;
+                    /*background-color: yellow !important;*/
+                }
+            </style>
+            {# REDIRECT WITHOUT COLLAPSABLE MENU#}
+            <li class="menu-item"  {#style="border:solid  green 2px;"#}>
+                <a href="" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bxs-news"></i>
+
+                    <div >Articles</div>
+                </a>
+                <ul class="menu-sub "  {#style="border:solid  yellow 2px;"#}>
+                    <li class="menu-item noBullet">
+                        <a href="{{ path('app_article_index') }}" class="menu-link">
+                            {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
+                            <i class="menu-icon tf-icons bx bx-list-ul"></i>
+                            <div>Articles</div>
+                        </a>
+                        <a href="{{ path('app_categorie_article_index') }}" class="menu-link">
+                            {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
+                            <i class="menu-icon tf-icons bx bx-category"></i>
+                            <div>Catégories Articles</div>
+                        </a>
+                        <a href="{{ path('app_authors_index') }}" class="menu-link">
+                            {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
+                            <i class="menu-icon fa-solid fa-pen-nib"></i>
+                            <div>Auteurs</div>
+                        </a>
+                        <a href="{{ path('app_article_new') }}" class="menu-link">
+                            {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
+                            <i class='menu-icon bx bx-book-add'></i>
+                            <div>Ajouter un article</div>
+                        </a>
+                        <a href="{{ path('app_categorie_article_new') }}" class="menu-link">
+                            {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
+                            <i class='menu-icon bx bxs-category-alt' ></i>
+                            <div>Ajouter une categorie</div>
+                        </a>
+                        <a href="{{ path('app_authors_new') }}" class="menu-link">
+                            {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
+                            <i class='menu-icon bx bxs-user-plus'></i>
+                            <div>Ajouter un auteur</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            {# REDIRECT WITHOUT COLLAPSABLE MENU#}
+            <li class="menu-item"  {#style="border:solid  pink 2px;"#}>
+                <a href="{{ path('app_article_index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-news"></i>
+                    <div >Articles (blog)</div>
+                </a>
+            </li>
+
+            <li class="menu-item"  {#style="border:solid  pink 2px;"#}>
+                <a href="/reclamation/list" class="menu-link">
+                    <i class='bx bxs-report'></i>
+                    <div>Reclamation</div>
+                </a>
+
+            </li>
+            <li class="menu-item"  {#style="border:solid  pink 2px;"#}>
+                <a href="{{ path('app_stat') }}" class="menu-link">
+                    <i class='bx bx-stats'></i>
+                    <div>statistique</div>
+                </a>
+
+            </li>
+
+            {######################################################################################}
+        </ul>
+    </ul>

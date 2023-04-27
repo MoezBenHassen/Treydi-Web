@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Liste de Réclamations</title>
+    <style>
+        /* Global styles */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #444;
+            background-color: #f9f9f9;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+            text-align: center;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.9rem;
+            }
+            th, td {
+                padding: 0.75rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Liste de Réclamations</h1>
+</header>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in list %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.titreReclamation }}</td>
+            <td>{{ item.descriptionReclamation }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<header>
+    <h1>Liste de Reponse</h1>
+</header>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in listreponse %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.getTitreReponse }}</td>
+            <td>{{ i.getDescriptionReponse }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

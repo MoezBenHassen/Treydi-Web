@@ -1,4 +1,140 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+
+    {#{{ form_widget(form) }}#}
+
+
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Article</h5> {#<small class="text-muted float-end">Default label</small>#}
+            </div>
+            <div class="card-body">
+                <style>
+                    .text-danger {
+                        color: #dc3545 !important;
+                    }
+
+                    .text-danger li {
+                        margin-top: 5px;
+                        color: #dc3545 !important;
+                        list-style-type: "> " !important;
+                    }
+
+                </style>
+                {{ form_start(form) }}
+
+                <div class="mb-3">
+                    <div class="form-floating">
+
+                        {{ form_widget(form.titre) }}
+                        <label style="color: #a3a4cc">Titre</label>
+                    </div>
+                    <div class="text-danger">
+                        {{ form_errors(form.titre, {'attr': {'class': 'text-danger', 'style':'color:red;'}}) }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+
+                    {#make the form errors appear in red#}
+                    <div class="form-floating">
+                        {{ form_widget(form.description) }}
+                        <label style="color: #a3a4cc">Description</label>
+                    </div>
+                    <div class="text-danger">
+                        {{ form_errors(form.description, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-floating">
+                        {{ form_widget(form.contenu) }}
+                        <label style="color: #a3a4cc">Contenu</label>
+                    </div>
+
+                    <div class="text-danger">
+                        {{ form_errors(form.contenu, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    {#date_publication with form-control class#}
+                    <div class="form-floating">
+                        {{ form_widget(form.date_publication) }}
+                        <label style="color: #a3a4cc">Date de publication</label>
+                    </div>
+
+                    <div class="text-danger">
+                        {{ form_errors(form.date_publication, {'attr': {'style': 'color:red;'}}) }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.auteur) }}
+                    {{ form_widget(form.auteur) }}
+                    <div class="text-danger">
+                        {{ form_errors(form.auteur, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.id_categorie) }}
+                    {{ form_widget(form.id_categorie) }}
+                    <div class="text-danger">
+                        {{ form_errors(form.id_categorie, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.id_user) }}
+                    {{ form_widget(form.id_user) }}
+                    <div class="text-danger">
+                        {{ form_errors(form.id_user, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.imageFile) }}
+                    {{ form_widget(form.imageFile) }}
+                    <div class="text-danger">
+                        {{ form_errors(form.imageFile, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+                </div>
+               {# <div class="mb-3">
+
+                    <!--star rating-->
+                        <div style="border: 1px black solid">
+                            <span class="rating" data-rating="0">
+                                <i class="star" data-checked="false" data-note="1">&#9733;</i>
+                                <i class="star" data-checked="false" data-note="2">&#9733;</i>
+                                <i class="star" data-checked="false" data-note="3">&#9733;</i>
+                                <i class="star" data-checked="false" data-note="4">&#9733;</i>
+                                <i class="star" data-checked="false" data-note="5">&#9733;</i>
+                            </span>
+                            <span>
+                                <i class="note">Note: 0</i>
+                            </span>
+                        </div>
+
+                        #}{#form widget form rating with disabled attribute#}{#
+
+                    {{ form_widget(form.avgRating) }}
+                </div>#}
+
+                    {#{{ 3|rating }}#}
+                    <!--star rating-->
+
+                    <!--/// END star rating-->
+
+                <div class="d-grid gap-2">
+                    {{ form_widget(form.submit) }}
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    {#<button class="btn btn-primary">{{ button_label|default('Save') }}</button>#}
+
