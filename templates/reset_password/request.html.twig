@@ -1,3 +1,4 @@
+
 {% extends 'base.html.twig' %}
 {% block title %}{{ parent() }}Log In {% endblock %}
 
@@ -39,6 +40,9 @@
 {% endblock %}
 
 {% block body %}
+    {% for flash_error in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
     <!-- Google Tag Manager (noscript) (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
@@ -65,36 +69,19 @@
                         <p class="mb-4">Please enter your information</p>
 
                         <!--  <form class="card-body"> -->
-                        <form method="post">
-                            {% if error %}
-                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                            {% endif %}
+                        <p> Email </p>
+                        {{ form_start(requestForm) }}
+                        {{ form_widget(requestForm.email, { 'attr': {'class': 'form-control'} }) }}
 
-                            {% if app.user %}
-                                <div class="mb-3">
-                                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-                                </div>
-                            {% endif %}
+                        <div>
+                            <small>
+                                Enter your email address and we will send you a
+                                link to reset your password.
+                            </small>
+                        </div>
 
-
-                            <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
-
-                            <label for="inputEmail">Email</label>
-                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-
-                            <label for="inputPassword">Password</label>
-                            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="new-password" required>
-                            <button class="btn btn-lg btn-primary" type="submit">
-                                Log in
-                            </button>
-                            <p>You don't have an account ?
-                                <a href="{{ path('app_register') }}">Join Us</a>
-                            </p>
-                            <a href="{{ path('app_forgot_password_request') }}">forgot password ?</a>
-                            <input type="hidden" name="_csrf_token"
-                                   value="{{ csrf_token('authenticate') }}">
-
-                        </form>
+                        <button class="btn btn-primary">Send password reset email</button>
+                        {{ form_end(requestForm) }}
                     </div>
                 </div>
                 <!-- /Register -->
