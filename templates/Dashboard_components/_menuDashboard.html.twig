@@ -87,7 +87,8 @@
                     /*background-color: yellow !important;*/
                 }
             </style>
-            {# REDIRECT WITHOUT COLLAPSABLE MENU#}
+
+            <!-- Articles -->
             <li class="menu-item"  {#style="border:solid  green 2px;"#}>
                 <a href="" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bxs-news"></i>
@@ -129,6 +130,7 @@
                     </li>
                 </ul>
             </li>
+            <!-- Items -->
             <li class="menu-item"  {#style="border:solid  green 2px;"#}>
                 <a href="" class="menu-link menu-toggle">
                     <i class='menu-icon tf-icons bx bxs-shopping-bags'></i>
@@ -138,18 +140,39 @@
                     <li class="menu-item noBullet">
                         <a href="{{ url('app_itemList_b') }}" class="menu-link">
                             {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
-                            <i class='bx bx-list-ul'></i>
+                            <i class='menu-icon bx bx-list-ul'></i>
                             <div>Liste Items</div>
                         </a>
                         <a href="{{ path('app_categorie_article_index') }}" class="menu-link">
                             {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
-                            <i class='bx bxs-folder-plus'></i>
+                            <i class='menu-icon bx bxs-folder-plus'></i>
                             <div>Ajouter Item</div>
                         </a>
                         <a href="{{ path('app_authors_index') }}" class="menu-link">
                             {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
-                            <i class='bx bxs-category'></i>
+                            <i class='menu-icon bx bxs-category'></i>
                             <div>Categories Items</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- User -->
+            <li class="menu-item"  {#style="border:solid  green 2px;"#}>
+                <a href="" class="menu-link menu-toggle">
+                    <i class='menu-icon bx bxs-user-rectangle'></i>
+                    <div >Users</div>
+                </a>
+                <ul class="menu-sub "  {#style="border:solid  yellow 2px;"#}>
+                    <li class="menu-item noBullet">
+                        <a href="{{ url('app_user_index') }}" class="menu-link">
+                            {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
+                            <i class='menu-icon bx bxs-user-detail' ></i>
+                            <div>Liste Users</div>
+                        </a>
+                        <a href="{{ path('app_user_new') }}" class="menu-link">
+                            {#VISIT BOXICONS.COM TO SEE THE FULL ICONS LIST OR FONTAWESOME AND REPLACE I CLASS WITH FONT CODE FROM WEBSITE#}
+                            <i class='menu-icon bx bxs-user-plus'></i>
+                            <div>Ajouter un user</div>
                         </a>
                     </li>
                 </ul>
@@ -161,7 +184,7 @@
 {#                    <div >Articles (blog)</div>#}
 {#                </a>#}
 {#            </li>#}
-
+            <!-- Reclamations -->
             <li class="menu-item"  {#style="border:solid  pink 2px;"#}>
                 <a href="/reclamation/list" class="menu-link">
                     <i class='menu-icon bx bxs-report'></i>
@@ -174,9 +197,9 @@
                     <i class='menu-icon bx bx-stats'></i>
                     <div>Statistiques</div>
                 </a>
-
             </li>
 
             {######################################################################################}
         </ul>
     </ul>
+</ul>

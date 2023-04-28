@@ -85,7 +85,7 @@
 
                 <!-- Basic Bootstrap Table -->
                 <div class="card">
-                    <h5 class="card-header">Utilisateur List</h5>
+                    <h5 class="card-header">Liste Utilisateur</h5>
                     <div class="table-responsive text-nowrap">
                         <table class="table">
                             <thead>
@@ -103,39 +103,34 @@
                             </tr>
                             </thead>
                             {% for user in users %}
-                            <tbody class="table-border-bottom-0">
-                            <tr>
-                                <td>{{ user.id }}</td>
-                                <td>{{ user.email }}</td>
-                                <div class="card mb-4">
-                                <td class="avatar me-2">
-                                   <span class="avatar-initial rounded-circle bg-label-success" style="width: 45px; height: auto;">
-                                       {{ user.nom|slice(0,1) }}{{ user.prenom|slice(0,1) }}
-                                    </span>
-                                </td>
-                                </div>
-
-                                <td><span class="badge bg-label-primary me-1">{{ user.adresse }}</span></td>
-                                <td>{{ user.prenom }}</td>
-                                <td>{{ user.nom }}</td>
-                                <td>{{ user.roles|join(', ') }}</td>
-                                <td>{{ user.score ?? 'N/A' }}</td>
-                                <td>{{ user.dateNaissance|date('Y-m-d') }}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-                                        <div class="dropdown-menu">
-                                            <a href="{{ path('app_user_edit', {'id': user.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
-                                            <a href="{{ path('app_user_delete', {'id': user.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> supprimer</a>
-                                        </div>
-
+                                <tbody class="table-border-bottom-0">
+                                <tr>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <div class="card mb-4">
+                                    <td class="avatar me-2">
+                                       <span class="avatar-initial rounded-circle bg-label-success" style="width: 45px; height: auto;">
+                                           {{ user.nom|slice(0,1) }}{{ user.prenom|slice(0,1) }}
+                                       </span>
+                                    </td>
                                     </div>
-
-                                </td>
-                            </tr>
-
-
-                            </tbody>
+                                    <td><span class="badge bg-label-primary me-1">{{ user.adresse }}</span></td>
+                                    <td>{{ user.prenom }}</td>
+                                    <td>{{ user.nom }}</td>
+                                    <td>{{ user.roles|join(', ') }}</td>
+                                    <td>{{ user.score ?? 'N/A' }}</td>
+                                    <td>{{ user.dateNaissance|date('Y-m-d') }}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                                            <div class="dropdown-menu">
+                                                <a href="{{ path('app_user_edit', {'id': user.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
+                                                <a href="{{ path('app_user_delete', {'id': user.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> supprimer</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
                             {% endfor %}
                         </table>
                     </div>
