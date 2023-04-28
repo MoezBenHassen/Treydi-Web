@@ -16,9 +16,6 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use DateTime;
-use Symfony\Component\Notifier\Notification\Notification;
-use Symfony\Component\Notifier\NotifierInterface;
-use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Mime\Email;
 use Twig\Environment;
 
@@ -39,7 +36,7 @@ class EchangeProposerController extends AbstractController
      * @throws TransportExceptionInterface
      */
     #[Route('/echange/proposer/{id}', name: 'app_echange_proposer')]
-    public function proposer(Request $request, ManagerRegistry $doctrine, $id, Security $security, NotifierInterface $notifier, MailerInterface $mailer): Response
+    public function proposer(Request $request, ManagerRegistry $doctrine, $id, Security $security, MailerInterface $mailer): Response
     {
         $current_date = date('Y-m-d');
         $date = new DateTime($current_date);
