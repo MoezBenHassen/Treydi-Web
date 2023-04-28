@@ -1,5 +1,18 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block body %}
+    <h1>Reset your password</h1>
+
+    {{ form_start(resetForm) }}
+        {{ form_row(resetForm.plainPassword) }}
+        <button class="btn btn-primary">Reset password</button>
+    {{ form_end(resetForm) }}
+{% endblock %}
+#}
 {% extends 'base.html.twig' %}
-{% block title %}{{ parent() }}Log In {% endblock %}
+{% block title %}{{ parent() }}Reset your password{% endblock %}
 
 {% block stylesheets %}
     <!-- Fonts -->
@@ -61,40 +74,13 @@
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-2">Welcome to Treydi! 👋</h4>
-                        <p class="mb-4">Please enter your information</p>
+                        <h4 class="mb-2">Reset your password</h4>
 
                         <!--  <form class="card-body"> -->
-                        <form method="post">
-                            {% if error %}
-                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                            {% endif %}
-
-                            {% if app.user %}
-                                <div class="mb-3">
-                                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-                                </div>
-                            {% endif %}
-
-
-                            <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
-
-                            <label for="inputEmail">Email</label>
-                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-
-                            <label for="inputPassword">Password</label>
-                            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="new-password" required>
-                            <button class="btn btn-lg btn-primary" type="submit">
-                                Log in
-                            </button>
-                            <p>You don't have an account ?
-                                <a href="{{ path('app_register') }}">Join Us</a>
-                            </p>
-                            <a href="{{ path('app_forgot_password_request') }}">forgot password ?</a>
-                            <input type="hidden" name="_csrf_token"
-                                   value="{{ csrf_token('authenticate') }}">
-
-                        </form>
+                        {{ form_start(resetForm) }}
+                        {{ form_row(resetForm.plainPassword, { 'attr': {'class': 'form-control'} }) }}
+                        <button class="btn btn-primary">Reset password</button>
+                        {{ form_end(resetForm) }}
                     </div>
                 </div>
                 <!-- /Register -->
