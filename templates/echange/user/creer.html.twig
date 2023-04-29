@@ -220,26 +220,18 @@
                     <div class="text-center">
                         Vos Items
                         <div class="grid" id="grid1">
-                            {% for i in user_items %}
-                                <div class="shop__item">
+                            {% for item in user_items %}
+                                <div class="shop__item" id="{{ item.id }}">
                                     <div class="shop__item-thumb">
-                                        <a><img src="{{ i.getImageurl() }}" alt="img"></a>
+                                        <a><img src="{{ item.getImageurl() }}" alt="img"></a>
                                     </div>
-
                                     <div class="shop__item-content">
                                         <div class="shop__item-content-top">
                                             <h4 class="title">
-                                                <a>{{ i.getLibelle() }}</a>
+                                                <a>{{ item.getLibelle() }}</a>
                                             </h4>
-
                                         </div>
-
-
-
-
-
                                     </div>
-
                                 </div>
                             {% endfor %}
                         </div>
@@ -290,8 +282,8 @@
 
                 const selectedItems = [];
                 const grid2Items = document.querySelectorAll('#grid2 .shop__item');
-                grid2Items.forEach(item => {
-                    selectedItems.push(item.id);
+                grid2Items.forEach(shop__item => {
+                    selectedItems.push(shop__item.id);
                 });
 
                 if (selectedItems.length === 0) {
