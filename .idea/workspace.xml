@@ -5,30 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/config/packages/reset_password.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/ResetPasswordController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/ResetPasswordRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/ChangePasswordFormType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/ResetPasswordRequestFormType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/ResetPasswordRequestRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/MailerService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/reset_password/check_email.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/reset_password/email.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/reset_password/request.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/reset_password/reset.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20230429184625.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/user/team04-644d857cc04d0936691956.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user_home/editpass.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Treydi-Web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Treydi-Web.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/phpspec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/messenger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/messenger.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230421184228.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20230427205948.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserHomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserHomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Utilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Utilisateur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/EditUserFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/EditUserFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user_home/edituser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_home/edituser.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user_home/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_home/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,6 +182,7 @@
       <path value="$PROJECT_DIR$/vendor/jms/metadata" />
       <path value="$PROJECT_DIR$/vendor/symfonycasts/reset-password-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/google-mailer" />
+      <path value="$PROJECT_DIR$/vendor/jms/serializer" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -312,7 +304,9 @@
       <workItem from="1682620932537" duration="5458000" />
       <workItem from="1682685919597" duration="2176000" />
       <workItem from="1682689907224" duration="8065000" />
-      <workItem from="1682715855206" duration="3314000" />
+      <workItem from="1682715855206" duration="4012000" />
+      <workItem from="1682729832108" duration="1248000" />
+      <workItem from="1682790045236" duration="13401000" />
     </task>
     <servers />
   </component>
@@ -365,11 +359,6 @@
           <url>file://$PROJECT_DIR$/templates/security/2fa_form.html.twig</url>
           <line>1</line>
           <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/templates/security/login.html.twig</url>
-          <line>104</line>
-          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

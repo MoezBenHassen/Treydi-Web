@@ -11,11 +11,17 @@ use App\Repository\UtilisateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Ignore;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
+
 
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[Vich\Uploadable]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface ,TwoFactorInterface
 {
     #[ORM\Id]
@@ -60,8 +66,15 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface ,
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $adresse = null;
 
+    #[Vich\UploadableField(mapping: 'user_image', fileNameProperty: 'avatar_url', size: 'imageSize')]
+    #[Ignore]
+    private ?File $imageFile = null;
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar_url = null;
+    #[ORM\Column(nullable: true)]
+    private ?int $imageSize = null;
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $score = null;
@@ -229,19 +242,43 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface ,
 
         return $this;
     }
+    /* ******************* uplode img ********************* */
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+    public function setAvatarUrl(?string $avatar_url): void
+    {
+        $this->avatar_url = $avatar_url;
+    }
 
     public function getAvatarUrl(): ?string
     {
         return $this->avatar_url;
     }
-
-    public function setAvatarUrl(?string $avatar_url): self
+    public function setImageSize(?int $imageSize): void
     {
-        $this->avatar_url = $avatar_url;
-
-        return $this;
+        $this->imageSize = $imageSize;
     }
 
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
+    }
+
+    /* ******************* uplode img ********************* */
     public function getScore(): ?int
     {
         return $this->score;
