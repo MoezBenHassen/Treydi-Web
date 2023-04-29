@@ -21,6 +21,34 @@ class CouponRepository extends ServiceEntityRepository
         parent::__construct($registry, Coupon::class);
     }
 
+    public function findBySearchQuery($search, $archived, $isValid, $categorie)
+    {
+        $query = $this->createQueryBuilder('c');
+
+        if ($search) {
+            $query->andWhere('c.title LIKE :search OR c.description LIKE :search')
+                ->setParameter('search', '%'.$search.'%');
+        }
+
+        if ($archived !== null) {
+            $query->andWhere('c.archived = :archived')
+                ->setParameter('archived', $archived);
+        }
+
+        if ($isValid !== null) {
+            $query->andWhere('c.isValid = :isValid')
+                ->setParameter('isValid', $isValid);
+        }
+
+        if ($categorie !== null) {
+            $query->join('c.categories', 'cat')
+                ->andWhere('cat.id = :categorie')
+                ->setParameter('categorie', $categorie);
+        }
+
+        return $query->getQuery()->getResult();
+    }
+
     public function save(Coupon $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -63,4 +91,38 @@ class CouponRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}
+
+    public function findByAllAttributes($search, $date_expiration, $description, $archived, $idCategorie)
+
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->andWhere('c.archived = :archived')
+            ->setParameter('archived', $archived);
+
+        if (!empty($search)) {
+            $qb->andWhere('c.titre_coupon LIKE :search')
+                ->setParameter('search', '%' . $search . '%');
+        }
+
+        if (!empty($date_expiration)) {
+            $qb->andWhere('c.date_expiration = :date_expiration')
+                ->setParameter('date_expiration', $date_expiration);
+        }
+
+        if (!empty($description)) {
+            $qb->andWhere('c.description_coupon LIKE :description')
+                ->setParameter('description', '%' . $description . '%');
+        }
+
+        if (!empty($idCategorie)) {
+            $qb->andWhere('c.id_categorie = :idCategorie')
+                ->setParameter('idCategorie', $idCategorie);
+        }
+
+    
+
+        return $qb->getQuery()->getResult();
+    }
+
+    }
+

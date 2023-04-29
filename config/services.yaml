@@ -7,6 +7,10 @@ parameters:
     chat_gpt_api_url: '%env(CHAT_GPT_API_URL)%'
     chat_gpt_api_key: '%env(CHAT_GPT_API_KEY)%'
 
+ services:
+     App\Controller\CouponControllerFront:
+     tags: [ controller.service_arguments ]
+
 services:
     # default configuration for services in *this* file
     _defaults:

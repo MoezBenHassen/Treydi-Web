@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\CouponRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: CouponRepository::class)]
 class Coupon
@@ -15,12 +17,38 @@ class Coupon
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Le champ titre du coupon ne peut pas être vide.')]
+    #[Assert\Length(
+        min: 2,
+        max: 25,
+        minMessage: 'Le titre du coupon doit comporter au moins {{ limit }} caractères.',
+        maxMessage: 'Le titre du coupon doit comporter au plus {{ limit }} caractères.'
+    )]
+    #[Assert\Regex(
+        pattern: '/^[^0-9\W]\w+$/',
+        message: "Le titre du coupon ne peut pas commencer par un chiffre ou un symbole."
+    )]
     private ?string $titre_coupon = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Le champ description du coupon ne peut pas être vide.')]
+    #[Assert\Length(
+        min: 2,
+        max: 25,
+        minMessage: 'Le description du coupon doit comporter au moins {{ limit }} caractères.',
+        maxMessage: 'Le description du coupon doit comporter au plus {{ limit }} caractères.'
+    )]
+    #[Assert\Regex(
+        pattern: '/^[^0-9\W]\w+$/',
+        message: "Le description du coupon peut pas commencer par un chiffre ou un symbole."
+    )]
     private ?string $description_coupon = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Assert\GreaterThan(
+        value: 'today',
+        message: 'La date doit être supérieure à la date d\'aujourd\'hui.'
+    )]
     private ?\DateTimeInterface $date_expiration = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -48,6 +76,12 @@ class Coupon
         return $this->titre_coupon;
     }
 
+
+    public function getTitre_Coupon(): ?string
+    {
+        return $this->titre_coupon;
+    }
+
     public function setTitreCoupon(?string $titre_coupon): self
     {
         $this->titre_coupon = $titre_coupon;
@@ -56,6 +90,11 @@ class Coupon
     }
 
     public function getDescriptionCoupon(): ?string
+    {
+        return $this->description_coupon;
+    }
+
+    public function getDescription_Coupon(): ?string
     {
         return $this->description_coupon;
     }
@@ -72,6 +111,10 @@ class Coupon
         return $this->date_expiration;
     }
 
+    public function getDate_Expiration(): ?\DateTimeInterface
+    {
+        return $this->date_expiration;
+    }
     public function setDateExpiration(?\DateTimeInterface $date_expiration): self
     {
         $this->date_expiration = $date_expiration;
@@ -80,6 +123,10 @@ class Coupon
     }
 
     public function getEtatCoupon(): ?string
+    {
+        return $this->etat_coupon;
+    }
+    public function getEtat_Coupon(): ?string
     {
         return $this->etat_coupon;
     }
@@ -104,6 +151,11 @@ class Coupon
     }
 
     public function getIdCategorie(): ?categorieCoupon
+    {
+        return $this->id_categorie;
+    }
+
+    public function getid_categorie(): ?categorieCoupon
     {
         return $this->id_categorie;
     }
@@ -138,4 +190,10 @@ class Coupon
 
         return $this;
     }
+
+    public function getArchived(): ?bool
+    {
+        return $this->archived;
+    }
+
 }
