@@ -9,7 +9,9 @@ vich_uploader:
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
             delete_on_remove: true
             delete_on_update: true
-        products:
-            uri_prefix: /images/products
-            upload_destination: '%kernel.project_dir%/public/images/products'
+        user_image:
+            uri_prefix: /images/user
+            upload_destination: '%kernel.project_dir%/public/images/user'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            delete_on_remove: true
+            delete_on_update: true

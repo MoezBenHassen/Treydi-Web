@@ -37,7 +37,7 @@
         <script src="{{ asset('assets/js/tg-page-head.js') }}"></script>
     </head>
 
-    <body>
+<body>
     <!-- Scroll-top -->
     <button class="scroll__top scroll-to-target" data-target="html">
         <i class="flaticon-right-arrow"></i>
@@ -192,157 +192,118 @@
             {{ form_start(form) }}
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-10">
-                    <div class="contact__form-wrap">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="multicol-last-name">Password </label>
+                            {{ form_widget(form.password, {'attr': {'class': 'form-control dob-picker', 'id': 'multicol-country', 'data-allow-clear': 'true'}}) }}
+                            {{ form_errors(form.password) }}
+                        </div>
+                        <div class="pt-4">
+                            <button type="submit" class="btn btn-primary me-sm-3 me-1">Update</button>
+                        </div>
+                        {{ form_end(form) }}
 
-                        <div class="row g-3">
-                            <h4>Modifier Profile</h4>
+                        <p class="ajax-response"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- main-area -->
+<div class="main--area">
 
-                            <div class="col-md-6">
-                                <label class="form-label" for="multicol-email">Email</label>
-                                <div class="input-group input-group-merge">
-                                    {{ form_widget(form.email, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'email'}}) }}
-                                    {{ form_errors(form.email)}}
+    <!-- breadcrumb-area -->
+
+
+    <!-- footer-start -->
+    <footer>
+        <main class="footer-style-one">
+            <div class="footer__top-wrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-5 col-md-7">
+                            <div class="footer-widget">
+                                <div class="footer-logo logo">
+                                    <a href="index.html"><img src="{{ asset('assets/img/logo/logo.png') }}" alt="Logo"></a>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label" for="multicol-first-name">Nom</label>
-                                {{ form_widget(form.nom, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'nom'}}) }}
-                                {{ form_errors(form.nom)}}
-                            </div>
+                                <div class="footer-text">
+                                    <p class="desc">Lorem ipsum dolor sitamet consectur adipiscing Duis esollici tudin augue euismod. Nulla ullam dolor sitamet consectetur</p>
+                                    <p class="social-title">Active <span>With Us <i class="fas fa-angle-double-right"></i></span></p>
+                                    <div class="footer-social">
+                                        <a href="#"><img src="{{ asset('assets/img/icons/social_icon01.png')}}" alt="iocn"></a>
+                                        <a href="#"><img src="{{ asset('assets/img/icons/social_icon02.png') }}" alt="iocn"></a>
+                                        <a href="#"><img src="{{ asset('assets/img/icons/social_icon03.png') }}" alt="iocn"></a>
+                                        <a href="#"><img src="{{ asset('assets/img/icons/social_icon04.png') }}" alt="iocn"></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label" for="multicol-last-name">Prenom</label>
-                                {{ form_widget(form.prenom, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'prenom'}}) }}
-                                {{ form_errors(form.prenom)}}
+                        <div class="col-xl-2 col-lg-3 col-md-5 col-sm-6">
+                            <div class="footer-widget widget_nav_menu">
+                                <h4 class="fw-title">quick link</h4>
+                                <ul class="list-wrap menu">
+                                    <li><a href="#">Gaming</a></li>
+                                    <li><a href="#">Product</a></li>
+                                    <li><a href="#">All NFTs</a></li>
+                                    <li><a href="#">Social Network</a></li>
+                                    <li><a href="#">Domain Names</a></li>
+                                    <li><a href="#">Collectibles</a></li>
+                                </ul>
                             </div>
-                            <div class="col-md-6">
-                                <label class="form-label" for="multicol-last-name">Adresse</label>
-                                {{ form_widget(form.adresse, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'adresse'}}) }}
-                                {{ form_errors(form.adresse)}}
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-5 col-sm-6">
+                            <div class="footer-widget widget_nav_menu">
+                                <h4 class="fw-title">Supports</h4>
+                                <ul class="list-wrap menu">
+                                    <li><a href="#">Setting & Privacy</a></li>
+                                    <li><a href="#">Help & Support</a></li>
+                                    <li><a href="#">Live Auctions</a></li>
+                                    <li><a href="#">Item Details</a></li>
+                                    <li><a href="#">24/7 Supports</a></li>
+                                    <li><a href="#">Our News</a></li>
+                                </ul>
                             </div>
-                            <div class="col-md-6">
-                                <label class="form-label" for="multicol-last-name">Date Naissance </label>
-                                {{ form_label(form.imageFile) }}
-                                {{ form_widget(form.imageFile) }}
-                                <div class="text-danger">
-                                    {{ form_errors(form.imageFile, {'attr': {'class': 'text-danger'}}) }}
+                        </div>
+                        <div class="col-xl-4 col-lg-5 col-md-7">
+                            <div class="footer-widget">
+                                <h4 class="fw-title">Newsletter</h4>
+                                <div class="footer-newsletter">
+                                    <p>Subscribe our newsletter to get our latest update & newsconsectetur</p>
+                                    <form action="#" class="footer-newsletter-form">
+                                        <input type="email" placeholder="Your email address">
+                                        <button type="submit"><i class="flaticon-paper-plane"></i></button>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <label class="form-label" for="multicol-last-name">Date Naissance </label>
-                                {{ form_widget(form.date_naissance, {'attr': {'class': 'form-control dob-picker', 'id': 'multicol-country', 'data-allow-clear': 'true'}}) }}
-                                {{ form_errors(form.date_naissance) }}
-                            </div>
-
-                            <div><a href="{{ path('app_edit_pass') }}" class="text">Change password</a></div>
-                            <div class="pt-4">
-                                <button type="submit" class="btn btn-primary me-sm-3 me-1">Register</button>
-                            </div>
-                            {{ form_end(form) }}
-
-                            <p class="ajax-response"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div class="copyright__wrap">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-7">
+                        <div class="copyright__text">
+                            <p>Copyright © 2023 - All Rights Reserved By <span>Mykd</span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="copyright__card text-center text-md-end">
+                            <img src="{{ asset('assets/img/others/payment_card.png') }}" alt="img">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- main-area -->
-    <div class="main--area">
-
-        <!-- breadcrumb-area -->
-
-
-        <!-- footer-start -->
-        <footer>
-            <main class="footer-style-one">
-                <div class="footer__top-wrap">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xl-4 col-lg-5 col-md-7">
-                                <div class="footer-widget">
-                                    <div class="footer-logo logo">
-                                        <a href="index.html"><img src="{{ asset('assets/img/logo/logo.png') }}" alt="Logo"></a>
-                                    </div>
-                                    <div class="footer-text">
-                                        <p class="desc">Lorem ipsum dolor sitamet consectur adipiscing Duis esollici tudin augue euismod. Nulla ullam dolor sitamet consectetur</p>
-                                        <p class="social-title">Active <span>With Us <i class="fas fa-angle-double-right"></i></span></p>
-                                        <div class="footer-social">
-                                            <a href="#"><img src="{{ asset('assets/img/icons/social_icon01.png')}}" alt="iocn"></a>
-                                            <a href="#"><img src="{{ asset('assets/img/icons/social_icon02.png') }}" alt="iocn"></a>
-                                            <a href="#"><img src="{{ asset('assets/img/icons/social_icon03.png') }}" alt="iocn"></a>
-                                            <a href="#"><img src="{{ asset('assets/img/icons/social_icon04.png') }}" alt="iocn"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-lg-3 col-md-5 col-sm-6">
-                                <div class="footer-widget widget_nav_menu">
-                                    <h4 class="fw-title">quick link</h4>
-                                    <ul class="list-wrap menu">
-                                        <li><a href="#">Gaming</a></li>
-                                        <li><a href="#">Product</a></li>
-                                        <li><a href="#">All NFTs</a></li>
-                                        <li><a href="#">Social Network</a></li>
-                                        <li><a href="#">Domain Names</a></li>
-                                        <li><a href="#">Collectibles</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-lg-3 col-md-5 col-sm-6">
-                                <div class="footer-widget widget_nav_menu">
-                                    <h4 class="fw-title">Supports</h4>
-                                    <ul class="list-wrap menu">
-                                        <li><a href="#">Setting & Privacy</a></li>
-                                        <li><a href="#">Help & Support</a></li>
-                                        <li><a href="#">Live Auctions</a></li>
-                                        <li><a href="#">Item Details</a></li>
-                                        <li><a href="#">24/7 Supports</a></li>
-                                        <li><a href="#">Our News</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-5 col-md-7">
-                                <div class="footer-widget">
-                                    <h4 class="fw-title">Newsletter</h4>
-                                    <div class="footer-newsletter">
-                                        <p>Subscribe our newsletter to get our latest update & newsconsectetur</p>
-                                        <form action="#" class="footer-newsletter-form">
-                                            <input type="email" placeholder="Your email address">
-                                            <button type="submit"><i class="flaticon-paper-plane"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-            <div class="copyright__wrap">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-7">
-                            <div class="copyright__text">
-                                <p>Copyright © 2023 - All Rights Reserved By <span>Mykd</span></p>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="copyright__card text-center text-md-end">
-                                <img src="{{ asset('assets/img/others/payment_card.png') }}" alt="img">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- footer-start-end -->
+    </footer>
+    <!-- footer-start-end -->
 
 
 
 
-        <!-- JS here -->
+    <!-- JS here -->
     <!-- JS here -->
     <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins.js') }}"></script>

@@ -8,6 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class EditUserFormType extends AbstractType
 {
@@ -32,6 +34,19 @@ class EditUserFormType extends AbstractType
                 'placeholder' => [
                     'day' => 'Jour', 'month' => 'Mois', 'year' => 'Année',
                 ]
+            ])
+            ->add('imageFile',VichImageType::class,[
+                'required' => false,
+                'label' => 'Image de l\'article',
+                'label_attr' => ['class' => 'form-label ', 'for' => 'basic-default-fullname'],
+                'delete_label' => 'Supprimer l\'image',
+                'download_uri' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'basic-default-fullname',
+                    'placeholder' => 'Sélectionnez une image',
+                    'data-check' => 'true',
+                ],
             ])
         ;
     }
