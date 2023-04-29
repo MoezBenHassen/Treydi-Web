@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/messenger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/messenger.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/notifier.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/EchangeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EchangeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/EchangeProposerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EchangeProposerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/user/creer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/user/creer.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,6 +271,16 @@
       <workItem from="1682609190948" duration="86000" />
       <workItem from="1682630188975" duration="27000" />
       <workItem from="1682676288674" duration="1612000" />
+      <workItem from="1682678231165" duration="45000" />
+      <workItem from="1682678358234" duration="48000" />
+      <workItem from="1682678442802" duration="119000" />
+      <workItem from="1682693236493" duration="78000" />
+      <workItem from="1682694075650" duration="108000" />
+      <workItem from="1682694783248" duration="49000" />
+      <workItem from="1682696032465" duration="4000" />
+      <workItem from="1682696181553" duration="471000" />
+      <workItem from="1682711602285" duration="3541000" />
+      <workItem from="1682716238700" duration="65000" />
     </task>
     <servers />
   </component>

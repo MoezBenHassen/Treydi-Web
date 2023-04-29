@@ -11,7 +11,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             grid-gap: 10px;
             padding: 10px;
             border: 1px solid white;
@@ -23,18 +23,6 @@
         }
 
         .item {
-            background-color: #f1f1f1;
-            width: 100px;
-            height: 100px;
-            cursor: pointer;
-            border: 1px solid white;
-            border-radius: 10px;
-            padding: 10px;
-            font-size: 14px;
-            font-weight: bold;
-            font-family: 'Arial', sans-serif;
-            box-shadow: 2px 2px 5px #888;
-            transition: background-color 0.2s ease-in-out;
         }
 
         .item:hover {
@@ -118,8 +106,10 @@
                                         <li class="menu-item-has-children"><a href="#">Echange</a>
                                             <ul class="sub-menu">
                                                 <li><a href= {{ path('app_echange_creer') }}>Creer Echange</a></li>
-                                                <li><a href={{ path('app_echange_list_user') }}>Tous les Echanges</a></li>
-                                                <li><a href={{ path('app_echange_list_mesechanges') }}>Mes Echanges</a></li>
+                                                <li><a href={{ path('app_echange_list_user') }}>Tous les Echanges</a>
+                                                </li>
+                                                <li><a href={{ path('app_echange_list_mesechanges') }}>Mes Echanges</a>
+                                                </li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -230,8 +220,27 @@
                     <div class="text-center">
                         Vos Items
                         <div class="grid" id="grid1">
-                            {% for item in user_items %}
-                                <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
+                            {% for i in user_items %}
+                                <div class="shop__item">
+                                    <div class="shop__item-thumb">
+                                        <a><img src="{{ i.getImageurl() }}" alt="img"></a>
+                                    </div>
+
+                                    <div class="shop__item-content">
+                                        <div class="shop__item-content-top">
+                                            <h4 class="title">
+                                                <a>{{ i.getLibelle() }}</a>
+                                            </h4>
+
+                                        </div>
+
+
+
+
+
+                                    </div>
+
+                                </div>
                             {% endfor %}
                         </div>
                     </div>
@@ -256,13 +265,13 @@
     </html>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const items = document.querySelectorAll('.item');
+            const items = document.querySelectorAll('.shop__item');
             items.forEach(obj => {
                 obj.addEventListener('click', moveItem);
             });
 
             function moveItem(e) {
-                const obj = e.target;
+                const obj = e.target.closest('.shop__item');
 
                 const currentGrid = obj.closest('.grid');
 
@@ -274,12 +283,13 @@
                 otherGrid.style.gridTemplateRows = `repeat(${Math.ceil(otherGrid.children.length / 1)}, 1fr)`;
             }
 
+
             const form = document.querySelector('#formA');
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
 
                 const selectedItems = [];
-                const grid2Items = document.querySelectorAll('#grid2 .item');
+                const grid2Items = document.querySelectorAll('#grid2 .shop__item');
                 grid2Items.forEach(item => {
                     selectedItems.push(item.id);
                 });
