@@ -12,7 +12,7 @@
                             <div class="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex">
                                 <ul class="navigation">
                                     <li class="font">
-                                        <a href="{{ path('app_home') }}">Home</a>
+                                        <a href="{{ path('app_home_user') }}">Home</a>
                                     </li>
                                     <li><a href="{{ path('app_itemListall_f') }}">Items</a></li>
                                     <li class="menu-item-has-children"><a href="#">TOURNAMENT</a>
@@ -30,7 +30,7 @@
                                             <li><a href="team-details.html">Player Details</a></li>
                                         </ul>
                                     </li>
-                                    <li class="active menu-item-has-children"><a href="#">News</a>
+                                    <li class="menu-item-has-children"><a href="#">News</a>
                                         <ul class="sub-menu">
                                             <li class="active"><a href="{{ path('app_article_front') }}">Our Blog</a></li>
                                             {#<li><a href="{{ path('app_article_front', {'articleCategory': ""}) }}">Our Blog</a></li>#}
@@ -121,7 +121,22 @@
         </div>
     </div>
     <!-- header-search-end -->
-
+    <style>
+        .offCanvas__contact-list li::before {
+          content: none;
+          /*position: absolute;*/
+          /*left: 0;*/
+          /*top: 11px;*/
+          /*width: 7px;*/
+          /*height: 7px;*/
+          /*background: var(--tg-body-color);*/
+          -webkit-transition: all 0.3s ease-out 0s;
+          -moz-transition: all 0.3s ease-out 0s;
+          -ms-transition: all 0.3s ease-out 0s;
+          -o-transition: all 0.3s ease-out 0s;
+          transition: all 0.3s ease-out 0s;
+        }
+    </style>
     <!-- offCanvas-area -->
     <div class="offCanvas__wrap">
         <div class="offCanvas__body">
@@ -134,32 +149,62 @@
                 </div>
             </div>
             <div class="offCanvas__content">
-                <h2 class="title">Best Seller of Month Ideas for <span>NFT Wallet</span></h2>
+                <h2 class="title">Check your <span>Personal Space</span></h2>
                 <div class="offCanvas__contact">
-                    <h4 class="small-title">CONTACT US</h4>
-                    <ul class="offCanvas__contact-list list-wrap">
-                        <li><a href="tel:93332225557">+9 333 222 5557</a></li>
-                        <li><a href="mailto:info@webmail.com">info@webmail.com</a></li>
-                        <li>New Central Park W7 Street ,New York</li>
+                    <ul class="offCanvas__contact-list list-wrap" style="list-style-type: none !important;">
+                        <li class="active menu-item-has-children" style="list-style-type: none !important;">
+                            <a  href="{{ path('app_show_user') }}" class="d-flex justify-content-between" style="width: 100%">
+                                <img src="{{ asset('assets/img/helmet.png') }}" alt="" style="">
+                                <span style="display: inline-block; padding: 0 !important; margin: 0; ">Profile</span>
+                            </a>
+                        </li>
+                        <li class="active menu  -item-has-children">
+                            <a  href="{{ path('app_edit_user') }}" class="d-flex justify-content-between" style="width: 100%">
+                                <img src="{{ asset('assets/img/settings.png') }}" alt="" style="">
+                                <span style="display: inline-block; padding: 0 !important; margin: 0; ">Edit Profile</span>
+                            </a>
+
+                        </li>
+
+                        <li class="coffre d-flex justify-content-start " >
+                            <a class="d-flex justify-content-between" style="width: 100%">
+                                <img src="{{ asset('assets/img/treasure-chest (1).png') }}" alt="" style="">
+                                <span style="display: inline-block;  padding: 0 !important; margin: 0; ">Votre coffre</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-flex justify-content-between" style="width: 100%">
+                                <img src="{{ asset('assets/img/coupon.png') }}" alt="" style="">
+                                <span style="display: inline-block;  padding: 0 !important; margin: 0; ">Coupons</span>
+                            </a>
+                        </li>
+                        <li class="active menu  -item-has-children ">
+                            <a  href="{{ path('app_reclamationUserList') }}" class="d-flex justify-content-between" style="width: 100%; ">
+                                <img src="{{ asset('assets/img/bad-review.png') }}" alt="" style="">
+                                <span style="display: inline-block; padding: 0 !important; margin: 0; ">Reclamations</span>
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
                 <div class="offCanvas__newsletter">
-                    <h4 class="small-title">Subscribe</h4>
+                    {#<h4 class="small-title">Subscribe</h4>
                     <form action="#" class="offCanvas__newsletter-form">
                         <input type="email" placeholder="Get News & Updates">
                         <button ><i class="flaticon-send"></i></button>
                     </form>
-                    <p>Subscribe dolor sitamet, consectetur adiping eli. Duis esollici tudin augue.</p>
+                    <p>Subscribe dolor sitamet, consectetur adiping eli. Duis esollici tudin augue.</p>#}
                 </div>
-                <ul class="offCanvas__social list-wrap">
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                <ul class="offCanvas__social list-wrap ">
+
                 </ul>
             </div>
-            <div class="offCanvas__copyright">
-                <p>Copyright © 2023 - By <span>MYKD</span></p>
+            <div class="offCanvas__copyright d-flex justify-content-center">
+                <li class="header-btn" style="list-style-type: none">
+                    <a href="{{ path('app_logout') }}" class="tg-border-btn">
+                        Log out
+                    </a>
+                </li>
             </div>
         </div>
     </div>

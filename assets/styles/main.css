@@ -993,20 +993,20 @@ html.show-preloader body {
   padding-left: 23px;
   margin: 0 0 8px;
 }
-.offCanvas__contact-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 11px;
-  width: 7px;
-  height: 7px;
-  background: var(--tg-body-color);
+/*.offCanvas__contact-list li::before {
+  content: none;
+  !*position: absolute;*!
+  !*left: 0;*!
+  !*top: 11px;*!
+  !*width: 7px;*!
+  !*height: 7px;*!
+  !*background: var(--tg-body-color);*!
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
   -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
-}
+}*/
 .offCanvas__contact-list li:hover::before {
   background: var(--tg-theme-primary);
 }
