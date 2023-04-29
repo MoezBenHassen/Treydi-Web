@@ -106,7 +106,14 @@ class ReclamationRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findByTitreEtDescriptionEtDateCreationUser(bool $archived, string $search = null, string $search2 = null, string $dateCreation = null,String $etatReclamation =null): array
+    public function findByTitreEtDescriptionEtDateCreationUser(
+        bool $archived,
+        string $search = null,
+        string $search2 = null,
+        string $dateCreation = null,
+        String $etatReclamation =null,
+        int $idu=null
+    ): array
     {
         $qb = $this->createQueryBuilder('r')
             ->where('r.archived = :archived')
@@ -131,7 +138,7 @@ class ReclamationRepository extends ServiceEntityRepository
         }
 
         $qb->andWhere('r.id_user = :idu')
-            ->setParameter('idu', 1);
+            ->setParameter('idu', $idu);
 
         return $qb->getQuery()->getResult();
     }

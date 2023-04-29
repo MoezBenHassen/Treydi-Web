@@ -41,10 +41,8 @@ class UserHomeController extends AbstractController
     public function showConnectedUser(Request $request): Response
     {
         $user = $this->getUser();
-        // Set the avatar URL property based on the user's ID and the image filename
-        $avatarUrl = $request->getSchemeAndHttpHost().'/assets/img/team/'.$user->getId().'.png';
-        $user->setAvatarUrl($avatarUrl);
-
+        /*dump current user*/
+        dump($user);
         return $this->render('user_home/show.html.twig', [
             'user' => $user,
 

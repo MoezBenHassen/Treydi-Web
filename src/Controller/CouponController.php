@@ -47,7 +47,6 @@ class CouponController extends AbstractController
     #[Route('/coupon/show', name: 'app_coupon_show')]
     public function show(ManagerRegistry $doctrine, Request $request, CouponRepository $couponRepository): Response
     {
-
         $repository = $doctrine->getRepository(Coupon::class);
         $form = $this->createForm(SearchFormType::class);
         $form->handleRequest($request);

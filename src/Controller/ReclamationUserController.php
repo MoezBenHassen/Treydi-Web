@@ -35,6 +35,7 @@ class ReclamationUserController extends AbstractController
         $req->setArchived(0);
         $req->setEtatReclamation("en cours");
         $req->setDateCreation(new DateTime());
+        $req->setIdUser($this->getUser());
         $form = $this->createForm(ReclamationType::class, $req);
         $form->add('ajouter', SubmitType::class);
         $form->handleRequest($request);
@@ -63,11 +64,14 @@ class ReclamationUserController extends AbstractController
             $dateCreation = $data->getDateCreation() ? $data->getDateCreation()->format('Y-m-d') : null;
             $etatReclamation = $data->getEtatReclamation() ?? null ;
 
-
-            $query = $repository->findByTitreEtDescriptionEtDateCreation(false, $search, $search2, $dateCreation, $etatReclamation);
+            $userId = $this->getUser()->getId();
+            dump($userId);
+            $query = $repository->findByTitreEtDescriptionEtDateCreationUser(false, $search, $search2, $dateCreation, $etatReclamation, $userId);
             $list = $query;
         } else {
-            $list = $repository->findByTitreEtDescriptionEtDateCreation(false);
+            $userId = $this->getUser()->getId();
+            dump($userId);
+            $list = $repository->findByTitreEtDescriptionEtDateCreationUser(false, null, null, null, null, $userId);
         }
 
         return $this->render('reclamation_user/showReclamationUser.html.twig', [
@@ -122,7 +126,9 @@ class ReclamationUserController extends AbstractController
         $search2 = $request->query->get('description');
         $dateCreation = $request->query->get('etat');
         $etatReclamation = $request->query->get('date');
-        $query = $repository->findByTitreEtDescriptionEtDateCreationUser(false, $search, $search2, $dateCreation, $etatReclamation);
+
+        $userId = $this->getUser()->getId();
+        $query = $repository->findByTitreEtDescriptionEtDateCreationUser(false, $search, $search2, $dateCreation, $etatReclamation, $userId);
         $list = $query;
 
 

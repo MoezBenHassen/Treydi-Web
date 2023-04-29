@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Reclamation;
 use App\Entity\Reponse;
+use App\Entity\Utilisateur;
 use App\Form\FiltrereclamationType;
 use App\Form\ReclamationType;
 use App\Form\UpdateformType;
@@ -49,14 +50,40 @@ class ReclamationController extends AbstractController
 
             $query = $repository->findByTitreEtDescriptionEtDateCreation(false, $search, $search2, $dateCreation, $etatReclamation);
             $list = $query;
+            foreach ($list as $reclamation) {
+                $userId = $reclamation->getIdUser();
+                $user = $doctrine->getRepository(Utilisateur::class)->findOneBy(['id' => $userId]);
+
+                if ($user) {
+                    /*$reclamation->userFullName = $user->getNom().' '.$user->getPrenom();*/
+                    $reclamation->setUserFullName($user->getNom().' '.$user->getPrenom());
+                    /*$reclamation->avatarUrl = $user->getAvatarUrl();*/
+                    $reclamation->setAvatarUrl($user->getAvatarUrl());
+                }
+            }
         } else {
+
             $list = $repository->findByTitreEtDescriptionEtDateCreation(false);
+            foreach ($list as $reclamation) {
+                $userId = $reclamation->getIdUser();
+                $user = $doctrine->getRepository(Utilisateur::class)->findOneBy(['id' => $userId]);
+
+                if ($user) {
+                    /*$reclamation->userFullName = $user->getNom().' '.$user->getPrenom();*/
+                    $reclamation->setUserFullName($user->getNom().' '.$user->getPrenom());
+                    /*$reclamation->avatarUrl = $user->getAvatarUrl();*/
+                    $reclamation->setAvatarUrl($user->getAvatarUrl());
+                }
+            }
         }
+
+
 
         return $this->render('reclamation/show.html.twig', [
             'controller_name' => 'ReclamationListController',
             'list' => $list,
             'form' => $form->createView(),
+
         ]);
     }
 

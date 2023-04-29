@@ -7,10 +7,6 @@ parameters:
     chat_gpt_api_url: '%env(CHAT_GPT_API_URL)%'
     chat_gpt_api_key: '%env(CHAT_GPT_API_KEY)%'
 
- services:
-     App\Controller\CouponControllerFront:
-     tags: [ controller.service_arguments ]
-
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -25,6 +21,8 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+    App\Controller\CouponControllerFront:
+        tags: [ controller.service_arguments ]
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

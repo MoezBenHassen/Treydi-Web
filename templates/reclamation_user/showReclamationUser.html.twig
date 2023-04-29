@@ -212,7 +212,7 @@
 
                 <div class="card">
                     <h5 class="card-header">Table des Reclamations</h5>
-                    <div class="table-responsive text-nowrap">
+                    <div class="table-responsive ">
                         <style>
                             .card {
 
@@ -227,53 +227,44 @@
                                 color : #a3a4cc;
                             }
                         </style>
-                        <table class="table ">
-                            <thead>
-                            <tr>
-                                <th>titre </th>
-                                <th>Date </th>
-                                <th>avatar </th>
-                                <th>Description</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            {% for reclamation in list %}
-                                <tbody class="table-border-bottom-0">
+                        <div style="position: relative; z-index: 1;">
+                            <table class="table " style="z-index: 1">
+                                <thead>
                                 <tr>
-                                    <td><i class='bx bxs-report'></i> <strong>{{ reclamation.titreReclamation }}</strong></td>
-                                    <td>{{ reclamation.dateCreation|date('Y-m-d') }}</td>
-                                    <td>
-                                        <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                    <th>titre </th>
+                                    <th>Date </th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                {% for reclamation in list %}
+                                    <tbody class="table-border-bottom-0">
+                                    <tr>
+                                        <td style="white-space: nowrap"><i class='bx bxs-report'></i> <strong>{{ reclamation.titreReclamation }}</strong></td>
+                                        <td style="white-space: nowrap">{{ reclamation.dateCreation|date('Y-m-d') }}</td>
 
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Sophia Wilkerson">
-                                                <img src="{{ asset('assets/img/avatars/6.png') }}" alt="Avatar" class="rounded-circle">
-                                            </li>
-
-                                        </ul>
-                                    </td>
-                                    <td><span class="badge bg-label-primary me-1">{{ reclamation.descriptionReclamation }}</span></td>
+                                        <td id="reclamation"><span class="badge bg-label-primary me-1"  style="white-space: normal; text-align: justify;max-width: 800px; overflow-wrap: break-word">{{ reclamation.descriptionReclamation }}</span></td>
 
 
 
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-                                            <div class="dropdown-menu">
-                                                <a  href="{{ path('app_reclamationUpdateUser', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
-                                                <a href="{{ path('app_reclamationUserDelete', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> supprimer</a>
-                                                <a href="{{ path('app_reponseUserList', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class='bx bx-reply-all'></i> afficher Reponse</a>
-                                                <a href="{{ path('app_pdf_generate_id_user', {'id': reclamation.id}) }}" class="dropdown-item" href="javascript:void(0);"><i class='bx bxs-file-pdf'></i>imprimer cette Reclamation</a>
+                                        <td>
+                                            <div class="dropdown" style="position: absolute; z-index: 1000;">
+                                                <button style="z-index: 1000 !important;" type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                                                <div class="dropdown-menu dropdown-menu-end"  style="z-index: 1001">
+                                                    <a  href="{{ path('app_reclamationUpdateUser', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
+                                                    <a href="{{ path('app_reclamationUserDelete', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> supprimer</a>
+                                                    <a href="{{ path('app_reponseUserList', {'id': reclamation.id}) }}" method="POST" class="dropdown-item" href="javascript:void(0);"><i class='bx bx-reply-all'></i> afficher Reponse</a>
+                                                    <a href="{{ path('app_pdf_generate_id_user', {'id': reclamation.id}) }}" class="dropdown-item" href="javascript:void(0);"><i class='bx bxs-file-pdf'></i>imprimer cette Reclamation</a>
+                                                </div>
 
                                             </div>
 
-                                        </div>
-
-                                    </td>
-                                </tr>
-                                </tbody>
-                            {% endfor %}
-                        </table>
-
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                {% endfor %}
+                            </table>
+                        </div>
                     </div>
 
                 </div>

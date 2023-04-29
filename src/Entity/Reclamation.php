@@ -33,7 +33,7 @@ class Reclamation
     #[Assert\NotBlank(message: 'Le champ description de la réclamation ne peut pas être vide.')]
     #[Assert\Length(
         min: 2,
-        max: 150,
+        max: 500,
         minMessage: 'La description de la réclamation doit comporter au moins {{ limit }} caractères.',
         maxMessage: 'La description de la réclamation doit comporter au plus {{ limit }} caractères.'
     )]
@@ -55,6 +55,41 @@ class Reclamation
 
     #[ORM\Column(nullable: true)]
     private ?bool $archived = null;
+
+    private ?string $userFullName = null;
+    private ?string $avatarUrl = null;
+
+    /**
+     * @return string|null
+     */
+    public function getUserFullName()
+    {
+        return $this->userFullName;
+    }
+
+    /**
+     * @param string|null $userFullName
+     */
+    public function setUserFullName($userFullName)
+    {
+        $this->userFullName = $userFullName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAvatarUrl()
+    {
+        return $this->avatarUrl;
+    }
+
+    /**
+     * @param string|null $avatarUrl
+     */
+    public function setAvatarUrl($avatarUrl)
+    {
+        $this->avatarUrl = $avatarUrl;
+    }
 
     public function getId(): ?int
     {

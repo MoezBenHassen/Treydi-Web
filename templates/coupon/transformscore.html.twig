@@ -14,6 +14,41 @@
     <!-- CSS here -->
     <link rel="stylesheet" href={{ asset('assets/css/plugins.css') }}>
     <link rel="stylesheet" href={{ asset('assets/css/main.css') }}>
+    <style>
+        button#btn1 {
+            background-color: rgba(184, 29, 109, 0.28) !important;
+            color: white;
+        }
+        button#btn1 a {
+            color:#b81d6d ;
+        }
+        button#btn1 a:hover {
+            color: white !important;
+        }
+
+        button#btn2{
+            background-color:  rgba(255, 190, 24, 0.28)!important;
+        }
+        button#btn2 a {
+            color:  #ffbe18;
+        }
+        button#btn2 a:hover {
+            color: white !important;
+        }
+        button#btn3 {
+            background-color: rgba(108, 37, 190, 0.28) !important;
+            color: white;
+
+        }
+        button#btn3 a {
+            color: #8d67b9;
+
+        }
+        button#btn3 a:hover {
+            color: white;
+        }
+
+    </style>
 
     <!-- Page-Revealer -->
     <script src="assets/js/tg-page-head.js"></script>
@@ -237,14 +272,14 @@
                 <div class="container">
                     <div class="tournament__wrapper">
                         <div class="row justify-content-center">
-                            <div class="col-xl-6 col-lg-7 col-md-10">
+                            <div class="col-xl-6 col-lg-7 col-md-10 " style="width: 100%;">
                                 <div class="section__title text-center mb-60">
                                 <div>
                                 {% if userScore %}
-                               <h3 class="score">Your current score is: {{ userScore }}</h3>
+                               <h3 class="score">Votre score actuel est : <span style="font-family: 'United Kingdom';letter-spacing: 3px; color: #b81d6d">{{ userScore }}</span></h3>
                                 {% endif %}
                                  </div>
-                                    <h3 class="title">Choose a coupon</h3>
+                                    <h3 class="title" style="font-family: 'United Kingdom' ;  width: 100%">Choisir un coupon</h3>
                                 </div>
                             </div>
                         </div>
@@ -264,8 +299,8 @@
                                     <div class="tournament__box-countdown">
                                     </div>
                                     <div class="tournament__box-caption">
-                                        <span class="sub">Catégorie 1</span>
-                                        <h4 class="title">Coupon Mensuel</h4>
+                                        <span class="sub">I</span>
+                                        <h4 class="title" style="font-family: 'United Kingdom'">Coupon Mensuel</h4>
                                     </div>
                                     <div class="tournament__box-prize">
                                         <i class="fas fa-trophy"></i>
@@ -273,7 +308,7 @@
                                     </div>
                                     <div>
                                     {% if userScore >= 1000 %}
-                                    <button class="tournament__details-form-btn">
+                                    <button class="tournament__details-form-btn" id="btn1">
                                     <a href="{{ path('AffecterCouponMensuel') }}">Acheter ce coupon!</a>
                                     </button>
                                     {% else %}
@@ -297,8 +332,8 @@
                                     <div class="tournament__box-countdown">
                                     </div>
                                     <div class="tournament__box-caption">
-                                        <span class="sub">Catégorie 2</span>
-                                        <h4 class="title">Coupon Special</h4>
+                                        <span class="sub" >II</span>
+                                        <h4 class="title" style="font-family: 'United Kingdom'">Coupon Special</h4>
                                     </div>
                                     <div class="tournament__box-prize">
                                         <i class="fas fa-trophy"></i>
@@ -306,7 +341,7 @@
                                     </div>
                                    <div>
                                     {% if userScore >= 2000 %}
-                                    <button class="tournament__details-form-btn">
+                                    <button class="tournament__details-form-btn" id="btn2">
                                     <a href="{{ path('AffecterCouponSpecial') }}">Acheter ce coupon!</a>
                                     </button>
                                     {% else %}
@@ -332,8 +367,8 @@
                                     <div class="tournament__box-countdown">
                                     </div>
                                     <div class="tournament__box-caption">
-                                        <span class="sub">Catégorie 3</span>
-                                        <h4 class="title1">Coupon Exclusif</h4>
+                                        <span class="sub" >III</span>
+                                        <h4 class="title1" style="font-family: 'United Kingdom'">Coupon Exclusif</h4>
                                     </div>
                                     <div class="tournament__box-prize">
                                         <i class="fas fa-trophy"></i>
