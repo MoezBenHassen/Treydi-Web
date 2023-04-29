@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/admin/afficher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/admin/afficher.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/admin/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/admin/list.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/admin/modifieruser1.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/admin/modifieruser1.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/admin/modifieruser2.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/admin/modifieruser2.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/echange/user/creer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/user/creer.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange_proposer/afficher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange_proposer/afficher.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +284,7 @@
       <workItem from="1682696181553" duration="471000" />
       <workItem from="1682711602285" duration="3541000" />
       <workItem from="1682716238700" duration="65000" />
-      <workItem from="1682795447925" duration="4017000" />
+      <workItem from="1682795447925" duration="8426000" />
     </task>
     <servers />
   </component>

@@ -53,34 +53,15 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             grid-gap: 10px;
             padding: 10px;
-            border: 1px solid black;
+            border: 1px solid white;
             max-height: 400px;
             max-width: 500px;
             overflow-y: auto;
-            min-width: 500px;
             min-height: 400px;
-        }
-
-        .item {
-            background-color: #f1f1f1;
-            width: 100px;
-            height: 100px;
-            cursor: pointer;
-            border: 1px solid white;
-            border-radius: 10px;
-            padding: 10px;
-            font-size: 14px;
-            font-weight: bold;
-            font-family: 'Arial', sans-serif;
-            box-shadow: 2px 2px 5px #888;
-            transition: background-color 0.2s ease-in-out;
-        }
-
-        .item:hover {
-            background-color: #d9d9d9;
+            min-width: 500px;
         }
 
         #grid1 {
@@ -90,10 +71,6 @@
         #grid2 {
             grid-column: 3 / 5;
         }
-
-
-        /*make the card the width of the screen available*/
-
     </style>
 {% endblock %}
 
@@ -143,34 +120,66 @@
                         {{ form_start(formA, {'attr': {'id': 'formA'}}) }}
                         <div class="card" style="padding-bottom: 10px; ">
                             <div class="grid-container" style="display: flex; flex-direction: row;">
-                                <div class = "text-center">
+                                <div class="text-center">
                                     Les Items de l'utilisateur: {{ user1.nom }}
-                                <div class="grid" id="grid1">
-                                    {% for item in user1_items %}
-                                        <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
-                                    {% endfor %}
-                                </div></div>
-                                <div class = "text-center">
-                                    Les Items dans l'Echange
-                                <div class="grid" id="grid2">
-                                    {% for item in user1_items_in_echange %}
-                                        <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
-                                    {% endfor %}
+                                    <div class="grid" id="grid1">
+                                        {% for item in user1_items %}
+                                            <div class="shop__item" id="{{ item.id }}">
+                                                <div class="shop__item-thumb">
+                                                    <a><img src="{{ item.getImageurl() }}" alt="img"></a>
+                                                </div>
+                                                <div class="shop__item-content">
+                                                    <div class="shop__item-content-top">
+                                                        <h4 class="title">
+                                                            <a>{{ item.getLibelle() }}</a>
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
                                 </div>
-                                </div></div>
-                            <div class = "align-content-center">{{ form_row(formA.confirmer) }}</div>
-
-                        </div>
+                                <div class="text-center">
+                                    Les Items dans l'Echange
+                                    <div class="grid" id="grid2">
+                                        {% for item in user1_items_in_echange %}
+                                            <div class="shop__item" id="{{ item.id }}">
+                                                <div class="shop__item-thumb">
+                                                    <a><img src="{{ item.getImageurl() }}" alt="img"></a>
+                                                </div>
+                                                <div class="shop__item-content">
+                                                    <div class="shop__item-content-top">
+                                                        <h4 class="title">
+                                                            <a>{{ item.getLibelle() }}</a>
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <style>
+                                .submit-bzrgfz{
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+                            </style>
+                            <div class="submit-bzrgfz">
+                                {{ form_widget(formA.confirmer, {'attr': {'class': 'btn btn-primary'}}) }}
+                            </div>
                     </div>
-                    <input type="hidden" id="items1" name="items1[]" value="">
-                    <input type="hidden" id="items2" name="items2[]" value="">
-                    <div>
-                        {{ form_end(formA) }}
-                    </div>
+                </div>
+                <input type="hidden" id="items1" name="items1[]" value="">
+                <input type="hidden" id="items2" name="items2[]" value="">
+                <div>
+                    {{ form_end(formA) }}
                 </div>
             </div>
         </div>
     </div>
+
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
@@ -202,14 +211,14 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const items = document.querySelectorAll('.item');
+            const items = document.querySelectorAll('.shop__item');
             items.forEach(obj => {
                 obj.addEventListener('click', moveItem);
             });
 
 
             function moveItem(e) {
-                const obj = e.target;
+                const obj = e.target.closest('.shop__item');
 
                 const currentGrid = obj.closest('.grid');
 
@@ -226,13 +235,13 @@
                 e.preventDefault();
 
                 const selectedItems = [];
-                const grid2Items = document.querySelectorAll('#grid2 .item');
+                const grid2Items = document.querySelectorAll('#grid2 .shop__item');
                 grid2Items.forEach(item => {
                     selectedItems.push(item.id);
                 });
 
                 const userItems = [];
-                const grid1Items = document.querySelectorAll('#grid1 .item');
+                const grid1Items = document.querySelectorAll('#grid1 .shop__item');
                 grid1Items.forEach(item => {
                     userItems.push(item.id);
                 });

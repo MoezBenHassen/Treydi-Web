@@ -93,6 +93,18 @@
                         <div class="table-responsive text-nowrap my-20">
                             <div>
                                 {{ form_start(searchForm) }}
+                                <div style="margin-bottom: 10px">{{ form_widget(searchForm.search, {'attr': {'class': 'form-control input-sm'}}) }}</div>
+                                <div style="margin-bottom: 10px">{{ form_widget(searchForm.itemSearch, {'attr': {'class': 'form-control input-sm'}}) }}</div>
+                                <style>
+                                    .submit-bzrgfz{
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                    }
+                                </style>
+                                <div class="submit-bzrgfz" >
+                                    {{ form_widget(searchForm.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                                </div>
                                 {{ form_end(searchForm) }}
                             </div>
                             <table class="table mx-20">

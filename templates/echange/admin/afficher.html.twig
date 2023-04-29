@@ -53,34 +53,15 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             grid-gap: 10px;
             padding: 10px;
-            border: 1px solid black;
+            border: 1px solid white;
             max-height: 400px;
             max-width: 500px;
             overflow-y: auto;
-            min-width: 500px;
             min-height: 400px;
-        }
-
-        .item {
-            background-color: #f1f1f1;
-            width: 100px;
-            height: 100px;
-            cursor: pointer;
-            border: 1px solid white;
-            border-radius: 10px;
-            padding: 10px;
-            font-size: 14px;
-            font-weight: bold;
-            font-family: 'Arial', sans-serif;
-            box-shadow: 2px 2px 5px #888;
-            transition: background-color 0.2s ease-in-out;
-        }
-
-        .item:hover {
-            background-color: #d9d9d9;
+            min-width: 500px;
         }
 
         #grid1 {
@@ -147,7 +128,18 @@
                                     Les Items de l'utilisateur: {{ user1.nom }}
                                     <div class="grid" id="grid1">
                                         {% for item in user1_items %}
-                                            <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
+                                            <div class="shop__item" id="{{ item.id }}">
+                                                <div class="shop__item-thumb">
+                                                    <a><img src="{{ item.getImageurl() }}" alt="img"></a>
+                                                </div>
+                                                <div class="shop__item-content">
+                                                    <div class="shop__item-content-top">
+                                                        <h4 class="title">
+                                                            <a>{{ item.getLibelle() }}</a>
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         {% endfor %}
                                     </div>
                                 </div>
@@ -159,7 +151,18 @@
                                     {% endif %}
                                     <div class="grid" id="grid2">
                                         {% for item in user2_items %}
-                                            <div class="item" id="{{ item.id }}">{{ item.libelle }}</div>
+                                            <div class="shop__item" id="{{ item.id }}">
+                                                <div class="shop__item-thumb">
+                                                    <a><img src="{{ item.getImageurl() }}" alt="img"></a>
+                                                </div>
+                                                <div class="shop__item-content">
+                                                    <div class="shop__item-content-top">
+                                                        <h4 class="title">
+                                                            <a>{{ item.getLibelle() }}</a>
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         {% endfor %}
                                     </div>
                                 </div>
