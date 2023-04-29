@@ -61,7 +61,13 @@ class CouponControllerFront extends AbstractController
     #[Route('/transform', name: 'App_Transform')]
     public function Transform(ManagerRegistry $doctrine, Request $request, Security $security): Response
     {
-        return $this->render('coupon/transformscore.html.twig');
+        $user = $security->getUser();
+        $userScore = $user->getScore();
+
+    // Render the template, passing the user's score to it
+        return $this->render('coupon/transformscore.html.twig', [
+            'userScore' => $userScore,
+        ]);
     }
 
     #[Route('/transform1', name: 'AffecterCouponMensuel')]
@@ -191,7 +197,7 @@ class CouponControllerFront extends AbstractController
         $entityManager->persist($couponExclusif);
         $entityManager->flush();
         $qrCodeResponse = $this->forward(qrcode::class.'::qrcode', [
-            'newCode' => $newCode,
+            'code' => $newCode,
         ]);
         
         

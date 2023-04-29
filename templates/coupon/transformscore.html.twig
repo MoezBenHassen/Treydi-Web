@@ -232,13 +232,18 @@
     <div class="content-wrapper">
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
-
+        
             <section class="tournament-area section-pt-120 section-pb-90">
                 <div class="container">
                     <div class="tournament__wrapper">
                         <div class="row justify-content-center">
                             <div class="col-xl-6 col-lg-7 col-md-10">
                                 <div class="section__title text-center mb-60">
+                                <div>
+                                {% if userScore %}
+                               <h3 class="score">Your current score is: {{ userScore }}</h3>
+                                {% endif %}
+                                 </div>
                                     <h3 class="title">Choose a coupon</h3>
                                 </div>
                             </div>
@@ -267,9 +272,13 @@
                                         <span>50% off sur la livraison</span>
                                     </div>
                                     <div>
-                                    <button class="tournament__details-form-btn" >
-                                       <a href="{{ path('AffecterCouponMensuel') }}">Acheter ce coupon!</a>
+                                    {% if userScore >= 1000 %}
+                                    <button class="tournament__details-form-btn">
+                                    <a href="{{ path('AffecterCouponMensuel') }}">Acheter ce coupon!</a>
                                     </button>
+                                    {% else %}
+                                    <script>alert("Votre score est insuffisant pour acheter ce coupon mensuel.")</script>
+                                    {% endif %}
                                    </div>
                                 </div>
                             </div>
@@ -296,23 +305,18 @@
                                         <span>Livraison 100% Gratuite</span>
                                     </div>
                                    <div>
+                                    {% if userScore >= 2000 %}
                                     <button class="tournament__details-form-btn">
-                                       <a href="{{ path('AffecterCouponSpecial') }}">Acheter ce coupon!</a>
+                                    <a href="{{ path('AffecterCouponSpecial') }}">Acheter ce coupon!</a>
                                     </button>
+                                    {% else %}
+                                    <script>alert("Votre score est insuffisant pour acheter ce coupon special.")</script>
+                                    {% endif %}
                                    </div>
 
                                 </div>
                             </div>
-                            <style> .title1 {
-                                    color: #6c25be;
-                                    font-size: 30px;
-                                }
-
-                                .btn3 {
-                                    background-color: #6c25be;
-                                }
-
-                            </style>
+                           
                             <div class="col-xl-4 col-lg-5 col-md-6 col-sm-9">
                                 <div class="tournament__box-wrap">
                                     <svg class="main-bg" x="0px" y="0px" viewBox="0 0 357 533" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -336,8 +340,9 @@
                                         <span>Carte de recharge gratuite!</span>
                                     </div>
                                     <div>
-                                    <button class="tournament__details-form-btn">
-                                       <a href="{{ path('AffecterCouponExclusif') }}">Acheter ce coupon!</a>
+                
+                                    <button class="tournament__details-form-btn" id="btn3">
+                                    <a href="{{ path('AffecterCouponExclusif') }}">Acheter ce coupon!</a>
                                     </button>
                                    </div>
 
@@ -366,11 +371,27 @@
                         .aa {
                         display:flex ;
                         justify-content: center;}
+                         
+                        .title1 {
+                                    color: #6c25be;
+                                    font-size: 30px;
+                                }
+
+                                .btn3 {
+                                    background-color: #6c25be;
+                                }
+
 
 
                         .btn{
                             background-color: transparent;
                             color : #a3a4cc;
+                        }
+                        .score{
+                        
+                            color : #a3a4cc;
+                            margin-bottom: 20px;
+                            font-size: 20px;
                         }
                     </style>
 
@@ -441,6 +462,18 @@
     </div>
 </footer>
 <!-- footer-start-end -->
+
+
+<script>
+alert('Votre score est de : <?php echo $userScore ?>');
+    const btn3 = document.querySelector("#btn3");
+    btn3.addEventListener("click", function(event) {
+        if (userScore < 5000) {
+            alert("Votre score est insuffisant pour acheter ce coupon exclusif.");
+            event.preventDefault();
+        }
+    });
+</script>
 
 
 
