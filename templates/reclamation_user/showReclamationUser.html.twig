@@ -53,6 +53,17 @@
               width:25px;
 
           }
+          table{
+              background-color: #182029;
+
+          }
+          .card{
+              border: solid #b81d6d 1px;
+          }
+        .card-header{
+            background-color:  #182029/*rgba(184, 29, 109, 1)*/;
+        }
+
           /*make the card the width of the screen available*/
       </style>
   {% endblock %}
@@ -107,7 +118,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="breadcrumb__content">
-                                <h2 class="title"> Table des Reclamations</h2>
+                                <h2 class="title">Vos Reclamations</h2>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -153,10 +164,30 @@
             <div class="container-xxl flex-grow-1 container-p-y">
 
                 {#<hr class="my-5">#}
+                <style>
+                    .btn-custom{
+                        border: solid #b81d6d 1px;
+                    }
+                </style>
+                <div class="d-flex justify-content-between" style=" width: 100%" >
+                    <button id="filter-btn" class="btn btn-custom" style="width: 100%">
+                        <i class='bx bxs-filter-alt'></i>
+                        Filtrer les réclamations
+                    </button>
+                    {% set urlParams = {
+                        'titre': form.titre_reclamation.vars.value,
+                        'description': form.description_reclamation.vars.value,
+                        'etat': form.etatReclamation.vars.value,
+                        'date': form.date_creation.vars.value,
+                    } %}
 
-                <button id="filter-btn" class="btn btn-primary">Filtrer les réclamations</button>
-                <br><br>
-
+                    <a href="{{ path('app_pdf_generateUser', urlParams) }}" class="" href="javascript:void(0);" style="height: 100%; margin-left: 20px">
+                        <button class="btn btn-custom" style="height: 100%">
+                            <i class='bx bxs-printer' ></i>
+                            imprimer Reclamation
+                        </button>
+                    </a>
+                </div>
                 <div id="filter-form" style="display: none;">
                     <h1>Filtrer les réclamations</h1>
                     {{ form_start(form,{'attr': {'novalidate': 'novalidate', 'method': 'POST'}} ) }}
@@ -195,21 +226,6 @@
                     });
                 </script>
                 <br>
-                <br>
-                {% set urlParams = {
-                    'titre': form.titre_reclamation.vars.value,
-                    'description': form.description_reclamation.vars.value,
-                    'etat': form.etatReclamation.vars.value,
-                    'date': form.date_creation.vars.value,
-                } %}
-                <a href="{{ path('app_pdf_generateUser', urlParams) }}" class="dropdown-item" href="javascript:void(0);"><i class='bx bxs-file-pdf'></i>imprimer Reclamation</a>
-
-
-
-
-
-                <br>
-
                 <div class="card">
                     <h5 class="card-header">Table des Reclamations</h5>
                     <div class="table-responsive ">

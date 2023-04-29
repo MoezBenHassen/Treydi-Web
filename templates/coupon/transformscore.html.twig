@@ -47,7 +47,6 @@
         button#btn3 a:hover {
             color: white;
         }
-
     </style>
 
     <!-- Page-Revealer -->
@@ -276,6 +275,7 @@
                                 <div class="section__title text-center mb-60">
                                 <div>
                                 {% if userScore %}
+                                    <input type="text" id="hiddenUserScore" hidden="hidden" value="{{ userScore }}">
                                <h3 class="score">Votre score actuel est : <span style="font-family: 'United Kingdom';letter-spacing: 3px; color: #b81d6d">{{ userScore }}</span></h3>
                                 {% endif %}
                                  </div>
@@ -308,7 +308,7 @@
                                     </div>
                                     <div>
                                     {% if userScore >= 1000 %}
-                                    <button class="tournament__details-form-btn" id="btn1">
+                                    <button class="tournament__details-form-btn" id="btn1" name="btn1" onclick="checkScore1({{ userScore }})">
                                     <a href="{{ path('AffecterCouponMensuel') }}">Acheter ce coupon!</a>
                                     </button>
                                     {% else %}
@@ -341,7 +341,7 @@
                                     </div>
                                    <div>
                                     {% if userScore >= 2000 %}
-                                    <button class="tournament__details-form-btn" id="btn2">
+                                    <button class="tournament__details-form-btn" id="btn2" onclick="checkScore2({{ userScore }})">
                                     <a href="{{ path('AffecterCouponSpecial') }}">Acheter ce coupon!</a>
                                     </button>
                                     {% else %}
@@ -376,7 +376,7 @@
                                     </div>
                                     <div>
                 
-                                    <button class="tournament__details-form-btn" id="btn3">
+                                    <button class="tournament__details-form-btn" id="btn3" onclick="checkScore3({{ userScore }})" >
                                     <a href="{{ path('AffecterCouponExclusif') }}">Acheter ce coupon!</a>
                                     </button>
                                    </div>
@@ -500,14 +500,30 @@
 
 
 <script>
-alert('Votre score est de : <?php echo $userScore ?>');
-    const btn3 = document.querySelector("#btn3");
-    btn3.addEventListener("click", function(event) {
-        if (userScore < 5000) {
-            alert("Votre score est insuffisant pour acheter ce coupon exclusif.");
-            event.preventDefault();
-        }
-    });
+/*get input with id  inputUserScore  */
+var user_score=document.getElementById("hiddenUserScore").value
+
+function checkScore1(userScore){
+    var user_s = userScore;
+    if (user_s < 1000) {
+        console.log("score insuffisant");
+        alert("Votre score est insuffisant pour acheter ce coupon exclusif.");
+    }
+}
+function checkScore2(userScore){
+    var user_s = userScore;
+    if (user_s < 2000) {
+        console.log("score insuffisant", user_s);
+        alert("Votre score"+user_s+" est insuffisant pour acheter ce coupon exclusif.");
+    }
+}function checkScore3(userScore){
+    var user_s = userScore;
+
+    if (user_s < 5000) {
+        console.log("score insuffisant");
+        alert("Votre score est insuffisant pour acheter ce coupon exclusif.");
+    }
+}
 </script>
 
 
