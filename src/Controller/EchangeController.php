@@ -70,6 +70,74 @@ class EchangeController extends AbstractController
         ]);
     }
 
+    #[Route('/echange/user/modifier/{id}', name: 'app_echange_user_modifier')]
+    public function UserModifier(Request $request,ManagerRegistry $doctrine, $id): Response
+    {
+        $em = $doctrine->getManager();
+        $echange = $em->getRepository(Echange::class)
+            ->find($id);
+
+        $echange_proposer = $em
+            ->getRepository(EchangeProposer::class)
+            ->findBy(['id_echange' => $echange->getId(), 'archived' => false]);
+
+        $form = $this->createForm(EchangeType::class, $echange);
+        $form->remove('titre_echange');
+        $form->handleRequest($request);
+
+        $user1 = $em->getRepository(Utilisateur::class)->find($echange->getIdUser1());
+
+        $user1_items = $doctrine
+            ->getRepository(Item::class)
+            ->findBy(['id_echange' => NULL, 'id_user' => $echange->getIdUser1(), 'archived' => false]);
+
+        $user1_items_in_echange = $doctrine
+            ->getRepository(Item::class)
+            ->findBy(['id_echange' => $echange->getId(),'id_user' => $echange->getIdUser1()]);
+
+        if ($form->isSubmitted() && $form->isValid() && $echange_proposer == null) {
+
+            $items1 = json_decode(json_encode($request->request->get('items1')), true);
+            $items2 = json_decode(json_encode($request->request->get('items2')), true);
+
+            foreach ($items1 as $id) {
+                $idArray = json_decode($id, true);
+                foreach ($idArray as $itemId) {
+                    $item = $doctrine->getRepository(Item::class)->find($itemId);
+                    if ($item) {
+                        $item->setIdEchange($echange);
+                        $em->persist($item);
+                        echo "Item ID: $itemId\n";
+                    }
+                }
+            }
+
+            foreach ($items2 as $id) {
+                $idArray = json_decode($id, true);
+                foreach ($idArray as $itemId) {
+                    $item = $doctrine->getRepository(Item::class)->find($itemId);
+                    if ($item) {
+                        $item->setIdEchange(null);
+                        $em->persist($item);
+                        echo "Item ID: $itemId\n";
+                    }
+                }
+            }
+            $em->flush();
+
+            return $this->redirectToRoute('app_echange_list_mesechanges');
+        }
+
+        return $this->render('echange/user/modifier.html.twig', [
+            'user1_items' => $user1_items,
+            'user1_items_in_echange' => $user1_items_in_echange,
+            'echange' => $echange,
+            'user1' => $user1,
+            'echange_proposer' => $echange_proposer,
+            'formA' => $form->createView(),
+        ]);
+    }
+
     //ADMIN
     #[Route('/echange/list', name: 'app_echangeList')]
     public function list(ManagerRegistry $doctrine, Request $request): Response
@@ -290,7 +358,6 @@ class EchangeController extends AbstractController
         ]);
     }
 
-
     //USER
     #[Route('/echange/user/list', name: 'app_echange_list_user')]
     public function listUserEchange(ManagerRegistry $doctrine, Request $request): Response
@@ -339,13 +406,11 @@ class EchangeController extends AbstractController
         $repository = $em->getRepository(Echange::class);
         $qb = $repository->createQueryBuilder('r');
 
-        $qb->where($qb->expr()->andX(
-            $qb->expr()->eq('r.archived', ':archived'),
-            $qb->expr()->orX(
-                $qb->expr()->eq('r.id_user1', ':user_id'),
-                $qb->expr()->eq('r.id_user2', ':user_id')
-            )
-        ))
+        $qb->andWhere('r.archived = :archived')
+            ->andWhere($qb->expr()->orX(
+                'r.id_user1 = :user_id',
+                'r.id_user2 = :user_id'
+            ))
             ->setParameter('archived', false)
             ->setParameter('user_id', $user->getId());
 

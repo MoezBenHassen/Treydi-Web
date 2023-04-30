@@ -231,27 +231,42 @@
             }
 
             const form = document.querySelector('#formA');
+            const errorContainer = document.querySelector('.error-container');
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
 
-                const selectedItems = [];
                 const grid2Items = document.querySelectorAll('#grid2 .shop__item');
-                grid2Items.forEach(item => {
-                    selectedItems.push(item.id);
-                });
 
-                const userItems = [];
-                const grid1Items = document.querySelectorAll('#grid1 .shop__item');
-                grid1Items.forEach(item => {
-                    userItems.push(item.id);
-                });
+                if (grid2Items.length === 0) {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.innerText = "Il doit y avoir au moins un Item dans l'échange. Veuillez sélectionner un Item.";
+                    errorDiv.style.color = 'red';
+                    const grid2Div = document.querySelector('#grid2').parentNode;
+                    grid2Div.insertBefore(errorDiv, grid2Div.nextElementSibling);
+                } else {
+                    const errorElement = errorContainer.querySelector('.error');
+                    if (errorElement) {
+                        errorElement.remove();
+                    }
 
-                const itemsInput = document.querySelector('#items1');
-                itemsInput.value = JSON.stringify(selectedItems);
+                    const selectedItems = [];
+                    grid2Items.forEach(item => {
+                        selectedItems.push(item.id);
+                    });
 
-                const userItemsInput = document.querySelector('#items2');
-                userItemsInput.value = JSON.stringify(userItems);
-                form.submit();
+                    const userItems = [];
+                    const grid1Items = document.querySelectorAll('#grid1 .shop__item');
+                    grid1Items.forEach(item => {
+                        userItems.push(item.id);
+                    });
+
+                    const itemsInput = document.querySelector('#items1');
+                    itemsInput.value = JSON.stringify(selectedItems);
+
+                    const userItemsInput = document.querySelector('#items2');
+                    userItemsInput.value = JSON.stringify(userItems);
+                    form.submit();
+                }
             });
         });
 
