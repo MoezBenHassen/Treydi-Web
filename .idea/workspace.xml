@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/EchangeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EchangeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/EchangeProposerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EchangeProposerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LivraisonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LivraisonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/admin/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/admin/list.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/user/afficher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/user/afficher.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/user/affichersansproposer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/user/affichersansproposer.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange/user/list.tml.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/user/list.tml.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange_proposer/afficher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange_proposer/afficher.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/echange_proposer/proposer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange_proposer/proposer.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/livraison/user/afficher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/livraison/user/afficher.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
