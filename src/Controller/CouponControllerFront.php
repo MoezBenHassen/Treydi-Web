@@ -69,25 +69,20 @@ class CouponControllerFront extends AbstractController
             'userScore' => $userScore,
         ]);
     }
-
     #[Route('/transform1', name: 'AffecterCouponMensuel')]
     public function AffecterCouponMensuel(ManagerRegistry $doctrine, Request $request, Security $security): Response
     {
-
         $entityManager = $this->getDoctrine()->getManager();
         $categorieRepository = $entityManager->getRepository(categorieCoupon::class);
         $categorie = $categorieRepository->find(1); // Assumption: category with ID 1 exists
         $couponRepository = $entityManager->getRepository(Coupon::class);
-        $lastCoupon = $couponRepository->createQueryBuilder('c')
-        ->where('c.code LIKE :code')
-        ->setParameter('code', 'CasMaiCoupon%')
-        ->orderBy('c.id', 'DESC')
-        ->setMaxResults(1)
-        ->getQuery()
-        ->getOneOrNullResult();
+        $lastCoupon = $couponRepository->findOneBy(['code' => 'CasMaiCoupon'], ['id' => 'DESC']);
 
-        $lastCode = $lastCoupon->getCode();
-        $lastNumber = intval(substr($lastCode, 12));
+        $lastNumber = 0;
+        if ($lastCoupon) {
+            $lastCode = $lastCoupon->getCode();
+            $lastNumber = intval(substr($lastCode, 12));
+        }
         $newNumber = $lastNumber + 1;
         $newCode = "CasMaiCoupon" . $newNumber;
 
@@ -103,15 +98,17 @@ class CouponControllerFront extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($couponMensuel);
         $entityManager->flush();
+
+
         $this->addFlash('success', 'Coupon Mensuel Affecté avec Succès');
-         
+
         $qrCodeResponse = $this->forward(qrcode::class.'::qrcode', [
             'code' => $newCode,
         ]);
-        
+
         // extract the data URI from the response
         $qrCodeDataUri = $qrCodeResponse->getContent();
-        
+
         // return the template with the data URI
         return $this->render('coupon/qr_code.html.twig', [
             'qrCodeDataUri' => $qrCodeDataUri,
@@ -123,22 +120,25 @@ class CouponControllerFront extends AbstractController
     public function AffecterCouponSpecial(ManagerRegistry $doctrine, Request $request, Security $security): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $categorieRepository = $entityManager->getRepository(categorieCoupon::class);
-        $categorie = $categorieRepository->find(2); // Assumption: category with ID 1 exists
+        $categorieRepository = $entityManager->getRepository(CategorieCoupon::class);
+        $categorie = $categorieRepository->find(2); // Assumption: category with ID 2 exists
         $couponRepository = $entityManager->getRepository(Coupon::class);
         $lastCoupon = $couponRepository->createQueryBuilder('c')
-        ->where('c.code LIKE :code')
-        ->setParameter('code', 'SpecMaiCoupon%')
-        ->orderBy('c.id', 'DESC')
-        ->setMaxResults(1)
-        ->getQuery()
-        ->getOneOrNullResult();
+            ->where('c.code LIKE :code')
+            ->setParameter('code', 'SpecMaiCoupon%')
+            ->orderBy('c.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
 
-        $lastCode = $lastCoupon->getCode();
-        $lastNumber = intval(substr($lastCode, 12));
-        $newNumber = $lastNumber + 1;
+        $newNumber = 1;
+        if ($lastCoupon !== null) {
+            $lastCode = $lastCoupon->getCode();
+            $lastNumber = intval(substr($lastCode, 12));
+            $newNumber = $lastNumber + 1;
+        }
+
         $newCode = "SpecMaiCoupon" . $newNumber;
-
         $couponSpecial = new Coupon();
         $couponSpecial->setIdCategorie($categorie);
         $couponSpecial->setTitreCoupon('Coupon Mai Special');
@@ -148,40 +148,45 @@ class CouponControllerFront extends AbstractController
         $couponSpecial->setCode($newCode);
         $user = $security->getUser();
         $couponSpecial->setIdUser($user);
-        $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($couponSpecial);
         $entityManager->flush();
+
         $qrCodeResponse = $this->forward(qrcode::class.'::qrcode', [
             'code' => $newCode,
         ]);
-        
+
         // extract the data URI from the response
         $qrCodeDataUri = $qrCodeResponse->getContent();
-        
+
         // return the template with the data URI
         return $this->render('coupon/qr_code.html.twig', [
             'qrCodeDataUri' => $qrCodeDataUri,
         ]);
-        }
+    }
 
     #[Route('/transform3', name: 'AffecterCouponExclusif')]
     public function AffecterCouponExclusif(ManagerRegistry $doctrine, Request $request, Security $security): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
         $categorieRepository = $entityManager->getRepository(categorieCoupon::class);
-        $categorie = $categorieRepository->find(3); // Assumption: category with ID 1 exists
+        $categorie = $categorieRepository->find(3); // Assumption: category with ID 3 exists
         $couponRepository = $entityManager->getRepository(Coupon::class);
         $lastCoupon = $couponRepository->createQueryBuilder('c')
-        ->where('c.code LIKE :code')
-        ->setParameter('code', 'ExcluMaiCoupon%')
-        ->orderBy('c.id', 'DESC')
-        ->setMaxResults(1)
-        ->getQuery()
-        ->getOneOrNullResult();
+            ->where('c.code LIKE :code')
+            ->setParameter('code', 'ExcluMaiCoupon%')
+            ->orderBy('c.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
 
-        $lastCode = $lastCoupon->getCode();
-        $lastNumber = intval(substr($lastCode, 12));
-        $newNumber = $lastNumber + 1;
+        if ($lastCoupon === null) {
+            $newNumber = 1;
+        } else {
+            $lastCode = $lastCoupon->getCode();
+            $lastNumber = intval(substr($lastCode, 13));
+            $newNumber = $lastNumber + 1;
+        }
+
         $newCode = "ExcluMaiCoupon" . $newNumber;
 
         $couponExclusif = new Coupon();
@@ -196,22 +201,23 @@ class CouponControllerFront extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($couponExclusif);
         $entityManager->flush();
+
         $qrCodeResponse = $this->forward(qrcode::class.'::qrcode', [
             'code' => $newCode,
         ]);
-        
-        
+
         $qrCodeDataUri = $qrCodeResponse->getContent();
-        
+
         // return the template with the data URI
         return $this->render('coupon/qr_code.html.twig', [
             'qrCodeDataUri' => $qrCodeDataUri,
         ]);
     }
 
-    
-   
- 
+
+
+
+
 
 }
 
