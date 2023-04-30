@@ -18,14 +18,6 @@ use Symfony\Component\Security\Core\Security;
 
 class LivraisonController extends AbstractController
 {
-    #[Route('/livraison', name: 'app_livraison')]
-    public function index(): Response
-    {
-        return $this->render('livraison/index.html.twig', [
-            'controller_name' => 'LivraisonController',
-        ]);
-    }
-
     #[Route('/livraison/list', name: 'app_livraison_list')]
     public function list(ManagerRegistry $doctrine): Response
     {

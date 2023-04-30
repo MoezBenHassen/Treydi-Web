@@ -22,14 +22,6 @@ use Twig\Environment;
 
 class EchangeProposerController extends AbstractController
 {
-    #[Route('/echange/proposer', name: 'app_echange_proposer_index')]
-    public function index(): Response
-    {
-        return $this->render('echange_proposer/index.html.twig', [
-            'controller_name' => 'EchangeProposerController',
-        ]);
-    }
-
     //ECHANGE PROPOSER
 
     /**

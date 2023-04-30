@@ -19,15 +19,6 @@ use Symfony\Component\Security\Core\Security;
 
 class EchangeController extends AbstractController
 {
-    #[Route('/echange', name: 'app_echange')]
-    public function index(): Response
-    {
-        return $this->render('echange/index.html.twig', [
-            'controller_name' => 'EchangeController',
-        ]);
-    }
-
-
     //ECHANGE
     #[Route('/echange/creer', name: 'app_echange_creer')]
     public function creer(Request $request, ManagerRegistry $doctrine, Security $security): Response

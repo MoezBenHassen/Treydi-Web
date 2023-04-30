@@ -312,11 +312,20 @@
                 <div class="card">
                     <h5 class="card-header">Mes Echanges</h5>
                     <div class="card-body">
-                            <div class="input-group mb-3">
+                            <div>
                                 {{ form_start(searchForm) }}
-                                {{ form_widget(searchForm.search, {'attr': {'class': 'form-control'}}) }}
-                                {{ form_widget(searchForm.itemSearch, {'attr': {'class': 'form-control'}}) }}
-                                {{ form_widget(searchForm.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                                <div style="margin-bottom: 10px">{{ form_widget(searchForm.search, {'attr': {'class': 'form-control input-sm'}}) }}</div>
+                                <div style="margin-bottom: 10px">{{ form_widget(searchForm.itemSearch, {'attr': {'class': 'form-control input-sm'}}) }}</div>
+                                <style>
+                                    .submit-bzrgfz{
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                    }
+                                </style>
+                                <div class="submit-bzrgfz" style="margin-bottom: 10px" >
+                                    {{ form_widget(searchForm.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                                </div>
                                 {{ form_end(searchForm) }}
                             </div>
                         <div class="table-responsive text-nowrap">
