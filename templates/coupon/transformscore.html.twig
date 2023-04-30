@@ -274,10 +274,10 @@
                             <div class="col-xl-6 col-lg-7 col-md-10 " style="width: 100%;">
                                 <div class="section__title text-center mb-60">
                                 <div>
-                                {% if userScore %}
+                                {#{% if userScore %}#}
                                     <input type="text" id="hiddenUserScore" hidden="hidden" value="{{ userScore }}">
-                               <h3 class="score">Votre score actuel est : <span style="font-family: 'United Kingdom';letter-spacing: 3px; color: #b81d6d">{{ userScore }}</span></h3>
-                                {% endif %}
+                               <h3 class="score">Votre score actuel est : <span style="font-family: 'United Kingdom';letter-spacing: 3px; color: #b81d6d"> {{ userScore }} TP</span></h3>
+                                {#{% endif %}#}
                                  </div>
                                     <h3 class="title" style="font-family: 'United Kingdom' ;  width: 100%">Choisir un coupon</h3>
                                 </div>
@@ -307,13 +307,11 @@
                                         <span>50% off sur la livraison</span>
                                     </div>
                                     <div>
-                                    {% if userScore >= 1000 %}
-                                    <button class="tournament__details-form-btn" id="btn1" name="btn1" onclick="checkScore1({{ userScore }})">
+
+                                    <button class="tournament__details-form-btn" id="btn1" name="btn1" onclick="checkScore1(event,{{ userScore }})">
                                     <a href="{{ path('AffecterCouponMensuel') }}">Acheter ce coupon!</a>
                                     </button>
-                                    {% else %}
-                                    <script>alert("Votre score est insuffisant pour acheter ce coupon mensuel.")</script>
-                                    {% endif %}
+
                                    </div>
                                 </div>
                             </div>
@@ -340,13 +338,9 @@
                                         <span>Livraison 100% Gratuite</span>
                                     </div>
                                    <div>
-                                    {% if userScore >= 2000 %}
-                                    <button class="tournament__details-form-btn" id="btn2" onclick="checkScore2({{ userScore }})">
+                                    <button class="tournament__details-form-btn" id="btn2" onclick="checkScore2(event,{{ userScore }})">
                                     <a href="{{ path('AffecterCouponSpecial') }}">Acheter ce coupon!</a>
                                     </button>
-                                    {% else %}
-                                    <script>alert("Votre score est insuffisant pour acheter ce coupon special.")</script>
-                                    {% endif %}
                                    </div>
 
                                 </div>
@@ -376,7 +370,7 @@
                                     </div>
                                     <div>
                 
-                                    <button class="tournament__details-form-btn" id="btn3" onclick="checkScore3({{ userScore }})" >
+                                    <button class="tournament__details-form-btn" id="btn3" onclick="checkScore3(event,{{ userScore }})" >
                                     <a href="{{ path('AffecterCouponExclusif') }}">Acheter ce coupon!</a>
                                     </button>
                                    </div>
@@ -502,28 +496,33 @@
 <script>
 /*get input with id  inputUserScore  */
 var user_score=document.getElementById("hiddenUserScore").value
-
-function checkScore1(userScore){
+function checkScore1(event, userScore){
     var user_s = userScore;
     if (user_s < 1000) {
         console.log("score insuffisant");
         alert("Votre score est insuffisant pour acheter ce coupon exclusif.");
+        event.preventDefault();
     }
 }
-function checkScore2(userScore){
+function checkScore2(event, userScore){
     var user_s = userScore;
     if (user_s < 2000) {
         console.log("score insuffisant", user_s);
         alert("Votre score"+user_s+" est insuffisant pour acheter ce coupon exclusif.");
+        event.preventDefault();
     }
-}function checkScore3(userScore){
+}
+
+function checkScore3(event, userScore){
     var user_s = userScore;
 
     if (user_s < 5000) {
         console.log("score insuffisant");
         alert("Votre score est insuffisant pour acheter ce coupon exclusif.");
+        event.preventDefault();
     }
 }
+
 </script>
 
 

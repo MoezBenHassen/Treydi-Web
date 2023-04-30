@@ -59,9 +59,7 @@ class ArticleFrontController extends AbstractController
                 $ago = $dateTimeFormatter->formatDiff($article->getDatePublication());
                 $article->setAgo($ago);
             }
-
         } else {
-
             $queryBuilder = $articleRepository->findByArchived(false);
             $adapter = new QueryAdapter($queryBuilder);
             $pagerfanta = Pagerfanta::createForCurrentPageWithMaxPerPage(

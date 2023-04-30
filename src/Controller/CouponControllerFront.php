@@ -96,8 +96,13 @@ class CouponControllerFront extends AbstractController
         $user = $security->getUser();
         $couponMensuel->setIdUser($user);
         $entityManager = $this->getDoctrine()->getManager();
+        $user->setScore($user->getScore() - 1000);
+        if($user->getScore() < 0){
+          $user->setScore(0);
+        }
         $entityManager->persist($couponMensuel);
         $entityManager->flush();
+
 
 
         $this->addFlash('success', 'Coupon Mensuel Affecté avec Succès');
@@ -148,6 +153,7 @@ class CouponControllerFront extends AbstractController
         $couponSpecial->setCode($newCode);
         $user = $security->getUser();
         $couponSpecial->setIdUser($user);
+        $user->setScore($user->getScore() - 2000);
         $entityManager->persist($couponSpecial);
         $entityManager->flush();
 
@@ -199,9 +205,10 @@ class CouponControllerFront extends AbstractController
         $user = $security->getUser();
         $couponExclusif->setIdUser($user);
         $entityManager = $this->getDoctrine()->getManager();
+        $user->setScore($user->getScore() - 5000);
         $entityManager->persist($couponExclusif);
         $entityManager->flush();
-
+        $user->setScore($user->getScore() - 5000);
         $qrCodeResponse = $this->forward(qrcode::class.'::qrcode', [
             'code' => $newCode,
         ]);
