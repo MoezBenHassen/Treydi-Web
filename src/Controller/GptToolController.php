@@ -28,7 +28,7 @@ class GptToolController extends AbstractController
         }
         return $this->render('gpt_tool/index.html.twig', [
             'form' => $form->createView(),
-            'answer' => $answer,
+            'answer' => $answer ?? null,
         ]);
     }
 }
