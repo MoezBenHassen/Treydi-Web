@@ -3,14 +3,11 @@
 namespace App\Controller;
 
 use App\Form\EditUserFormType;
-use App\Form\EditUserPasswordType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Utilisateur;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-
 
 class UserHomeController extends AbstractController
 {
@@ -33,33 +30,10 @@ class UserHomeController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_edit_user');
-        }
-
-        return $this->render('user_home/edituser.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-    #[Route('/HomeTr/edit/pass', name: 'app_edit_pass')]
-    public function editpass(Request $request, UserPasswordHasherInterface $passwordEncoder): Response
-    {
-        $user = $this->getUser();
-        $form = $this->createForm(EditUserPasswordType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $plainPassword = $form->get('password')->getData();
-            $hashedPassword = $passwordEncoder->hashPassword($user, $plainPassword);
-            $user->setPassword($hashedPassword);
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-
             return $this->redirectToRoute('app_home_user');
         }
 
-        return $this->render('user_home/editpass.html.twig', [
+        return $this->render('user_home/edituser.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -67,9 +41,10 @@ class UserHomeController extends AbstractController
     public function showConnectedUser(Request $request): Response
     {
         $user = $this->getUser();
-        // Set the avatar URL property based on the user's ID and the image filenam
+        /*dump current livreur*/
+        dump($user);
         return $this->render('user_home/show.html.twig', [
-            'user' => $user,
+            'livreur' => $user,
 
         ]);
     }

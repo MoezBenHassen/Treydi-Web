@@ -62,7 +62,7 @@
                         </div>
                         <!-- /Logo -->
                         <h4 class="mb-2">Welcome to Treydi! 👋</h4>
-                        <p class="mb-4">Please enter your information</p>
+                        <p class="mb-4">Please Scan the QR code below with the Google Authenticator app</p>
 
                         <!--  <form class="card-body"> -->
                         <form method="post">
@@ -90,7 +90,6 @@
                             <p>You don't have an account ?
                                 <a href="{{ path('app_register') }}">Join Us</a>
                             </p>
-                            <a href="{{ path('app_forgot_password_request') }}">forgot password ?</a>
                             <input type="hidden" name="_csrf_token"
                                    value="{{ csrf_token('authenticate') }}">
 
@@ -102,6 +101,11 @@
         </div>
     </div>
     <!-- / Content -->
+
+
+    <div class="buy-now">
+        <a href="https://themeselection.com/item/sneat-bootstrap-html-admin-template/" target="_blank" class="btn btn-danger btn-buy-now">Buy Now</a>
+    </div>
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->

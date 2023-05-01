@@ -36,7 +36,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function saveA(Article $entity, Utilisateur $user , bool $flush = false): void
     {
         $entity->setArchived(false);
-        //set the idUser to the current user
+        //set the idUser to the current livreur
         /*$entity->setIdUser($this->getEntityManager()->getRepository(Utilisateur::class)->findOneBy(['id' => $this->getUser()->getId()]));*/
         $entity->setIdUser($this->getEntityManager()->getRepository(Utilisateur::class)->findOneBy(['id' => $user->getId()]));
         $this->getEntityManager()->persist($entity);

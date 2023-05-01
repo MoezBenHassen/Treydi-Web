@@ -97,7 +97,7 @@ class EchangeProposerController extends AbstractController
         ]);
     }
 
-    #[Route('/echange_proposer/user/afficher/{id}', name: 'app_echangeproposer_user_afficher')]
+    #[Route('/echange_proposer/livreur/afficher/{id}', name: 'app_echangeproposer_user_afficher')]
     public function afficherEchangeUser(ManagerRegistry $doctrine, $id): Response
     {
         $em = $doctrine->getManager();
@@ -133,7 +133,7 @@ class EchangeProposerController extends AbstractController
     }
 
     //accepter proposition
-    #[Route('/echange_proposer/user/accepter/{id}', name: 'app_echangeproposer_user_accepter')]
+    #[Route('/echange_proposer/livreur/accepter/{id}', name: 'app_echangeproposer_user_accepter')]
     public function accepterEchangeUser(ManagerRegistry $doctrine, $id, MailerInterface $mailer, Environment $twig): Response
     {
         $em = $doctrine->getManager();
@@ -157,6 +157,7 @@ class EchangeProposerController extends AbstractController
             ->findBy(['id_echange' => $echange->getId()]);
 
         foreach ($other_echange_proposers as $other_echange_proposer) {
+            $other_echange_proposer->setArchived(true);
             if ($other_echange_proposer->getId() !== $echange_proposer->getId()) {
                 $other_items = $em
                     ->getRepository(Item::class)
@@ -194,7 +195,7 @@ class EchangeProposerController extends AbstractController
 
 
     //Refuser proposition
-    #[Route('/echange_proposer/user/refuser/{id}', name: 'app_echangeproposer_user_refuser')]
+    #[Route('/echange_proposer/livreur/refuser/{id}', name: 'app_echangeproposer_user_refuser')]
     public function refuserEchangeUser(ManagerRegistry $doctrine, $id, MailerInterface $mailer): Response
     {
         $em = $doctrine->getManager();

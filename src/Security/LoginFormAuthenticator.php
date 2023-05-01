@@ -53,7 +53,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             }
         }
 
-        // Redirect to app_home route if user's role is not recognized
+        // Redirect to app_home route if livreur's role is not recognized
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
     }
 

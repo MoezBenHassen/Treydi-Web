@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
-#[Route('/user')]
+#[Route('/livreur')]
 class UserController extends AbstractController
 {
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
@@ -18,7 +18,7 @@ class UserController extends AbstractController
     {
         $users = $userRepository->findBy(['archived' => 0]);
 
-        return $this->render('user/index.html.twig', [
+        return $this->render('livreur/index.html.twig', [
             'users' => $users,
         ]);
     }
@@ -36,8 +36,8 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('user/new.html.twig', [
-            'user' => $user,
+        return $this->renderForm('livreur/new.html.twig', [
+            'livreur' => $user,
             'form' => $form,
         ]);
     }
@@ -45,8 +45,8 @@ class UserController extends AbstractController
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(Utilisateur $user): Response
     {
-        return $this->render('user/show.html.twig', [
-            'user' => $user,
+        return $this->render('livreur/show.html.twig', [
+            'livreur' => $user,
         ]);
     }
 
@@ -62,13 +62,13 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('user/edit.html.twig', [
-            'user' => $user,
+        return $this->renderForm('livreur/edit.html.twig', [
+            'livreur' => $user,
             'form' => $form,
         ]);
     }
 
-    #[Route('user/delete/{id}', name: 'app_user_delete', methods: ['POST','GET'])]
+    #[Route('livreur/delete/{id}', name: 'app_user_delete', methods: ['POST','GET'])]
     public function delete(Utilisateur $user, ManagerRegistry $doctrine): Response
     {
         $user->setArchived(1);

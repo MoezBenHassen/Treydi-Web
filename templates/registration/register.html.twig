@@ -22,11 +22,7 @@
     <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/flatpickr/flatpickr.css" />
     <link rel="stylesheet" href="../../assets/vendor/libs/select2/select2.css" />
-    <!-- Vendor -->
-    <link rel="stylesheet" href="../../assets/vendor/libs/bs-stepper/bs-stepper.css" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/bootstrap-select/bootstrap-select.css" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/select2/select2.css" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
+
     <style>
         .table-responsive {
             overflow-x: auto;
@@ -68,193 +64,134 @@
 {% block body %}
 
     <!-- Google Tag Manager (noscript) (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Layout wrapper -->
-    <div class="authentication-wrapper authentication-cover">
-        <div class="authentication-inner row m-0">
+    <div class="layout-wrapper layout-content-navbar  ">
+        <div class="layout-container">
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <!-- Multi Column with Form Separator -->
 
-            <!-- Left Text -->
-            <div class="d-none d-lg-flex col-lg-4 align-items-center justify-content-end p-5 pe-0">
-                <div class="w-px-400">
-                    <img src="{{ asset('/assets/img/illustrations/create-account-light.png') }}" class="img-fluid" alt="multi-steps" width="600" data-app-dark-img="illustrations/create-account-dark.png" data-app-light-img="illustrations/create-account-light.html">
-                </div>
-            </div>
-            <!-- /Left Text -->
+                        <div class="card mb-4">
+                            <h5 class="card-header">Registration</h5>
 
-            <!--  Multi Steps Registration -->
-            <div class="d-flex col-lg-8 align-items-center justify-content-center authentication-bg p-sm-5 p-3">
-                <div class="w-px-700">
-                    <div id="multiStepsValidation" class="bs-stepper shadow-none">
-                        <div class="bs-stepper-header border-bottom-0">
-                            <div class="step" data-target="#accountDetailsValidation">
-                                <button type="button" class="step-trigger">
-                                    <span class="bs-stepper-circle"><i class="bx bx-home-alt"></i></span>
-                                    <span class="bs-stepper-label mt-1">
-                  <span class="bs-stepper-title">Account</span>
-                  <span class="bs-stepper-subtitle">Account Details</span>
-                </span>
-                                </button>
-                            </div>
-                            <div class="line">
-                                <i class="bx bx-chevron-right"></i>
-                            </div>
-                            <div class="step" data-target="#personalInfoValidation">
-                                <button type="button" class="step-trigger">
-                                    <span class="bs-stepper-circle"><i class="bx bx-user"></i></span>
-                                    <span class="bs-stepper-label mt-1">
-                  <span class="bs-stepper-title">Personal</span>
-                  <span class="bs-stepper-subtitle">Enter Information</span>
-                </span>
-                                </button>
-                            </div>
-                            <div class="line">
-                                <i class="bx bx-chevron-right"></i>
-                            </div>
-                            <div class="step" data-target="#billingLinksValidation">
-                                <button type="button" class="step-trigger">
-                                    <span class="bs-stepper-circle"><i class="bx bx-detail"></i></span>
-                                    <span class="bs-stepper-label mt-1">
-                      <span class="bs-stepper-title">Target</span>
-                  <span class="bs-stepper-subtitle">Goal Details</span>
-                </span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="bs-stepper-content">
-                            <div id="multiStepsForm">
-                            {{ form_start(form) }}
-                                <!-- Account Details -->
-                                <div id="accountDetailsValidation" class="content">
-                                    <div class="content-header mb-3">
-                                        <h3 class="mb-1">Account Information</h3>
-                                        <span>Enter Your Account Details</span>
-                                    </div>
-                                    <div class="row g-3">
-                                        <div class="col-sm-6">
-                                            <label class="form-label" for="multiStepsEmail">Email</label>
+                            <!--  <form class="card-body"> -->
+                                {{ form_start(form) }}
+                                <div class="row g-3">
+
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="multicol-email">Email</label>
+                                        <div class="input-group input-group-merge">
+                                            <span class="input-group-text" id="multicol-email2">@example.com</span>
                                             {{ form_widget(form.email, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'email'}}) }}
-                                            {{ form_errors(form.email)}} </div>
-                                        <div class="col-sm-6 form-password-toggle">
-                                            <label class="form-label" for="multiStepsPass">Password</label>
+                                            {{ form_errors(form.email)}}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-password-toggle">
+                                            <label class="form-label" for="multicol-password">Password</label>
                                             <div class="input-group input-group-merge">
                                                 {{ form_widget(form.password, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'password'}}) }}
                                                 {{ form_errors(form.password)}}
-                                                <span class="input-group-text cursor-pointer" id="multiStepsPass2"><i class="bx bx-hide"></i></span>
+                                                <span class="input-group-text cursor-pointer" id="multicol-password2"><i class="bx bx-hide"></i></span>
                                             </div>
                                         </div>
-                                        <div class="col-12 d-flex justify-content-between">
-                                            <button type="button" class="btn btn-label-secondary btn-prev" disabled onSubmit="return false"> <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
-                                                <span class="align-middle d-sm-inline-block d-none" >Previous</span>
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-next" onSubmit="return false"> <span class="align-middle d-sm-inline-block d-none me-sm-1 me-0">Next</span> <i class="bx bx-chevron-right bx-sm me-sm-n2"></i></button>
-                                        </div>
                                     </div>
                                 </div>
-                                <!-- Personal Info -->
-                                <div id="personalInfoValidation" class="content">
-                                    <div class="content-header mb-3">
-                                        <h3 class="mb-1">Personal Information</h3>
-                                        <span>Enter Your Personal Information</span>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="multicol-first-name">Nom</label>
+                                        {{ form_widget(form.nom, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'nom'}}) }}
+                                        {{ form_errors(form.nom)}}
                                     </div>
-                                    <div class="row g-3">
-                                        <div class="col-sm-6">
-                                            <label class="form-label" for="multiStepsFirstName">Nom</label>
-                                            {{ form_widget(form.nom, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'nom'}}) }}
-                                            {{ form_errors(form.nom)}}
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label class="form-label" for="multiStepsLastName">Prenom</label>
-                                            {{ form_widget(form.prenom, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'prenom'}}) }}
-                                            {{ form_errors(form.prenom)}}
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label class="form-label" for="multiStepsAddress">Address</label>
-                                            {{ form_widget(form.adresse, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'adresse'}}) }}
-                                            {{ form_errors(form.adresse)}}
-                                        </div>
-                                        <div class="col-12 d-flex justify-content-between">
-                                            <button type="button" class="btn btn-primary btn-prev" onSubmit="return false"> <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
-                                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-next" onSubmit="return false"> <span class="align-middle d-sm-inline-block d-none me-sm-1 me-0">Next</span> <i class="bx bx-chevron-right bx-sm me-sm-n2"></i></button>
-                                        </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="multicol-last-name">Prenom</label>
+                                        {{ form_widget(form.prenom, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'prenom'}}) }}
+                                        {{ form_errors(form.prenom)}}
                                     </div>
-                                </div>
-                                <!-- Billing Links -->
-                                <div id="billingLinksValidation" class="content">
-                                    <!-- Custom plan options -->
-                                    <!--/ Custom plan options -->
-                                    <div class="content-header mb-3">
-                                        <h3 class="mb-1">Information</h3>
-                                        <span>Enter your Information</span>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="multicol-last-name">Adresse</label>
+                                        {{ form_widget(form.adresse, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'adresse'}}) }}
+                                        {{ form_errors(form.adresse)}}
                                     </div>
-                                    <!-- Credit Card Details -->
-                                    <div class="row g-3">
-                                        <div class="col-md-6">
-                                            <label class="form-label" for="multicol-last-name">Date Naissance </label>
-                                            {{ form_widget(form.date_naissance, {'attr': {'class': 'form-control dob-picker', 'id': 'multicol-country', 'data-allow-clear': 'true'}}) }}
-                                            {{ form_errors(form.date_naissance) }}
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label" for="multicol-country">Roles</label>
-                                            {{ form_widget(form.roles, {'attr': {'class': 'select2 form-select', 'id': 'multicol-country', 'data-allow-clear': 'true'}}) }}
-                                            {{ form_errors(form.roles) }}
-                                        </div>
-                                        <div class="col-12 d-flex justify-content-between">
-                                            <button type="button" class="btn btn-primary btn-prev " onSubmit="return false"> <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
-                                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                                            </button>
-                                            <button type="submit" class="btn btn-primary me-sm-3 me-1">Register</button>
-                                        </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="multicol-last-name">Date Naissance </label>
+                                        {{ form_widget(form.date_naissance, {'attr': {'class': 'form-control dob-picker', 'id': 'multicol-country', 'data-allow-clear': 'true'}}) }}
+                                        {{ form_errors(form.date_naissance) }}
                                     </div>
-                                    <!--/ Credit Card Details -->
-                                </div>
-                                <p>You already have an account ?
-                                    <a href="{{ path('app_login') }}">Log in</a>
-                                </p>
-                            {{ form_end(form) }}
-                            </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="multicol-country">Roles</label>
+                                        {{ form_widget(form.roles, {'attr': {'class': 'select2 form-select', 'id': 'multicol-country', 'data-allow-clear': 'true'}}) }}
+                                        {{ form_errors(form.roles) }}
+                                    </div>
+                                    <div class="pt-4">
+                                        <button type="submit" class="btn btn-primary me-sm-3 me-1">Register</button>
+                                        <button type="reset" class="btn btn-label-secondary">Cancel</button>
+                                    </div>
+                                    <p>You already have an account ?
+                                        <a href="{{ path('app_login') }}">Log in</a>
+                                    </p>
+
+                                    {{ form_end(form) }}
+
                         </div>
                     </div>
+                    <!-- / Content -->
+                        <div class="content-backdrop fade"></div>
                 </div>
+                <!-- Content wrapper -->
             </div>
-            <!-- / Multi Steps Registration -->
+            <!-- / Layout page -->
         </div>
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+
+        <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+        <div class="drag-target"></div>
+
+    </div>
     </div>
     <!-- Core JS -->
-
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../assets/vendor/js/bootstrap.js"></script>
-    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
 
-    <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
-    <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
-    <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="{{ asset('/assets/vendor/libs/popper/popper.js') }}"></script>
 
-    <script src="../../assets/vendor/js/menu.js"></script>
+    <script src="{{ asset('/assets/vendor/js/bootstrap.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/hammer/hammer.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/i18n/i18n.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/js/menu.js') }}"></script>
 
     <!-- endbuild -->
 
     <!-- Vendors JS -->
     <script src="../../assets/vendor/libs/cleavejs/cleave.js"></script>
     <script src="../../assets/vendor/libs/cleavejs/cleave-phone.js"></script>
-    <script src="../../assets/vendor/libs/bs-stepper/bs-stepper.js"></script>
+    <script src="../../assets/vendor/libs/moment/moment.js"></script>
+    <script src="../../assets/vendor/libs/flatpickr/flatpickr.js"></script>
     <script src="../../assets/vendor/libs/select2/select2.js"></script>
-    <script src="../../assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js"></script>
-    <script src="../../assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
-    <script src="../../assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
-
     <!-- Vendors JS -->
 
     <!-- Main JS -->
-    <script src="../../assets/js/main.js"></script>
+    <script src="{{asset('/assets/js/maindash.js') }}"></script>
 
     <!-- Page JS -->
-    <script src="{{ asset('/assets/js/pages-auth-multisteps.js') }}"></script>
+    <script src='{{ asset('assets/js/form-layouts.js') }}'></script>
 
     <script>
     </script>

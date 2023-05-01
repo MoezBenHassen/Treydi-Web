@@ -63,7 +63,7 @@ class CouponControllerFront extends AbstractController
         $user = $security->getUser();
         $userScore = $user->getScore();
 
-    // Render the template, passing the user's score to it
+    // Render the template, passing the livreur's score to it
         return $this->render('coupon/transformscore.html.twig', [
             'userScore' => $userScore,
         ]);

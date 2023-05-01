@@ -36,7 +36,7 @@ class ArticleRatingsRepository extends ServiceEntityRepository
     }
     public function save(ArticleRatings $entity, bool $flush = false): void
     {
-        /*check if the user already voted*/
+        /*check if the livreur already voted*/
         $query = $this->createQueryBuilder('a')
             ->where('a.id_article = :id_article')
             ->andWhere('a.id_user = :id_user')

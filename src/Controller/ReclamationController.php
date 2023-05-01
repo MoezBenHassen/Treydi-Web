@@ -55,9 +55,9 @@ class ReclamationController extends AbstractController
                 $user = $doctrine->getRepository(Utilisateur::class)->findOneBy(['id' => $userId]);
 
                 if ($user) {
-                    /*$reclamation->userFullName = $user->getNom().' '.$user->getPrenom();*/
+                    /*$reclamation->userFullName = $livreur->getNom().' '.$livreur->getPrenom();*/
                     $reclamation->setUserFullName($user->getNom().' '.$user->getPrenom());
-                    /*$reclamation->avatarUrl = $user->getAvatarUrl();*/
+                    /*$reclamation->avatarUrl = $livreur->getAvatarUrl();*/
                     $reclamation->setAvatarUrl($user->getAvatarUrl());
                 }
             }
@@ -69,9 +69,9 @@ class ReclamationController extends AbstractController
                 $user = $doctrine->getRepository(Utilisateur::class)->findOneBy(['id' => $userId]);
 
                 if ($user) {
-                    /*$reclamation->userFullName = $user->getNom().' '.$user->getPrenom();*/
+                    /*$reclamation->userFullName = $livreur->getNom().' '.$livreur->getPrenom();*/
                     $reclamation->setUserFullName($user->getNom().' '.$user->getPrenom());
-                    /*$reclamation->avatarUrl = $user->getAvatarUrl();*/
+                    /*$reclamation->avatarUrl = $livreur->getAvatarUrl();*/
                     $reclamation->setAvatarUrl($user->getAvatarUrl());
                 }
             }

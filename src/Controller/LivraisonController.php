@@ -86,20 +86,50 @@ class LivraisonController extends AbstractController
         ]);
     }
 
-    //Livreur
-    //meslivraisons
-    #[Route('/livraison/livreur/list', name: 'app_livraison_livreur_list')]
-    public function listLivreur(ManagerRegistry $doctrine): Response
+    //TREYDER
+    #[Route('/livraison/treyder/list', name: 'app_livraison_treyder_list')]
+    public function listMesLivraisonTreyder(ManagerRegistry $doctrine, Security $security): Response
     {
+        $user = $security->getUser();
         $em = $doctrine->getManager();
-        $repository = $em->getRepository(Livraison::class);
-        $list = $repository->findall();
-        return $this->render('livraison/user/meslivraison.tml.twig', [
+        $repositoryLivraison = $em->getRepository(Livraison::class);
+
+        $repositoryEchange = $em->getRepository(Echange::class);
+        $qb = $repositoryEchange->createQueryBuilder('r');
+        $qb->andWhere('r.archived = :archived')
+            ->andWhere($qb->expr()->orX(
+                'r.id_user1 = :user_id',
+                'r.id_user2 = :user_id'
+            ))
+            ->setParameter('archived', false)
+            ->setParameter('user_id', $user->getId());
+
+        $echange = $qb->getQuery()->getResult();
+
+        $list = $repositoryLivraison->findBy(['id_echange' => $echange]);
+        return $this->render('livraison/treyder/list.html.twig', [
             'list' => $list
         ]);
     }
 
-    #[Route('/livraison/user/afficher/{id}', name: 'app_livraison_user_afficher')]
+
+
+
+    //Livreur
+    //meslivraisons
+    #[Route('/livraison/livreur/list', name: 'app_livraison_livreur_list')]
+    public function listLivreur(ManagerRegistry $doctrine, Security $security): Response
+    {
+        $user = $security->getUser();
+        $em = $doctrine->getManager();
+        $repository = $em->getRepository(Livraison::class);
+        $list = $repository->findBy(['id_livreur' => $user]);
+        return $this->render('livraison/livreur/meslivraison.tml.twig', [
+            'list' => $list
+        ]);
+    }
+
+    #[Route('/livraison/livreur/afficher/{id}', name: 'app_livraison_user_afficher')]
     public function afficherUserLivraison(ManagerRegistry $doctrine, $id): Response
     {
         $em = $doctrine->getManager();
@@ -128,7 +158,7 @@ class LivraisonController extends AbstractController
             ->getRepository(EchangeProposer::class)
             ->findBy(['id_echange' => $echange->getId()]);
 
-        return $this->render('livraison/user/afficher.html.twig', [
+        return $this->render('livraison/livreur/afficher.html.twig', [
             'user1_items' => $user1_items,
             'user2_items' => $user2_items,
             'user1' => $user1,

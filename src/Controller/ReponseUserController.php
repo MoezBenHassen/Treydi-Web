@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ReponseUserController extends AbstractController
 {
-    #[Route('/reponse/user', name: 'app_reponse_user')]
+    #[Route('/reponse/livreur', name: 'app_reponse_user')]
     public function index(): Response
     {
         return $this->render('reponse_user/index.html.twig', [

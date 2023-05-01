@@ -237,6 +237,20 @@
 
                 const grid2Items = document.querySelectorAll('#grid2 .shop__item');
 
+                const selectedItems = [];
+                grid2Items.forEach(item => {
+                    selectedItems.push(item.id);
+                });
+
+                const userItems = [];
+                const grid1Items = document.querySelectorAll('#grid1 .shop__item');
+                grid1Items.forEach(item => {
+                    userItems.push(item.id);
+                });
+
+                const itemsInput = document.querySelector('#items1');
+                itemsInput.value = JSON.stringify(selectedItems);
+
                 if (grid2Items.length === 0) {
                     const errorDiv = document.createElement('div');
                     errorDiv.innerText = "Il doit y avoir au moins un Item dans l'échange. Veuillez sélectionner un Item.";
@@ -244,24 +258,6 @@
                     const grid2Div = document.querySelector('#grid2').parentNode;
                     grid2Div.insertBefore(errorDiv, grid2Div.nextElementSibling);
                 } else {
-                    const errorElement = errorContainer.querySelector('.error');
-                    if (errorElement) {
-                        errorElement.remove();
-                    }
-
-                    const selectedItems = [];
-                    grid2Items.forEach(item => {
-                        selectedItems.push(item.id);
-                    });
-
-                    const userItems = [];
-                    const grid1Items = document.querySelectorAll('#grid1 .shop__item');
-                    grid1Items.forEach(item => {
-                        userItems.push(item.id);
-                    });
-
-                    const itemsInput = document.querySelector('#items1');
-                    itemsInput.value = JSON.stringify(selectedItems);
 
                     const userItemsInput = document.querySelector('#items2');
                     userItemsInput.value = JSON.stringify(userItems);
@@ -269,6 +265,5 @@
                 }
             });
         });
-
     </script>
 {% endblock %}

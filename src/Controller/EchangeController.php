@@ -63,14 +63,14 @@ class EchangeController extends AbstractController
             return $this->redirectToRoute('app_echange_list_mesechanges');
         }
 
-        return $this->render('echange/user/creer.html.twig', [
+        return $this->render('echange/livreur/creer.html.twig', [
             'formA' => $form->createView(),
             'user1' => $user,
             'user_items' => $user_items,
         ]);
     }
 
-    #[Route('/echange/user/modifier/{id}', name: 'app_echange_user_modifier')]
+    #[Route('/echange/livreur/modifier/{id}', name: 'app_echange_user_modifier')]
     public function UserModifier(Request $request,ManagerRegistry $doctrine, $id): Response
     {
         $em = $doctrine->getManager();
@@ -128,7 +128,7 @@ class EchangeController extends AbstractController
             return $this->redirectToRoute('app_echange_list_mesechanges');
         }
 
-        return $this->render('echange/user/modifier.html.twig', [
+        return $this->render('echange/livreur/modifier.html.twig', [
             'user1_items' => $user1_items,
             'user1_items_in_echange' => $user1_items_in_echange,
             'echange' => $echange,
@@ -359,7 +359,7 @@ class EchangeController extends AbstractController
     }
 
     //USER
-    #[Route('/echange/user/list', name: 'app_echange_list_user')]
+    #[Route('/echange/livreur/list', name: 'app_echange_list_user')]
     public function listUserEchange(ManagerRegistry $doctrine, Request $request): Response
     {
         $em = $doctrine->getManager();
@@ -392,7 +392,7 @@ class EchangeController extends AbstractController
             $list = $repository->findBy(['archived' => false, 'id_user2' => null]);
         }
 
-        return $this->render('echange/user/list.tml.twig', [
+        return $this->render('echange/livreur/list.tml.twig', [
             'list' => $list,
             'searchForm' => $searchForm->createView(),
         ]);
@@ -415,13 +415,13 @@ class EchangeController extends AbstractController
             ->setParameter('user_id', $user->getId());
 
         $list = $qb->getQuery()->getResult();
-        return $this->render('echange/user/mesechangelist.tml.twig', [
+        return $this->render('echange/livreur/mesechangelist.tml.twig', [
             'controller_name' => 'EchangeListController',
             'list' => $list
         ]);
     }
 
-    #[Route('/echange/user/delete/{id}', name: 'app_echange_delete_user')]
+    #[Route('/echange/livreur/delete/{id}', name: 'app_echange_delete_user')]
     public function removeUserEchange(ManagerRegistry $doctrine, $id): Response
     {
 
@@ -447,7 +447,7 @@ class EchangeController extends AbstractController
 
     }
 
-    #[Route('/echange/user/afficher/{id}', name: 'app_echange_user_afficher')]
+    #[Route('/echange/livreur/afficher/{id}', name: 'app_echange_user_afficher')]
     public function afficherEchangeUser(ManagerRegistry $doctrine, $id): Response
     {
         $em = $doctrine->getManager();
@@ -476,7 +476,7 @@ class EchangeController extends AbstractController
             ->getRepository(EchangeProposer::class)
             ->findBy(['id_echange' => $echange->getId(), 'archived' => false]);
 
-        return $this->render('echange/user/afficher.html.twig', [
+        return $this->render('echange/livreur/afficher.html.twig', [
             'user1_items' => $user1_items,
             'user2_items' => $user2_items,
             'user1' => $user1,
@@ -484,7 +484,7 @@ class EchangeController extends AbstractController
             'echange_proposer' => $echange_proposer,
         ]);
     }
-    #[Route('/echange/user/affichersans/{id}', name: 'app_echange_user_afficher_sans')]
+    #[Route('/echange/livreur/affichersans/{id}', name: 'app_echange_user_afficher_sans')]
     public function afficherEchangeUserSansProposer(ManagerRegistry $doctrine, $id): Response
     {
         $em = $doctrine->getManager();
@@ -513,7 +513,7 @@ class EchangeController extends AbstractController
             ->getRepository(EchangeProposer::class)
             ->findBy(['id_echange' => $echange->getId(), 'archived' => false]);
 
-        return $this->render('echange/user/affichersansproposer.html.twig', [
+        return $this->render('echange/livreur/affichersansproposer.html.twig', [
             'user1_items' => $user1_items,
             'user2_items' => $user2_items,
             'user1' => $user1,
@@ -530,8 +530,17 @@ class EchangeController extends AbstractController
     {
         $em = $doctrine->getManager();
         $repository = $em->getRepository(Echange::class);
-        $list = $repository->findBy(['archived' => false, 'id_user2' => 'IS NOT NULL', 'liv_etat' => 'Non_Accepter']);
-        return $this->render('livraison/user/list.tml.twig', [
+        $list = $repository->createQueryBuilder('r')
+            ->where('r.archived = :archived')
+            ->andWhere('r.id_user2 IS NOT NULL')
+            ->andWhere('r.liv_etat = :liv_etat')
+            ->setParameters([
+                'archived' => false,
+                'liv_etat' => 'Non_Accepter',
+            ])
+            ->getQuery()
+            ->getResult();
+        return $this->render('livraison/livreur/list.tml.twig', [
             'controller_name' => 'EchangeListController',
             'list' => $list
         ]);

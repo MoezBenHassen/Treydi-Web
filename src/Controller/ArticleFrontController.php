@@ -177,10 +177,10 @@ class ArticleFrontController extends AbstractController
         //################################## ARTICLE_RATINGS FORM SUBMISSION HANDLING ##################################
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            //set the current article id  + the voters id ( current user session id )
+            //set the current article id  + the voters id ( current livreur session id )
                 $articleRating->setIdArticle($article);
                 $articleRating->setIdUser($this->getUser());
-            //save the article rating of the user in the database
+            //save the article rating of the livreur in the database
                 $articleRatingsRepository->save($articleRating,true);
 
             //UPDATE the avgRating in article table with the new average rating from the ArticleRatings table //

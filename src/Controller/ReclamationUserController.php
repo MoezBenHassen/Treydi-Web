@@ -19,7 +19,7 @@ use Twig\Environment;
 
 class ReclamationUserController extends AbstractController
 {
-    #[Route('/reclamation/user', name: 'app_reclamation_user')]
+    #[Route('/reclamation/livreur', name: 'app_reclamation_user')]
     public function index(): Response
     {
         return $this->render('reclamation_user/index.html.twig', [
