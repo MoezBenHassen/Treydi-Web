@@ -9,6 +9,8 @@ security:
         app_user_provider:
             entity:
 
+
+
                 class: App\Entity\Utilisateur
                 property: email
     firewalls:
@@ -18,6 +20,8 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+
+
 
             custom_authenticator: App\Security\LoginFormAuthenticator
 

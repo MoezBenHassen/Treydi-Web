@@ -14,7 +14,7 @@ class EchangeType extends AbstractType
     {
         $builder
             ->add('titre_echange')
-            ->add('create',SubmitType::class)
+            ->add('confirmer',SubmitType::class)
         ;
     }
 

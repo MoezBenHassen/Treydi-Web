@@ -63,7 +63,6 @@ class Item
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Echange $id_echange = null;
 
-
     public function getId(): ?int
     {
         return $this->id;
