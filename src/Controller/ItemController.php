@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\File;
@@ -40,19 +41,17 @@ class ItemController extends AbstractController
         ]);
     }
 
-
     #[Route('/item/front/list', name: 'app_itemList_f')]
     public function listF(ItemRepository $repository): Response
     {
 
-        $list = $repository->findUnarchivedFront(1);
+        $list = $repository->findUnarchivedFront($this->getUser());
 
         return $this->render('item/front/index.html.twig', [
             'controller_name' => 'List des Items',
             'list' => $list
         ]);
     }
-
 
     #[Route('/item/front/listall', name: 'app_itemListall_f')]
     public function listallF(ManagerRegistry $doctrine, ItemRepository $repository): Response
@@ -210,7 +209,7 @@ class ItemController extends AbstractController
     }
 
     #[Route('item/front/add', name: 'app_itemAdd_f')]
-    public function addF(Request $request, ManagerRegistry $doctrine): Response
+    public function addF(Security $security,Request $request, ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Utilisateur::class);
         $em = $doctrine->getManager();
@@ -232,7 +231,7 @@ class ItemController extends AbstractController
             if ($item->getType() == "Virtuelle" || $item->getType() == "Service") {
                 $item->setEtat("Nul");
             }
-            $user = $repository->find(1);
+            $user = $repository->find($security->getUser()->getId());
             $item->setIdUser($user);
             $item->setArchived(0);
             $em->persist($cat);
@@ -260,7 +259,7 @@ class ItemController extends AbstractController
             $filename = $file->getClientOriginalName();
         }
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $repository->find(1);
+            $user = $repository->find($this->getUser()->getId());
             $cat = $rrepository->find($form->get('id_categorie')->getData());
             $cat->setQt($cat->getqt() + 1);
             $file = $form->get('imageurl')->getData();
@@ -289,11 +288,6 @@ class ItemController extends AbstractController
                 return $this->renderForm('item/back/add.html.twig', array('formA' => $form, 'err' => '  ●             Fichier doit etre png ou jpg'));
             }
         }
-
-
-
-
-
         return $this->renderForm('item/back/add.html.twig', array('formA' => $form, 'err' => ''));
     }
 
@@ -464,7 +458,6 @@ class ItemController extends AbstractController
             return false;
         });
 
-
         $itemsd = $repository->findAlll();
         $et = $item->getEtat();
 
@@ -520,7 +513,7 @@ class ItemController extends AbstractController
         $rrepository = $doctrine->getRepository(Utilisateur::class);
         $em = $doctrine->getManager();
         $comment = new CommentItems();
-        $user = $rrepository->find(1);
+        $user = $rrepository->find($this->getUser()->getId());
         $comment->setUserid($user);
         $comment->setItemid($id);
         $comment->setComment($nom);
@@ -532,7 +525,6 @@ class ItemController extends AbstractController
     #[Route('/front/item/commentdel/{id}_{idu}', name: 'app_itemCommentDel_f')]
     public function commentdel(Request $request, ManagerRegistry $doctrine, $id, $idu): Response
     {
-
         $repository = $doctrine->getRepository(CommentItems::class);
         $em = $doctrine->getManager();
         $comment =  $repository->find($id);
@@ -540,7 +532,6 @@ class ItemController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('app_itemDetail_f', ['id' => $idu]);
     }
-
 
     #[Route('/front/item/pdf/', name: 'app_itemPdf_f')]
     public function generatePdf(ItemRepository $repository): Response

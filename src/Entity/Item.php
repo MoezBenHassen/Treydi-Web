@@ -38,8 +38,8 @@ class Item
     private ?string $type = null;
 
     
-    #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\Regex(pattern: '/\.(png|jpg)$/', message: 'image doit etre png ou jpg')]
+    #[ORM\Column(type: 'text', nullable: true)]
+    #[Assert\Regex(pattern: "/^(.*\.png|.*\.jpg|.*\.jpeg|data:image\/\w+;base64,.*)$/", message: 'image doit etre png ou jpg')]
     private ?string $imageurl = null;
 
     #[ORM\ManyToOne(inversedBy: 'items')]
@@ -60,7 +60,7 @@ class Item
     #[ORM\ManyToOne(inversedBy: 'items')]
     private ?CategorieItems $id_categorie = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: Echange::class, inversedBy: 'echange')]
     private ?Echange $id_echange = null;
 
     public function getId(): ?int

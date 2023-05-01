@@ -14,18 +14,12 @@
                                     <li class="font">
                                         <a href="{{ path('app_home_user') }}">Home</a>
                                     </li>
-                                    <li><a href="{{ path('app_itemListall_f') }}">Trade</a></li>
+                                    <li><a href="{{ path('app_itemListall_f') }}">ITEMS</a></li>
 
                                             <li><a href="{{ path('app_coupon_frontscoreboard') }}">LEADERBOARD</a></li>
 
-                                    <li class="menu-item-has-children"><a href="#">PAGES</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="shop.html">Gaming Shop</a></li>
-                                            <li><a href="shop-details.html">Shop Details</a></li>
-                                            <li><a href="services.html">Our Services</a></li>
-                                            <li><a href="services-details.html">Services Details</a></li>
-                                            <li><a href="team-details.html">Player Details</a></li>
-                                        </ul>
+                                    <li class="menu-item-has-children"><a href="{{ path('app_echange_list_user') }}">TRADE</a>
+
                                     </li>
                                     <li class="menu-item-has-children"><a href="#">News</a>
                                         <ul class="sub-menu">
@@ -170,9 +164,21 @@
                             </a>
                         </li>
                         <li>
-                            <a class="d-flex justify-content-between" style="width: 100%">
+                            <a href="{{ path('app_coupon_peruser') }}" class="d-flex justify-content-between" style="width: 100%">
                                 <img src="{{ asset('assets/img/coupon.png') }}" alt="" style="">
-                                <span style="display: inline-block;  padding: 0 !important; margin: 0; ">Coupons</span>
+                                <span style="display: inline-block;  padding: 0 !important; margin: 0; ">My Coupons</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('App_Transform') }}" class="d-flex justify-content-between" style="width: 100%">
+                                <img src="{{ asset('assets/img/hand-gesture.png') }}" alt="" style="">
+                                <span style="display: inline-block;  padding: 0 !important; margin: 0; ">Transformer vos Treydi Points</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_echange_list_mesechanges') }}" class="d-flex justify-content-between" style="width: 100%">
+                                <img  src="{{ asset('assets/img/exchange.png') }}" alt="" style="">
+                                <span style="display: inline-block;  padding: 0 !important; margin: 0; ">Mes echanges</span>
                             </a>
                         </li>
                         <li class="active menu  -item-has-children ">
