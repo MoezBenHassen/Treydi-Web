@@ -151,14 +151,14 @@
     <body>
 
     <div>
-
+{{ include('front_components/_header-menu-front.html.twig') }}
 
         <!-- Scroll-top -->
         <button class="scroll__top scroll-to-target" data-target="html">
             <i class="flaticon-right-arrow"></i>
         </button>
         <!-- Scroll-top-end-->
-        {{ include('front_components/_header-menu-front.html.twig') }}
+
         <!-- breadcrumb-area -->
         <section class="breadcrumb-area breadcrumb__hide-img" data-background="{{ asset('assets/img/bg/breadcrumb_bg02.jpg') }}">
             <div class="container">
@@ -182,7 +182,6 @@
 
 
         <!-- contact-area -->
-        <!-- contact-area -->
         <noscript>
             <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0"
                     style="display: none; visibility: hidden"></iframe>
@@ -195,22 +194,22 @@
                 <div class="card">
                     <h5 class="card-header">Mes Echanges</h5>
                     <div class="card-body">
-                            <div>
-                                {{ form_start(searchForm) }}
-                                <div style="margin-bottom: 10px">{{ form_widget(searchForm.search, {'attr': {'class': 'form-control input-sm'}}) }}</div>
-                                <div style="margin-bottom: 10px">{{ form_widget(searchForm.itemSearch, {'attr': {'class': 'form-control input-sm'}}) }}</div>
-                                <style>
-                                    .submit-bzrgfz{
-                                        display: flex;
-                                        justify-content: center;
-                                        align-items: center;
-                                    }
-                                </style>
-                                <div class="submit-bzrgfz" style="margin-bottom: 10px" >
-                                    {{ form_widget(searchForm.submit, {'attr': {'class': 'btn btn-primary'}}) }}
-                                </div>
-                                {{ form_end(searchForm) }}
+                        <div>
+                            {{ form_start(searchForm) }}
+                            <div style="margin-bottom: 10px">{{ form_widget(searchForm.search, {'attr': {'class': 'form-control input-sm'}}) }}</div>
+                            <div style="margin-bottom: 10px">{{ form_widget(searchForm.itemSearch, {'attr': {'class': 'form-control input-sm'}}) }}</div>
+                            <style>
+                                .submit-bzrgfz{
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+                            </style>
+                            <div class="submit-bzrgfz" style="margin-bottom: 10px" >
+                                {{ form_widget(searchForm.submit, {'attr': {'class': 'btn btn-primary'}}) }}
                             </div>
+                            {{ form_end(searchForm) }}
+                        </div>
                         <div class="table-responsive text-nowrap">
                             <style>
                                 .card {
@@ -269,34 +268,34 @@
 
 
     </div>
-    <!-- main-area-end -->
 
-    <!-- main-area -->
-    <div class="main--area">
 
-        <!-- breadcrumb-area -->
 
-        <!-- footer-start -->
-        {{ include('front_components/_footer-front.html.twig') }}
-        <!-- footer-start-end -->
-        <!-- JS here -->
+    <!-- breadcrumb-area -->
 
-        <!-- 💁 Include both scripts below to support all browsers! -->
 
-        <!-- Loads <model-viewer> for modern browsers: -->
-        <script type="module"
-                src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
-        </script>
+    <!-- footer-start -->
+    {{ include('front_components/_footer-front.html.twig') }}
+    <!-- footer-start-end -->
 
-        <!-- Loads <model-viewer> for old browsers like IE11: -->
-        <script nomodule
-                src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
-        </script>
+    <!-- JS here -->
 
-        <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js')  }}"></script>
-        <script src="{{ asset('assets/js/plugins.js') }}"></script>
-        <script src="{{ asset('assets/js/ajax-form.js') }}"></script>
-        <script src="{{ asset('assets/js/main.js') }}"></script>
+    <!-- 💁 Include both scripts below to support all browsers! -->
+
+    <!-- Loads <model-viewer> for modern browsers: -->
+    <script type="module"
+            src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+    </script>
+
+    <!-- Loads <model-viewer> for old browsers like IE11: -->
+    <script nomodule
+            src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
+    </script>
+
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    <!-- JS here -->
+
 
 
 
