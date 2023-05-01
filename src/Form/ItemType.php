@@ -43,8 +43,12 @@ class ItemType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
-                
+                        'maxSize' => '5m',
+                        'mimeTypes' => [
+                            'image/png',
+                            'image/jpeg',
+                            'image/jpg',
+                        ],
                         'mimeTypesMessage' => 'Please upload a valid image',
                     ]),
                 ],
@@ -62,11 +66,10 @@ class ItemType extends AbstractType
             ->add('add', SubmitType::class, [
                 'label' => 'Ajouter Item',
             ])
-            
+
             ->add('modify', SubmitType::class, [
                 'label' => 'Modifier Item',
-            ])
-            ;;
+            ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -19,16 +19,13 @@
 	<!-- Scroll-top-end-->
 
 	<!-- header-area -->
-		{{ include('front_components/_header-menu-front.html.twig') }}
+	{{ include('front_components/_header-menu-front.html.twig') }}
 	<!-- header-area-end -->
 
 
 	<!-- main-area -->
-	<main
-		class="main--area">
-
-
-		<!-- shop-area -->
+		<main
+		class="main--area"> <!-- shop-area -->
 		<section class="shop-area shop-details-area">
 			<div class="container">
 				<div class="row">
@@ -37,7 +34,7 @@
 						<div class="tab-content" id="imageTabContent">
 							<div class="tab-pane show active" id="one" role="tabpanel" aria-labelledby="one-tab">
 								<a href="assets/img/products/shop_details01.jpg" class="popup-image">
-									<img src={{ item.getImageurl()}} alt="img"></a>
+									<img src="{{ item.getImageurl()}}" alt="img"></a>
 							</div>
 							<div class="tab-pane" id="two" role="tabpanel" aria-labelledby="two-tab">
 								<a href="assets/img/products/shop_details02.jpg" class="popup-image"><img src="assets/img/products/shop_details02.jpg" alt="img"></a>
@@ -53,8 +50,14 @@
 						<div class="shop__details-price">
 							<span class="amount">
 								<span class="stock-status">{{ item.getIdCategorie().getNomCategorie() }}</span>
+								<h3>
+									<span class="badge bg-label-primary me-1">{{ item.getType() }}</span>
+									<span class="badge bg-label-primary me-1">{{ item.getEtat() }}</span>
+								</h3>
 							</span>
+
 						</div>
+
 						<div class="shop__details-short-description">
 							<p>
 								{{ item.getDescription()}}</p>
@@ -62,28 +65,35 @@
 
 						<div class="shop__details-qty">
 							<h3>
-								<div class="shop__details-model d-flex align-items-center">
+								<div class="shop__details d-flex align-items-center">
 
 									<ul class="list-wrap d-flex align-items-center">
 										<li>
-											<h5>👁️‍🗨️
-												{{ item.getViews() }}</li>
+											<button type="button" class="btn btn-dark" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" role="tab" aria-controls="description" aria-selected="true">
+												<h4>👁️‍🗨️
+													{{ item.getViews() }}</h4>
+											</button>
 										</li>
-										<li>
-											<h5>
-												<a href={{ url('app_itemLike_f',{'id':item.getId()} ) }}>👍
-													{{ item.getLikes()}}
 
-												</a>
+										
+										<li>
+										&nbsp;
+											<button type="button" class="btn btn-dark" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" role="tab" aria-controls="description" aria-selected="true">
+												<a href={{ url('app_itemLike_f',{'id':item.getId()} ) }}>
+													<h4>👍
+														{{ item.getLikes()}}</h4>
+															</a>
+												</button>
 											</li>
 										</li>
 										<li>
-											<h5>
-												<a href={{ url('app_itemDislike_f',{'id':item.getId()} ) }}>👎
-													{{ item.getDislikes()}}
-
-
-												</a>
+											&nbsp;
+											<button type="button" class="btn btn-dark" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" role="tab" aria-controls="description" aria-selected="true">
+												<a href={{ url('app_itemDislike_f',{'id':item.getId()} ) }}>
+													<h4>👎
+														{{ item.getDislikes()}}</h4>
+														</a>
+												</button>
 											</li>
 										</li>
 									</ul>
@@ -116,13 +126,16 @@
 
 
 										{% for i in comment %}
-											<div class="shop__details-model d-flex align-items-center">
+											<div class=" d-flex align-items-center">
 
 												<ul class="list-wrap d-flex align-items-center">
 													<li>
-														<h4>{{i.getUserid().getNom()}}</h4>
+														<h3>{{i.getUserid().getNom()}}</h3>
 														{{i.getComment()}}
-														<a  href={{ url('app_itemCommentDel_f',{'id':i.getId(),'idu':i.getItemid()} ) }}>⌫</a>
+														{% if app.user.id == i.getUserid().getId() %}
+															<a href={{ url('app_itemCommentDel_f',{'id':i.getId(),'idu':i.getItemid()} ) }}>⌫</a>
+														{% endif %}
+														<hr>
 													</li>
 												</ul>
 											</div>
@@ -133,64 +146,64 @@
 							</div>
 
 							{% if item.getType == "Physique" %}
-									<div class="related__product-area">
-								<div class="related__product-wrapper">
-									<h2 class="related-title">Meme Items mais etat different</h2>
-									<div class="row justify-content-center row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
-										{% for i in itemsd|slice(0, 8) %}
-											<div class="col">
-												<div class="shop__item">
-													<div class="shop__item-thumb">
-														<a href="shop-details.html"><img src={{i.getImageurl()}} alt="img"></a>
-														<a href="#" class="wishlist-button"></a>
-													</div>
-
-													<div class="shop__item-content">
-														<div class="shop__item-content-top">
-															<h4 class="title">
-																<a href="shop-details.html">{{i.getLibelle()}}</a>
-															</h4>
+								<div class="related__product-area">
+									<div class="related__product-wrapper">
+										<h2 class="related-title">Meme Items mais etat different</h2>
+										<div class="row justify-content-center row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
+											{% for i in itemsd|slice(0, 8) %}
+												<div class="col">
+													<div class="shop__item">
+														<div class="shop__item-thumb">
+															<a href="shop-details.html"><img src="{{i.getImageurl()}}" alt="img"></a>
+															<a href="#" class="wishlist-button"></a>
 														</div>
-														<div class="shop__item-cat">
-															<a href="shop.html">{{ i.getIdCategorie().getNomCategorie() }}
 
-															</a>
-
-
-															<a href={{ url('app_itemLike_f',{'id':i.getId()} ) }}>👍
-																{{ i.getLikes()}}
-
-															</a>
-
-															<a href={{ url('app_itemDislike_f',{'id':i.getId()} ) }}>👎
-																{{ i.getDislikes()}}
-
-
-															</a>
-														</div>
-														<div class="dropdown">
-															<span class="badge bg-label-primary me-1">{{ i.getType() }}</span>
-															<span class="badge bg-label-primary me-1">{{ i.getEtat() }}</span>
-
-															<span class="badge bg-label-primary me-1 dropdown-toggle " data-bs-toggle="dropdown">
-																Details
-															</span>
-															<div class="dropdown-menu">
-																<div class="container">
-																	{{ i.getDescription() }}
-																</div>
+														<div class="shop__item-content">
+															<div class="shop__item-content-top">
+																<h4 class="title">
+																	<a href="shop-details.html">{{i.getLibelle()}}</a>
+																</h4>
 															</div>
+															<div class="shop__item-cat">
+																<a href="shop.html">{{ i.getIdCategorie().getNomCategorie() }}
 
+																</a>
+
+
+																<a href={{ url('app_itemLike_f',{'id':i.getId()} ) }}>👍
+																	{{ i.getLikes()}}
+
+																</a>
+
+																<a href={{ url('app_itemDislike_f',{'id':i.getId()} ) }}>👎
+																	{{ i.getDislikes()}}
+
+
+																</a>
+															</div>
+															<div class="dropdown">
+																<span class="badge bg-label-primary me-1">{{ i.getType() }}</span>
+																<span class="badge bg-label-primary me-1">{{ i.getEtat() }}</span>
+
+																<span class="badge bg-label-primary me-1 dropdown-toggle " data-bs-toggle="dropdown">
+																	Details
+																</span>
+																<div class="dropdown-menu">
+																	<div class="container">
+																		{{ i.getDescription() }}
+																	</div>
+																</div>
+
+															</div>
+															👁️‍🗨️
+															{{ i.getViews() }}
 														</div>
-														👁️‍🗨️
-														{{ i.getViews() }}
 													</div>
 												</div>
-											</div>
-										{% endfor %}
+											{% endfor %}
+										</div>
 									</div>
 								</div>
-							</div>
 
 							{% endif %}
 							<div class="related__product-area">
@@ -201,7 +214,7 @@
 											<div class="col">
 												<div class="shop__item">
 													<div class="shop__item-thumb">
-														<a href="shop-details.html"><img src={{i.getImageurl()}} alt="img"></a>
+														<a href="shop-details.html"><img src="{{i.getImageurl()}}" alt="img"></a>
 														<a href="#" class="wishlist-button"></a>
 													</div>
 
@@ -259,7 +272,7 @@
 											<div class="col">
 												<div class="shop__item">
 													<div class="shop__item-thumb">
-														<a href="shop-details.html"><img src={{i.getImageurl()}} alt="img"></a>
+														<a href="shop-details.html"><img src="{{i.getImageurl()}}" alt="img"></a>
 														<a href="#" class="wishlist-button"></a>
 													</div>
 
@@ -314,28 +327,22 @@
 					<!-- shop-area-end -->
 
 				</main>
-	<!-- footer-start -->
-	{{ include('front_components/_footer-front.html.twig') }}
-	<!-- footer-start-end -->
-	<!-- JS here -->
+				<!-- footer-start -->
+				{{ include('front_components/_footer-front.html.twig') }}
+				<!-- footer-start-end -->
+				<!-- JS here -->
 
-	<!-- 💁 Include both scripts below to support all browsers! -->
+				<!-- 💁 Include both scripts below to support all browsers! -->
 
-	<!-- Loads <model-viewer> for modern browsers: -->
-	<script type="module"
-			src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
-	</script>
+				<!-- Loads <model-viewer> for modern browsers: --><script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"> </script>
 
-	<!-- Loads <model-viewer> for old browsers like IE11: -->
-	<script nomodule
-			src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
-	</script>
+				<!-- Loads <model-viewer> for old browsers like IE11: -->
+				<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 
-	<script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js')  }}"></script>
-	<script src="{{ asset('assets/js/plugins.js') }}"></script>
-	<script src="{{ asset('assets/js/ajax-form.js') }}"></script>
-	<script src="{{ asset('assets/js/main.js') }}"></script>
+				<script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
+				<script src="{{ asset('assets/js/plugins.js') }}"></script>
+				<script src="{{ asset('assets/js/ajax-form.js') }}"></script>
+				<script src="{{ asset('assets/js/main.js') }}"></script>
 
 
-
-{% endblock %}
+			{% endblock %}
