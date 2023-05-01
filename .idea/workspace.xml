@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5805a6bf-92ce-450e-bd7c-f2ca4c045362" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/EchangeProposerController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/echange_proposer/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/echange/user/modifier.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/vendor/js/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/vendor/js/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/LoginFormAuthenticator.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Dashboard_components/_menuDashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Dashboard_components/_menuDashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/index.html.twig" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/src/Controller/EchangeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EchangeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/admin/modifieruser1.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/admin/modifieruser1.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/admin/modifieruser2.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/admin/modifieruser2.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/echange/user/mesechangelist.tml.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/echange/user/mesechangelist.tml.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/livraison/admin/afficher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/livraison/admin/afficher.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +143,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/security-guard" />
       <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
       <path value="$PROJECT_DIR$/vendor/symfony/browser-kit" />
-      <path value="$PROJECT_DIR$/vendor/symfony/notifier" />
       <path value="$PROJECT_DIR$/vendor/symfony/messenger" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-icu" />
       <path value="$PROJECT_DIR$/vendor/symfony/string" />
@@ -170,6 +165,9 @@
       <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
       <path value="$PROJECT_DIR$/vendor/symfony/ux-turbo" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
+      <path value="$PROJECT_DIR$/vendor/twig/cssinliner-extra" />
+      <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
+      <path value="$PROJECT_DIR$/vendor/symfony/google-mailer" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -183,16 +181,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Marayed/Desktop/PiWeb/Treydi-Web/src&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Marayed/Desktop/PiWeb/Treydi-Web/assets/img/logo&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -202,16 +198,14 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src" />
-      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\templates" />
-      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Form" />
-      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\src\Controller" />
+      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\assets\img\logo" />
+      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\templates\livraison\user" />
+      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\templates\echange_proposer" />
+      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\templates\echange\user" />
+      <recent name="C:\Users\Marayed\Desktop\PiWeb\Treydi-Web\templates\livraison\admin" />
     </key>
-
-
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -258,10 +252,42 @@
       <workItem from="1680903401085" duration="32000" />
       <workItem from="1680903756310" duration="50000" />
       <workItem from="1680903866658" duration="156000" />
-
       <workItem from="1680904476148" duration="2082000" />
       <workItem from="1680909528586" duration="4282000" />
-
+      <workItem from="1680915582015" duration="432000" />
+      <workItem from="1680916202364" duration="255000" />
+      <workItem from="1680916468869" duration="506000" />
+      <workItem from="1680919191233" duration="833000" />
+      <workItem from="1680920118687" duration="2505000" />
+      <workItem from="1680923541362" duration="768000" />
+      <workItem from="1680990502198" duration="14272000" />
+      <workItem from="1681010170698" duration="6147000" />
+      <workItem from="1681079088592" duration="24839000" />
+      <workItem from="1681114015944" duration="7990000" />
+      <workItem from="1681965105572" duration="934000" />
+      <workItem from="1682015161023" duration="18863000" />
+      <workItem from="1682257790406" duration="3857000" />
+      <workItem from="1682323439497" duration="10257000" />
+      <workItem from="1682344419761" duration="21000" />
+      <workItem from="1682590108403" duration="629000" />
+      <workItem from="1682601348568" duration="611000" />
+      <workItem from="1682608921814" duration="80000" />
+      <workItem from="1682609190948" duration="86000" />
+      <workItem from="1682630188975" duration="27000" />
+      <workItem from="1682676288674" duration="1612000" />
+      <workItem from="1682678231165" duration="45000" />
+      <workItem from="1682678358234" duration="48000" />
+      <workItem from="1682678442802" duration="119000" />
+      <workItem from="1682693236493" duration="78000" />
+      <workItem from="1682694075650" duration="108000" />
+      <workItem from="1682694783248" duration="49000" />
+      <workItem from="1682696032465" duration="4000" />
+      <workItem from="1682696181553" duration="471000" />
+      <workItem from="1682711602285" duration="3541000" />
+      <workItem from="1682716238700" duration="65000" />
+      <workItem from="1682795447925" duration="10981000" />
+      <workItem from="1682807867765" duration="234000" />
+      <workItem from="1682854177458" duration="2674000" />
     </task>
     <servers />
   </component>

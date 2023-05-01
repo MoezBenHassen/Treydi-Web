@@ -1,40 +1,134 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <style>
-        .grid-container {
-            display: flex;
-            justify-content: space-between;
-            margin: 0 100px;
-        }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-gap: 10px;
-            padding: 10px;
-            border: 1px solid white;
-            max-height: 400px;
-            max-width: 500px;
-            overflow-y: auto;
-            min-height: 400px;
-            min-width: 500px;
-        }
+  {% block stylesheets %}
+      <!-- Fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com/">
+      <link rel="preconnect" href="}https://fonts.gstatic.com/" crossorigin>
+      <link href="'https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap'"
+            rel="stylesheet">
 
-        #grid1 {
-            grid-column: 1 / 3;
-        }
+      <!-- Icons -->
+      <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}"/>
+      <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}"/>
+      <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}"/>
+      <!-- Core CSS -->
+      <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core-dark.css') }}"
+            class="template-customizer-core-css"/>
+      <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default-dark.css') }}"
+            class="template-customizer-theme-css"/>
+      <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}"/>
 
-        #grid2 {
-            grid-column: 3 / 5;
-        }
-    </style>
+      <!-- Vendors CSS -->
+
+      <!-- Core CSS -->
+      <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core.css') }}" class="template-customizer-core-css"/>
+      <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default.css') }}"
+            class="template-customizer-theme-css"/>
 
 
+      <!-- Vendors CSS -->
+      <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}"/>
+      <link rel="stylesheet" href="{{ asset('assets/vendor/libs/typeahead-js/typeahead.css') }}"/>
+
+
+      <style>
+          .table-responsive {
+              overflow-x: auto;
+          }
+
+          /* custom css that makes the table cell wrap if the text exceeds the cell length*/
+          .table-responsive td {
+              white-space: normal;
+              text-align: justify;
+          }
+
+          ::-moz-selection { /* Code for Firefox */
+              background: yellow;
+          }
+
+          ::selection {
+              background: yellow;
+          }
+
+          #chose {
+              width: 25px;
+
+          }
+
+          /*make the card the width of the screen available*/
+
+      </style>
+  {% endblock %}
+
+
+{% block javascripts %}
+    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="{{ asset('public/assets/vendor/js/template-customizer.js') }}"></script>
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{{ asset('assets/js/config.js') }}"></script>
+    <script href={{ "assets/js/vendor/jquery-3.6.0.min.js" }}></script>
+    <script src="{{ asset('assets/js/plugins.js') }}"></script>
+    <script src="{{ asset('assets/js/ajax-form.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/popper/popper.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/js/bootstrap.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/hammer/hammer.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/i18n/i18n.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/js/menu.js') }}"></script>
+
+    <!-- endbuild -->
+    <script src="{{ asset('/assets/js/maindash.js') }}"></script>
 {% endblock %}
 
 {% block body %}
+
+
+
+
+
+    <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/popper/popper.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/js/bootstrap.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/hammer/hammer.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/i18n/i18n.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/js/menu.js') }}"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="{{ asset('/assets/js/maindash.js') }}"></script>
+
+
+
+
     <!doctype html>
     <html class="no-js" lang="en">
 
@@ -65,7 +159,8 @@
                         <div class="tgmenu__wrap">
                             <nav class="tgmenu__nav">
                                 <div class="logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
+                                    <a href="index.html"><img src="{{ asset('assets/img/logo/treydi3.png') }}"
+                                                              alt="Logo"></a>
                                 </div>
                                 <div class="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex">
                                     <ul class="navigation">
@@ -97,13 +192,7 @@
                                                 <li><a href="blog-details.html">Blog Details</a></li>
                                             </ul>
                                         </li>
-                                        <li class="menu-item-has-children"><a href="#">Echange</a>
-                                            <ul class="sub-menu">
-                                                <li><a href= {{ path('app_echange_creer') }}>Creer Echange</a></li>
-                                                <li><a href={{ path('app_echange_list_user') }}>Tous les Echanges</a></li>
-                                                <li><a href={{ path('app_echange_list_mesechanges') }}>Mes Echanges</a></li>
-                                            </ul>
-                                        </li>
+                                        <li class="active"><a href="contact.html">contact</a></li>
                                     </ul>
                                 </div>
                                 <div class="tgmenu__action d-none d-md-block">
@@ -167,11 +256,11 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="breadcrumb__content">
-                                <h2 class="title"> Creer un Echange</h2>
+                                <h2 class="title"> Echanges</h2>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Echange</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Echanges</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -205,97 +294,111 @@
         </div>
         <!-- contact-area -->
         <!-- contact-area -->
-        <section class="contact-area">
-            <div class="container">
-                {{ form_start(formA, {'attr': {'id': 'formA', 'novalidate': 'novalidate'}}) }}
-                <div class="grid-container">
-                    <div class="grid" id="grid1">
-                        <div class = "align-content-center"> Vos Items</div>
-                        {% for item in user2_items %}
-                            <div class="shop__item" id="{{ item.id }}">
-                                <div class="shop__item-thumb">
-                                    <a><img src="{{ item.getImageurl() }}" alt="img"></a>
-                                </div>
-                                <div class="shop__item-content">
-                                    <div class="shop__item-content-top">
-                                        <h4 class="title">
-                                            <a>{{ item.getLibelle() }}</a>
-                                        </h4>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0"
+                    style="display: none; visibility: hidden"></iframe>
+        </noscript>
+        <div class="content-wrapper">
+            <!-- Content -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+
+                <hr class="my-5">
+
+
+                <div class="card">
+                    <h5 class="card-header">Mes Echanges</h5>
+                    <div class="table-responsive text-nowrap">
+                        <style>
+                            .card {
+
+                                background-color: #2b2c40 !important;
+
+
+                            }
+
+                            .card td {
+                                color: #a3a4cc;
+                            }
+
+                            .btn {
+                                background-color: transparent;
+                                color: #a3a4cc;
+                            }
+                        </style>
+                        <table class="table ">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Livreur</th>
+                                <th>Echange</th>
+                                <th>Date Creation</th>
+                                <th>Etat Livraison</th>
+                                <th>Date Terminer</th>
+                                <th>Adresse 1</th>
+                                <th>Adresse 2</th>
+                                <th>Archived</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                            {% for i in list %}
+                            <tr>
+                                <td>
+                                    {{ i.id }}
+                                </td>
+                                <td>
+                                    {{ i.idLivreur }}
+                                </td>
+                                <td>
+                                    {{ i.idEchange.titreEchange }}
+                                </td>
+                                <td>
+                                    {{ i.dateCreationLivraison|date('Y-m-d') }}
+                                </td>
+
+                                <td>
+                                    {{ i.etatLivraison }}
+                                </td>
+                                <td>
+                                    {{ i.dateTerminerLivraison|date('Y-m-d') }}
+                                </td>
+                                <td>
+                                    {{ i.adresseLivraison1 }}
+                                </td>
+                                <td>
+                                    {{ i.adresseLivraison2 }}
+                                </td>
+                                <td>
+                                    {% if i.archived %}
+                                        True
+                                    {% else %}
+                                        False
+                                    {% endif %}
+                                </td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item"
+                                                   href="{{ url('app_livraison_user_afficher',{'id':i.getId()} ) }}"><i
+                                                            class="bx bx-show me-1"></i> Afficher</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>
+
                     </div>
-                    <div class="grid" id="grid2">
-                        <div class = "align-content-center"> Les Items que vous voulez proposez</div>
-                    </div>
-                    <div class="grid" id="grid3">
-                        <div class = "align-content-center"> Les Items dans cette echange</div>
-                        {% for item in user1_items %}
-                            <div class="shop__item" id="{{ item.id }}">
-                                <div class="shop__item-thumb">
-                                    <a><img src="{{ item.getImageurl() }}" alt="img"></a>
-                                </div>
-                                <div class="shop__item-content">
-                                    <div class="shop__item-content-top">
-                                        <h4 class="title">
-                                            <a>{{ item.getLibelle() }}</a>
-                                        </h4>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
+
                 </div>
-                <input type="hidden" id="items" name="items[]" value="">
-                <div style="text-align: center; margin-top: 10px">{{ form_widget(formA.proposer , {'attr': {'class': 'btn submit-btn'}}) }}</div>
-                {{ form_end(formA) }}
-        </section>
-    </div>
-    </body>
-    </html>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const items = document.querySelectorAll('.shop__item');
-            items.forEach(obj => {
-                obj.addEventListener('click', moveItem);
-            });
+            </div>
 
-            function moveItem(e) {
-                const obj = e.target.closest('.shop__item');
 
-                const currentGrid = obj.closest('.grid');
-
-                if (currentGrid.id === 'grid3') {
-                    return;
-                }
-
-                const otherGrid = currentGrid.id === 'grid1' ? document.querySelector('#grid2') : document.querySelector('#grid1');
-
-                otherGrid.appendChild(obj);
-
-                currentGrid.style.gridTemplateRows = `repeat(${Math.ceil(currentGrid.children.length / 1)}, 1fr)`;
-                otherGrid.style.gridTemplateRows = `repeat(${Math.ceil(otherGrid.children.length / 1)}, 1fr)`;
-            }
-
-            const form = document.querySelector('#formA');
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const selectedItems = [];
-                const grid2Items = document.querySelectorAll('#grid2 .shop__item');
-                grid2Items.forEach(item => {
-                    selectedItems.push(item.id);
-                });
-
-                const itemsInput = document.querySelector('#items');
-                itemsInput.value = JSON.stringify(selectedItems);
-                form.submit();
-            });
-        });
-    </script>
-
-    <!-- contact-area-end -->
+        </div>
+        <!-- contact-area-end -->
 
 
     </div>
@@ -316,8 +419,8 @@
                             <div class="col-xl-4 col-lg-5 col-md-7">
                                 <div class="footer-widget">
                                     <div class="footer-logo logo">
-                                        <a href="index.html"><img src="{{ asset('assets/img/logo/logo.png') }}"
-                                                                  alt="Logo"></a>
+                                        <a href="index.html"><img src="{{ asset('assets/img/logo/log-04.png') }}"
+                                                                  width="70px" height="70px" alt="Logo"></a>
                                     </div>
                                     <div class="footer-text">
                                         <p class="desc">Lorem ipsum dolor sitamet consectur adipiscing Duis esollici
@@ -337,75 +440,25 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-3 col-md-5 col-sm-6">
-                                <div class="footer-widget widget_nav_menu">
-                                    <h4 class="fw-title">quick link</h4>
-                                    <ul class="list-wrap menu">
-                                        <li><a href="#">Gaming</a></li>
-                                        <li><a href="#">Product</a></li>
-                                        <li><a href="#">All NFTs</a></li>
-                                        <li><a href="#">Social Network</a></li>
-                                        <li><a href="#">Domain Names</a></li>
-                                        <li><a href="#">Collectibles</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-lg-3 col-md-5 col-sm-6">
-                                <div class="footer-widget widget_nav_menu">
-                                    <h4 class="fw-title">Supports</h4>
-                                    <ul class="list-wrap menu">
-                                        <li><a href="#">Setting & Privacy</a></li>
-                                        <li><a href="#">Help & Support</a></li>
-                                        <li><a href="#">Live Auctions</a></li>
-                                        <li><a href="#">Item Details</a></li>
-                                        <li><a href="#">24/7 Supports</a></li>
-                                        <li><a href="#">Our News</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-5 col-md-7">
-                                <div class="footer-widget">
-                                    <h4 class="fw-title">Newsletter</h4>
-                                    <div class="footer-newsletter">
-                                        <p>Subscribe our newsletter to get our latest update & newsconsectetur</p>
-                                        <form action="#" class="footer-newsletter-form">
-                                            <input type="email" placeholder="Your email address">
-                                            <button type="submit"><i class="flaticon-paper-plane"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
             </main>
-            <div class="copyright__wrap">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-7">
-                            <div class="copyright__text">
-                                <p>Copyright © 2023 - All Rights Reserved By <span>Mykd</span></p>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="copyright__card text-center text-md-end">
-                                <img src="{{ asset('assets/img/others/payment_card.png') }}" alt="img">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </footer>
         <!-- footer-start-end -->
 
 
         <!-- JS here -->
-        <script href={{ "assets/js/vendor/jquery-3.6.0.min.js" }}></script>
-        <script src="assets/js/plugins.js"></script>
-        <script src="assets/js/ajax-form.js"></script>
-        <script src="assets/js/main.js"></script>
 
     </div>
+    i
     </body>
     </html>
+
+
+
+
+
 {% endblock %}

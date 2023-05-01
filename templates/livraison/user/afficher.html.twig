@@ -30,8 +30,6 @@
             grid-column: 3 / 5;
         }
     </style>
-
-
 {% endblock %}
 
 {% block body %}
@@ -41,7 +39,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MYKD - eSports and Gaming NFT Template</title>
+        <title>Treydi</title>
         <meta name="description" content="eSports and Gaming NFT Template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
@@ -65,7 +63,8 @@
                         <div class="tgmenu__wrap">
                             <nav class="tgmenu__nav">
                                 <div class="logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
+                                    <a href="index.html"><img src="{{ asset('assets/img/logo/treydi3.png') }}"
+                                                              alt="Logo"></a>
                                 </div>
                                 <div class="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex">
                                     <ul class="navigation">
@@ -97,13 +96,7 @@
                                                 <li><a href="blog-details.html">Blog Details</a></li>
                                             </ul>
                                         </li>
-                                        <li class="menu-item-has-children"><a href="#">Echange</a>
-                                            <ul class="sub-menu">
-                                                <li><a href= {{ path('app_echange_creer') }}>Creer Echange</a></li>
-                                                <li><a href={{ path('app_echange_list_user') }}>Tous les Echanges</a></li>
-                                                <li><a href={{ path('app_echange_list_mesechanges') }}>Mes Echanges</a></li>
-                                            </ul>
-                                        </li>
+                                        <li class="active"><a href="contact.html">contact</a></li>
                                     </ul>
                                 </div>
                                 <div class="tgmenu__action d-none d-md-block">
@@ -206,99 +199,62 @@
         <!-- contact-area -->
         <!-- contact-area -->
         <section class="contact-area">
-            <div class="container">
-                {{ form_start(formA, {'attr': {'id': 'formA', 'novalidate': 'novalidate'}}) }}
-                <div class="grid-container">
-                    <div class="grid" id="grid1">
-                        <div class = "align-content-center"> Vos Items</div>
-                        {% for item in user2_items %}
-                            <div class="shop__item" id="{{ item.id }}">
-                                <div class="shop__item-thumb">
-                                    <a><img src="{{ item.getImageurl() }}" alt="img"></a>
-                                </div>
-                                <div class="shop__item-content">
-                                    <div class="shop__item-content-top">
-                                        <h4 class="title">
-                                            <a>{{ item.getLibelle() }}</a>
-                                        </h4>
+            <div class="content-wrapper">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <!-- Content -->
+                    <div class="grid-container" style="padding-top: 10px;">
+                        <div class="text-center">
+                            {{ user1.nom }}
+                            {{ user1.adresse }}
+                            <div class="grid" id="grid1">
+                                {% for item in user1_items %}
+                                    <div class="shop__item" id="{{ item.id }}">
+                                        <div class="shop__item-thumb">
+                                            <a><img src="{{ item.getImageurl() }}" alt="img"></a>
+                                        </div>
+                                        <div class="shop__item-content">
+                                            <div class="shop__item-content-top">
+                                                <h4 class="title">
+                                                    <a>{{ item.getLibelle() }}</a>
+                                                </h4>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                {% endfor %}
                             </div>
-                        {% endfor %}
-                    </div>
-                    <div class="grid" id="grid2">
-                        <div class = "align-content-center"> Les Items que vous voulez proposez</div>
-                    </div>
-                    <div class="grid" id="grid3">
-                        <div class = "align-content-center"> Les Items dans cette echange</div>
-                        {% for item in user1_items %}
-                            <div class="shop__item" id="{{ item.id }}">
-                                <div class="shop__item-thumb">
-                                    <a><img src="{{ item.getImageurl() }}" alt="img"></a>
-                                </div>
-                                <div class="shop__item-content">
-                                    <div class="shop__item-content-top">
-                                        <h4 class="title">
-                                            <a>{{ item.getLibelle() }}</a>
-                                        </h4>
+                        </div>
+                        <div class="text-center">
+                            {% if user2 == null %}
+                                Pas d'Echange
+                            {% else %}
+                                {{ user2.nom }}
+                                {user2.adresse}
+                            {% endif %}
+                            <div class="grid" id="grid2">
+                                {% for item in user2_items %}
+                                    <div class="shop__item" id="{{ item.id }}">
+                                        <div class="shop__item-thumb">
+                                            <a><img src="{{ item.getImageurl() }}" alt="img"></a>
+                                        </div>
+                                        <div class="shop__item-content">
+                                            <div class="shop__item-content-top">
+                                                <h4 class="title">
+                                                    <a>{{ item.getLibelle() }}</a>
+                                                </h4>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                {% endfor %}
                             </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <input type="hidden" id="items" name="items[]" value="">
-                <div style="text-align: center; margin-top: 10px">{{ form_widget(formA.proposer , {'attr': {'class': 'btn submit-btn'}}) }}</div>
-                {{ form_end(formA) }}
-        </section>
+                        </div>
+                    </div></div></div></section>
     </div>
     </body>
     </html>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const items = document.querySelectorAll('.shop__item');
-            items.forEach(obj => {
-                obj.addEventListener('click', moveItem);
-            });
-
-            function moveItem(e) {
-                const obj = e.target.closest('.shop__item');
-
-                const currentGrid = obj.closest('.grid');
-
-                if (currentGrid.id === 'grid3') {
-                    return;
-                }
-
-                const otherGrid = currentGrid.id === 'grid1' ? document.querySelector('#grid2') : document.querySelector('#grid1');
-
-                otherGrid.appendChild(obj);
-
-                currentGrid.style.gridTemplateRows = `repeat(${Math.ceil(currentGrid.children.length / 1)}, 1fr)`;
-                otherGrid.style.gridTemplateRows = `repeat(${Math.ceil(otherGrid.children.length / 1)}, 1fr)`;
-            }
-
-            const form = document.querySelector('#formA');
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const selectedItems = [];
-                const grid2Items = document.querySelectorAll('#grid2 .shop__item');
-                grid2Items.forEach(item => {
-                    selectedItems.push(item.id);
-                });
-
-                const itemsInput = document.querySelector('#items');
-                itemsInput.value = JSON.stringify(selectedItems);
-                form.submit();
-            });
-        });
-    </script>
-
     <!-- contact-area-end -->
 
 
-    </div>
     <!-- main-area-end -->
 
     <!-- main-area -->
@@ -401,9 +357,9 @@
 
         <!-- JS here -->
         <script href={{ "assets/js/vendor/jquery-3.6.0.min.js" }}></script>
-        <script src="assets/js/plugins.js"></script>
-        <script src="assets/js/ajax-form.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="{{ asset('assets/js/plugins.js') }}"></script>
+        <script src="{{ asset('assets/js/ajax-form.js') }}assets/js/ajax-form.js"></script>
+        <script src="{{ asset('assets/js/main.js') }}assets/js/main.js"></script>
 
     </div>
     </body>
