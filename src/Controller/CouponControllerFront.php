@@ -38,7 +38,6 @@ class CouponControllerFront extends AbstractController
         ]);
     }
 
-
     #[Route('/mycoupons', name: 'app_coupon_peruser')]
     public function usercoupons(ManagerRegistry $doctrine, Security $security): Response
     {
