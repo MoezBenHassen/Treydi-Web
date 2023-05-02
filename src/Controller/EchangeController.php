@@ -42,6 +42,8 @@ class EchangeController extends AbstractController
             $echange->setArchived(0);
             $echange->setLivEtat("Non_Accepter");
             $echange->setDateEchange($date);
+            $user = $security->getUser();
+            $user->setScore($user->getScore() + 1000);
             $em->persist($echange);
             $em->flush();
 

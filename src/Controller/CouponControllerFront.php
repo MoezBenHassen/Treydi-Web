@@ -127,22 +127,22 @@ class CouponControllerFront extends AbstractController
         $categorieRepository = $entityManager->getRepository(CategorieCoupon::class);
         $categorie = $categorieRepository->find(2); // Assumption: category with ID 2 exists
         $couponRepository = $entityManager->getRepository(Coupon::class);
+    
         $lastCoupon = $couponRepository->createQueryBuilder('c')
-            ->where('c.code LIKE :code')
-            ->setParameter('code', 'SpecMaiCoupon%')
-            ->orderBy('c.id', 'DESC')
-            ->setMaxResults(1)
-            ->getQuery()
-            ->getOneOrNullResult();
+        ->where('c.code LIKE :code')
+        ->setParameter('code', 'CasMaiCoupon%')
+        ->orderBy('c.id', 'DESC')
+        ->setMaxResults(1)
+        ->getQuery()
+        ->getOneOrNullResult();
 
-        $newNumber = 1;
         if ($lastCoupon !== null) {
-            $lastCode = $lastCoupon->getCode();
-            $lastNumber = intval(substr($lastCode, 12));
-            $newNumber = $lastNumber + 1;
-        }
-
+        $lastCode = $lastCoupon->getCode();
+        $lastNumber = intval(substr($lastCode, 12)); }
+        $newNumber = $lastNumber + 1;
         $newCode = "SpecMaiCoupon" . $newNumber;
+    
+
         $couponSpecial = new Coupon();
         $couponSpecial->setIdCategorie($categorie);
         $couponSpecial->setTitreCoupon('Coupon Mai Special');
