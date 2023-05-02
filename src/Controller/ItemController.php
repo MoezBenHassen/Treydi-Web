@@ -245,28 +245,20 @@ class ItemController extends AbstractController
     }
 
     #[Route('/item/back/add', name: 'app_itemAdd_b')]
-    public function addB(Request $request, ManagerRegistry $doctrine, ValidatorInterface $validator): Response
+    public function addB(Security $security,Request $request, ManagerRegistry $doctrine, ValidatorInterface $validator): Response
     {
         $repository = $doctrine->getRepository(Utilisateur::class);
         $em = $doctrine->getManager();
         $item = new item();
         $form = $this->createForm(ItemType::class, $item);
         $form->handleRequest($request);
-
         $rrepository = $doctrine->getRepository(CategorieItems::class);
-
-        $filename = "";
-        $file = $form['imageurl']->getData();
-        if ($file) {
-            $filename = $file->getClientOriginalName();
-        }
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $repository->find($this->getUser()->getId());
             $cat = $rrepository->find($form->get('id_categorie')->getData());
             $cat->setQt($cat->getqt() + 1);
+
             $file = $form->get('imageurl')->getData();
             if ($file) {
-
                 $base64 = base64_encode(file_get_contents($file->getPathname()));
                 $base64 = "data:image/jpeg;base64, " . $base64;
                 $item->setImageurl($base64);
@@ -274,23 +266,15 @@ class ItemController extends AbstractController
             if ($item->getType() == "Virtuelle" || $item->getType() == "Service") {
                 $item->setEtat("Nul");
             }
-
-            if (strpos($filename, '.jpg') !== false) {
-                $item->setIdUser($user);
-                $item->setArchived(0);
-                $em->persist($cat);
-                $em->persist($item);
-                $em->flush();
-                return $this->redirectToRoute('app_itemList_b');
-            } else {
-                return $this->renderForm('item/back/add.html.twig', array('formA' => $form, 'err' => '  ●             Fichier doit etre png ou jpg'));
-            }
-        } else {
-            if (strpos($filename, '.jpg') !== true) {
-                return $this->renderForm('item/back/add.html.twig', array('formA' => $form, 'err' => '  ●             Fichier doit etre png ou jpg'));
-            }
+            $user = $repository->find($security->getUser()->getId());
+            $item->setIdUser($user);
+            $item->setArchived(0);
+            $em->persist($cat);
+            $em->persist($item);
+            $em->flush();
+            return $this->redirectToRoute('app_itemList_b');
         }
-        return $this->renderForm('item/back/add.html.twig', array('formA' => $form, 'err' => ''));
+        return $this->renderForm('item/back/add.html.twig', array('formA' => $form));
     }
 
     #[Route('/item/front/modify/{id}', name: 'app_itemModify_f')]
