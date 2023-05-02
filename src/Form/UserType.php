@@ -23,7 +23,6 @@ class UserType extends AbstractType
                     'Admin' => 'ROLE_ADMIN' ,
                 ],
             ])
-            ->add('password')
             ->add('nom')
             ->add('prenom')
             ->add('adresse')
