@@ -189,14 +189,14 @@
     <!-- main-area-end -->
     <section class="contact-area">
         <div class="container">
-            {{ form_start(form) }}
+            {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-10">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label" for="multicol-last-name">Password </label>
-                            {{ form_widget(form.password, {'attr': {'class': 'form-control dob-picker', 'id': 'multicol-country', 'data-allow-clear': 'true'}}) }}
-                            {{ form_errors(form.password) }}
+                            {{ form_widget(form.password, {'attr': {'class': 'form-control','id':'basic-default-fullname', 'placeholder': 'password'}}) }}
+                            {{ form_errors(form.password)}}
                         </div>
                         <div class="pt-4">
                             <button type="submit" class="btn btn-primary me-sm-3 me-1">Update</button>

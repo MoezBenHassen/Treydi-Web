@@ -35,6 +35,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface ,
 
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\Email(message: 'L\'email "{{ value }}" n\'est pas valide.')]
+    #[Assert\NotBlank(message:"Ce champs ne doit pas être vide")]
     private ?string $email = null;
 
     #[ORM\Column(type: 'json')]
@@ -55,15 +56,19 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface ,
         pattern: '/\d/',
         message: 'Le mot de passe doit comporter au moins un chiffre.'
     )]
+    #[Assert\NotBlank(message:"Ce champs ne doit pas être vide")]
     private ?string $password = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:"Ce champs ne doit pas être vide")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:"Ce champs ne doit pas être vide")]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:"Ce champs ne doit pas être vide")]
     private ?string $adresse = null;
 
     #[Vich\UploadableField(mapping: 'user_image', fileNameProperty: 'avatar_url', size: 'imageSize')]
@@ -83,6 +88,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface ,
     private ?bool $archived = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Assert\NotBlank(message:"Ce champs ne doit pas être vide")]
     private ?\DateTimeInterface $date_naissance = null;
 
     #[ORM\OneToMany(mappedBy: 'id_user', targetEntity: Item::class)]

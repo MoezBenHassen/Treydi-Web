@@ -124,7 +124,7 @@
                         </div>
                         <div class="bs-stepper-content">
                             <div id="multiStepsForm">
-                            {{ form_start(form) }}
+                                {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
                                 <!-- Account Details -->
                                 <div id="accountDetailsValidation" class="content">
                                     <div class="content-header mb-3">
