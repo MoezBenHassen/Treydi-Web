@@ -55,7 +55,196 @@
 						</div>
 					</div>
 				</div>
+					<section class="shop-area">
+					<div class="container">
+
+
+						<div class="row justify-content-center row-cols-5">
+
+							<div class="col">
+								<div class="shop__item">
+									<h5>Top 10 des catégories avec le plus d'items</h5>
+
+
+									<div class="shop__item-content">
+										<div class="shop__item-content-top">
+
+											<table>
+												<tr>
+													{% for ii in listc|sort((a, b) => b.getQt() <=> a.getQt()) |slice(0, 10) %}
+
+														<td>
+															<a href="{{ url('app_itemListallc_f',{'id':ii.getId()} ) }}">
+																{{ ii.getNomCategorie() }}
+																({{ ii.getQt() }})
+															</a>
+														</td>
+
+
+													</tr>
+												{% endfor %}
+											</table>
+
+										</div>
+
+
+									</div>
+
+								</div>
+							</div>
+							<div class="col">
+								<div class="shop__item">
+
+									<h5>Top 5 👁️‍🗨️ items
+									</h5>
+
+
+									<div class="shop__item-content">
+										<div class="shop__item-content-top">
+
+											<table>
+												<tr>
+													{% for ii in list|sort((a, b) => b.getViews() <=> a.getViews()) |slice(0, 5) %}
+
+														<td>
+															<a href="{{ url('app_itemDetail_f',{'id':ii.getId()} ) }}">
+																<img src="{{ ii.getImageurl() }}" width="80"></a>
+														</td>
+														<td>
+															{{ ii.getLibelle() }}
+														</td>
+
+													</tr>
+												{% endfor %}
+											</table>
+
+										</div>
+
+
+									</div>
+
+								</div>
+							</div>
+							<div class="col">
+								<div class="shop__item">
+									<h5>Top 5 👍 items</h5>
+
+									<div class="shop__item-content">
+										<div class="shop__item-content-top">
+
+											<table>
+												<tr>
+													{% for ii in list|sort((a, b) => b.getLikes() <=> a.getLikes()) |slice(0, 5) %}
+
+														<td>
+															<a href="{{ url('app_itemDetail_f',{'id':ii.getId()} ) }}">
+																<img src="{{ ii.getImageurl() }}" width="80"></a>
+														</td>
+														<td>
+															{{ ii.getLibelle() }}
+														</td>
+
+													</tr>
+												{% endfor %}
+
+
+											</table>
+
+
+										</div>
+
+
+									</div>
+
+								</div>
+							</div>
+							<div class="col">
+								<div class="shop__item">
+									<h5>Top 5 👎 items</h5>
+
+									<div class="shop__item-content">
+										<div class="shop__item-content-top">
+
+											<table>
+												<tr>
+													{% for ii in list|sort((a, b) => b.getDislikes() <=> a.getDislikes()) |slice(0, 5) %}
+
+														<td>
+															<a href="{{ url('app_itemDetail_f',{'id':ii.getId()} ) }}">
+																<img src="{{ ii.getImageurl() }}" width="80"></a>
+														</td>
+														<td>
+															{{ ii.getLibelle() }}
+														</td>
+
+													</tr>
+												{% endfor %}
+											</table>
+
+										</div>
+
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="col">
+								<div class="shop__item">
+
+									<div class="shop__item-content">
+										<div class="shop__item-content-top">
+
+											<div class="container">
+												<form class="container" action={{ url('app_itemFilter_f') }}>
+													<div>
+														<input class="form-check-input" type="checkbox" name="physiquen" id="physiquen">
+														<label class="form-check-label" for="physiquen">Phy. Neuf</label>
+													</div>
+													<div>
+														<input class="form-check-input" type="checkbox" name="physiqueo" id="physiqueo">
+														<label class="form-check-label" for="physiqueo">Phy. Occasion</label>
+													</div>
+													<div>
+														<input class="form-check-input" type="checkbox" name="virtuelle" id="virtuelle">
+														<label class="form-check-label" for="virtuelle">Virtuelle</label>
+													</div>
+													<div>
+														<input class="form-check-input" type="checkbox" name="service" id="service">
+														<label class="form-check-label" for="service">Service</label>
+													</div>
+
+
+													<input class="form-control" type="text" name='libelle' placeholder="Insérer libelle"/>
+
+
+													<input class="form-control" type="submit" value="Filtrer"/>
+												</form>
+												<br>
+												<form action={{ url('app_itemAdd_f') }}>
+													<input class="btn btn-dark" type="submit" value="   Ajouter Item   "/>
+												</form>
+												<br>
+												<a href={{ url('app_itemPdf_f') }}>Generer PDF</a>
+
+											</div>
+										</div>
+
+
+									</div>
+
+								</div>
+							</div>
+
+
+						</div>
+
+
+					</div>
+				</section>
 			</div>
+			
 		</section>
 		<!-- breadcrumb-area-end -->
 

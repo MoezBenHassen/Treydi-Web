@@ -10,8 +10,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default-dark.css') }}" class="template-customizer-theme-css"/>
 
 {% endblock %}
-{% block javascripts %}
-{% endblock %}
+{% block javascripts %}{% endblock %}
 {% block body %}
 	{{ include('front_components/_header-menu-front.html.twig') }}
 	<!-- scroll-top -->
@@ -22,39 +21,39 @@
 
 	<!-- header-area -->
 
-		<!-- header-search -->
-		<div class="search__popup-wrap">
-			<div class="search__layer"></div>
-			<div class="search__close">
-				<span>
-					<i class="flaticon-swords-in-cross-arrangement"></i>
-				</span>
-			</div>
-			<div class="search__wrap text-center">
-				<div class="container">
-					<div class="row">
-						<div class="col-12">
-							<h2 class="title">...
-								<span>Search Here</span>
-								...</h2>
-							<div class="search__form">
-								<form action="#">
-									<input type="text" name="search" placeholder="Type keywords here" required>
-									<button class="search-btn">
-										<i class="flaticon-loupe"></i>
-									</button>
-								</form>
-							</div>
+	<!-- header-search -->
+		<div class="search__popup-wrap"> <div class="search__layer"></div>
+		<div class="search__close">
+			<span>
+				<i class="flaticon-swords-in-cross-arrangement"></i>
+			</span>
+		</div>
+		<div class="search__wrap text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<h2 class="title">...
+							<span>Search Here</span>
+							...</h2>
+						<div class="search__form">
+							<form action="#">
+								<input type="text" name="search" placeholder="Type keywords here" required>
+								<button class="search-btn">
+									<i class="flaticon-loupe"></i>
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- header-search-end -->
+	</div>
+	<!-- header-search-end -->
 	<!-- header-area-end -->
 
 
-	<main class="main--area">
+	<main
+		class="main--area">
 
 		<!-- breadcrumb-area -->
 		<section class="breadcrumb-area breadcrumb__hide-img" data-background="{{ asset('assets/img/bg/breadcrumb_bg02.jpg') }}">
@@ -105,11 +104,12 @@
 				<section class="shop-area">
 					<div class="container">
 
-						<div class="row justify-content-center row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
+
+						<div class="row justify-content-center row-cols-5">
 
 							<div class="col">
 								<div class="shop__item">
-									<h5>Top 15 des catégories avec le plus d'items</h5>
+									<h5>Top 10 des catégories avec le plus d'items</h5>
 
 
 									<div class="shop__item-content">
@@ -117,7 +117,7 @@
 
 											<table>
 												<tr>
-													{% for ii in listc|sort((a, b) => b.getQt() <=> a.getQt()) |slice(0, 15) %}
+													{% for ii in listc|sort((a, b) => b.getQt() <=> a.getQt()) |slice(0, 10) %}
 
 														<td>
 															<a href="{{ url('app_itemListallc_f',{'id':ii.getId()} ) }}">
@@ -141,7 +141,8 @@
 							<div class="col">
 								<div class="shop__item">
 
-									<h5>Top 5 des items les plus consultés</h5>
+									<h5>Top 5 👁️‍🗨️ items
+									</h5>
 
 
 									<div class="shop__item-content">
@@ -153,7 +154,7 @@
 
 														<td>
 															<a href="{{ url('app_itemDetail_f',{'id':ii.getId()} ) }}">
-																<img src="{{ ii.getImageurl() }}" width="150"></a>
+																<img src="{{ ii.getImageurl() }}" width="80"></a>
 														</td>
 														<td>
 															{{ ii.getLibelle() }}
@@ -172,7 +173,7 @@
 							</div>
 							<div class="col">
 								<div class="shop__item">
-									<h5>Top 5 des items les plus appréciés</h5>
+									<h5>Top 5 👍 items</h5>
 
 									<div class="shop__item-content">
 										<div class="shop__item-content-top">
@@ -183,7 +184,7 @@
 
 														<td>
 															<a href="{{ url('app_itemDetail_f',{'id':ii.getId()} ) }}">
-																<img src="{{ ii.getImageurl() }}" width="150"></a>
+																<img src="{{ ii.getImageurl() }}" width="80"></a>
 														</td>
 														<td>
 															{{ ii.getLibelle() }}
@@ -191,6 +192,8 @@
 
 													</tr>
 												{% endfor %}
+
+
 											</table>
 
 
@@ -203,7 +206,7 @@
 							</div>
 							<div class="col">
 								<div class="shop__item">
-									<h5>Top 5 des articles les plus détestés</h5>
+									<h5>Top 5 👎 items</h5>
 
 									<div class="shop__item-content">
 										<div class="shop__item-content-top">
@@ -214,7 +217,7 @@
 
 														<td>
 															<a href="{{ url('app_itemDetail_f',{'id':ii.getId()} ) }}">
-																<img src="{{ ii.getImageurl() }}" width="150"></a>
+																<img src="{{ ii.getImageurl() }}" width="80"></a>
 														</td>
 														<td>
 															{{ ii.getLibelle() }}
@@ -233,163 +236,161 @@
 
 							</div>
 
+							<div class="col">
+								<div class="shop__item">
 
-						</div>
+									<div class="shop__item-content">
+										<div class="shop__item-content-top">
 
-
-					</div>
-				</m>
-
-
-
-		</div>
-
-
-	</section>
-	<!-- breadcrumb-area-end -->
-
-	<!-- shop-area -->
-	<section class="shop-area">
-		<br>
-
-
-		<div class="container">
-
-
-			<br>
-			<div class="row justify-content-center row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
-
-				<div class="col">
-					<div class="shop__item">
-
-						<div class="shop__item-content">
-							<div class="shop__item-content-top">
-
-								<div class="container">
-									<form class="container" action={{ url('app_itemFilter_f') }}>
-										<input class="form-check" type="checkbox" name="physiquen" id="physiquen">
-										Physique Neuf
-										<input class="form-check" type="checkbox" name="physiqueo" id="physiqueo">
-										Physique Occasion
-										<input class="form-check" type="checkbox" name="virtuelle" id="virtuelle">
-										Virtuelle
-										<input class="form-check" type="checkbox" name="service" id="service">
-										Service
-
-										<input class="form-control" type="text" name='libelle' placeholder="Insérer libelle"/>
+											<div class="container">
+												<form class="container" action={{ url('app_itemFilter_f') }}>
+													<div>
+														<input class="form-check-input" type="checkbox" name="physiquen" id="physiquen">
+														<label class="form-check-label" for="physiquen">Phy. Neuf</label>
+													</div>
+													<div>
+														<input class="form-check-input" type="checkbox" name="physiqueo" id="physiqueo">
+														<label class="form-check-label" for="physiqueo">Phy. Occasion</label>
+													</div>
+													<div>
+														<input class="form-check-input" type="checkbox" name="virtuelle" id="virtuelle">
+														<label class="form-check-label" for="virtuelle">Virtuelle</label>
+													</div>
+													<div>
+														<input class="form-check-input" type="checkbox" name="service" id="service">
+														<label class="form-check-label" for="service">Service</label>
+													</div>
 
 
-										<input class="form-control" type="submit" value="Filtrer"/>
-									</form>
-									<br>
-									<form action={{ url('app_itemAdd_f') }}>
-										<input class="btn btn-dark" type="submit" value="   Ajouter Item   "/>
-									</form>
-									<br>
-									<form class="" action={{ url('app_itemPdf_f') }}>
-										&nbsp;<input class="btn btn-dark" type="submit" value="  Generer PDF   "/>
-									</form>
-								</div>
-							</div>
+													<input class="form-control" type="text" name='libelle' placeholder="Insérer libelle"/>
 
 
-						</div>
+													<input class="form-control" type="submit" value="Filtrer"/>
+												</form>
+												<br>
+												<form action={{ url('app_itemAdd_f') }}>
+													<input class="btn btn-dark" type="submit" value="   Ajouter Item   "/>
+												</form>
+												<br>
+												<a href={{ url('app_itemPdf_f') }}>Generer PDF</a>
 
-					</div>
-				</div>
-
-
-				{% for i in list %}
-
-					<div class="col">
-						<div class="shop__item">
-							<div class="shop__item-thumb">
-								<a href="{{ url('app_itemDetail_f',{'id':i.getId()} ) }}"><img src="{{ i.getImageurl() }}" alt="img"></a>
-
-							</div>
-
-							<div class="shop__item-content">
-								<div class="shop__item-content-top">
-									<h4 class="title">
-										<a href="shop-details.html">{{ i.getLibelle() }}</a>
-									</h4>
-
-								</div>
-
-								<div class="shop__item-cat">
-									<a href="shop.html">{{ i.getIdCategorie().getNomCategorie() }}
-
-									</a>
-
-
-									<a href={{ url('app_itemLike_f',{'id':i.getId()} ) }}>👍
-										{{ i.getLikes()}}
-
-									</a>
-
-									<a href={{ url('app_itemDislike_f',{'id':i.getId()} ) }}>👎
-										{{ i.getDislikes()}}
-
-
-									</a>
-								</div>
-								<div class="dropdown">
-									<span class="badge bg-label-primary me-1">{{ i.getType() }}</span>
-									<span class="badge bg-label-primary me-1">{{ i.getEtat() }}</span>
-
-									<span class="badge bg-label-primary me-1 dropdown-toggle " data-bs-toggle="dropdown">
-										Details
-									</span>
-									<div class="dropdown-menu">
-										<div class="container">
-											{{ i.getDescription() }}
+											</div>
 										</div>
+
+
 									</div>
+
 								</div>
-
-
-								<div class="">
-									{{ i.getIduser().getNom()}}
-									|
-																																																																																																																																											👁️‍🗨️
-									{{ i.getViews() }}
-								</div>
-
 							</div>
 
-						</div>
-					</div>
 
-				{% endfor %}
+						</div>
+
+
+					</div>
+				</section>
 
 
 			</div>
-		</div>
-		</section>
 
+
+		</section>
+		<!-- breadcrumb-area-end -->
+
+		<!-- shop-area -->
+		<section class="shop-area">
+			<br>
+
+
+			<div class="container">
+
+
+				<br>
+				<div class="row justify-content-center row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
+
+
+					{% for i in list %}
+
+						<div class="col">
+							<div class="shop__item">
+								<div class="shop__item-thumb">
+									<a href="{{ url('app_itemDetail_f',{'id':i.getId()} ) }}"><img src="{{ i.getImageurl() }}" alt="img"></a>
+
+								</div>
+
+								<div class="shop__item-content">
+									<div class="shop__item-content-top">
+										<h4 class="title">
+											<a href="shop-details.html">{{ i.getLibelle() }}</a>
+										</h4>
+
+									</div>
+
+									<div class="shop__item-cat">
+										<a href="shop.html">{{ i.getIdCategorie().getNomCategorie() }}
+
+										</a>
+
+
+										<a href={{ url('app_itemLike_f',{'id':i.getId()} ) }}>👍
+											{{ i.getLikes()}}
+
+										</a>
+
+										<a href={{ url('app_itemDislike_f',{'id':i.getId()} ) }}>👎
+											{{ i.getDislikes()}}
+
+
+										</a>
+									</div>
+									<div class="dropdown">
+										<span class="badge bg-label-primary me-1">{{ i.getType() }}</span>
+										<span class="badge bg-label-primary me-1">{{ i.getEtat() }}</span>
+
+										<span class="badge bg-label-primary me-1 dropdown-toggle " data-bs-toggle="dropdown">
+											Details
+										</span>
+										<div class="dropdown-menu">
+											<div class="container">
+												{{ i.getDescription() }}
+											</div>
+										</div>
+									</div>
+
+
+									<div class="">
+										{{ i.getIduser().getNom()}}
+										👁️‍🗨️{{ i.getViews() }}
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+
+					{% endfor %}
+
+
+				</div>
+			</div>
+		</section>
 
 
 		<!-- shop-area-end -->
 
 	</main>
 	<!-- footer-start -->
-	{{ include('front_components/_footer-front.html.twig') }}
-	<!-- footer-start-end -->
+	{{ include('front_components/_footer-front.html.twig') }}<!-- footer-start-end -->
 	<!-- JS here -->
 
 	<!-- 💁 Include both scripts below to support all browsers! -->
 
-	<!-- Loads <model-viewer> for modern browsers: -->
-	<script type="module"
-			src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
-	</script>
+	<!-- Loads <model-viewer> for modern browsers: --><script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"> </script>
 
 	<!-- Loads <model-viewer> for old browsers like IE11: -->
-	<script nomodule
-			src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
-	</script>
+	<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 
-	<script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js')  }}"></script>
+	<script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
 	<script src="{{ asset('assets/js/plugins.js') }}"></script>
 	<script src="{{ asset('assets/js/ajax-form.js') }}"></script>
 	<script src="{{ asset('assets/js/main.js') }}"></script>

@@ -42,14 +42,16 @@ class ItemController extends AbstractController
     }
 
     #[Route('/item/front/list', name: 'app_itemList_f')]
-    public function listF(ItemRepository $repository): Response
+    public function listF(ItemRepository $repository,ManagerRegistry $doctrine): Response
     {
-
+        $rrepository = $doctrine->getRepository(CategorieItems::class); 
+        $listc = $rrepository->findBy(['archived' => 0]);
         $list = $repository->findUnarchivedFront($this->getUser());
 
         return $this->render('item/front/index.html.twig', [
             'controller_name' => 'List des Items',
-            'list' => $list
+            'list' => $list,
+            'listc' => $listc
         ]);
     }
 
