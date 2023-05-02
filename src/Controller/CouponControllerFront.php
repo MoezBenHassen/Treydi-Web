@@ -75,13 +75,16 @@ class CouponControllerFront extends AbstractController
         $categorieRepository = $entityManager->getRepository(categorieCoupon::class);
         $categorie = $categorieRepository->find(1); // Assumption: category with ID 1 exists
         $couponRepository = $entityManager->getRepository(Coupon::class);
-        $lastCoupon = $couponRepository->findOneBy(['code' => 'CasMaiCoupon'], ['id' => 'DESC']);
+        $lastCoupon = $couponRepository->findOneBy(['code' => '%CasMaiCoupon%'], ['id' => 'DESC']);
 
         $lastNumber = 0;
         if ($lastCoupon) {
             $lastCode = $lastCoupon->getCode();
-            $lastNumber = intval(substr($lastCode, 12));
+            dd($lastCode);
+            $lastNumber = intval(preg_replace('/[^0-9]/', '', substr($lastCode, 12)));
+            dd("chose".$lastNumber);
         }
+        dd("chose2".$lastNumber);
         $newNumber = $lastNumber + 1;
         $newCode = "CasMaiCoupon" . $newNumber;
 
