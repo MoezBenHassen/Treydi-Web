@@ -152,6 +152,10 @@ class EchangeProposerController extends AbstractController
 
         $echange->setIdUser2($user2);
 
+        $user1->setScore($user1->getScore() + 1000);
+        $user2->setScore($user2->getScore() + 1000);
+        
+
         $other_echange_proposers = $em
             ->getRepository(EchangeProposer::class)
             ->findBy(['id_echange' => $echange->getId()]);
