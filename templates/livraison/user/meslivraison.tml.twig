@@ -336,7 +336,6 @@
                                 <th>Date Terminer</th>
                                 <th>Adresse 1</th>
                                 <th>Adresse 2</th>
-                                <th>Archived</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -367,13 +366,6 @@
                                 </td>
                                 <td>
                                     {{ i.adresseLivraison2 }}
-                                </td>
-                                <td>
-                                    {% if i.archived %}
-                                        True
-                                    {% else %}
-                                        False
-                                    {% endif %}
                                 </td>
                                     <td>
                                         <div class="dropdown">

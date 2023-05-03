@@ -157,6 +157,7 @@ class EchangeProposerController extends AbstractController
             ->findBy(['id_echange' => $echange->getId()]);
 
         foreach ($other_echange_proposers as $other_echange_proposer) {
+            $other_echange_proposer->setArchived(true);
             if ($other_echange_proposer->getId() !== $echange_proposer->getId()) {
                 $other_items = $em
                     ->getRepository(Item::class)

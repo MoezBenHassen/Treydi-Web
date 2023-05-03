@@ -333,7 +333,6 @@
                                 <th>User 2</th>
                                 <th>Date Echange</th>
                                 <th>Etat Livraison</th>
-                                <th>Archived</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -345,11 +344,6 @@
                                     <td>{{ i.idUser2 }}</td>
                                     <td>{{ i.dateEchange|date('Y-m-d') }}</td>
                                     <td>{{ i.livEtat }}</td>
-                                    <td>{% if i.archived %}
-                                            True
-                                        {% else %}
-                                            False
-                                        {% endif %}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
