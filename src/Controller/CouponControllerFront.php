@@ -80,11 +80,11 @@ class CouponControllerFront extends AbstractController
         $lastNumber = 0;
         if ($lastCoupon) {
             $lastCode = $lastCoupon->getCode();
-            dd($lastCode);
+
             $lastNumber = intval(preg_replace('/[^0-9]/', '', substr($lastCode, 12)));
-            dd("chose".$lastNumber);
+
         }
-        dd("chose2".$lastNumber);
+
         $newNumber = $lastNumber + 1;
         $newCode = "CasMaiCoupon" . $newNumber;
 
