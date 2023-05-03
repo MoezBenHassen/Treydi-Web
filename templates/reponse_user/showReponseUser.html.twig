@@ -185,7 +185,6 @@
                             <tr>
                                 <th>titre </th>
                                 <th>Date </th>
-                                <th>avatar </th>
                                 <th>Description</th>
                                 <th>Avis</th>
                                 <th>Actions</th>
@@ -196,15 +195,7 @@
                                 <tr>
                                     <td><i class='bx bx-reply'></i> <strong>{{ reponse.titreReponse }}</strong></td>
                                     <td>{{  reponse.dateReponse|date('Y-m-d')  }}</td>
-                                    <td>
-                                        <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
 
-                                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Sophia Wilkerson">
-                                                <img src="{{ asset('assets/img/avatars/6.png') }}" alt="Avatar" class="rounded-circle">
-                                            </li>
-
-                                        </ul>
-                                    </td>
                                     <td><span class="badge bg-label-primary me-1">{{  reponse.descriptionReponse }}</span></td>
 
 
@@ -246,21 +237,7 @@
 
 
                                         {{ reponse.Avis }}
-
-
-
-
-
-
-
-
-
-                                    </td>
-
-
-
-
-
+                       </td>
 
 
                                     <td>
@@ -297,6 +274,7 @@
     <!-- footer-start -->
     {{ include('front_components/_footer-front.html.twig') }}
     <!-- footer-start-end -->
+
     <!-- JS here -->
 
     <!-- 💁 Include both scripts below to support all browsers! -->
@@ -311,13 +289,11 @@
             src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
     </script>
 
-    <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js')  }}"></script>
-    <script src="{{ asset('assets/js/plugins.js') }}"></script>
-    <script src="{{ asset('assets/js/ajax-form.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
 
 
 
-{% endblock %}
+
+    {% endblock %}
 

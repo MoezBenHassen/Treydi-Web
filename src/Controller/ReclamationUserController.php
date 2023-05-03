@@ -43,7 +43,7 @@ class ReclamationUserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($req);
             $em->flush();
-            return $this->redirectToRoute('app_reclamationUserAdd');
+            return $this->redirectToRoute('app_reclamationUserList');
         }
         return $this->renderForm('reclamation_user/addReclamationUser.html.twig', array('formA' => $form));
     }
@@ -65,12 +65,10 @@ class ReclamationUserController extends AbstractController
             $etatReclamation = $data->getEtatReclamation() ?? null ;
 
             $userId = $this->getUser()->getId();
-            dump($userId);
             $query = $repository->findByTitreEtDescriptionEtDateCreationUser(false, $search, $search2, $dateCreation, $etatReclamation, $userId);
             $list = $query;
         } else {
             $userId = $this->getUser()->getId();
-            dump($userId);
             $list = $repository->findByTitreEtDescriptionEtDateCreationUser(false, null, null, null, null, $userId);
         }
 
