@@ -174,7 +174,7 @@
                                 <tr>
                                     <th>titre </th>
                                     <th>Date </th>
-                                    <th>avatar </th>
+                                    {#<th>avatar </th>#}
                                     <th>Description</th>
                                     <th>Etat</th>
                                     <th>Actions</th>
@@ -185,7 +185,7 @@
                                 <tr>
                                     <td><i class='bx bxs-report'></i> <strong>{{ reclamation.titreReclamation }}</strong></td>
                                     <td>{{ reclamation.dateCreation|date('Y-m-d') }}</td>
-                                    <td>
+                                    {#<td>
                                         <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
 
                                             <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="{{ reclamation.userFullName }}">
@@ -193,7 +193,7 @@
                                             </li>
 
                                         </ul>
-                                    </td>
+                                    </td>#}
                                     <td><span class="badge bg-label-primary me-1">{{ reclamation.descriptionReclamation }}</span></td>
                                     <td>{{ reclamation.etatReclamation }}</td>
                                     <td>
