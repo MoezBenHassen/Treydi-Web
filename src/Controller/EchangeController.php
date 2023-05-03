@@ -523,19 +523,26 @@ class EchangeController extends AbstractController
         ]);
     }
 
-
     //LIVREUR
     #[Route('/echange/livreur/list', name: 'app_echange_list_livreur')]
     public function listLivreurEchange(ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
         $repository = $em->getRepository(Echange::class);
-        $list = $repository->findBy(['archived' => false, 'id_user2' => 'IS NOT NULL', 'liv_etat' => 'Non_Accepter']);
+        $list = $repository->createQueryBuilder('r')
+            ->where('r.archived = :archived')
+            ->andWhere('r.id_user2 IS NOT NULL')
+            ->andWhere('r.liv_etat = :liv_etat')
+            ->setParameters([
+                'archived' => false,
+                'liv_etat' => 'Non_Accepter',
+            ])
+            ->getQuery()
+            ->getResult();
         return $this->render('livraison/user/list.tml.twig', [
             'controller_name' => 'EchangeListController',
             'list' => $list
         ]);
     }
-
 
 }

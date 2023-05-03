@@ -179,4 +179,31 @@ class LivraisonController extends AbstractController
         return $this->redirectToRoute('app_livraison_livreur_list');
     }
 
+    //TREYDER
+    #[Route('/livraison/treyder/list', name: 'app_livraison_treyder_list')]
+    public function listMesLivraisonTreyder(ManagerRegistry $doctrine, Security $security): Response
+    {
+        $user = $security->getUser();
+        $em = $doctrine->getManager();
+        $repositoryLivraison = $em->getRepository(Livraison::class);
+
+        $repositoryEchange = $em->getRepository(Echange::class);
+        $qb = $repositoryEchange->createQueryBuilder('r');
+        $qb->andWhere('r.archived = :archived')
+            ->andWhere($qb->expr()->orX(
+                'r.id_user1 = :user_id',
+                'r.id_user2 = :user_id'
+            ))
+            ->setParameter('archived', false)
+            ->setParameter('user_id', $user->getId());
+
+        $echange = $qb->getQuery()->getResult();
+
+        $list = $repositoryLivraison->findBy(['id_echange' => $echange]);
+        return $this->render('livraison/treyder/list.html.twig', [
+            'list' => $list
+        ]);
+    }
+
+
 }
