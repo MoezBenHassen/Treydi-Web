@@ -232,6 +232,10 @@ class Article
         return $this->id_categorie;
     }
 
+    public function getIdCat(){
+        return $this->id_categorie;
+    }
+
     public function setIdCategorie(?CategorieArticle $id_categorie): self
     {
         $this->id_categorie = $id_categorie;

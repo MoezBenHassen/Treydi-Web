@@ -15,12 +15,32 @@ use Knp\Bundle\TimeBundle\DateTimeFormatter;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleFrontController extends AbstractController
 {
+    #[Route('/getAllArticles', name: 'app_article_getUnarchivedArticles', methods: ['GET'])]
+    public function getUnarchivedArticles(ArticleRepository $articleRepository): JsonResponse
+    {
+        /*return all articles jsonresponse*/
+        $articles = $articleRepository->findBy(['archived' => false]);
+        $data = [];
+        foreach ($articles as $article) {
+            $data[] = [
+                'id' => $article->getId(),
+                'title' => $article->getTitre(),
+                'description' => $article->getDescription(),
+                'auteur' => $article->getAuteur()->getFullName(),
+                'id_categorie' => $article->getIdCategorie()->getId(),
+                'AvgRating' => $article->getAvgRating(),
+            ];
+        }
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
+
     #[Route('/article/{articleCategory?}', name: 'app_article_front')]
     public function index(
         DateTimeFormatter $dateTimeFormatter,

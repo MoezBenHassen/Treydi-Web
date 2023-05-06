@@ -116,7 +116,7 @@ class ArticleController extends AbstractController
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
     }
 
-
+    /*get unarchived articles jsonResponse*/
 
   /*add a new article rating in the show page*/
 
