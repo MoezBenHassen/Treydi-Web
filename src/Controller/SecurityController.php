@@ -2,11 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\Utilisateur;
+use App\Repository\UtilisateurRepository;
 use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticatorInterface;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -40,4 +47,33 @@ class SecurityController extends AbstractController
             'qrCode' => $qrCode
         ]);
     }
+    #[Route(path: '/login/mob', name: 'app_login_mob', methods: ['GET'])]
+    public function loginMob(Request $request, UserPasswordHasherInterface $passwordHasher): JsonResponse
+    {
+        $email = $request->query->get('email');
+        $password = $request->query->get('password');
+
+        // Check if the email and password are valid
+        $utilisateur = $this->getDoctrine()->getRepository(Utilisateur::class)->findOneBy([
+            'email' => $email,
+        ]);
+
+        if ($utilisateur === null) {
+            return new JsonResponse(['status' => 'failed'], Response::HTTP_UNAUTHORIZED);
+        }
+
+        $isValidPassword = $passwordHasher->isPasswordValid($utilisateur, $password);
+
+        if (!$isValidPassword) {
+            return new JsonResponse(['status' => 'failed'], Response::HTTP_UNAUTHORIZED);
+        }
+
+        // Create a session for the user
+        $session = $request->getSession();
+        $session->set('user_id', $utilisateur->getId());
+
+        return new JsonResponse(['id' => $utilisateur->getId(),'password' => $utilisateur->getPassword(), 'email' => $utilisateur->getEmail()]);
+    }
+
+
 }

@@ -6,7 +6,9 @@ use App\Entity\Utilisateur;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticatorInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -44,5 +46,31 @@ class RegistrationController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    #[Route('/register/mob', name: 'app_register_m')]
+    public function mobileL(Request $request, UserPasswordHasherInterface $passwordEncoder, EntityManagerInterface $entityManager)
+    {
+        $email = $request->query->get("email");
+        if ($email === null) {
+            return new Response("Email is required", status: 400);
+        }
+        $password = $request->query->get("password");
+        $roles = $request->query->get("roles");
+
+        $user = new Utilisateur();
+        $user->setEmail($email);
+        $user->setPassword($passwordEncoder->hashPassword($user, $password));
+        $user->setRoles(["ROLE_" . strtoupper($roles)]); // format the role as an array
+
+        try {
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return new JsonResponse("Account is created", status: 200);
+
+        } catch (\Exception $ex) {
+            return new Response("Exception: " . $ex->getMessage());
+        }
+    }
+
 
 }
