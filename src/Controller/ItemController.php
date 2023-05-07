@@ -29,6 +29,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Dompdf\Options;
 use Dompdf\Dompdf;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class ItemController extends AbstractController
@@ -42,9 +43,9 @@ class ItemController extends AbstractController
     }
 
     #[Route('/item/front/list', name: 'app_itemList_f')]
-    public function listF(ItemRepository $repository,ManagerRegistry $doctrine): Response
+    public function listF(ItemRepository $repository, ManagerRegistry $doctrine): Response
     {
-        $rrepository = $doctrine->getRepository(CategorieItems::class); 
+        $rrepository = $doctrine->getRepository(CategorieItems::class);
         $listc = $rrepository->findBy(['archived' => 0]);
         $list = $repository->findUnarchivedFront($this->getUser());
 
@@ -211,7 +212,7 @@ class ItemController extends AbstractController
     }
 
     #[Route('item/front/add', name: 'app_itemAdd_f')]
-    public function addF(Security $security,Request $request, ManagerRegistry $doctrine): Response
+    public function addF(Security $security, Request $request, ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Utilisateur::class);
         $em = $doctrine->getManager();
@@ -245,7 +246,7 @@ class ItemController extends AbstractController
     }
 
     #[Route('/item/back/add', name: 'app_itemAdd_b')]
-    public function addB(Security $security,Request $request, ManagerRegistry $doctrine, ValidatorInterface $validator): Response
+    public function addB(Security $security, Request $request, ManagerRegistry $doctrine, ValidatorInterface $validator): Response
     {
         $repository = $doctrine->getRepository(Utilisateur::class);
         $em = $doctrine->getManager();
@@ -339,12 +340,12 @@ class ItemController extends AbstractController
         $repositorylike = $doctrine->getRepository(likeitems::class);
         $em = $doctrine->getManager();
         $item = $repositoryitem->find($id);
-        $like = $repository->obtain($id, 1);
+        $like = $repository->obtain($id, $this->getUser()->getId());
 
         if (!$like) {
             $item->setLikes($item->getLikes() + 1);
             $likex = new likeitems();
-            $likex->setiduser(1);
+            $likex->setiduser($this->getUser()->getId());
             $likex->setiditem($id);
             $likex->setlike(0);
             $em->persist($likex);
@@ -376,12 +377,12 @@ class ItemController extends AbstractController
         $repositorylike = $doctrine->getRepository(likeitems::class);
         $em = $doctrine->getManager();
         $item = $repositoryitem->find($id);
-        $like = $repository->obtain($id, 1);
+        $like = $repository->obtain($id, $this->getUser()->getId());
 
         if (!$like) {
             $item->setDislikes($item->getDislikes() + 1);
             $likex = new likeitems();
-            $likex->setiduser(1);
+            $likex->setiduser($this->getUser()->getId());
             $likex->setiditem($id);
             $likex->setlike(1);
             $em->persist($likex);
@@ -412,7 +413,7 @@ class ItemController extends AbstractController
         $repositoryview = $doctrine->getRepository(viewitems::class);
         $em = $doctrine->getManager();
         $item = $repositoryitem->find($id);
-        $view = $repository->obtain($id, 1);
+        $view = $repository->obtain($id,$this->getUser()->getId() );
 
         if (!$view) {
             $item->setViews($item->getViews() + 1);
@@ -551,4 +552,195 @@ class ItemController extends AbstractController
             'Content-Disposition' => 'attachment; filename="items.pdf"',
         ]);
     }
+
+    #[Route('/item/mobile/list', name: 'app_itemList_m')]
+    public function mobileList(ItemRepository $repository, ManagerRegistry $doctrine): JsonResponse
+    {
+        $list = $repository->findAlll();
+
+        $itemsArray = array_map(function (Item $item) {
+            return [
+                'id' => $item->getId(),
+                'libelle' => $item->getLibelle(),
+                'description' => $item->getDescription(),
+                'etat' => $item->getEtat(),
+                'type' => $item->getType(),
+                'imageurl' => $item->getImageurl(),
+                'id_user' => $item->getIdUser()->getId(),
+                'likes' => $item->getLikes(),
+                'dislikes' => $item->getDislikes(),
+                'views' => $item->getViews(),
+                'archived' => $item->isArchived(),
+                'id_categorie' => $item->getIdCategorie()->getId(),
+                'id_echange' => $item->getIdEchange() ? $item->getIdEchange()->getId() : null,
+            ];
+        }, $list);
+
+        // create a JSON response containing the items array
+        return new JsonResponse(['items' => $itemsArray]);
+    }
+
+
+    #[Route('/item/mobile/listc', name: 'app_itemcatList_m')]
+    public function mobileListCat(ManagerRegistry $doctrine): JsonResponse
+    {
+
+        $rrepository = $doctrine->getRepository(CategorieItems::class);
+        $listc = $rrepository->findBy(['archived' => 0]);
+
+        $itemcatsArray = array_map(function (CategorieItems $itemc) {
+            return [
+                'id' => $itemc->getId(),
+                'nom_categorie' => $itemc->getNomCategorie(),
+
+            ];
+        }, $listc);
+
+        // create a JSON response containing the items array
+        return new JsonResponse(['itemcats' => $itemcatsArray]);
+    }
+
+    #[Route('/item/mobile/add', name: 'app_itemAdd_m')]
+    public function mobileAdd(ManagerRegistry $doctrine, Request $request): JsonResponse
+    {
+
+        $rrepository = $doctrine->getRepository(Item::class);
+
+        $em = $doctrine->getManager();
+        $item = new item();
+        $jsonData = json_decode($request->getContent(), true);
+        $item->setLibelle($jsonData['libelle']);
+        $item->setDescription($jsonData['description']);
+        $item->setType($jsonData['type']);
+        $item->setEtat($jsonData['etat']);
+        $item->setImageurl($jsonData['imageurl']);
+        $item->setLikes(0);
+        $item->setDislikes(0);
+        $item->setViews(0);
+        $item->setArchived(0);
+        $a = $doctrine->getRepository(CategorieItems::class)->find($jsonData['id_categorie']);
+        $item->setIdCategorie($a);
+        $item->setIdEchange(null);
+        $b = $doctrine->getRepository(Utilisateur::class)->find($jsonData['id_user']);
+        $item->setIdUser($b);
+
+        $em->persist($item);
+        $em->flush();
+        $itemId = $item->getId();
+
+        return new JsonResponse(['success' => true,'id' => $itemId]);
+    }
+
+    #[Route('/item/mobile/remove/{id}', name: 'app_itemRemove_m')]
+    public function mobileRemove(Request $request, ManagerRegistry $doctrine, $id): JsonResponse
+    {
+        $repository = $doctrine->getRepository(item::class);
+        $rrepository = $doctrine->getRepository(CategorieItems::class);
+        $em = $doctrine->getManager();
+        $item = $repository->find($id);
+        $cat = $rrepository->find($item->getIdcategorie());
+        $cat->setQt($cat->getqt() - 1);
+        $item->setArchived(1);
+        $em->persist($cat);
+        $em->persist($item);
+        $em->flush();
+
+        return new JsonResponse(['success' => true]);
+    }
+
+    #[Route('/item/mobile/modify', name: 'app_itemModify_m')]
+    public function mobileModify(ManagerRegistry $doctrine, Request $request): JsonResponse
+    {
+
+        $em = $doctrine->getManager();
+        $jsonData = json_decode($request->getContent(), true);
+        $item = $doctrine->getRepository(Item::class)->find($jsonData['id']);
+        $item->setLibelle($jsonData['libelle']);
+        $item->setDescription($jsonData['description']);
+        $item->setType($jsonData['type']);
+        $item->setEtat($jsonData['etat']);
+        $item->setImageurl($jsonData['imageurl']);
+        $a = $doctrine->getRepository(CategorieItems::class)->find($jsonData['id_categorie']);
+        $item->setIdCategorie($a);
+        $em->flush();
+
+
+        return new JsonResponse(['success' => true]);
+    }
+
+
+    #[Route('/item/mobile/like/{id}_{idu}', name: 'app_itemLike_m')]
+    public function mobileLike(Request $request, ManagerRegistry $doctrine, $id,$idu, LikeItemsRepository $repository): Response
+    {
+        $repositoryitem = $doctrine->getRepository(item::class);
+        $repositorylike = $doctrine->getRepository(likeitems::class);
+        $em = $doctrine->getManager();
+        $item = $repositoryitem->find($id);
+        $like = $repository->obtain($id, $idu);
+
+        if (!$like) {
+            $item->setLikes($item->getLikes() + 1);
+            $likex = new likeitems();
+            $likex->setiduser($idu);
+            $likex->setiditem($id);
+            $likex->setlike(0);
+            $em->persist($likex);
+            $em->persist($item);
+            $em->flush();
+        } else {
+            if ($like[0]->getlike() == 0) {
+                $em->remove($like[0]);
+                $item->setLikes($item->getLikes() - 1);
+                $em->persist($item);
+                $em->flush();
+            } else {
+                $item->setDislikes($item->getDislikes() - 1);
+                $item->setLikes($item->getLikes() + 1);
+                $like[0]->setlike(0);
+                $em->persist($like[0]);
+
+                $em->persist($item);
+                $em->flush();
+            }
+        }
+        return new JsonResponse(['success' => true]);
+    }
+
+    #[Route('/item/mobile/dislike/{id}_{idu}', name: 'app_itemDislike_m')]
+    public function mobileDislike(Request $request, ManagerRegistry $doctrine, $id,$idu, LikeItemsRepository $repository): JsonResponse
+    {
+        $repositoryitem = $doctrine->getRepository(item::class);
+        $repositorylike = $doctrine->getRepository(likeitems::class);
+        $em = $doctrine->getManager();
+        $item = $repositoryitem->find($id);
+        $like = $repository->obtain($id, $idu);
+
+        if (!$like) {
+            $item->setDislikes($item->getDislikes() + 1);
+            $likex = new likeitems();
+            $likex->setiduser($idu);
+            $likex->setiditem($id);
+            $likex->setlike(1);
+            $em->persist($likex);
+            $em->persist($item);
+            $em->flush();
+        } else {
+            if ($like[0]->getlike() == 1) {
+                $em->remove($like[0]);
+                $item->setDislikes($item->getDislikes() - 1);
+                $em->persist($item);
+                $em->flush();
+            } else {
+                $item->setDislikes($item->getDislikes() + 1);
+                $item->setLikes($item->getLikes() - 1);
+                $like[0]->setlike(1);
+                $em->persist($like[0]);
+                $em->persist($item);
+                $em->flush();
+            }
+        }
+        return new JsonResponse(['success' => true]);
+    
+    }
+   
 }

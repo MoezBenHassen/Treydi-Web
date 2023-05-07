@@ -145,7 +145,11 @@
 												<td>{{ i.getLikes() }}</td>
 												<td>{{ i.getDislikes() }}</td>
 												<td>{{ i.getIdUser().getNom() }}</td>
-												<td>{{ i.getIdEchange() }}</td>
+												{% if i.getIdEchange() != null %}
+												<td>{{ i.getIdEchange().getTitreEchange() }}</td>
+												{% else %}
+												<td></td>
+												{% endif %}
 												<td>
 													<div class="dropdown">
 														<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
