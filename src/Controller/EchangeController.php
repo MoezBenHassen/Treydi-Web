@@ -9,9 +9,12 @@ use App\Entity\Echange;
 use App\Entity\Utilisateur;
 use App\Form\EchangeSearchTypeUser;
 use App\Form\EchangeType;
+use App\Repository\EchangeRepository;
+use App\Repository\ItemRepository;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -545,6 +548,83 @@ class EchangeController extends AbstractController
             'controller_name' => 'EchangeListController',
             'list' => $list
         ]);
+    }
+    
+     //MOBILE
+    #[Route('/echange/mobile/list', name: 'app_echangeList_m', methods: ['GET', 'POST'])]
+    public function mobileL(EchangeRepository $repository, ItemRepository $itemsRep): JsonResponse
+    {
+        $list = $repository->findBy(['archived' => false]);
+
+        $echangesArray = array_map(function (Echange $echange) use ($itemsRep) {
+            $echangeItems = $itemsRep->findBy(['id_echange' => $echange->getId(), 'archived' => false]);
+
+            $itemsArray = array_map(function (Item $item) {
+                return [
+                    'id' => $item->getId(),
+                    'id_echange' => $item->getIdEchange()->getId(),
+                    'id_user' => $item->getIdUser()->getId(),
+                    'libelle' => $item->getLibelle(),
+                    //'imageurl' => $item->getImageurl(),
+                    'archived' => $item->isArchived(),
+                    ];
+            }, $echangeItems);
+
+            return [
+                'id' => $echange->getId(),
+                'titre_echange' => $echange->getTitreEchange(),
+                'user1' => $echange->getIdUser1()->getId(),
+                'user2' => $echange->getIdUser2()->getId(),
+                'date_echange' => $echange->getDateEchange(),
+                'archived' => $echange->isArchived(),
+                'echange_items' => $itemsArray,
+                'etat_livraison' => $echange->getLivEtat(),
+            ];
+        }, $list);
+        // create a JSON response containing the items array
+        return new JsonResponse(['echanges' => $echangesArray]);
+    }
+
+    #[Route('/echange/mobile/listLivreur', name: 'app_echangeListLivreur_m', methods: ['GET', 'POST'])]
+    public function mobileEchangeLivreur(EchangeRepository $repository, ItemRepository $itemsRep): JsonResponse
+    {
+        $qb = $repository->createQueryBuilder('e')
+            ->where('e.archived = :archived')
+            ->andWhere('e.id_user1 IS NOT NULL')
+            ->andWhere('e.id_user2 IS NOT NULL')
+            ->andWhere('e.liv_etat = :liv_etat')
+            ->setParameter('archived', false)
+            ->setParameter('liv_etat', 'Non_Accepter');
+        $list = $qb->getQuery()->getResult();
+
+
+        $echangesArray = array_map(function (Echange $echange) use ($itemsRep) {
+            $echangeItems = $itemsRep->findBy(['id_echange' => $echange->getId(), 'archived' => false]);
+
+            $itemsArray = array_map(function (Item $item) {
+                return [
+                    'id' => $item->getId(),
+                    'id_echange' => $item->getIdEchange()->getId(),
+                    'id_user' => $item->getIdUser()->getId(),
+                    'libelle' => $item->getLibelle(),
+                    //'imageurl' => $item->getImageurl(),
+                    'archived' => $item->isArchived(),
+                ];
+            }, $echangeItems);
+
+            return [
+                'id' => $echange->getId(),
+                'titre_echange' => $echange->getTitreEchange(),
+                'user1' => $echange->getIdUser1()->getId(),
+                'user2' => $echange->getIdUser2()->getId(),
+                'date_echange' => $echange->getDateEchange(),
+                'archived' => $echange->isArchived(),
+                'echange_items' => $itemsArray,
+                'etat_livraison' => $echange->getLivEtat(),
+            ];
+        }, $list);
+        // create a JSON response containing the items array
+        return new JsonResponse(['echanges' => $echangesArray]);
     }
 
 }
