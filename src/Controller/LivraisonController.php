@@ -10,11 +10,16 @@ use App\Entity\Utilisateur;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class LivraisonController extends AbstractController
 {
@@ -204,6 +209,39 @@ class LivraisonController extends AbstractController
             'list' => $list
         ]);
     }
+    
+    //MOBILE
+    #[Route('/livraison/addm', name: 'app_livraisonUserAddm', methods: ['GET', 'POST'])]
+    public function ajouterLivraisonMobile(Request $request){
+        $entityManager = $this->getDoctrine()->getManager();
+        $echange = $entityManager->getRepository(Echange::class)->find($request->request->get('id'));
 
+        if (!$echange) {
+            return new JsonResponse(['error' => 'Echange not found.'], Response::HTTP_NOT_FOUND);
+        }
+
+        $echange->setLivEtat("Accepter");
+
+        $entityManager->persist($echange);
+
+        $livraison = new Livraison();
+        $em= $this->getDoctrine()->getManager();
+        $date_creation   = new DateTime();
+        $etat_livraison = "En_Cours";
+        $livraison->setIdEchange($echange);
+        $livraison->setArchived(false);
+        $livraison->setDateCreationLivraison($date_creation);
+        $livraison->setEtatLivraison($etat_livraison);
+        $livraison->setAdresseLivraison1($echange->getIdUser1()->getAdresse());
+        $livraison->setAdresseLivraison2($echange->getIdUser2()->getAdresse());
+        $em->persist($livraison);
+        $em->flush();
+
+        $normalizers = [new ObjectNormalizer()];
+        $encoders = [new JsonEncoder()];
+        $serializer = new Serializer($normalizers, $encoders);
+        $formatted = $serializer->serialize($livraison, 'json');
+        return new JsonResponse($formatted);
+    }
 
 }
