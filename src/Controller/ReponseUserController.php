@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Reclamation;
 use App\Entity\Reponse;
+use App\Repository\ReclamationRepository;
+use App\Repository\ReponseRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -71,6 +74,23 @@ class ReponseUserController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('app_reponseUserList', ['id' => $ide ]);
+    }
+ #[Route('/reponse/listm', name: 'app_reponseList_m', methods: ['POST', 'GET'])]
+    public function mobileL(ReponseRepository $repository,ManagerRegistry $doctrine): JsonResponse
+    {
+        $list = $repository->findBy(['archived' => false]);
+
+        $reponseArray = array_map(function (Reponse $rec) {
+            return [
+                'id' => $rec->getId(),
+                'titre_reponse' => $rec->getTitreReponse(),
+                'description_reponse' => $rec->getDescriptionReponse(),
+                'date_reponse' => $rec->getDateReponse(),
+                'id_reclamation' => $rec->getIdReclamation(),
+            ];
+        }, $list);
+
+        return new JsonResponse(['repon' => $reponseArray]);
     }
 
 
