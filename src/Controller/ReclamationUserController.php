@@ -7,15 +7,20 @@ use App\Entity\Reponse;
 use App\Form\FiltrereclamationType;
 use App\Form\ReclamationType;
 use App\Form\UpdateformType;
+use App\Repository\ReclamationRepository;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 use Dompdf\Dompdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
 class ReclamationUserController extends AbstractController
 {
@@ -47,6 +52,96 @@ class ReclamationUserController extends AbstractController
         }
         return $this->renderForm('reclamation_user/addReclamationUser.html.twig', array('formA' => $form));
     }
+     #[Route('/reclamation/addUserm', name: 'app_reclamationUserAqqddm',methods: ['POST'])]
+    public function ajouterReclamationMobile(Request $request){
+        $titre_reclamation = $request->query->get('titre_reclamation');
+        $description_reclamation = $request->query->get('description_reclamation');
+
+        if ($titre_reclamation != null && $description_reclamation != null) {
+            $reclamation = new Reclamation();
+            $em= $this->getDoctrine()->getManager();
+            $date_creation   = new DateTime();
+            $etat_reclamation = "en cours";
+            $archived = false;
+            $reclamation->setTitreReclamation($titre_reclamation);
+            $reclamation->setDescriptionReclamation($description_reclamation);
+            $reclamation->setDateCreation($date_creation);
+            $reclamation->setEtatReclamation($etat_reclamation);
+            $reclamation->setArchived($archived);
+            $em->persist($reclamation);
+            $em->flush();
+            $normalizers = [new ObjectNormalizer()];
+            $encoders = [new JsonEncoder()];
+            $serializer = new Serializer($normalizers, $encoders);
+            $formatted = $serializer->serialize($reclamation, 'json');
+            return new JsonResponse($formatted);
+        } else {
+            return new JsonResponse("Invalid input data");
+        }
+    }
+
+
+
+    #[Route('/reclamation/updateUserm', name: 'app_reclamationUserAddm', methods: ['POST'])]
+    public function updateReclamationMobile(Request $request)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $reclamation = $entityManager->getRepository(Reclamation::class)->find($request->request->get('id'));
+
+        if (!$reclamation) {
+            return new JsonResponse(['error' => 'Reclamation not found.'], Response::HTTP_NOT_FOUND);
+        }
+
+        $reclamation->setTitreReclamation($request->request->get('titre_reclamation'));
+        $reclamation->setDescriptionReclamation($request->request->get('description_reclamation'));
+
+        $entityManager->persist($reclamation);
+        $entityManager->flush();
+
+        return new JsonResponse(['message' => 'Reclamation updated successfully.']);
+    }
+
+    #[Route('/reclamation/deletem', name: 'app_reclamationUserdeletem', methods: ['POST'])]
+    public function deleteReclamationMobile(Request $request)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $reclamation = $entityManager->getRepository(Reclamation::class)->find($request->request->get('id'));
+
+        if (!$reclamation) {
+            return new JsonResponse(['error' => 'Reclamation not found.'], Response::HTTP_NOT_FOUND);
+        }
+
+        $reclamation->setArchived(true);
+
+        $entityManager->persist($reclamation);
+        $entityManager->flush();
+
+        return new JsonResponse(['message' => 'Reclamation deleted successfully.']);
+    }
+ #[Route('/reclamation/listm', name: 'app_reclamationList_m', methods: ['POST', 'GET'])]
+    public function mobileL(ReclamationRepository $repository,ManagerRegistry $doctrine): JsonResponse
+    {
+        $list = $repository->findBy(['archived' => false]);
+
+        $reclamationArray = array_map(function (Reclamation $rec) {
+            return [
+                'id' => $rec->getId(),
+                'titre_reclamation' => $rec->getTitreReclamation(),
+                'description_reclamation' => $rec->getDescriptionReclamation(),
+                'etat_reclamation' => $rec->getEtatReclamation(),
+                'date_creation' => $rec->getDateCreation(),
+                'date_cloture' => $rec->getDateCloture(),
+
+                'archived' => $rec->isArchived(),
+
+            ];
+        }, $list);
+
+        // create a JSON response containing the items array
+        return new JsonResponse(['recs' => $reclamationArray]);
+    }
+
+
 
     #[Route('/reclamation/listUser', name: 'app_reclamationUserList', methods: ['GET', 'POST'])]
     public function list(Request $request,ManagerRegistry $doctrine): Response
