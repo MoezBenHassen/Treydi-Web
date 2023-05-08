@@ -25,7 +25,7 @@
                                         <ul class="sub-menu">
                                             <li class="active"><a href="{{ path('app_article_front') }}">Our Blog</a></li>
                                             {#<li><a href="{{ path('app_article_front', {'articleCategory': ""}) }}">Our Blog</a></li>#}
-                                            <li><a href="blog-details.html">Blog Details</a></li>
+                                            {# <li><a href="blog-details.html">Blog Details</a></li> #}
                                         </ul>
                                     </li>
                                     <li class="menu-item-has-children"><a href="#">contact</a>
@@ -178,6 +178,18 @@
                             <a href="{{ path('app_echange_list_mesechanges') }}" class="d-flex justify-content-between" style="width: 100%">
                                 <img  src="{{ asset('assets/img/exchange.png') }}" alt="" style="">
                                 <span style="display: inline-block;  padding: 0 !important; margin: 0; ">Mes echanges</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_livraison_treyder_list') }}" class="d-flex justify-content-between" style="width: 100%">
+                                <img  src="{{ asset('assets/img/fast-delivery (1).png') }}" alt="" style="">
+                                <span style="display: inline-block;  padding: 0 !important; margin: 0; ">Mes livraisons</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_echange_creer') }}" class="d-flex justify-content-between" style="width: 100%">
+                                <img  src="{{ asset('assets/img/ajouter.png') }}" alt="" style="">
+                                <span style="display: inline-block;  padding: 0 !important; margin: 0; ">Creer un echange</span>
                             </a>
                         </li>
                         <li class="active menu  -item-has-children ">
