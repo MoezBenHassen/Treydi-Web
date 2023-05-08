@@ -18,9 +18,30 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ArticleFrontController extends AbstractController
 {
+    #[Route('/getAllArticles', name: 'app_article_getUnarchivedArticles', methods: ['GET'])]
+    public function getUnarchivedArticles(ArticleRepository $articleRepository): JsonResponse
+    {
+        /*return all articles jsonresponse*/
+        $articles = $articleRepository->findBy(['archived' => false]);
+        $data = [];
+        foreach ($articles as $article) {
+            $data[] = [
+                'id' => $article->getId(),
+                'title' => $article->getTitre(),
+                'description' => $article->getDescription(),
+                'contenu'=> $article->getContenu(),
+                'auteur' => $article->getAuteur()->getFullName(),
+                'id_categorie' => $article->getIdCategorie()->getId(),
+                'image' => "http://127.0.0.1:8000/images/articles/".$article->getImageName(),
+            ];
+        }
+        return new JsonResponse(['articles' => $data], Response::HTTP_OK);
+    }
+    
     #[Route('/article/{articleCategory?}', name: 'app_article_front')]
     public function index(
         DateTimeFormatter $dateTimeFormatter,
