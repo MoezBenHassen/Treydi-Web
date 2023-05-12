@@ -7,6 +7,9 @@ use App\Entity\EchangeProposer;
 use App\Entity\Item;
 use App\Entity\Livraison;
 use App\Entity\Utilisateur;
+use App\Repository\EchangeRepository;
+use App\Repository\ItemRepository;
+use App\Repository\LivraisonRepository;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -243,5 +246,58 @@ class LivraisonController extends AbstractController
         $formatted = $serializer->serialize($livraison, 'json');
         return new JsonResponse($formatted);
     }
+
+    #[Route('/livraison/mobile/livreur/meslivraisons', name: 'app_mes_livraisons_m', methods: ['GET', 'POST'])]
+    public function mobileL(LivraisonRepository $livraisonRepository, EchangeRepository $echangeRepository, ItemRepository $itemRepository, Request $request): JsonResponse
+    {
+        $livraisons = $livraisonRepository->findBy(['archived' => false, 'id_livreur' => $request->request->get('id')]);
+
+        $livraisonArray = array_map(function (Livraison $livraison) use ($echangeRepository, $itemRepository) {
+            $echange = $echangeRepository->findOneBy(['id' => $livraison->getIdEchange()]);
+            $echangeItems = $itemRepository->findBy(['id_echange' => $echange->getId(), 'archived' => false]);
+
+            $date_terminer_livraison = $livraison->getDateTerminerLivraison();
+            if ($date_terminer_livraison === null) {
+                $date_terminer_livraison = "non terminer";
+            }
+
+            $itemsArray = array_map(function (Item $item) {
+                return [
+                    'id' => $item->getId(),
+                    'id_echange' => $item->getIdEchange()->getId(),
+                    'id_user' => $item->getIdUser()->getId(),
+                    'libelle' => $item->getLibelle(),
+                    'archived' => $item->isArchived(),
+                ];
+            }, $echangeItems);
+
+            $echangeArray = [
+                'id' => $echange->getId(),
+                'titre_echange' => $echange->getTitreEchange(),
+                'id_user1' => $echange->getIdUser1()->getId(),
+                'id_user2' => $echange->getIdUser2()->getId()
+            ];
+
+            return [
+                'id' => $livraison->getId(),
+                'id_livreur' => $livraison->getIdLivreur()->getId(),
+                'id_echange' => $livraison->getIdEchange()->getId(),
+                'date_creation_livraison' => $livraison->getDateCreationLivraison(),
+                'etat_livraison' => $livraison->getEtatLivraison(),
+                'adresse_livraison1' => $livraison->getAdresseLivraison1(),
+                'adresse_livraison2' => $livraison->getAdresseLivraison2(),
+                'date_terminer_livraison' => $date_terminer_livraison,
+                'echange' => $echangeArray,
+                'echange_items' => $itemsArray,
+            ];
+        }, $livraisons);
+
+        // create a JSON response containing the livraison array
+        return new JsonResponse(['meslivraison' => $livraisonArray]);
+    }
+
+
+
+
 
 }
