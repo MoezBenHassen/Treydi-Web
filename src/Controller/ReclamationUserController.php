@@ -56,6 +56,7 @@ class ReclamationUserController extends AbstractController
     public function ajouterReclamationMobile(Request $request){
         $titre_reclamation = $request->query->get('titre_reclamation');
         $description_reclamation = $request->query->get('description_reclamation');
+         $id_user= $request->query->get('id_user');
 
         if ($titre_reclamation != null && $description_reclamation != null) {
             $reclamation = new Reclamation();
@@ -63,6 +64,7 @@ class ReclamationUserController extends AbstractController
             $date_creation   = new DateTime();
             $etat_reclamation = "en cours";
             $archived = false;
+            $reclamation->setIdUser($id_user);
             $reclamation->setTitreReclamation($titre_reclamation);
             $reclamation->setDescriptionReclamation($description_reclamation);
             $reclamation->setDateCreation($date_creation);
@@ -79,6 +81,8 @@ class ReclamationUserController extends AbstractController
             return new JsonResponse("Invalid input data");
         }
     }
+
+
 
 
 
@@ -118,10 +122,10 @@ class ReclamationUserController extends AbstractController
 
         return new JsonResponse(['message' => 'Reclamation deleted successfully.']);
     }
- #[Route('/reclamation/listm', name: 'app_reclamationList_m', methods: ['POST', 'GET'])]
-    public function mobileL(ReclamationRepository $repository,ManagerRegistry $doctrine): JsonResponse
+  #[Route('/reclamation/listm', name: 'app_reclamationList_m', methods: ['POST', 'GET'])]
+    public function mobileL(ReclamationRepository $repository,ManagerRegistry $doctrine,Request $request): JsonResponse
     {
-        $list = $repository->findBy(['archived' => false]);
+        $list = $repository->findBy(['archived' => false,   'id_user' => $request->query->get('id_user')]);
 
         $reclamationArray = array_map(function (Reclamation $rec) {
             return [
@@ -131,7 +135,6 @@ class ReclamationUserController extends AbstractController
                 'etat_reclamation' => $rec->getEtatReclamation(),
                 'date_creation' => $rec->getDateCreation(),
                 'date_cloture' => $rec->getDateCloture(),
-
                 'archived' => $rec->isArchived(),
 
             ];
