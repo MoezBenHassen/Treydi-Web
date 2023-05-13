@@ -71,9 +71,71 @@ class SecurityController extends AbstractController
         // Create a session for the user
         $session = $request->getSession();
         $session->set('user_id', $utilisateur->getId());
+        $session->set('nom', $utilisateur->getId());
+        $session->set('prenom', $utilisateur->getPrenom());
+        $session->set('adresse', $utilisateur->getAdresse());
+        $session->set('score', $utilisateur->getScore());
 
-        return new JsonResponse(['id' => $utilisateur->getId(),'password' => $utilisateur->getPassword(), 'email' => $utilisateur->getEmail()]);
+        return new JsonResponse(['id' => $utilisateur->getId(),'password' => $utilisateur->getPassword(), 'email' => $utilisateur->getEmail(),'nom' => $utilisateur->getNom(),'prenom' => $utilisateur->getPrenom(),'adresse' => $utilisateur->getAdresse(),'score' => $utilisateur->getScore()]);
     }
+
+    #[Route(path: '/login/getpasswordbyemail', name: 'app_password_mob', methods: ['GET'])]
+    public function getPasswordByEmail(Request $request){
+        $email =$request->get('email');
+        $utilisateur = $this->getDoctrine()->getRepository(Utilisateur::class)->findOneBy([
+            'email' => $email,
+        ]);
+        if($utilisateur){
+            $password= $utilisateur->getPassword();
+            $serializer = new Serializer ([new ObjectNormalizer()]);
+            $formatted = $serializer->normalize($password);
+            return new JsonResponse($formatted);
+        }
+        return new Response("user not found");
+
+    }
+    #[Route('/updateUserm', name: 'app_updateUser_mobile', methods: ['POST'])]
+    public function updateUserMobile(Request $request)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $entityManager->getRepository(Utilisateur::class)->find($request->request->get('id'));
+
+        if (!$user) {
+            return new JsonResponse(['error' => 'user not found.'], Response::HTTP_NOT_FOUND);
+        }
+
+        $user->setNom($request->request->get('nom'));
+        $user->setPrenom($request->request->get('prenom'));
+        $user->setAdresse($request->request->get('adresse'));
+        $user->setPassword($request->request->get('password'));
+
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return new JsonResponse(['message' => 'user updated successfully.']);
+    }
+    #[Route('/showUserm/{id}', name: 'app_showUser_mobile', methods: ['GET'])]
+    public function showUserMobile($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $entityManager->getRepository(Utilisateur::class)->find($id);
+
+        if (!$user) {
+            return new JsonResponse(['error' => 'user not found.'], Response::HTTP_NOT_FOUND);
+        }
+
+        $userDetails = [
+            'id' => $user->getId(),
+            'nom' => $user->getNom(),
+            'prenom' => $user->getPrenom(),
+            'adresse' => $user->getAdresse(),
+            'password' => $user->getPassword(),
+        ];
+
+        return new JsonResponse($userDetails);
+    }
+
 
 
 }
