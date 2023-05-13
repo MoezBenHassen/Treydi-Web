@@ -550,7 +550,7 @@ class EchangeController extends AbstractController
         ]);
     }
     
-     //MOBILE
+   //MOBILE
     #[Route('/echange/mobile/list', name: 'app_echangeList_m', methods: ['GET', 'POST'])]
     public function mobileL(EchangeRepository $repository, ItemRepository $itemsRep): JsonResponse
     {
@@ -586,7 +586,7 @@ class EchangeController extends AbstractController
     }
 
     #[Route('/echange/mobile/listLivreur', name: 'app_echangeListLivreur_m', methods: ['GET', 'POST'])]
-    public function mobileEchangeLivreur(EchangeRepository $repository, ItemRepository $itemsRep): JsonResponse
+    public function mobileEchangeLivreur(EchangeRepository $repository, ItemRepository $itemsRep, UtilisateurRepository $userRep): JsonResponse
     {
         $qb = $repository->createQueryBuilder('e')
             ->where('e.archived = :archived')
@@ -598,8 +598,22 @@ class EchangeController extends AbstractController
         $list = $qb->getQuery()->getResult();
 
 
-        $echangesArray = array_map(function (Echange $echange) use ($itemsRep) {
+        $echangesArray = array_map(function (Echange $echange) use ($userRep, $itemsRep) {
             $echangeItems = $itemsRep->findBy(['id_echange' => $echange->getId(), 'archived' => false]);
+            $user1 = $userRep->find($echange->getIdUser1()->getId());
+            $user2 = $userRep->find($echange->getIdUser2()->getId());
+
+            $user1Array = [
+                'id' => $user1->getId(),
+                'prenom' => $user1->getPrenom(),
+                'adresse' => $user1->getAdresse(),
+            ];
+
+            $user2Array = [
+                'id' => $user2->getId(),
+                'prenom' => $user2->getPrenom(),
+                'adresse' => $user2->getAdresse(),
+            ];
 
             $itemsArray = array_map(function (Item $item) {
                 return [
@@ -615,12 +629,12 @@ class EchangeController extends AbstractController
             return [
                 'id' => $echange->getId(),
                 'titre_echange' => $echange->getTitreEchange(),
-                'user1' => $echange->getIdUser1()->getId(),
-                'user2' => $echange->getIdUser2()->getId(),
                 'date_echange' => $echange->getDateEchange(),
                 'archived' => $echange->isArchived(),
                 'echange_items' => $itemsArray,
                 'etat_livraison' => $echange->getLivEtat(),
+                'user1' => $user1Array,
+                'user2' => $user2Array
             ];
         }, $list);
         // create a JSON response containing the items array
