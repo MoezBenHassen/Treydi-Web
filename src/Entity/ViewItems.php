@@ -17,6 +17,8 @@ class ViewItems
     {
         return $this->itemid;
     }
+
+    #[ORM\Id]
     #[ORM\Column]
     private ?int $userid = null;
 

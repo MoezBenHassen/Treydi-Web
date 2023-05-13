@@ -9,7 +9,7 @@
 		<table>
 			<thead>
 				<tr>
-					<th>Image</th>
+				
 					<th>Libelle</th>
 					<th>Categorie</th>
 					<th>Description</th>
@@ -25,7 +25,7 @@
 			<tbody>
 				{% for item in items %}
 					<tr>
-						<td><img src="{{ item.imageurl }}" width="150"></td>
+				
 						<td>{{ item.libelle }}</td>
 						<td>{{ item.getIdCategorie().getNomCategorie() }}</td>
 						<td>{{ item.description }}</td>

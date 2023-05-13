@@ -418,7 +418,7 @@ class ItemController extends AbstractController
         if (!$view) {
             $item->setViews($item->getViews() + 1);
             $viewx = new viewitems();
-            $viewx->setiduser(1);
+            $viewx->setiduser($this->getUser()->getId());
             $viewx->setiditem($id);
             $em->persist($viewx);
             $em->flush();
@@ -549,8 +549,9 @@ class ItemController extends AbstractController
         // Output the generated PDF to the browser
         return new Response($dompdf->output(), 200, [
             'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'attachment; filename="items.pdf"',
+            'Content-Disposition' => 'inline; filename="items.pdf"',
         ]);
+        
     }
 
     #[Route('/item/mobile/list', name: 'app_itemList_m')]
@@ -573,6 +574,7 @@ class ItemController extends AbstractController
                 'archived' => $item->isArchived(),
                 'id_categorie' => $item->getIdCategorie()->getId(),
                 'id_echange' => $item->getIdEchange() ? $item->getIdEchange()->getId() : null,
+                'username' => $item->getIdUser()->getNom(),
             ];
         }, $list);
 
@@ -600,36 +602,36 @@ class ItemController extends AbstractController
         return new JsonResponse(['itemcats' => $itemcatsArray]);
     }
 
-    #[Route('/item/mobile/add', name: 'app_itemAdd_m')]
-    public function mobileAdd(ManagerRegistry $doctrine, Request $request): JsonResponse
-    {
+        #[Route('/item/mobile/add', name: 'app_itemAdd_m')]
+        public function mobileAdd(ManagerRegistry $doctrine, Request $request): JsonResponse
+        {
 
-        $rrepository = $doctrine->getRepository(Item::class);
+            $rrepository = $doctrine->getRepository(Item::class);
 
-        $em = $doctrine->getManager();
-        $item = new item();
-        $jsonData = json_decode($request->getContent(), true);
-        $item->setLibelle($jsonData['libelle']);
-        $item->setDescription($jsonData['description']);
-        $item->setType($jsonData['type']);
-        $item->setEtat($jsonData['etat']);
-        $item->setImageurl($jsonData['imageurl']);
-        $item->setLikes(0);
-        $item->setDislikes(0);
-        $item->setViews(0);
-        $item->setArchived(0);
-        $a = $doctrine->getRepository(CategorieItems::class)->find($jsonData['id_categorie']);
-        $item->setIdCategorie($a);
-        $item->setIdEchange(null);
-        $b = $doctrine->getRepository(Utilisateur::class)->find($jsonData['id_user']);
-        $item->setIdUser($b);
+            $em = $doctrine->getManager();
+            $item = new item();
+            $jsonData = json_decode($request->getContent(), true);
+            $item->setLibelle($jsonData['libelle']);
+            $item->setDescription($jsonData['description']);
+            $item->setType($jsonData['type']);
+            $item->setEtat($jsonData['etat']);
+            $item->setImageurl($jsonData['imageurl']);
+            $item->setLikes(0);
+            $item->setDislikes(0);
+            $item->setViews(0);
+            $item->setArchived(0);
+            $a = $doctrine->getRepository(CategorieItems::class)->find($jsonData['id_categorie']);
+            $item->setIdCategorie($a);
+            $item->setIdEchange(null);
+            $b = $doctrine->getRepository(Utilisateur::class)->find($jsonData['id_user']);
+            $item->setIdUser($b);
 
-        $em->persist($item);
-        $em->flush();
-        $itemId = $item->getId();
+            $em->persist($item);
+            $em->flush();
+            $itemId = $item->getId();
 
-        return new JsonResponse(['success' => true,'id' => $itemId]);
-    }
+            return new JsonResponse(['success' => true,'id' => $itemId]);
+        }
 
     #[Route('/item/mobile/remove/{id}', name: 'app_itemRemove_m')]
     public function mobileRemove(Request $request, ManagerRegistry $doctrine, $id): JsonResponse
@@ -742,5 +744,65 @@ class ItemController extends AbstractController
         return new JsonResponse(['success' => true]);
     
     }
+
+
+    #[Route('/item/mobile/commentlist/{id}', name: 'app_itemcomList_m')]
+    public function mobileListComment(ManagerRegistry $doctrine,$id): JsonResponse
+    {
+
+        $rrepository = $doctrine->getRepository(CommentItems::class);
+        $listcom = $rrepository->findBy(['itemid' => $id]);
+
+        $itemcatsArray = array_map(function (CommentItems $itemc) {
+            return [
+                'user' => $itemc->getUserid()->getNom(),
+                'comment' => $itemc->getComment()
+
+            ];
+        }, $listcom);
+
+        // create a JSON response containing the items array
+        return new JsonResponse(['itemcoms' => $itemcatsArray]);
+    }
+
+    #[Route('/item/mobile/commentadd', name: 'app_itemCommentAdd_m')]
+        public function mobileCommentAdd(ManagerRegistry $doctrine, Request $request): JsonResponse
+        {
+
+            $rrepository = $doctrine->getRepository(CommentItems::class);
+
+            $em = $doctrine->getManager();
+            $item = new CommentItems();
+            $jsonData = json_decode($request->getContent(), true);
+            $item->setItemid($jsonData['itemid']);
+            $b = $doctrine->getRepository(Utilisateur::class)->find($jsonData['userid']);
+            $item->setUserId($b);
+            $item->setComment($jsonData['comment']);
+
+            $em->persist($item);
+            $em->flush();
+
+            return new JsonResponse(['success' => true]);
+        }
+
+
+        #[Route('/item/mobile/views/{id}_{idu}', name: 'app_itemViews_m')]
+        public function mobileView(ManagerRegistry $doctrine, $id,$idu, ViewItemsRepository $repository):JsonResponse
+        {
+            $repositoryitem = $doctrine->getRepository(item::class);
+            $repositoryview = $doctrine->getRepository(viewitems::class);
+            $em = $doctrine->getManager();
+            $item = $repositoryitem->find($id);
+            $view = $repository->obtain($id,$idu);
+            if (!$view) {
+                $item->setViews($item->getViews() + 1);
+                $viewx = new viewitems();
+                $viewx->setiduser($idu);
+                $viewx->setiditem($id);
+                $em->persist($viewx);
+                $em->flush();
+            }
+            return new JsonResponse(['success' => true]);
+        }
    
 }
