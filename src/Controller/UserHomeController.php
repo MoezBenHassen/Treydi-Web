@@ -11,8 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Utilisateur;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 
 class UserHomeController extends AbstractController
@@ -75,5 +74,32 @@ class UserHomeController extends AbstractController
             'user' => $user,
 
         ]);
+    }
+    #[Route("/updateProfileMobile", name: "updateProfileMobile",methods: ['GET', 'POST'])]
+    public function updateProfileMobile(Request $request, NormalizerInterface $normalizer, ManagerRegistry $doctrine, UtilisateurRepository $repo)
+    {
+        $id = $request->query->get("id");
+        $user = $repo->find($id);
+
+        $password = $request->query->get("password");
+        $nom = $request->query->get("nom");
+        $prenom = $request->query->get("prenom");
+        $adresse = $request->query->get("adresse");
+
+        $user->setNom($nom);
+        $user->setPrenom($prenom);
+        $user->setAdresse($adresse);
+        $user->setPassword(sha1($password));
+
+        $email = $request->query->get("email");
+        if ($email !== null) {
+            $user->setEmail($email);
+        }
+
+        $manager = $doctrine->getManager();
+        $manager->persist($user);
+        $manager->flush();
+
+        return new JsonResponse($normalizer->normalize($user));
     }
     }
