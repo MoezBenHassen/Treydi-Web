@@ -217,7 +217,8 @@ class LivraisonController extends AbstractController
     #[Route('/livraison/addm', name: 'app_livraisonUserAddm', methods: ['GET', 'POST'])]
     public function ajouterLivraisonMobile(Request $request){
         $entityManager = $this->getDoctrine()->getManager();
-        $echange = $entityManager->getRepository(Echange::class)->find($request->request->get('id'));
+        $echange = $entityManager->getRepository(Echange::class)->find($request->request->get('id_echange'));
+        $user = $entityManager->getRepository(Utilisateur::class)->find($request->request->get('id_user'));
 
         if (!$echange) {
             return new JsonResponse(['error' => 'Echange not found.'], Response::HTTP_NOT_FOUND);
@@ -231,6 +232,7 @@ class LivraisonController extends AbstractController
         $em= $this->getDoctrine()->getManager();
         $date_creation   = new DateTime();
         $etat_livraison = "En_Cours";
+        $livraison->setIdLivreur($user);
         $livraison->setIdEchange($echange);
         $livraison->setArchived(false);
         $livraison->setDateCreationLivraison($date_creation);
@@ -248,34 +250,49 @@ class LivraisonController extends AbstractController
     }
 
     #[Route('/livraison/mobile/livreur/meslivraisons', name: 'app_mes_livraisons_m', methods: ['GET', 'POST'])]
-    public function mobileL(LivraisonRepository $livraisonRepository, EchangeRepository $echangeRepository, ItemRepository $itemRepository, Request $request): JsonResponse
+    public function mobileL(LivraisonRepository $livraisonRepository, EchangeRepository $echangeRepository, ItemRepository $itemRepository, Request $request, UtilisateurRepository $userRep): JsonResponse
     {
         $livraisons = $livraisonRepository->findBy(['archived' => false, 'id_livreur' => $request->request->get('id')]);
 
-        $livraisonArray = array_map(function (Livraison $livraison) use ($echangeRepository, $itemRepository) {
+        $livraisonArray = array_map(function (Livraison $livraison) use ($userRep, $echangeRepository, $itemRepository) {
             $echange = $echangeRepository->findOneBy(['id' => $livraison->getIdEchange()]);
             $echangeItems = $itemRepository->findBy(['id_echange' => $echange->getId(), 'archived' => false]);
+            $user1 = $userRep->find($echange->getIdUser1()->getId());
+            $user2 = $userRep->find($echange->getIdUser2()->getId());
 
             $date_terminer_livraison = $livraison->getDateTerminerLivraison();
             if ($date_terminer_livraison === null) {
                 $date_terminer_livraison = "non terminer";
             }
 
-            $itemsArray = array_map(function (Item $item) {
-                return [
-                    'id' => $item->getId(),
-                    'id_echange' => $item->getIdEchange()->getId(),
-                    'id_user' => $item->getIdUser()->getId(),
-                    'libelle' => $item->getLibelle(),
-                    'archived' => $item->isArchived(),
+            $user1Array = [
+                'id' => $user1->getId(),
+                'prenom' => $user1->getPrenom(),
+                'adresse' => $user1->getAdresse(),
                 ];
-            }, $echangeItems);
+
+            $user2Array = [
+                'id' => $user2->getId(),
+                'prenom' => $user2->getPrenom(),
+                'adresse' => $user2->getAdresse(),
+            ];
+
 
             $echangeArray = [
                 'id' => $echange->getId(),
                 'titre_echange' => $echange->getTitreEchange(),
                 'id_user1' => $echange->getIdUser1()->getId(),
-                'id_user2' => $echange->getIdUser2()->getId()
+                'id_user2' => $echange->getIdUser2()->getId(),
+
+                $itemsArray = array_map(function (Item $item) {
+                    return [
+                        'id' => $item->getId(),
+                        'id_echange' => $item->getIdEchange()->getId(),
+                        'id_user' => $item->getIdUser()->getId(),
+                        'libelle' => $item->getLibelle(),
+                        'archived' => $item->isArchived(),
+                    ];
+                }, $echangeItems)
             ];
 
             return [
@@ -289,6 +306,8 @@ class LivraisonController extends AbstractController
                 'date_terminer_livraison' => $date_terminer_livraison,
                 'echange' => $echangeArray,
                 'echange_items' => $itemsArray,
+                'user1' => $user1Array,
+                'user2' => $user2Array
             ];
         }, $livraisons);
 
@@ -296,8 +315,39 @@ class LivraisonController extends AbstractController
         return new JsonResponse(['meslivraison' => $livraisonArray]);
     }
 
+    #[Route('/livraison/mobile/delete', name: 'app_livraison_delete_m', methods: ['POST'])]
+    public function deleteLivraisonMobile(Request $request, ManagerRegistry $doctrine)
+    {
+        $em = $doctrine->getManager();
+        $livraison = $doctrine->getRepository(Livraison::class)->find($request->request->get('id'));
+        $echange = $doctrine->getRepository(Echange::class)->find($request->request->get('id_echange'));
 
+        $livraison->setArchived(true);
+        $echange->setLivEtat("Non_Accepter");
 
+        $em->persist($echange);
+        $em->persist($livraison);
+        $em->flush();
+
+        return new JsonResponse(['message' => 'Livraison deleted successfully.']);
+    }
+
+    #[Route('/livraison/mobile/terminer', name: 'app_livraison_terminer_m', methods: ['POST'])]
+    public function terminerLivraisonMobile(Request $request, ManagerRegistry $doctrine)
+    {
+        $em = $doctrine->getManager();
+        $livraison = $doctrine->getRepository(Livraison::class)->find($request->request->get('id'));
+
+        $date_terminer = new DateTime();
+
+        $livraison->setEtatLivraison("Terminer");
+        $livraison->setDateTerminerLivraison($date_terminer);
+
+        $em->persist($livraison);
+        $em->flush();
+
+        return new JsonResponse(['message' => 'Livraison deleted successfully.']);
+    }
 
 
 }
