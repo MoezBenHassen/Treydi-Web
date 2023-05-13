@@ -48,6 +48,7 @@ class SecurityController extends AbstractController
         ]);
     }
     #[Route(path: '/login/mob', name: 'app_login_mob', methods: ['GET'])]
+    #[Route(path: '/login/mob', name: 'app_login_mob', methods: ['GET'])]
     public function loginMob(Request $request, UserPasswordHasherInterface $passwordHasher): JsonResponse
     {
         $email = $request->query->get('email');
@@ -71,9 +72,13 @@ class SecurityController extends AbstractController
         // Create a session for the user
         $session = $request->getSession();
         $session->set('user_id', $utilisateur->getId());
+        $session->set('score', $utilisateur->getScore());
+        $session->set('nom', $utilisateur->getId());
+        $session->set('prenom', $utilisateur->getPrenom());
+        $session->set('adresse', $utilisateur->getAdresse());
+        $session->set('score', $utilisateur->getScore());
 
-        return new JsonResponse(['id' => $utilisateur->getId(),'password' => $utilisateur->getPassword(), 'email' => $utilisateur->getEmail()]);
+        return new JsonResponse(['id' => $utilisateur->getId(),'password' => $utilisateur->getPassword(), 'email' => $utilisateur->getEmail(),'nom' => $utilisateur->getNom(),'prenom' => $utilisateur->getPrenom(),'adresse' => $utilisateur->getAdresse(),'score' => $utilisateur->getScore()]);
     }
-
 
 }
