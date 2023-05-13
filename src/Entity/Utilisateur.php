@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Ignore;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -44,6 +45,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface ,
 
     /**
      * @var string The hashed password
+     * 
      */
     #[ORM\Column]
     #[Assert\Length(
@@ -101,6 +103,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface ,
     private Collection $reclamations;
 
     #[ORM\OneToMany(mappedBy: 'id_user', targetEntity: Coupon::class)]
+    #[MaxDepth(1)]
     private Collection $coupons;
 
     #[ORM\OneToMany(mappedBy: 'id_user', targetEntity: ArticleRatings::class)]
