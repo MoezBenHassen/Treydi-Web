@@ -46,7 +46,7 @@ class RegistrationController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    #[Route('/register/mob', name: 'app_register_m')]
+   #[Route('/register/mob', name: 'app_register_m')]
     public function mobileL(Request $request, UserPasswordHasherInterface $passwordEncoder, EntityManagerInterface $entityManager)
     {
         $email = $request->query->get("email");
@@ -54,12 +54,21 @@ class RegistrationController extends AbstractController
             return new Response("Email is required", status: 400);
         }
         $password = $request->query->get("password");
+        $nom = $request->query->get("nom");
+        $prenom = $request->query->get("prenom");
+        $adresse = $request->query->get("adresse");
         $roles = $request->query->get("roles");
 
         $user = new Utilisateur();
+        $user->setNom($nom);
+        $user->setPrenom($prenom);
         $user->setEmail($email);
+        $user->setAdresse($adresse);
         $user->setPassword($passwordEncoder->hashPassword($user, $password));
         $user->setRoles(["ROLE_" . strtoupper($roles)]); // format the role as an array
+
+
+
 
         try {
             $entityManager->persist($user);
@@ -71,6 +80,8 @@ class RegistrationController extends AbstractController
             return new Response("Exception: " . $ex->getMessage());
         }
     }
+
+
 
 
 }
