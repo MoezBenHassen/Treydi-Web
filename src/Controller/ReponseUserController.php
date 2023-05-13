@@ -92,6 +92,37 @@ class ReponseUserController extends AbstractController
 
         return new JsonResponse(['repon' => $reponseArray]);
     }
+    #[Route('/reponse/avism', name: 'app_reponseUseravism', methods: ['POST'])]
+    public function AvisReponseMobile(Request $request)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $reponse = $entityManager->getRepository(Reponse::class)->find($request->request->get('id'));
+
+        if (!$reponse) {
+            return new JsonResponse(['error' => 'Reponse not found.'], Response::HTTP_NOT_FOUND);
+        }
+        $reponse->setAvis("satisfait");
+        $entityManager->persist($reponse);
+        $entityManager->flush();
+
+        return new JsonResponse(['message' => 'Reponse satisfait successfully.']);
+    }
+
+    #[Route('/reponse/avismnon', name: 'app_reponseUseravismnon', methods: ['POST'])]
+    public function AvisnomsatisfaitReponseMobile(Request $request)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $reponse = $entityManager->getRepository(Reponse::class)->find($request->request->get('id'));
+
+        if (!$reponse) {
+            return new JsonResponse(['error' => 'Reponse not found.'], Response::HTTP_NOT_FOUND);
+        }
+        $reponse->setAvis("non satisfait");
+        $entityManager->persist($reponse);
+        $entityManager->flush();
+
+        return new JsonResponse(['message' => 'Reponse non satisfait successfully.']);
+    }
 
 
 }
